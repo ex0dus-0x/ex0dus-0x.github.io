@@ -1,34 +1,93 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator><link href="http://ex0dus-0x.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ex0dus-0x.github.io/" rel="alternate" type="text/html" /><updated>2016-02-20T17:50:47-05:00</updated><id>http://ex0dus-0x.github.io/</id><title>./codemuch?</title><subtitle>Personal site and blog for the teaching and spreading of hacktivism and programming and everything technical</subtitle><entry><title>Beginner’s Guide to Clean Code</title><link href="http://ex0dus-0x.github.io/2014/09/24/beginners-guide-to-clean-code/" rel="alternate" type="text/html" title="Beginner&#39;s Guide to Clean Code" /><published>2014-09-24T08:00:00-04:00</published><updated>2014-09-24T08:00:00-04:00</updated><id>http://ex0dus-0x.github.io/2014/09/24/beginners-guide-to-clean-code</id><content type="html" xml:base="http://ex0dus-0x.github.io/2014/09/24/beginners-guide-to-clean-code/"></content><author><name>Start Bootstrap</name></author><summary></summary></entry><entry><title>Man must explore, and this is exploration at its greatest</title><link href="http://ex0dus-0x.github.io/2014/09/24/man-must-explore/" rel="alternate" type="text/html" title="Man must explore, and this is exploration at its greatest" /><published>2014-09-24T08:00:00-04:00</published><updated>2014-09-24T08:00:00-04:00</updated><id>http://ex0dus-0x.github.io/2014/09/24/man-must-explore</id><content type="html" xml:base="http://ex0dus-0x.github.io/2014/09/24/man-must-explore/">&lt;p&gt;Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman&#39;s earth, if free men make it, will be truly round: a globe in practice, not in theory.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator><link href="http://ex0dus-0x.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ex0dus-0x.github.io/" rel="alternate" type="text/html" /><updated>2016-02-20T22:03:59-05:00</updated><id>http://ex0dus-0x.github.io/</id><title>./codemuch?</title><subtitle>Personal site and blog for the teaching and spreading of hacktivism and programming and everything technical</subtitle><entry><title>Beginner’s Guide to Clean Code</title><link href="http://ex0dus-0x.github.io/2016/02/19/beginners-guide-to-clean-code/" rel="alternate" type="text/html" title="Beginner&#39;s Guide to Clean Code" /><published>2016-02-19T07:00:00-05:00</published><updated>2016-02-19T07:00:00-05:00</updated><id>http://ex0dus-0x.github.io/2016/02/19/beginners-guide-to-clean-code</id><content type="html" xml:base="http://ex0dus-0x.github.io/2016/02/19/beginners-guide-to-clean-code/">&lt;p&gt;What is the difference between &lt;b&gt;effective&lt;/b&gt; code and &lt;b&gt;clean&lt;/b&gt; code?&lt;/p&gt;
 
-&lt;p&gt;Science cuts two ways, of course; its products can be used for both good and evil. But there&#39;s no turning back from science. The early warnings about technological dangers also come from science.&lt;/p&gt;
+&lt;h2 class=&quot;section-heading&quot;&gt;Let&#39;s look at an example:&lt;/h2&gt;
 
-&lt;p&gt;What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.&lt;/p&gt;
+&lt;p&gt; For some really weird reason, you want to print out &quot;Hello World&quot; five times in C++. This is what you write:
+&lt;pre&gt;
+int main(){
+	std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
+	std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
+	std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
+	std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
+	std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
+} &lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt; Of course, you wouldn&#39;t do that. You would instead use:
+&lt;pre&gt;
+int main(){
+	for( i = 5; i &amp;gt;= 0; i-- ){
+		std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
+	}
+} &lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt; This is &lt;b&gt;effective&lt;/b&gt; code. Even though this is a really basic example, it still demonstrates how we can write code, but shorter, easier, and
+doesn&#39;t require me to press &lt;code&gt;Ctrl+V&lt;/code&gt; 5 times. But what is the idea of &lt;b&gt; clean &lt;/b&gt; code? &lt;b&gt; Clean &lt;/b&gt; code looks &lt;i&gt;professional.&lt;/i&gt;&lt;b&gt;Clean&lt;/b&gt;
+code is &lt;i&gt;formal&lt;/i&gt;. &lt;b&gt; Clean &lt;/b&gt; code, when examined by other programmers, is &lt;i&gt;undestandable&lt;/i&gt; and &lt;i&gt;replicable&lt;/i&gt; and has a &lt;i&gt;steady flow&lt;/i&gt; where the programmer is easily to able to read through it without scratching his or her head and saying, &lt;i&gt;&quot;Huh?&quot;&lt;/i&gt;. &lt;/p&gt;
 
-&lt;p&gt;A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That&#39;s how I felt seeing the Earth for the first time. I could not help but love and cherish her.&lt;/p&gt;
+&lt;h4&gt;Let us look at my criteria for clean code.&lt;/h4&gt;
 
-&lt;p&gt;For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.&lt;/p&gt;
+&lt;h2 class=&quot;section-heading&quot;&gt;1. &lt;i&gt;//Comment&lt;/i&gt; everything! &lt;/h2&gt;
+&lt;p&gt;Code are like directions, that are pretty indecipherable, especially if you have written &lt;i&gt;alot&lt;/i&gt; of it.
+Shouldn&#39;t it be pretty logical to have comments, and give a human interpretation of what is happening? Not only should you write comments, but you should also make your comments, short, decipherable and does not overly explain what you are doing. Let&#39;s look at S. Kiddy&#39;s code:&lt;/p&gt;
+&lt;pre&gt;
+#So here is my code. I am going to first declare the variable x, and then give it the value of 5. 
+#After that, I will add 7 to x, and then call x again, and I will get 12. 
+&amp;gt;&amp;gt;&amp;gt; x = 5
+&amp;gt;&amp;gt;&amp;gt; x + 7
+&amp;gt;&amp;gt;&amp;gt; x
+&amp;gt; 12
+&lt;/pre&gt;
+&lt;p&gt; It&#39;s good that at least he is commenting what he is doing, but it does not mean that it is &lt;b&gt;clean&lt;/b&gt;. The comments are overly explaining what is happening. Let&#39;s look at Masta Haxa&#39;s code: &lt;/p&gt;
+&lt;pre&gt;
+#Declare variable x with value of 5. Add 7 to it, and call x to have value of 12.
+&amp;gt;&amp;gt;&amp;gt; x = 5
+&amp;gt;&amp;gt;&amp;gt; x + 7
+&amp;gt;&amp;gt;&amp;gt; x
+&amp;gt; 12	
+&lt;/pre&gt;
+&lt;p&gt; The program is the same, but the commenting is &lt;b&gt;simple&lt;/b&gt; and still explains the concept of the code in a whole. &lt;/p&gt;
 
-&lt;h2 class=&quot;section-heading&quot;&gt;The Final Frontier&lt;/h2&gt;
+&lt;h2 class=&quot;section-heading&quot;&gt;2. Whitespace &lt;/h2&gt;
+&lt;p&gt; The concept of &lt;b&gt;whitespace&lt;/b&gt; is pretty big in programming, especially object-oriented. Although it is NOT a requirement, people tend to enjoy looking at code that is not tightly packed. &lt;/p&gt;
+&lt;pre&gt;
+for( x = 3; x &amp;lt; 4; x++){
+	cout &amp;lt;&amp;lt; &quot;Wow! This is pretty spaced out&quot; &amp;lt;&amp;lt; endl;
+}&lt;/pre&gt;
+&lt;p&gt;Compared to something like:&lt;/p&gt;
+&lt;pre&gt;
+for(x=3;x&amp;lt;4;x++){
+	cout&amp;lt;&amp;lt;&quot;helpmeimtrapped&quot;&amp;lt;&amp;lt; endl;
+	}
+&lt;/pre&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 class=&quot;section-heading&quot;&gt;3.Indentation&lt;/h2&gt;
+&lt;p&gt;Indentation, like whitespace is another form of organization. Also known as &lt;b&gt;indent style&lt;/b&gt; it will easily help one recognize
+your code due to positioning, as well as for you, when you come back to edit your code. This is especially important for writing code in HTML. Let me demonstrate:
 
-&lt;p&gt;There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.&lt;/p&gt;
-
-&lt;p&gt;There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.&lt;/p&gt;
-
-&lt;blockquote&gt;The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.&lt;/blockquote&gt;
-
-&lt;p&gt;Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.&lt;/p&gt;
-
-&lt;h2 class=&quot;section-heading&quot;&gt;Reaching for the Stars&lt;/h2&gt;
-
-&lt;p&gt;As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;#&quot;&gt;
-    &lt;img src=&quot;/img/post-sample-image.jpg&quot; alt=&quot;Post Sample Image&quot; /&gt;
-&lt;/a&gt;
-&lt;span class=&quot;caption text-muted&quot;&gt;To go places and do things that have never been done before – that’s what living is all about.&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.&lt;/p&gt;
-
-&lt;p&gt;As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.&lt;/p&gt;
-
-&lt;p&gt;Placeholder text by &lt;a href=&quot;http://spaceipsum.com/&quot;&gt;Space Ipsum&lt;/a&gt;. Photographs by &lt;a href=&quot;https://www.flickr.com/photos/nasacommons/&quot;&gt;NASA on The Commons&lt;/a&gt;.&lt;/p&gt;</content><author><name>Start Bootstrap</name></author><summary>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman&#39;s earth, if free men make it, will be truly round: a globe in practice, not in theory.</summary></entry></feed>
+&lt;img src=&quot;(http://ex0dus-0x.github.io/img/indentation.png&quot; alt=&quot;indentation&quot; style=&quot;width:700px;height:500px;&quot; /&gt;
+				
+&lt;p&gt; In this situation, my code is neatly indented. I am able to navigate, and I include (a bit) of comments. &lt;/p&gt;
+&lt;p&gt; This is an example of code that has &lt;b&gt;NO&lt;/b&gt; indentation (img source: http://bit.ly/1ZmLVLz) &lt;/p&gt;
+				
+&lt;img src=&quot;(http://ex0dus-0x.github.io/img/notindentation.jpg&quot; alt=&quot;notindentation&quot; style=&quot;width:750px;height:650px;&quot; /&gt;
+				
+&lt;h2 class=&quot;section-heading&quot;&gt;4.Variable Name Declaration&lt;/h2&gt;
+&lt;p&gt; When you have a variable, class, structure, or any of that sort, is it not logical to name it something relevant. Give your variables ,classes, objects, etc. concise names. This shows organization and unity in your code. If you are writing code in an object-oriented programming language, such as C++, this is very important especially working with inheritance and stuff like that. &lt;/p&gt;
+&lt;pre&gt; //Good example
+struct PERSON{ //PERSON struct type
+	int age;
+	string name;
+	float weight
+}familymember; //Define object for PERSON type
+&lt;/pre&gt;
+&lt;p&gt; and here&#39;s a &lt;b&gt;BAD&lt;/b&gt; example &lt;/p&gt;
+&lt;pre&gt;
+//I will make a program where the user will input a number, and the computer returns that number + 2. 
+//Here are my variables:
+int noodles;
+cin &amp;gt;&amp;gt; noodles;
+noodles + 2;
+cout &amp;lt;&amp;lt; noodles &amp;lt;&amp;lt; endl;
+&lt;/pre&gt;
+&lt;p&gt; Shouldn&#39;t it be a little more logical to call the variable &quot;input&quot; instead? &lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt; Thank you for reading my first article! I will be coming up with more in the future, but this one was definitely O.K. There are, of course &lt;b&gt; ALOT &lt;/b&gt; of things you can do to improve your code and make it &lt;b&gt; clean &lt;/b&gt; and &lt;b&gt; effective &lt;/b&gt;. Code review, although I did not include it in here, is obviously a must, and an amateur programmer like you and me, &lt;b&gt; WILL &lt;/b&gt; always have questions. One of the best places is StackExchange, a prominent Q&amp;amp;A forum community. Visit at: http://stackexchange.com/&lt;/p&gt;
+&lt;/p&gt;</content><author><name>ex0dus</name></author><summary>What is the difference between effective code and clean code?</summary></entry></feed>
