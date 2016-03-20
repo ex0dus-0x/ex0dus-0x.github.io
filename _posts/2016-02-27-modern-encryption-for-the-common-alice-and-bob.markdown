@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Modern Encryption for the Common Alice and Bob"
-subtitle:   "Hey, I'm the government. Gimme all your passwords."
+subtitle:   "Part 1: Primer: The OS and the Browser"
 date:       2016-02-27 12:00:00
 author:     "ex0dus"
 header-img: "img/post-bg-03.jpg"
