@@ -1,72 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator><link href="http://ex0dus-0x.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ex0dus-0x.github.io/" rel="alternate" type="text/html" /><updated>2016-03-20T14:08:32-04:00</updated><id>http://ex0dus-0x.github.io/</id><title>./codemuch?</title><subtitle>Personal site and blog for the teaching and spreading of hacktivism and programming and everything technical</subtitle><entry><title>Redox: a Linux-Like Operating System made with Rust</title><link href="http://ex0dus-0x.github.io/2016/03/19/redox-a-linux-os-made-with-rust/" rel="alternate" type="text/html" title="Redox: a Linux-Like Operating System made with Rust" /><published>2016-03-19T08:00:00-04:00</published><updated>2016-03-19T08:00:00-04:00</updated><id>http://ex0dus-0x.github.io/2016/03/19/redox-a-linux-os-made-with-rust</id><content type="html" xml:base="http://ex0dus-0x.github.io/2016/03/19/redox-a-linux-os-made-with-rust/">&lt;p&gt; Recently, I was doing my routinely performing my daily rituals on Reddit when I came across this: &lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> - Articles</title>
+    <description>Personal site and blog for the teaching and spreading of hacktivism and programming and everything technical</description>
+    <link>
+    http://ex0dus-0x.github.io</link>
+    
+      
+      <item>
+        <title>Redox: a Linux-Like Operating System made with Rust</title>
+        
+          <description>&lt;p&gt; Recently, I was doing my routinely performing my daily rituals on Reddit when I came across this: &lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/redox.png&quot; /&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 19 Mar 2016 08:00:00 -0400</pubDate>
+        <link>
+        http://ex0dus-0x.github.io/2016/03/19/redox-a-linux-os-made-with-rust/</link>
+        <guid isPermaLink="true">http://ex0dus-0x.github.io/2016/03/19/redox-a-linux-os-made-with-rust/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Modern Encryption for the Common Alice and Bob</title>
+        
+          <description>&lt;p&gt; Hello, everyone, I&#39;m back! &lt;/p&gt;
 
-&lt;p&gt; It looked interesting, especially since it was written in the Rust programming language, a programming language I played around with during the summer before my freshman year of high school. It was an interesting language, and it had many similarities with C/C++. After all, it was a language that tried to replace it. And now after going back to the &lt;a href=&quot;https://doc.rust-lang.org/book/&quot;&gt;&lt;b&gt;Rust website&lt;/b&gt;&lt;/a&gt;, I can see that Rust has been receiving A LOT more functionality than it did when I tinkered with it. Windows support, especially. One thing that I really like about Rust&#39;s programming language is Cargo, which is it&#39;s minature package manager and build system. It&#39;s the GCC for Rust. &lt;/p&gt;
-
-&lt;p&gt; So here I was, on the Redox website: &lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/redox-site.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt; It looked pretty interesting, so I decided to download the ISO, which was actually only a nice 26MB, compared to a usual 1-2GB download for any other Linux distro. &lt;/p&gt;
-&lt;p&gt; First, I cloned it from the GitHub repository: &lt;/p&gt;
-&lt;pre&gt; $ git clone https://github.com/redox-os/redox &lt;/pre&gt;
-&lt;p&gt; Set it up with Curl. This installs Rust, as well as other dependenices&lt;/p&gt;
-&lt;pre&gt; $ curl -sf https://raw.githubusercontent.com/redox-os/redox/master/bootstrap.sh -o bootstrap.sh &amp;amp;&amp;amp; bash -e bootstrap.sh &lt;/pre&gt;
-&lt;p&gt;Build it and then use QEMU to launch it:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ cd redox 
-$ make all
-$ make qemu &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt; The instructions are all available here on the &lt;a href=&quot;https://github.com/redox-os/redox&quot;&gt;&lt;b&gt;GitHub page&lt;/b&gt;&lt;/a&gt; for Redox &lt;/p&gt;
-&lt;p&gt; Afterwards, here&#39;s what you will get: &lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/redox-qemu.png&quot; /&gt;&lt;/p&gt;
-&lt;p&gt; Login with &quot;root&quot; and run the command &quot;orbital&quot; to get the GUI, which looks like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/redox-gui.png&quot; /&gt;&lt;/p&gt;
-&lt;p&gt; Overall, I think the OS is quite basic, but a pretty impressive build. It has several things different when compared to your average Linux operating system. It has its very own shell, Ion. A text editor is also included, called Sodium, and several other lil&#39; side projects, which you can find on &lt;a href=&quot;http://www.redox-os.org/book/book/overview/welcome.html&quot;&gt;&lt;b&gt;here&lt;/b&gt;&lt;/a&gt;, on the Redox website. &lt;/p&gt;
-&lt;p&gt; Obviously, I have little knowledge of writing operating systems, and kernel-level programming, but I still really like Redox. It is obviously going to improve over time, but I still recommend that you should check it out, play around with it to get a better understanding of Operating Systems. &lt;/p&gt;
-
-&lt;p&gt; And yes, Rust is installed along with it. &lt;/p&gt;</content><author><name>ex0dus</name></author><summary>Recently, I was doing my routinely performing my daily rituals on Reddit when I came across this:</summary></entry><entry><title>Modern Encryption for the Common Alice and Bob</title><link href="http://ex0dus-0x.github.io/2016/02/27/modern-encryption-for-the-common-alice-and-bob/" rel="alternate" type="text/html" title="Modern Encryption for the Common Alice and Bob" /><published>2016-02-27T07:00:00-05:00</published><updated>2016-02-27T07:00:00-05:00</updated><id>http://ex0dus-0x.github.io/2016/02/27/modern-encryption-for-the-common-alice-and-bob</id><content type="html" xml:base="http://ex0dus-0x.github.io/2016/02/27/modern-encryption-for-the-common-alice-and-bob/">&lt;p&gt; Hello, everyone, I&#39;m back! &lt;/p&gt;
-
-&lt;p&gt; As you may have heard, the nasty government has been attempting to spy on us again. It has requested that Apple backdoor an iPhone belonging to the San Bernardino terrorist. You may say, &quot;ex0dus (or Alan, if you know me in real life), I, like ever dedicated citizen of the United States, watched the Republican Debate last night, and it was said that the government only want access to the terrorist&#39;s phone by disabling the locking mechanism after a certain number of tries. You&#39;re a retard&quot;. You may be right, fellow reader, but think about it. How demanding is our government today? This has already happened several time, especially with Steve Jobs running Apple, and Tim Cooks, being the goody-good boy he is, is protecting his company&#39;s image by refusing. I would, and you should to, not be surprised if this doesn&#39;t happen again in the future again, especially in a world filled with terrorist, hate and political oppression.&lt;/p&gt;
-
-&lt;p&gt; This may seem like propaganda. Common-day conspiracy theory. Windows 10&#39;s spyware, the government spying on us. And so what if it is real? I have nothing to hide, I&#39;m not a terrorist or a hacker like you. OK. Well let&#39;s put it this way. I am a NSA agent, employed by the NSA in order to detect whether there is any hostile threats in our nation. In order to do so, I read &lt;b&gt;ALL OF YOUR EMAILS, MESSAGES, FACEBOOK POSTS, ETC. &lt;/b&gt; How do you feel? Maybe I won&#39;t do anything with it, but do you really want a stranger snooping through your life? &lt;/p&gt;
-
-&lt;p&gt; If you have taken any studies of law, US History, government, etc, you would know that no amendment individually states that a person&#39;s personal information and privacy cannot be voided. However several acts have been implemented that guarentees privacy. Read: &lt;a href=&quot;http://www.livescience.com/37398-right-to-privacy.html&quot;&gt;&lt;b&gt;THIS&lt;/b&gt;&lt;/a&gt; by LiveScience. &lt;/p&gt;
-
-&lt;p&gt; Well, I&#39;m not really going to get into the law stuff anymore, and I&#39;m going to get into the technical stuff. Today, I will be teaching you, as well as providing several resources on how &lt;b&gt; YOU &lt;/b&gt; as a citizen can protect yourself. This is not necessarily from the government, but also to anonymize yourself during any hacktivistic related activities and endeavors. &lt;/p&gt;
-
-&lt;h2 class=&quot;section-heading&quot;&gt;What to do?&lt;/h2&gt;
-
-&lt;p&gt; I have collected a large amount of resources through research and scouring, and one of the best I have found was a site called &lt;a href=&quot;privacy.tools.io&quot;&gt;&lt;b&gt;PrivacyTools.io&lt;/b&gt;&lt;/a&gt;. This site has given A LOT of resources on how to protect yourself. It is repository filled with the necessary tools, software and measures you should take in order to protect yourself. I will review a few of these as well. &lt;/p&gt;
-
-&lt;h2 class=&quot;section-heading&quot;&gt;The Operating System&lt;/h2&gt;
-&lt;p&gt; Well first of all, if you want to protect yourself, I would recommend switching your OS. As you may have heard, Windows is completely a nightmare right now. It has spawn off as a simple and lovable OS, and now is a global conglomerate mess that is siphoning everything you have. Maybe it&#39;s Cortana, asking you for your location, so that it &quot;can find the nearest Italian restaurant&quot;, when it is really is sending data about your computer and your Geolocation to a nasty government agency that contracted Microsoft. Right now, you may wondering, &quot;Well, if I wanted to use OS X, I have to buy a Mac. If I wanted to Linux, I have to be some tech nerd.&quot; You don&#39;t. I am running Ubuntu 14.04 on dual-boot right now, as I am writing this blog. This is the most user-friendly OS ever, and even if you have no knowledge of the Linux terminal, this doesn&#39;t mean that Ubuntu is unusable. If you are a hacker or pentester, you can still use Ubuntu, but requires extra configuration, such as when installing Metasploit (challenge level 5,000,000,000,000,000) and including other repositories to get your lil&#39; toolkit o&#39; tools. &lt;/p&gt;
-
-&lt;p&gt; If you are complete privacy freak, you may have heard about the Tails OS. Tails stands for &lt;b&gt;T&lt;/b&gt;he &lt;b&gt;A&lt;/b&gt;mnesic &lt;b&gt;I&lt;/b&gt;ncognito &lt;b&gt;L&lt;/b&gt;ive &lt;b&gt;S&lt;/b&gt;ystem. It is for the paranoid of the paranoid. Everything is routed through Tor, and every application is secure and encrypted. However, it does not mean it is 100% secure. Tails should obviously be run on a USB, CD or SD card, hence &quot;Live System&quot; and should not be installed. Tails does not guarentee malware protection, remember, &quot;anonymity&quot;, not &quot;antivirus&quot;. Obviously, if you have heard, Tor is broken, due to data being able to be sniffed out in the exit nodes, so that is a caution to be aware of. You can get Tails 
-&lt;a href=&quot;https://tails.boum.org&quot;&gt;&lt;b&gt;HERE&lt;/b&gt;&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 class=&quot;section-heading&quot;&gt;Secure Browsing and Anonymity&lt;/h2&gt;
-&lt;p&gt; Let&#39;s assume that you have Ubuntu or Debian or any Linux OS installed. Obviously, having a secure OS does not mean you are guranteed anonymity and protection of your privacy. The first thing I will be concerning is browsing the web. &lt;/p&gt;
-&lt;p&gt; On any OS, you would probably be acquainted to Chrome. It supports Javascript, your Gmail and everything concerning it will be synced and saved for your convenience, its definitely 500x better than Internet Explorer, and is the big daddy of browsers. However, I think that if you want to become more secure with your information, consider downloading two browsers. It doesn&#39;t matter that you are Windows, Linux, Mac OS X. These browsers support all platforms. &lt;/p&gt;
-&lt;li&gt;
-	&lt;ul&gt;&lt;a href=&quot;https://www.mozilla.org/en-US/firefox/new/&quot;&gt;&lt;b&gt;Firefox&lt;/b&gt;&lt;/a&gt;- &lt;i&gt; Well, to be precise, FireFox with a few additional addons. Firefox is the browser that won&#39;t leak your information, and has a variety of addons that will help protect you even further. &lt;/i&gt;&lt;/ul&gt;
-		&lt;ul&gt;&lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/self-destructing-cookies/&quot;&gt;&lt;b&gt; - Self-Destructing Cookies &lt;/b&gt;&lt;/a&gt;- &lt;i&gt;This addon protects you from a website&#39;s trackers and cookies attempting to identify you by destroying them each time you close a browser. &lt;/i&gt;&lt;/ul&gt;
-		&lt;ul&gt;&lt;a href=&quot;https://noscript.net/&quot;&gt;&lt;b&gt; - NoScript &lt;/b&gt;&lt;/a&gt;- &lt;i&gt;Noscript disables any sort of script, whether it is an addon, plugin, Javascript, Flash on any site, except for the one&#39;s you configure as &quot;trusted&quot;. It is considered a mandatory addon for Firefox and is definitely disables sites from tracking and identifying you through your external plugins and addons.&lt;/i&gt;&lt;/ul&gt;
-		&lt;ul&gt;&lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/random-agent-spoofer/&quot;&gt;&lt;b&gt; - Random Agent Spoofer&lt;/b&gt;&lt;/a&gt;- &lt;i&gt; When your information gets captured by a website or such, your User Agent is exposed. The User Agent identifies the browser you are using, as well as your OS. It looks like this:
-		&lt;pre&gt;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36&lt;/pre&gt; This is the one for Chrome 41.0.2228.0. This is information that you do not want to leak. Random Agent Spoofer changes it everytime you open Firefox, with a completely Random Browser, and a Random OS. &lt;/i&gt;&lt;/ul&gt;
-		&lt;ul&gt;&lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/?src=search&quot;&gt;&lt;b&gt; - uBlock Origin &lt;/b&gt;&lt;/a&gt;- &lt;i&gt; This is the Adblocker you want for Firefox. It isn&#39;t very consuming on your memory and CPU, and runs very efficiently. You will barely realize that it is there, blocking annoying and possibly snooping advertisements attempting to fingerprint you. &lt;/i&gt;&lt;/ul&gt;
-		&lt;ul&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=onmDmyypIMM&quot;&gt;&lt;b&gt;HERE&#39;S A GREAT VIDEO MADE BY N.0.D.E ADDRESSING ANONYMITY AND SECURITY ON FIREFOX.&lt;/b&gt;&lt;/a&gt;&lt;/ul&gt;
-		&lt;br /&gt;
-		&lt;ul&gt; One thing that I also do on Firefox is to configure it so that no history is remembered. You can do this by clicking the side menu, Preferences &amp;gt; Privacy, and setting History to &lt;b&gt;Never remember history &lt;/b&gt;&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;		
-	&lt;ul&gt;&lt;a href=&quot;https://www.torproject.org/&quot;&gt;&lt;b&gt;Tor Browser&lt;/b&gt;&lt;/a&gt;- &lt;i&gt; If you are reading this, you should obviously know what Tor is. If you don&#39;t search it up. Actually, I&#39;ll still tell you. Tor, also known as the The Onion Router, is software that ensures anonymity by encrypting your connection to the Internet by looping it through several nodes, like layers of an onion. After several layers of security, you will have a new IP address, and you are safe to browse safely. However, as I mentioned before, Tor has been broken by the NSA, but it does not mean it isn&#39;t practical and secure. Essentially, what you are using to surf the web is the Tor &lt;b&gt;BROWSER&lt;/b&gt;. It is actually a version of Firefox (it includes Noscript as well, neat) that has been configured with Tor. Now a lot of people always thought Tor was the software you use to get into the Darknet and buy illegal drugs. Don&#39;t get me wrong, it is, but it does not mean that the creators are to be executed by guillotine. Tor was created to help &lt;b&gt;protect&lt;/b&gt; a person, and it has obviously been misused by others to host websites that sell drugs, guns, weapons, hit services, illegal pornography, etc (using the .onion suffix). However, many journalists, activists, bloggers, etc still utilize the Tor Browser to communicate with dissidents of places such as Syria, Iraq, etc. and has helped tremendously in the hacktivism world. &lt;/i&gt;
-	&lt;img src=&quot;/img/tor.png&quot; /&gt;&lt;/ul&gt;
-	
-&lt;/li&gt;
-
-&lt;h2 class=&quot;section-heading&quot;&gt; OK, I have decided this to be a pretty long and continous series. I will be back with more on encryption. Tune in next time for topics on ... &lt;b&gt; Diffie-Hellman key-exchange! &lt;/b&gt; and &lt;b&gt; PGP! &lt;/b&gt;
-
-&lt;/h2&gt;</content><author><name>ex0dus</name></author><summary>Hello, everyone, I&#39;m back!</summary></entry><entry><title>How to be the World’s Best Hacktivist</title><link href="http://ex0dus-0x.github.io/2016/02/20/how-to-be-the-worlds-best-hacktivist/" rel="alternate" type="text/html" title="How to be the World&#39;s Best Hacktivist" /><published>2016-02-20T07:00:00-05:00</published><updated>2016-02-20T07:00:00-05:00</updated><id>http://ex0dus-0x.github.io/2016/02/20/how-to-be-the-worlds-best-hacktivist</id><content type="html" xml:base="http://ex0dus-0x.github.io/2016/02/20/how-to-be-the-worlds-best-hacktivist/">&lt;p&gt;OK, first off, I&#39;m not from Anonymous. Of course, I respect this group for their commitment and worldwide diffusion of their hacktivist ethos.&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 27 Feb 2016 07:00:00 -0500</pubDate>
+        <link>
+        http://ex0dus-0x.github.io/2016/02/27/modern-encryption-for-the-common-alice-and-bob/</link>
+        <guid isPermaLink="true">http://ex0dus-0x.github.io/2016/02/27/modern-encryption-for-the-common-alice-and-bob/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>How to be the World&#39;s Best Hacktivist</title>
+        
+          <description>&lt;p&gt;OK, first off, I&#39;m not from Anonymous. Of course, I respect this group for their commitment and worldwide diffusion of their hacktivist ethos.&lt;/p&gt;
 &lt;p&gt; After putting that aside, I would like to say that I am quite proud of my skill in penetration testing. I hope to have a successful career in penetration testing, computer security, and even a hacktivist at night! I also hope you the best, aspiring hacker-reader, in your journey in learning the art of hacking and intrusion. I wish to help you the best I can (Project idea: IRC?????) and spread my 4-years of learning hacking/penetration testing.&lt;/p&gt;
 &lt;h4 class=&quot;section-heading&quot;&gt; First things first...&lt;/h4&gt;
 &lt;p&gt;Here is a nice set of morals I follow every day. I am not a black hat, nor a script kiddy, and I abide by these set of rules (which is ironic, since hackers &lt;i&gt;break&lt;/i&gt; rules. I hope that you will, with your integrity, follow mine, or even your own set of values and be truthful and live by it, like a real revolutionary hero is like.&lt;/p&gt;
@@ -89,120 +63,30 @@ $ make qemu &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Keep in mind that reading isn&#39;t the only thing you should be doing. Theory is great, but application is better. Take what you learned, and play around. Let&#39;s say I learned how to write a basic number-counting program in C++. Using my knowledge of loops and flow control, I can make more whimsical programs. Maybe I wanted to incorporate something to do with hacking. Doing a bit research on Stackexchange can help me learn about exploit building, and such. Knowledge is a great thing. This is what seperates the script kiddies and the real hackers. Hackers want to learn, and to add on to their knowledge. Script kiddies want to learn, but not for their knowledge but just for their destructive behavior. Hackers utilize this knowledge to invent. Script kiddies utilize this knowledge to fuck up. &lt;/p&gt;
 &lt;p&gt; And other thing I want to put out there: people tend to believe that if you are a hacker who uses &quot;d0xers&quot; or &quot;booters&quot; you are automatically a script kiddy. In a way that seems like it, but it goes back to the point I made about knowledge. I know MANY hackers, very prestigious ones, I have add, who utilize these &quot;unconventional&quot; tools. As long as you have an understanding of what you are doing, then it is OK. Don&#39;t get me wrong, I have a Kali Linux book that teaches you how to use LOIC. If you know what you are doing, and maybe even understand how the program is written and how to &lt;b&gt;ADD ON&lt;/b&gt; to it, it is fine. Using tools isn&#39;t a weakness. It&#39;s to help aid you in the learning process, and is the step before you learn how to write your own, etc. &lt;/p&gt;
 &lt;h2 class=&quot;section-heading&quot;&gt;Wrap-Up&lt;/h2&gt;
-&lt;p&gt; Thank you for reading! This is my 2nd article. I do not know how many readers I have so far, but if you are sticking around to read them, thank you, and I really appreciate it. I hope this blog goes beyond a humble and measly readership and reaches a large population of people, since this is my passion, and I want to help others learn and keep informed. Stay tuned for my next article!&lt;/p&gt;</content><author><name>ex0dus</name></author><summary>OK, first off, I&#39;m not from Anonymous. Of course, I respect this group for their commitment and worldwide diffusion of their hacktivist ethos.
- After putting that aside, I would like to say that I am quite proud of my skill in penetration testing. I hope to have a successful career in penetration testing, computer security, and even a hacktivist at night! I also hope you the best, aspiring hacker-reader, in your journey in learning the art of hacking and intrusion. I wish to help you the best I can (Project idea: IRC?????) and spread my 4-years of learning hacking/penetration testing.
- First things first...
-Here is a nice set of morals I follow every day. I am not a black hat, nor a script kiddy, and I abide by these set of rules (which is ironic, since hackers break rules. I hope that you will, with your integrity, follow mine, or even your own set of values and be truthful and live by it, like a real revolutionary hero is like.
+&lt;p&gt; Thank you for reading! This is my 2nd article. I do not know how many readers I have so far, but if you are sticking around to read them, thank you, and I really appreciate it. I hope this blog goes beyond a humble and measly readership and reaches a large population of people, since this is my passion, and I want to help others learn and keep informed. Stay tuned for my next article!&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 20 Feb 2016 07:00:00 -0500</pubDate>
+        <link>
+        http://ex0dus-0x.github.io/2016/02/20/how-to-be-the-worlds-best-hacktivist/</link>
+        <guid isPermaLink="true">http://ex0dus-0x.github.io/2016/02/20/how-to-be-the-worlds-best-hacktivist/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Beginner&#39;s Guide to Clean Code</title>
+        
+          <description>&lt;p&gt;What is the difference between &lt;b&gt;effective&lt;/b&gt; code and &lt;b&gt;clean&lt;/b&gt; code?&lt;/p&gt;
 
- Hacking isn&#39;t a superpower. It is an art, a sacred practice. I&#39;m not trying to sound like Confucius, but do not take advantage of a new profound skill, in a bad and negative way. This means DO NOT BE A BLACKHAT! You are a hacktivist, a combination of hacker and activist, and as one, you are also taking upon the role of a hero, a symbol.
- Hackers are creatorsYou aren&#39;t a hacker if you just learned how to deface a site, or backdoor a server. A hacker possesses many traits. Most respectable hacktivists I know are courageous, selfless, and ready to do anything for their cause. They do not give up, and with their profound skill, think outside the box. I remember one the public library&#39;s database was flawed. Not  because of a certain exploit, but a human flaw, where their password was a 4-digit PIN. Through figuring out this flaw I generated a wordlist of all 4 digit numeric characters possible (from 0000 to 9999) and once I obtained a username, was able to crack it with Burp Suite. 
- Don&#39;t be a script kiddy. Hackers are studious (but they do shit in school, no surprise there) and dedicate their lives to studying every aspect of computer science, programming, hacking, social engineering, electronics, etc. An example that I see A LOT is the DoS attack. Executing one is SO easy, and it requires 3 steps. 1. Get LOIC 2. Obtain the person that pissed you off on Xbox&#39;s IP through a grabber (sniffer, I guess is the &quot;politically correct term&quot;) 3. Click IMMA CHARGIN MY LASER. There, you are now a member of Anonymous because you sent a tremendous amount of data to one&#39;s router. Also, in relation to script kiddies, do not get into argument. Script Kiddy: IMMA BOOT YOUR FUCKING ASS OFF THE INTERNET. Don&#39;t fight them. Don&#39;t threaten. Reason with them, but assert yourself as a person that is smarter and more mature.  
- 
-Programming
- One thing people always asked me was where to start. I believe that it is up to them, but I always think that the best way was to learn the fundamentals. People always are eager to learn, and they yet end up on the wrong step of the path, and can really screw things up. You have to have a good foundation of knowledge, that makes you technical, as well as help you learn more advanced subjects faster, and more efficiently. For example, after learning python, I was able to understand code in Python, and because of this, was able to configure the source code for a pentesting tool to fit my needs. What languages do I recommend? Thanks you asking.
-
- HTML -  HTML, or Hyper Text Markup Language, is the code that is used to write websites. I am currently writing this article in HTML. This is a very easy language, and I learned it not even in a week, but a few days. I learned it to write websites, but if you are wondering why it has use for hacking, it enables you to help understand the anatomy of a site more, such as when you are conducting a SQL Injection, or even just looking at a webpage to look for any vector to launch to an attack. Alongside HTML is CSS, which is used to simply make sites look pretty (like Bootstrap.css, which made this site pretty) and Javascript, which is used to add interactivity to the site, such as buttons, animations, etc.
-
-Python - I believe that this is the easiest and most useful programming language ever created. It is very VERY usefuland resourceful, and is &quot;batteries included&quot;, meaning that it comes with its own IDE (Integrated Development Environment). The code is very easy to learn and comprehend, and is the language recommended for all beginners.
-
-Next...
-READ.To learn, you have to learn to read. Suggested Readings provide some of my favorite books, ones that you&#39;ll like as well. Some books on programming are there as well. There really isn&#39;t other ways to learn. If you are a visual learner, videos may work out for you, such as when I was learning code. I used both resources and it helped me effectively learn code.
-C|EH, or Certified Ethical Hacker All-In-One, is a very good book for beginners that is also technical, and widely used as a textbook. It introduces you to everything basic in hacking, and with this fundamental knowledge, you can move on to more advanced things. 
-After...
-Keep in mind that reading isn&#39;t the only thing you should be doing. Theory is great, but application is better. Take what you learned, and play around. Let&#39;s say I learned how to write a basic number-counting program in C++. Using my knowledge of loops and flow control, I can make more whimsical programs. Maybe I wanted to incorporate something to do with hacking. Doing a bit research on Stackexchange can help me learn about exploit building, and such. Knowledge is a great thing. This is what seperates the script kiddies and the real hackers. Hackers want to learn, and to add on to their knowledge. Script kiddies want to learn, but not for their knowledge but just for their destructive behavior. Hackers utilize this knowledge to invent. Script kiddies utilize this knowledge to fuck up. 
- And other thing I want to put out there: people tend to believe that if you are a hacker who uses &quot;d0xers&quot; or &quot;booters&quot; you are automatically a script kiddy. In a way that seems like it, but it goes back to the point I made about knowledge. I know MANY hackers, very prestigious ones, I have add, who utilize these &quot;unconventional&quot; tools. As long as you have an understanding of what you are doing, then it is OK. Don&#39;t get me wrong, I have a Kali Linux book that teaches you how to use LOIC. If you know what you are doing, and maybe even understand how the program is written and how to ADD ON to it, it is fine. Using tools isn&#39;t a weakness. It&#39;s to help aid you in the learning process, and is the step before you learn how to write your own, etc. 
-Wrap-Up
- Thank you for reading! This is my 2nd article. I do not know how many readers I have so far, but if you are sticking around to read them, thank you, and I really appreciate it. I hope this blog goes beyond a humble and measly readership and reaches a large population of people, since this is my passion, and I want to help others learn and keep informed. Stay tuned for my next article!</summary></entry><entry><title>Beginner’s Guide to Clean Code</title><link href="http://ex0dus-0x.github.io/2016/02/19/beginners-guide-to-clean-code/" rel="alternate" type="text/html" title="Beginner&#39;s Guide to Clean Code" /><published>2016-02-19T07:00:00-05:00</published><updated>2016-02-19T07:00:00-05:00</updated><id>http://ex0dus-0x.github.io/2016/02/19/beginners-guide-to-clean-code</id><content type="html" xml:base="http://ex0dus-0x.github.io/2016/02/19/beginners-guide-to-clean-code/">&lt;p&gt;What is the difference between &lt;b&gt;effective&lt;/b&gt; code and &lt;b&gt;clean&lt;/b&gt; code?&lt;/p&gt;
-
-&lt;h2 class=&quot;section-heading&quot;&gt;Let&#39;s look at an example:&lt;/h2&gt;
-
-&lt;p&gt; For some really weird reason, you want to print out &quot;Hello World&quot; five times in C++. This is what you write:
-&lt;pre&gt;
-int main(){
-	std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
-	std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
-	std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
-	std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
-	std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
-} &lt;/pre&gt;&lt;/p&gt;
-&lt;p&gt; Of course, you wouldn&#39;t do that. You would instead use:
-&lt;pre&gt;
-int main(){
-	for( i = 5; i &amp;gt;= 0; i-- ){
-		std::cout &amp;gt;&amp;gt; &quot;Hello World!&quot; &amp;gt;&amp;gt; std::endl;
-	}
-} &lt;/pre&gt;&lt;/p&gt;
-&lt;p&gt; This is &lt;b&gt;effective&lt;/b&gt; code. Even though this is a really basic example, it still demonstrates how we can write code, but shorter, easier, and
-doesn&#39;t require me to press &lt;code&gt;Ctrl+V&lt;/code&gt; 5 times. But what is the idea of &lt;b&gt; clean &lt;/b&gt; code? &lt;b&gt; Clean &lt;/b&gt; code looks &lt;i&gt;professional.&lt;/i&gt;&lt;b&gt;Clean&lt;/b&gt;
-code is &lt;i&gt;formal&lt;/i&gt;. &lt;b&gt; Clean &lt;/b&gt; code, when examined by other programmers, is &lt;i&gt;undestandable&lt;/i&gt; and &lt;i&gt;replicable&lt;/i&gt; and has a &lt;i&gt;steady flow&lt;/i&gt; where the programmer is easily to able to read through it without scratching his or her head and saying, &lt;i&gt;&quot;Huh?&quot;&lt;/i&gt;. &lt;/p&gt;
-
-&lt;h4&gt;Let us look at my criteria for clean code.&lt;/h4&gt;
-
-&lt;h2 class=&quot;section-heading&quot;&gt;1. &lt;i&gt;//Comment&lt;/i&gt; everything! &lt;/h2&gt;
-&lt;p&gt;Code are like directions, that are pretty indecipherable, especially if you have written &lt;i&gt;alot&lt;/i&gt; of it.
-Shouldn&#39;t it be pretty logical to have comments, and give a human interpretation of what is happening? Not only should you write comments, but you should also make your comments, short, decipherable and does not overly explain what you are doing. Let&#39;s look at S. Kiddy&#39;s code:&lt;/p&gt;
-&lt;pre&gt;
-#So here is my code. I am going to first declare the variable x, and then give it the value of 5. 
-#After that, I will add 7 to x, and then call x again, and I will get 12. 
-&amp;gt;&amp;gt;&amp;gt; x = 5
-&amp;gt;&amp;gt;&amp;gt; x + 7
-&amp;gt;&amp;gt;&amp;gt; x
-&amp;gt; 12
-&lt;/pre&gt;
-&lt;p&gt; It&#39;s good that at least he is commenting what he is doing, but it does not mean that it is &lt;b&gt;clean&lt;/b&gt;. The comments are overly explaining what is happening. Let&#39;s look at Masta Haxa&#39;s code: &lt;/p&gt;
-&lt;pre&gt;
-#Declare variable x with value of 5. Add 7 to it, and call x to have value of 12.
-&amp;gt;&amp;gt;&amp;gt; x = 5
-&amp;gt;&amp;gt;&amp;gt; x + 7
-&amp;gt;&amp;gt;&amp;gt; x
-&amp;gt; 12	
-&lt;/pre&gt;
-&lt;p&gt; The program is the same, but the commenting is &lt;b&gt;simple&lt;/b&gt; and still explains the concept of the code in a whole. &lt;/p&gt;
-
-&lt;h2 class=&quot;section-heading&quot;&gt;2. Whitespace &lt;/h2&gt;
-&lt;p&gt; The concept of &lt;b&gt;whitespace&lt;/b&gt; is pretty big in programming, especially object-oriented. Although it is NOT a requirement, people tend to enjoy looking at code that is not tightly packed. &lt;/p&gt;
-&lt;pre&gt;
-for( x = 3; x &amp;lt; 4; x++){
-	cout &amp;lt;&amp;lt; &quot;Wow! This is pretty spaced out&quot; &amp;lt;&amp;lt; endl;
-}&lt;/pre&gt;
-&lt;p&gt;Compared to something like:&lt;/p&gt;
-&lt;pre&gt;
-for(x=3;x&amp;lt;4;x++){
-	cout&amp;lt;&amp;lt;&quot;helpmeimtrapped&quot;&amp;lt;&amp;lt; endl;
-	}
-&lt;/pre&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 class=&quot;section-heading&quot;&gt;3.Indentation&lt;/h2&gt;
-&lt;p&gt;Indentation, like whitespace is another form of organization. Also known as &lt;b&gt;indent style&lt;/b&gt; it will easily help one recognize
-your code due to positioning, as well as for you, when you come back to edit your code. This is especially important for writing code in HTML. Let me demonstrate:
-
-&lt;img src=&quot;/img/indentation.png&quot; /&gt;	
-				
-&lt;p&gt; In this situation, my code is neatly indented. I am able to navigate, and I include (a bit) of comments. &lt;/p&gt;
-&lt;p&gt; This is an example of code that has &lt;b&gt;NO&lt;/b&gt; indentation (img source: http://bit.ly/1ZmLVLz) &lt;/p&gt;
-				
-
-&lt;img src=&quot;/img/notindentation.png&quot; /&gt;
-				
-&lt;h2 class=&quot;section-heading&quot;&gt;4.Variable Name Declaration&lt;/h2&gt;
-&lt;p&gt; When you have a variable, class, structure, or any of that sort, is it not logical to name it something relevant. Give your variables ,classes, objects, etc. concise names. This shows organization and unity in your code. If you are writing code in an object-oriented programming language, such as C++, this is very important especially working with inheritance and stuff like that. &lt;/p&gt;
-&lt;pre&gt; //Good example
-struct PERSON{ //PERSON struct type
-	int age;
-	string name;
-	float weight
-}familymember; //Define object for PERSON type
-&lt;/pre&gt;
-&lt;p&gt; and here&#39;s a &lt;b&gt;BAD&lt;/b&gt; example &lt;/p&gt;
-&lt;pre&gt;
-//I will make a program where the user will input a number, and the computer returns that number + 2. 
-//Here are my variables:
-int noodles;
-cin &amp;gt;&amp;gt; noodles;
-noodles + 2;
-cout &amp;lt;&amp;lt; noodles &amp;lt;&amp;lt; endl;
-&lt;/pre&gt;
-&lt;p&gt; Shouldn&#39;t it be a little more logical to call the variable &quot;input&quot; instead? &lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt; Thank you for reading my first article! I will be coming up with more in the future, but this one was definitely O.K. There are, of course &lt;b&gt; ALOT &lt;/b&gt; of things you can do to improve your code and make it &lt;b&gt; clean &lt;/b&gt; and &lt;b&gt; effective &lt;/b&gt;. Code review, although I did not include it in here, is obviously a must, and an amateur programmer like you and me, &lt;b&gt; WILL &lt;/b&gt; always have questions. One of the best places is StackExchange, a prominent Q&amp;amp;A forum community. Visit at: http://stackexchange.com/&lt;/p&gt;
-&lt;/p&gt;</content><author><name>ex0dus</name></author><summary>What is the difference between effective code and clean code?</summary></entry></feed>
+</description>
+        
+        <pubDate>Fri, 19 Feb 2016 07:00:00 -0500</pubDate>
+        <link>
+        http://ex0dus-0x.github.io/2016/02/19/beginners-guide-to-clean-code/</link>
+        <guid isPermaLink="true">http://ex0dus-0x.github.io/2016/02/19/beginners-guide-to-clean-code/</guid>
+      </item>
+      
+    
+  </channel>
+</rss>
