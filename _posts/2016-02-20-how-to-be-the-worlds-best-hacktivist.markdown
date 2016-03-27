@@ -4,7 +4,7 @@ title:      "How to be the World's Best Hacktivist"
 subtitle:   "The No (maybe a little) Bullshit Guide"
 date:       2016-02-20 12:00:00
 author:     "ex0dus"
-header-img: "img/post-bg-02.jpg"
+header-img: "img/PostBG/post-bg-02.jpg"
 ---
 
 <p>OK, first off, I'm not from Anonymous. Of course, I respect this group for their commitment and worldwide diffusion of their hacktivist ethos.</p>

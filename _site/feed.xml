@@ -8,6 +8,37 @@
     
       
       <item>
+        <title>Modern Encryption for the Common Alice and Bob </title>
+        
+          <description>&lt;p&gt; In this part of the series, we will examine the past and the present. Today we will have a little talk about Diffie-Hellman and public key exchange. No it will not be boring. Maybe a little in the beginning, but I assure you,
+it is worth it. I will also be talking about PGP, which closely relates to the Diffie-Hellman key exchange, but in modern society. Don&#39;t worry, I won&#39;t confuse you. Please read on. &lt;/p&gt;
+&lt;h2 class=&quot;section-heading&quot;&gt; First off... &lt;/h2&gt;
+&lt;p&gt; Let&#39;s talk encryption. We have &lt;b&gt;ciphertext&lt;/b&gt;, &lt;b&gt;cleartext&lt;/b&gt; and &lt;b&gt;the cipher &lt;/b&gt;. When we want to send someone a message but securely, we &lt;b&gt; encrypt &lt;/b&gt; it so that it appears as some sort of gibberish. &lt;b&gt; Cleartext &lt;/b&gt; is the starting point. It is the message you &lt;b&gt;WANT&lt;/b&gt; the person to send. In encryption, two people, Alice and Bob, are always used as an example (hence the series name). I guess you can call them placeholders. I&#39;m Alice. I want to send Bob a message: &quot;I&#39;m have a ton of dank weed.&quot; The message is &lt;b&gt;cleartext&lt;/b&gt;. It is in plain English. Alice uses a &lt;b&gt;cipher&lt;/b&gt;, which is a method to encrypt the cleartext, and generates &lt;b&gt;ciphertext&lt;/b&gt;. A cipher can be anything. It can be a program. It can be where I take each letter in cleartext and change it to their respective number (A = 1, B = 2, C = 3). A cipher is ideally anything is that crypts and decrypts a message. This is the basis of security and computer technology. &lt;/p&gt;
+&lt;p&gt; Well it might seem pretty simple. I can create a really complex cipher. No one will ever crack my code! But the problem is, how are you to send the cipher? In order to encode and decode, BOTH Alice and Bob has to have the cipher. That is where the problem of encrpytion comes in, and is what makes public key encryption so important today. Let&#39;s look at a scenario: &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt; Joy is stupid. She comes up with a cipher to send to her boyfriend Tyrone that is so complex no single computer in the world could ever crack it. She emails the message that is encrypted to her B.F. But he needs the cipher. He can&#39;t read it. So she sends it as well. &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt; That&#39;s where we introduce the eavesdropper, Eve. Eve is a placeholder for anyone: a spy, the government, your nosy-ass neighbor, who has the mission of getting the cipher. Who cares if she gets the ciphertext? She can&#39;t read it, so it&#39;s useless without the cipher. That&#39;s when I introduce the Diffie-Hellman key exchange &lt;/p&gt;
+&lt;h2 class=&quot;section-heading&quot;&gt; La clase historia &lt;/h2&gt;
+&lt;p&gt; Robert Merkle devised the earliest known methods of public-key exchange. One of them was the Diffie-Hellman key exhange, named after Whitfield Diffie and Martin Hellman, two cryptographers. The idea behind it is that Alice and Bob are able to have a shared ciphertext whereas one party does not know the cipher, let alone the other person. The catch is that this cipher can be send over an insecure, or &quot;public&quot; channel, one that Eve may be monitoring. There is obviously mathematics involved in this, but I&#39;m mostly focusing on computer technology, not math. Let us take a look. &lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt; Alice and Bob agree on a cipher, &quot;WATER&quot;. This is known publicly, so Eve knows it as well. This is the &lt;b&gt;public key&lt;/b&gt;&lt;/li&gt;
+	&lt;li&gt; Alice and Bob each create their own &lt;b&gt;private keys&lt;/b&gt;. They don&#39;t send it to each other. Alice uses &quot;NOTEBOOK&quot;. Bob uses &quot;GLASS&quot;&lt;/li&gt;
+	&lt;li&gt;Alice uses &quot;WATER&quot; and &quot;NOTEBOOK&quot; and a message to create a ciphertext. &lt;/li&gt;
+	&lt;li&gt; She sends it through the public channel to Bob. Eve gets a copy as well. &lt;/li&gt;
+	&lt;li&gt; Bob uses his private key to decrypt the message. He responds by using &quot;WATER&quot; and &quot;GLASS&quot; to create another message and sends it to Alice. Eve also intercepts it &lt;/li&gt;
+	&lt;li&gt; Alice uses to his private key to decrypt the message. &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        
+        <pubDate>Sat, 26 Mar 2016 08:00:00 -0400</pubDate>
+        <link>
+        http://ex0dus-0x.github.io/2016/03/26/modern-encryption-for-the-common-alice-and-bob-2/</link>
+        <guid isPermaLink="true">http://ex0dus-0x.github.io/2016/03/26/modern-encryption-for-the-common-alice-and-bob-2/</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Redox: a Linux-Like Operating System made with Rust</title>
         
           <description>&lt;p&gt; Recently, I was doing my routinely performing my daily rituals on Reddit when I came across this: &lt;/p&gt;
