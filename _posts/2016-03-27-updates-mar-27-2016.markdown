@@ -24,7 +24,7 @@ header-img: "img/light-gray.jpg"
 <ul>
 	<li>IRC</li>
 	<li>Comments</li>
-	<li> New tool! - possibly shellcode generator or framework</li>
+	<li> New tool! - possibly shellcode generator or framework	</li>
 	<li> Moar posts </li>
 	<li> Moar FAQ </li>
 </ul>	
