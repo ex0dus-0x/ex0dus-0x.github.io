@@ -8,6 +8,22 @@
     
       
       <item>
+        <title>Arduino - WTF is it?</title>
+        
+          <description>&lt;h2&gt; What is it? &lt;/h2&gt;
+&lt;p&gt;The Arduino is an open-sourced prototype board. You use it to make projects, and is great for electronics and learning electronics. Whether it is a small blinking LED controlled by a button, or even a home automation system, the Arduino is your imagination, all stuffed into a credit card-sized blue board.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 16 Apr 2016 08:00:00 -0400</pubDate>
+        <link>
+        http://ex0dus-0x.github.io/2016/04/16/arduino-wtf-is-it/</link>
+        <guid isPermaLink="true">http://ex0dus-0x.github.io/2016/04/16/arduino-wtf-is-it/</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Beginner&#39;s Guide to Metasploit</title>
         
           <description>&lt;p&gt;Due to popular request, I&#39;m going to teach Metasploit.&lt;/p&gt;

@@ -1,25 +1,25 @@
-==================================================
+===================================================
  ___                 _            _ _           _ 
 |   \ ___ __ ___ _ _| |_ _ _ __ _| (_)______ __| |
 | |) / -_) _/ -_) ' \  _| '_/ _` | | |_ / -_) _` |
 |___/\___\__\___|_||_\__|_| \__,_|_|_/__\___\__,_|
                                                    
-//A Hacker Story // Written By: ex0dus-0x //
-==================================================
+//A Hacker Story // Written By: ex0dus-0x // Part 1
+===================================================
 
 I was never any real computer hacker. That is, COMPUTER hacker. 
 
 2022 was the iconic year that the government launched the National Security Acts of 2022. This granted police, any authoritative power view any data on anybody's devices with AND without supervision, with AND without a warrant. Even with the hacktivist world launching a full-fledged social justice campaign with over $500K of donations, it was no use. So the hacker world retreated. Planning meticulously for any chance of attack. 
 
-2023 is a great year for mobile devices. That is, hacking it. After Apple's large-scale attack on its iOS system, the entire iPhone was quickly decentralized to the underground hacker universe. People found ways to open-source the OS. Someone released instructions on the darknet hacktivist-pirate forum D33pC3ntr41 on how to install a full-fledged Android system on iOS. Cydia became obsolete, and Saurik, along with other hackers built an operating system instead called "CyOS". Cydia was the main package manager/application store. It came with so much hacker goodies. A much improved terminal with Git, apt-get, and other must-have packages. A new browser Hackzilla, (D33pC3ntr4l as the homepage) that implements Tor, self-destructing cookies, a dedicated and advanced adblocker, and AE5 encryption for all saved passwords, and MUCH more. 
+2023 is a great year for mobile devices. That is, hacking it. After a large-scale attack on Apple's iOS system, the entire iPhone was quickly decentralized to the underground hacker universe. People found ways to open-source the OS. Someone released instructions on the darknet hacktivist-pirate forum D33pC3ntr41 on how to install a full-fledged Android system on iOS. Cydia became obsolete, and Saurik, along with other hackers built an operating system instead called "CyOS". Cydia was the main package manager/application store. It came with so much hacker goodies. A much improved terminal with Git, apt-get, and other must-have packages. A new browser Hackzilla, (D33pC3ntr4l as the homepage) that implements Tor, self-destructing cookies, a dedicated and advanced adblocker, and AE5 encryption for all saved passwords, and MUCH more. 
 
-But it wasn't THAT impressive. Writing an OS for the newly cracked iOS devices are easy. That's why I wrote my own.
+But it wasn't THAT impressive. Writing an OS for the newly cracked iOS devices is easy. That's why I wrote my own.
 
-See, I am secretly the founder of the WatchDogs OS. That's right. Named after the video game. And guess what my OS does. Yep. The only thing that's missing is ctOS. At the least the government is not implementing some city-automation operating system that has a few million vulnerabilities. But my OS is just as good. I have implemented my own VoIP system. It's very secure, and basically has the same concept as Skype, but 100000000x secure and is run by a group of furtive hackers that I know personally and trust. It is P2P, and will only work with other users using the same VoIP system. The idea behind it is very simple: each user identifies by a unique ID. It looks like this: 1ca:21db:abc. However, I have made the system so that it works like public-key encryption. The unique ID is the public key. You have your own private ID that you have created. In this case, your fingerprint. In order to accept calls, the public key must be trusted, and using the TouchID feature on the Home button, you can accept the call. Numbers and identities are disposable, of course.
+See, I am secretly the founder of the WatchDogs OS. That's right. Named after the video game. And guess what my OS does. Yep. The only thing that's missing is ctOS. At the least the government is not implementing some city-automation operating system that has a few million vulnerabilities. But my OS is just as good. I have implemented my own VoIP system. It's very secure, and basically has the same concept as Skype, but 100000000x secure. It is ran by a group of furtive hackers that I know personally and trust. It is P2P, and will only work with other users using the same VoIP system. The idea behind it is very simple: each user identifies by a unique ID. It looks like this: 1ca:21db:abc. However, I have made the system so that it works like public-key encryption. The unique ID is the public key. You have your own private ID that you have created. In this case, your fingerprint. In order to accept calls, the public key must be trusted, and using the TouchID feature on the Home button, you can accept the call. Numbers and identities are disposable, of course.
 
 Apart from that, my OS is a hacker paradise. Everything: nmap, Metasploit, burpsuite, SQLmap. GUI and CLI. I even wrote a script that uploads BadUSB once a cord is tethered to the computer, as well as one that automatically backdoors a computer using meterpreter, SSH, whatever you choose. The OS contains several programming languages that are default, such as Python, Ruby, and C/C++. A simple and minimalistic text editor and IDE, called m1tn1ck is also available. And plus, the UI elements are fucking sexy. It looks like a dark noir version of Samsung mashed with Apple with Watch Dogs. Just talking about it makes me moist. 
 
-Anyway, enough of that. My name is sw33tsp0t. Here's my story.
+Anyway, enough of that. My name is Darren Thompson. I'm 16. A+ student. Chris Demsworth High. I just seem like a regular student living a regular life. However, I live a double life. Here's my story.
 
 College can't be paid. Jobs can't be found. And the government is still dedicated to fucking with your metadata. That's why I stopped using computers as my source of hacking. Kali was compromised. Whonix was compromised. Even Tails was compromised.
 
