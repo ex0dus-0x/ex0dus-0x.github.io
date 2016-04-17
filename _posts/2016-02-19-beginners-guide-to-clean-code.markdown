@@ -72,13 +72,15 @@ for(x=3;x<4;x++){
 <p>Indentation, like whitespace is another form of organization. Also known as <b>indent style</b> it will easily help one recognize
 your code due to positioning, as well as for you, when you come back to edit your code. This is especially important for writing code in HTML. Let me demonstrate:
 
-<img src="/img/BeginnersGuideToCleanCode/indentation.png">	
+<img src="/img/BeginnersGuideToCleanCode/indentation.png">
+<p><i>Updated because older picture was crap</i></p>	
 				
 <p> In this situation, my code is neatly indented. I am able to navigate, and I include (a bit) of comments. </p>
-<p> This is an example of code that has <b>NO</b> indentation (img source: http://bit.ly/1ZmLVLz) </p>
+<p> This is an example of code that has <b>NO</b> indentation 
 				
 
 <img src="/img/BeginnersGuideToCleanCode/notindentation.png">
+<p><i>Updated because older picture was crap</i></p>
 				
 <h2>4.Variable Name Declaration</h2>
 <p> When you have a variable, class, structure, or any of that sort, is it not logical to name it something relevant. Give your variables ,classes, objects, etc. concise names. This shows organization and unity in your code. If you are writing code in an object-oriented programming language, such as C++, this is very important especially working with inheritance and stuff like that. </p>
