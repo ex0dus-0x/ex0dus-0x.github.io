@@ -1,5 +1,6 @@
 ---
 layout:     post
+comments:   true
 title:      "Arduino - WTF is it?"
 subtitle:   "Please excuse my rip-off 3rd party Arduino"
 date:       2016-04-16 12:00:00

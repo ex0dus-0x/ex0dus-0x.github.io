@@ -128,12 +128,12 @@
 
 				<p> In this part of the series, we will examine the past and the present. Today we will have a little talk about Diffie-Hellman and public key exchange. No it will not be boring. Maybe a little in the beginning, but I assure you,
 it is worth it. I will also be talking about PGP, which closely relates to the Diffie-Hellman key exchange, but in modern society. Don't worry, I won't confuse you. Please read on. </p>
-<h2 class="section-heading"> First off... </h2>
+<h2> First off... </h2>
 <p> Let's talk encryption. We have <b>ciphertext</b>, <b>cleartext</b> and <b>the cipher </b>. When we want to send someone a message but securely, we <b> encrypt </b> it so that it appears as some sort of gibberish. <b> Cleartext </b> is the starting point. It is the message you <b>WANT</b> the person to send. In encryption, two people, Alice and Bob, are always used as an example (hence the series name). I guess you can call them placeholders. I'm Alice. I want to send Bob a message: "I'm have a ton of dank weed." The message is <b>cleartext</b>. It is in plain English. Alice uses a <b>cipher</b>, which is a method to encrypt the cleartext, and generates <b>ciphertext</b>. A cipher can be anything. It can be a program. It can be where I take each letter in cleartext and change it to their respective number (A = 1, B = 2, C = 3). A cipher is ideally anything is that crypts and decrypts a message. This is the basis of security and computer technology. </p>
 <p> Well it might seem pretty simple. I can create a really complex cipher. No one will ever crack my code! But the problem is, how are you to send the cipher? In order to encode and decode, BOTH Alice and Bob has to have the cipher. That is where the problem of encrpytion comes in, and is what makes public key encryption so important today. Let's look at a scenario: </p>
 <pre><code class="language-bash"> Joy is stupid. She comes up with a cipher to send to her boyfriend Tyrone that is so complex no single computer in the world could ever crack it. She emails the message that is encrypted to her B.F. But he needs the cipher. He can't read it. So she sends it as well. </code></pre>
 <p> That's where we introduce the eavesdropper, Eve. Eve is a placeholder for anyone: a spy, the government, your nosy-ass neighbor, who has the mission of getting the cipher. Who cares if she gets the ciphertext? She can't read it, so it's useless without the cipher. That's when I introduce the Diffie-Hellman key exchange </p>
-<h2 class="section-heading"> La clase historia </h2>
+<h2> La clase historia </h2>
 <p> Robert Merkle devised the earliest known methods of public-key exchange. One of them was the Diffie-Hellman key exhange, named after Whitfield Diffie and Martin Hellman, two cryptographers. The idea behind it is that Alice and Bob are able to have a shared ciphertext whereas one party does not know the cipher, let alone the other person. The catch is that this cipher can be send over an insecure, or "public" channel, one that Eve may be monitoring. There is obviously mathematics involved in this, but I'm mostly focusing on computer technology, not math. Let us take a look. </p>
 <ul>
 	<li> Alice and Bob agree on a cipher, "WATER". This is known publicly, so Eve knows it as well. This is the <b>public key</b></li>
@@ -155,11 +155,11 @@ it is worth it. I will also be talking about PGP, which closely relates to the D
 <iframe width="420" height="315" src="https://www.youtube.com/watch?v=YEBfamv-_do">
 </iframe>
 
-<h2 class="section-heading">Today...</h2>
+<h2>Today...</h2>
 <p> Well the Diffie-Hellman key exchange works very well in the past, but in today's modern technology, encryption is a complex subject, especially passwords. The modern version of Diffie-Hellman exchange is known as <b>PGP</b>, or <i>Pretty Good Privacy</i>. It essentially is the same process as Diffie-Hellman, but the keys are very complex. <p>
 <img src="/img/pgp-key-example.png" />
 <p>Let's stop talking theory and now let's talk application. I will now show you how to make your own PGP key in a Linux distribution. You will generate a public key for yourself, and a private key.</p>
-<h2 class="section-heading">How to make a PGP Key</h2>
+<h2>How to make a PGP Key</h2>
 <p>Let's start by opening up our terminal. We first need to download GPA and GnuPG, which allows us to create and manage our PGP keys </p>
 <pre><code class="language-bash">sudo apt-get install gpa gnupg2</code></pre>
 <p>Next after entering your password and allowing it to install, we will generate a key</p>
@@ -316,7 +316,7 @@ eCJvQqE5pm61hyAOW2p6
 =/ZCb
 -----END PGP MESSAGE-----
 </pre>
-<h2 class="section-heading"> To finish off...</h2>
+<h2> To finish off...</h2>
 <p> Damn, that was a long-ass article. I hope that you have learned quite a lot about basic encryption. Well, this series ain't never gonna finish, so stay tuned for <b>Part 3!</b>
 </p>
 </p></p></p></p>
@@ -324,6 +324,34 @@ eCJvQqE5pm61hyAOW2p6
 
                 <hr>
 
+                
+                    <div id="disqus_thread"></div>
+                    <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */              // var disqus_developer = 1; //when developing, uncomment.
+                    (function() {  // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
+        
+                        s.src = '//codemuch.disqus.com/embed.js';
+        
+                     s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+                
+
+
+              
                 <ul class="pager">
                     
                     <li class="previous">

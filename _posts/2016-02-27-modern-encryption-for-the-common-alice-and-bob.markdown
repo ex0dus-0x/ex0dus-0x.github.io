@@ -1,5 +1,6 @@
 ---
 layout:     post
+comments:   true
 title:      "Modern Encryption for the Common Alice and Bob"
 subtitle:   "Part 1: Primer: The OS and the Browser"
 date:       2016-02-27 12:00:00
@@ -17,11 +18,11 @@ header-img: "img/PostBG/post-bg-03.jpg"
 
 <p> Well, I'm not really going to get into the law stuff anymore, and I'm going to get into the technical stuff. Today, I will be teaching you, as well as providing several resources on how <b> YOU </b> as a citizen can protect yourself. This is not necessarily from the government, but also to anonymize yourself during any hacktivistic related activities and endeavors. </p> 
 
-<h2 class="section-heading">What to do?</h2>
+<h2>What to do?</h2>
  
 <p> I have collected a large amount of resources through research and scouring, and one of the best I have found was a site called <a href="privacy.tools.io"><b>PrivacyTools.io</b></a>. This site has given A LOT of resources on how to protect yourself. It is repository filled with the necessary tools, software and measures you should take in order to protect yourself. I will review a few of these as well. </p>
 
-<h2 class="section-heading">The Operating System</h2>
+<h2>The Operating System</h2>
 <p> Well first of all, if you want to protect yourself, I would recommend switching your OS. As you may have heard, Windows is completely a nightmare right now. It has spawn off as a simple and lovable OS, and now is a global conglomerate mess that is siphoning everything you have. Maybe it's Cortana, asking you for your location, so that it "can find the nearest Italian restaurant", when it is really is sending data about your computer and your Geolocation to a nasty government agency that contracted Microsoft. Right now, you may wondering, "Well, if I wanted to use OS X, I have to buy a Mac. If I wanted to Linux, I have to be some tech nerd." You don't. I am running Ubuntu 14.04 on dual-boot right now, as I am writing this blog. This is the most user-friendly OS ever, and even if you have no knowledge of the Linux terminal, this doesn't mean that Ubuntu is unusable. If you are a hacker or pentester, you can still use Ubuntu, but requires extra configuration, such as when installing Metasploit (challenge level 5,000,000,000,000,000) and including other repositories to get your lil' toolkit o' tools. </p>
 
 <p> If you are complete privacy freak, you may have heard about the Tails OS. Tails stands for <b>T</b>he <b>A</b>mnesic <b>I</b>ncognito <b>L</b>ive <b>S</b>ystem. It is for the paranoid of the paranoid. Everything is routed through Tor, and every application is secure and encrypted. However, it does not mean it is 100% secure. Tails should obviously be run on a USB, CD or SD card, hence "Live System" and should not be installed. Tails does not guarentee malware protection, remember, "anonymity", not "antivirus". Obviously, if you have heard, Tor is broken, due to data being able to be sniffed out in the exit nodes, so that is a caution to be aware of. You can get Tails 
@@ -29,7 +30,7 @@ header-img: "img/PostBG/post-bg-03.jpg"
 
 <img src="/img/ModernEncryptionAliceBob1/tails.png">
 
-<h2 class="section-heading">Secure Browsing and Anonymity</h2>
+<h2>Secure Browsing and Anonymity</h2>
 <p> Let's assume that you have Ubuntu or Debian or any Linux OS installed. Obviously, having a secure OS does not mean you are guranteed anonymity and protection of your privacy. The first thing I will be concerning is browsing the web. </p>
 <p> On any OS, you would probably be acquainted to Chrome. It supports Javascript, your Gmail and everything concerning it will be synced and saved for your convenience, its definitely 500x better than Internet Explorer, and is the big daddy of browsers. However, I think that if you want to become more secure with your information, consider downloading two browsers. It doesn't matter that you are Windows, Linux, Mac OS X. These browsers support all platforms. </p>
 <li>
@@ -49,5 +50,5 @@ header-img: "img/PostBG/post-bg-03.jpg"
 </li>
 
 
-<h2 class = "section-heading"> OK, I have decided this to be a pretty long and continous series. I will be back with more on encryption. Tune in next time for topics on ... <b> Diffie-Hellman key-exchange! </b> and <b> PGP! </b>
+<h2> OK, I have decided this to be a pretty long and continous series. I will be back with more on encryption. Tune in next time for topics on ... <b> Diffie-Hellman key-exchange! </b> and <b> PGP! </b></h2>
 

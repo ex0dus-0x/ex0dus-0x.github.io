@@ -1,5 +1,6 @@
 ---
 layout:     post
+comments:	true
 title:      "Beginner's Guide to Clean Code"
 subtitle:   "How to NOT Look Like a Beginner (Even though you are)"
 date:       2016-02-19 12:00:00
@@ -7,9 +8,9 @@ author:     "ex0dus"
 header-img: "img/home-bg.jpg"
 ---
 
-<p>What is the difference between <b>effective</b> code and <b>clean</b> code?</p>
+What is the difference between <b>effective</b> code and <b>clean</b> code?
 
-<h2 class="section-heading">Let's look at an example:</h2>
+<h2>Let's look at an example:</h2>
 
 <p> For some really weird reason, you want to print out "Hello World" five times in C++. This is what you write:
 <pre>
@@ -33,7 +34,7 @@ code is <i>formal</i>. <b> Clean </b> code, when examined by other programmers, 
 					
 <h4>Let us look at my criteria for clean code.</h4>
 
-<h2 class="section-heading">1. <i>//Comment</i> everything! </h2>
+<h2>1. <i>//Comment</i> everything! </h2>
 <p>Code are like directions, that are pretty indecipherable, especially if you have written <i>alot</i> of it.
 Shouldn't it be pretty logical to have comments, and give a human interpretation of what is happening? Not only should you write comments, but you should also make your comments, short, decipherable and does not overly explain what you are doing. Let's look at S. Kiddy's code:</p>
 <pre>
@@ -67,7 +68,7 @@ for(x=3;x<4;x++){
 	}
 </pre>			
 <br>
-<h2 class="section-heading">3.Indentation</h2>
+<h2>3.Indentation</h2>
 <p>Indentation, like whitespace is another form of organization. Also known as <b>indent style</b> it will easily help one recognize
 your code due to positioning, as well as for you, when you come back to edit your code. This is especially important for writing code in HTML. Let me demonstrate:
 
@@ -79,7 +80,7 @@ your code due to positioning, as well as for you, when you come back to edit you
 
 <img src="/img/BeginnersGuideToCleanCode/notindentation.png">
 				
-<h2 class="section-heading">4.Variable Name Declaration</h2>
+<h2>4.Variable Name Declaration</h2>
 <p> When you have a variable, class, structure, or any of that sort, is it not logical to name it something relevant. Give your variables ,classes, objects, etc. concise names. This shows organization and unity in your code. If you are writing code in an object-oriented programming language, such as C++, this is very important especially working with inheritance and stuff like that. </p>
 <pre> //Good example
 struct PERSON{ //PERSON struct type

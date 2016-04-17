@@ -1,5 +1,6 @@
 ---
 layout:     post
+comments:   true
 title:      "Redox: a Linux-Like Operating System made with Rust"
 subtitle:   "How a programming language lived up to it's dreams"
 date:       2016-03-19 12:00:00
