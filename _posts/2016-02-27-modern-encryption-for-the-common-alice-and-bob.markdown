@@ -50,5 +50,5 @@ header-img: "img/PostBG/post-bg-03.jpg"
 </li>
 
 
-<h2> OK, I have decided this to be a pretty long and continous series. I will be back with more on encryption. Tune in next time for topics on ... <b> Diffie-Hellman key-exchange! </b> and <b> PGP! </b></h2>
+<h2> OK, I have decided this to be a pretty long and continous series. I will be back with more on encryption. Next time ... <b> Diffie-Hellman key-exchange </b> and <b> PGP! </b></h2>
 

@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal site and blog for the teaching and spreading of hacktivism and programming and everything technical">
 
-    <title>Beginner's Guide to Clean Code - ./codemuch?</title>
+    <title>Theory and Concept of Code - ./codemuch?</title>
 
-    <link rel="canonical" href="http://ex0dus-0x.github.io/2016/02/19/beginners-guide-to-clean-code/">
+    <link rel="canonical" href="http://ex0dus-0x.github.io/2016/04/30/theory-concept-code/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -104,16 +104,16 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+<header class="intro-header" style="background-image: url('/img/PostBG/post-bg-08.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Beginner's Guide to Clean Code</h1>
+                    <h1>Theory and Concept of Code</h1>
                     
-                    <h2 class="subheading">How to NOT Look Like a Beginner (Even though you are)</h2>
+                    <h2 class="subheading">Professor ex0dus's Computer Theory 101</h2>
                     
-                    <span class="meta">Posted by ex0dus on February 19, 2016</span>
+                    <span class="meta">Posted by ex0dus on April 30, 2016</span>
                 </div>
             </div>
         </div>
@@ -126,102 +126,67 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-				<p>What is the difference between <b>effective</b> code and <b>clean</b> code?</p>
+				<p>Many beginning programmers often miss out the several key concepts and theory that involve programming. Many people have always asked me, “coding is difficult. I’ve tried reading. I’ve tried videos. I’ve tried this $2,000,000 course that says that it guarentees that I will master <i>x</i> language in <i>y</i> hours. What should I do? What needs to be done? Should I learn really advanced math?”</p>
 
-<h2>Let's look at an example:</h2>
+<p>In my experience, programming doesn’t require such brevity and understanding in math. Obviously, as you dive into computer science more and more, you will learn it. All you need is an <b>ability</b> to understand mathematics. For example, there is a very simple method of converting a number from base 10 to base 2 (aka binary). The equation is:</p>
 
-<p> For some really weird reason, you want to print out "Hello World" five times in C++. This is what you write:
-<pre>
+<p><img src="http://www.sciweavers.org/tex2img.php?eq=V%28b%29%20%3D%20b_%7Bn-1%7D%20%2A%20%7B2%7D%5E%7Bn-1%7D%20%2B%20b_%7Bn-1%7D%20%2A%20%7B2%7D%5E%7Bn-2%7D%20%2B%20...%20b_%7B1%7D%2A2%5E%7B1%7D%2A%7Bb%7D_%7B0%7D%2B2%5E%7B0%7D%20%3D%20%0A%0A%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20x_%7Bi%7D%2A%7B2%7D%5E%7Bi%7D&amp;bc=White&amp;fc=Black&amp;im=jpg&amp;fs=12&amp;ff=arev&amp;edit=0" alt="equation" /></p>
+
+<p>e.g We have a binary number, 1101. In order to convert it to base 10:
+<img src="http://bit.ly/1pSStnd" alt="equation" /></p>
+
+<p>If you were able to grasp that, then you are well on your way to becoming a proficient programmer.</p>
+
+<h2> The language </h2>
+<p>Let’s talk about programming itself. Specifically, <b>languages</b>.</p>
+
+<p>When we talk about programming languages, it’s like talking about different kinds of ice cream. All of them are different in terms of taste, color, and composition, but in theory, they are all the same. Ice cream is made of sugar, cream, milk. Essentially, all ice cream share the same material, but they may have different tastes and colors. That is the essential concept of programming. Each programming language is different - the syntax, semantics, whether it is interpreter or compiler-based, etc. However, if you think about it, all languages are the same despite their differences. I can write a program that asks for user input and print that input out back to the user in Python. I can do it in C. I can do it in BASIC. So in the end, all programming languages have the same <b>functionality</b>. Of course, we have languages that sort of differ. For example, HTML, which is web-specific. However, in this case, we are talking about programming on a <b>general-level</b>.</p>
+
+<p>When we also examine programming languages, we see that most of them, if not, all of them share a common model. What do I mean by that?</p>
+
+<p>When we learn code, what do we learn. Most of the time, we first start off with the simplest function: input and output. Often, we learn how to write the canonical <code>"Hello world!"</code> program. Then we learn about operators, and then flow control (if/else), loops, functions, lists/dictionaries (whatever language your doing) and then maybe some advances concepts, maybe implementation of external libraries and modules. These concepts are essential to all programming languages. Of course, I am 14, and I have never ever taken a formal computer theory class, so I do not know the proper name or this “model”.</p>
+
+<p>The point is, programming languages are <b>high-level</b>. You may hear this term a lot. What this mean is that when this code runs, it gets translated into <b>machine code</b>, which is assembly language. Assembly will then take the code and make instructions for the <b> CPU </b> or, <i> Central Processing Unit</i> to run, executing the code.</p>
+
+<h2> What should I learn?</h2>
+<p>Some programming languages are much better than others. Many modern 21st-century languages are actually really nice. For example, Apple’s Swift.</p>
+
+<p>The first general programming language I have ever learned was Bjarne Stroustrup’s C++, specifically C++11 (C++0x at the time). It is <b>object-oriented</b>, meaning that in order for code to run, the code will be compiled by a compiler into object files so that it can be read. Here is a same C++ program:</p>
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
 int main(){
-	std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
-	std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
-	std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
-	std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
-	std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
-} </pre></p>
-<p> Of course, you wouldn't do that. You would instead use:
-<pre>
-int main(){
-	for( i = 5; i &gt;= 0; i-- ){
-		std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
-	}
-} </pre></p>
-<p> This is <b>effective</b> code. Even though this is a really basic example, it still demonstrates how we can write code, but shorter, easier, and
-doesn't require me to press <code>Ctrl+V</code> 5 times. But what is the idea of <b> clean </b> code? <b> Clean </b> code looks <i>professional.</i><b>Clean</b>
-code is <i>formal</i>. <b> Clean </b> code, when examined by other programmers, is <i>undestandable</i> and <i>replicable</i> and has a <i>steady flow</i> where the programmer is easily to able to read through it without scratching his or her head and saying, <i>"Huh?"</i>. </p>
+	cout &lt;&lt; "Hello world!" &lt;&lt; endl;
+}
+</code></pre>
 
-<h4>Let us look at my criteria for clean code.</h4>
+<p>C++ is quite a complicated language, especially for a beginner.</p>
 
-<h2>1. <i>//Comment</i> everything! </h2>
-<p>Code are like directions, that are pretty indecipherable, especially if you have written <i>alot</i> of it.
-Shouldn't it be pretty logical to have comments, and give a human interpretation of what is happening? Not only should you write comments, but you should also make your comments, short, decipherable and does not overly explain what you are doing. Let's look at S. Kiddy's code:</p>
-<pre>
-#So here is my code. I am going to first declare the variable x, and then give it the value of 5. 
-#After that, I will add 7 to x, and then call x again, and I will get 12. 
-&gt;&gt;&gt; x = 5
-&gt;&gt;&gt; x + 7
-&gt;&gt;&gt; x
-&gt; 12
-</pre>
-<p> It's good that at least he is commenting what he is doing, but it does not mean that it is <b>clean</b>. The comments are overly explaining what is happening. Let's look at Masta Haxa's code: </p>
-<pre>
-#Declare variable x with value of 5. Add 7 to it, and call x to have value of 12.
-&gt;&gt;&gt; x = 5
-&gt;&gt;&gt; x + 7
-&gt;&gt;&gt; x
-&gt; 12	
-</pre>
-<p> The program is the same, but the commenting is <b>simple</b> and still explains the concept of the code in a whole. </p>
+<p>Let’s get back to that and look at a program written in Python (v.2.7.11)</p>
+<pre><code class="language-python">
+print "Hello world!"
+</code></pre>
 
-<h2 class="section-heading">2. Whitespace </h2>
-<p> The concept of <b>whitespace</b> is pretty big in programming, especially object-oriented. Although it is NOT a requirement, people tend to enjoy looking at code that is not tightly packed. </p>
-<pre>
-for( x = 3; x &lt; 4; x++){
-	cout &lt;&lt; "Wow! This is pretty spaced out" &lt;&lt; endl;
-}</pre>
-<p>Compared to something like:</p>
-<pre>
-for(x=3;x&lt;4;x++){
-	cout&lt;&lt;"helpmeimtrapped"&lt;&lt; endl;
-	}
-</pre>
-<p><br /></p>
-<h2>3.Indentation</h2>
-<p>Indentation, like whitespace is another form of organization. Also known as <b>indent style</b> it will easily help one recognize
-your code due to positioning, as well as for you, when you come back to edit your code. This is especially important for writing code in HTML. Let me demonstrate:
+<p>Wow, wasn’t that simple! Well, as you can tell, both programs are the same. It’s what is introduced in these languages that seperates them. 
+In the Python program, the “print” function is utilized, which simply outputs a string or
+defined variable. However, as seen as code written in C++, many other lines of code are
+introduced. For example, the “#include &lt;iostream&gt;” line is the preprocessor directive, which
+means that the program requires the “iostream” library, which allows the user to use the standard
+output stream, otherwise known as “cout”.</p>
 
-<img src="/img/BeginnersGuideToCleanCode/indentation.png" />
-<p><i>Updated because older picture was crap</i></p>	
-				
-<p> In this situation, my code is neatly indented. I am able to navigate, and I include (a bit) of comments. </p>
-<p> This is an example of code that has <b>NO</b> indentation 
-				
+<p>To a beginner, C++ is quite confusing and may result in the loss of interest very quickly. It is quite a hard language to learn, when compared to Python. To a user without any programming experience, a program in Python is probably not very hard to decipher.</p>
 
-<img src="/img/BeginnersGuideToCleanCode/notindentation.png" />
-<p><i>Updated because older picture was crap</i></p>
-				
-<h2>4.Variable Name Declaration</h2>
-<p> When you have a variable, class, structure, or any of that sort, is it not logical to name it something relevant. Give your variables ,classes, objects, etc. concise names. This shows organization and unity in your code. If you are writing code in an object-oriented programming language, such as C++, this is very important especially working with inheritance and stuff like that. </p>
-<pre> //Good example
-struct PERSON{ //PERSON struct type
-	int age;
-	string name;
-	float weight
-}familymember; //Define object for PERSON type
-</pre>
-<p> and here's a <b>BAD</b> example </p>
-<pre>
-//I will make a program where the user will input a number, and the computer returns that number + 2. 
-//Here are my variables:
-int noodles;
-cin &gt;&gt; noodles;
-noodles + 2;
-cout &lt;&lt; noodles &lt;&lt; endl;
-</pre>
-<p> Shouldn't it be a little more logical to call the variable "input" instead? </p>
-<hr />
-<p> Thank you for reading my first article! I will be coming up with more in the future, but this one was definitely O.K. There are, of course <b> ALOT </b> of things you can do to improve your code and make it <b> clean </b> and <b> effective </b>. Code review, although I did not include it in here, is obviously a must, and an amateur programmer like you and me, <b> WILL </b> always have questions. One of the best places is StackExchange, a prominent Q&amp;A forum community. Visit at: http://stackexchange.com/</p>
-</p></p>
+<h2> The Bottom Line </h2>
+<p>The bottom line is, learning code should not be based on the language you choose to pursue. All programming languages are different in some way, but in the end, all programming languages are essentially the same.</p>
+
+<p>As a decently-experienced programmer, I believe that it is important to choose the right path in programming. Although computer science is something everyone deserves, it is important for those who want to pursue it seriously to have a strong foundation. Understanding programming theory, and basic computer science theory won’t hurt, and will give a nice boost to learning code. Math is also acceptable, and being able to grasp it is a plus. Being knowledgeable in your field of study, even if it means going beyond the scope of your education, shows initiative, eagerness, and allows you to get ahead.</p>
+
+<p>GitHub has a repository that is filled with courses that mainly explore computer science and theory. I have utilized a few of these courses, and have really enjoyed the experience. I recommend those aspiring to have a career in computers that want to get a head start utilize it. Find the course you like. Some are hard, some are boring, and some aren’t available anymore. Take some time, and pique your interests.</p>
+
+<p><a href="https://github.com/prakhar1989/awesome-courses">Click here</a></p>
+
 
 
                 <hr>
@@ -256,10 +221,10 @@ cout &lt;&lt; noodles &lt;&lt; endl;
               
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/2016/02/20/how-to-be-the-worlds-best-hacktivist/" data-toggle="tooltip" data-placement="top" title="How to be the World's Best Hacktivist">Next Post &rarr;</a>
+                    <li class="previous">
+                        <a href="/2016/04/16/arduino-wtf-is-it/" data-toggle="tooltip" data-placement="top" title="Arduino - WTF is it?">&larr; Previous Post</a>
                     </li>
+                    
                     
                 </ul>
 

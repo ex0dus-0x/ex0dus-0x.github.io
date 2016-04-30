@@ -57,4 +57,4 @@ You can do much more with Meterpreter. You can take a screeshot of the victim's 
 
 <p> Well that is all. This article was probably a little dull, but I will soon elaborate on this tutorial. I will talk about exploitation through obfuscating payloads in PDF files, text documents, videos, etc. I will also talk about bypassing AV (anti-virus), since many modern day AVs detect these Metasploit payloads as viruses and backdoors. </p>
 
-<h2> Thanks for reading! Of course, I will be back to make more soon. If you ever have any inquiries or concerns, I have set up a Contact Form in the <b>Contact</b> section of this site! Please do not hesistate to use it.</h2>
+<h2> Of course, I will be back to make more soon. If you ever have any inquiries or concerns, I have set up a Contact Form in the <b>Contact</b> section of this site! Please do not hesistate to use it.</h2>

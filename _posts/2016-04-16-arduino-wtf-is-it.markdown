@@ -63,4 +63,4 @@ The program is self-explanatory. Refer to the comments in the picture. Essential
 Your browser does not support the video tag.
 </video> 
 
-<h2> Thanks for reading! Of course, the Arduino is only a gateway into hardware and hardware hacking. Next time, I will be introducing logic gates in computer science theory USING the Arduino! Stay tuned in for it and more upcoming posts!</h2>
+<h2>Of course, the Arduino is only a gateway into hardware and hardware hacking. Next time, I will be introducing logic gates in computer science theory USING the Arduino! <h2>
