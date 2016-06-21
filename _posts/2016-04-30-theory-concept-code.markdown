@@ -2,7 +2,7 @@
 layout:     post
 comments:   true
 title:      "Theory and Concept of Code"
-subtitle:   "Professor ex0dus's Computer Theory 101"
+subtitle:   "Computer Theory 101"
 date:       2016-04-30 12:00:00
 author:     "ex0dus"
 header-img: "img/PostBG/post-bg-08.jpg"

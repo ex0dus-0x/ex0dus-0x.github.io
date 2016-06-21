@@ -1,8 +1,8 @@
 ---
 layout:     post
 comments:   true
-title:      "Arduino - WTF is it?"
-subtitle:   "Please excuse my rip-off 3rd party Arduino"
+title:      "What is an Arduino?"
+subtitle:   "a.ka. Beginner's Guide to Hardware Hacking"
 date:       2016-04-16 12:00:00
 author:     "ex0dus"
 header-img: "img/PostBG/post-bg-07.png"

@@ -2,7 +2,7 @@
 layout:     post
 comments:   true
 title:      "Beginner's Guide to Metasploit"
-subtitle:   "Super l33t h4x0r time!"
+subtitle:   "Linux, not Windows"
 date:       2016-03-27 12:00:00
 author:     "ex0dus"
 header-img: "img/PostBG/post-bg-06.png"
