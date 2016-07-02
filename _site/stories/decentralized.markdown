@@ -1,3 +1,7 @@
+
+
+
+
 ===================================================
  ___                 _            _ _           _
 |   \ ___ __ ___ _ _| |_ _ _ __ _| (_)______ __| |
@@ -60,43 +64,3 @@ when your target is tech-challenged.
 OK, I got some nice stuff for a good D0x. I already knew his address; wasn't too difficult to find after some online snooping and recon. He had a wife and
 son in college, and distant family in Kansas. Interesting...credit cards, credit reports, nice nice. Very comprehensive D0x. Now time to release with the
 evidence.
-
-======================================================
-Part II
-======================================================
-Hacking is a delicate topic of discussion. It is a form of art, and it really  focuses deep on the art of human manipulation. Having an amazing social
-engineering ability is a HUGE plus.
-
-Having Dr. Daniel's d0x released was just a pass experience. The entire incident caused his forced retirement as a principal, especially when a boycott
-broke out, where all of the students cut school for a nearly a week. j4s0n hit the news for a day, but the police shook it off, after finding out that the
-leak of the d0x was on Ghostleak.com, an independent pastebin and text-based leak database and site. It really led to no leads as if to find me, and the
-police really didn't like the principal, since he was a suspected several times of money laundering and gambling addiction.
-
-After the incident, I laid low for a while. And now here we are.
-
-I open Tails. Yes, I am paranoid. And from a scale of 1 - 10, I would say 11. I have two PCs, one with a custom compiled Linux pentesting build I created,
-and one with Windows (fucking disgusting). On the one with Linux, I do not connect it to my family's router. Instead, I have it hooked up to several proxy
-servers, after also hacking into my tech-retarded neighbors' WEP network. The computer is hidden, even if they did know how to check their router settings
-page, which they left unconfigured. i2P and Tor, with VPN from iPredator. After that, I have a USB, with 64 GB. It includes Tails with Persistence, so it
-was like having a portable Tails-on-a-stick. I have a Raspberry Pi configured as a physical VPN, and a Piratebox for offline and decentralized file sharing
-and storage.
-
-HackerDay is actually a legitimate hacker's forum. Not some fucking HackForums or LeakForums bullshit. It has a legitimate community, with the world's most
-talented hackers, programmers, activists, and tech-geeks as admins. It is very dedicated and quite some money has gone towards it for dedicated server time
-and management. The forum is always active, as well as the many IRC chats and an Off-the-Record XMPP server. There's also a shop, where payment is in Bitcoin.
-A lot of the money goes towards charity and nonprofits. It is one of the best fucking places on Earth.
-
-I was a pretty dedicated member to the community and has helped out with a lot of projects. Soon after my hack reached a brief climatic point of popularity,
-the forum destroyed my inbox with praises. However, that wasn't what caught my attention.
-
-My clicker hovered over an oddity of a message. It was in PGP - well, all messages are in PGP. But it was the username...
-
-Oh shit.
-
-m4rk_v.
-
-Responsible for the hacking of Apple and defacement of their website. Responsible for leaking a shitload of names, emails, and passwords of members of the
-Westboro Baptist Church. A legend. Messaged me.
-
-I may appear as a big-shot hacker, but shit, when I stand to the metaphorically-monolithic m4rk_v, I'm just a script kiddy using ipbooter.com. He is wanted
-by the FBI on so many levels, and due to a minor infiltration by federal officers a few months ago onto the HackerDay onion site, he appears very inactive.

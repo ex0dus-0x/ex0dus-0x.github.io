@@ -141,8 +141,77 @@ an interactive tutorial. Time to conduct some research for yourself now :P</p>
 
 <h3 id="lets-get-started">Let’s get started.</h3>
 
-<p>First, Python is interpreter-based. Think of a language that is interpreter-based being a cookbook. You will read a step, do that step, and then move on the next. That is the essential concept of an interpreter-based programming language. Each line of code is examined before execution. A compiler-based programming language, or commonly referred as object-oriented, is like reading all the steps in the
-cookbook, and THEN completing each step.</p>
+<p>First, Python is <strong>interpreter-based</strong>. Think of a language that is interpreter-based being a cookbook. You will read a step, do that step, and then move on the next. That is the essential concept of an interpreter-based programming language. Each line of code is examined before execution. A compiler-based programming language, or commonly referred as object-oriented, is like reading all the steps in the cookbook, and <strong>THEN</strong> completing each step.</p>
+
+<p>Python is <strong>battery-included</strong> this means that Python comes with its own integrated development environment, called IDLE.</p>
+
+<p>Of course, that’s great news for Windows users. If you are a Linux user, Python is probably already installed. No big whoop.</p>
+
+<pre><code># python
+Python 2.7.11+ (default, Apr 17 2016, 14:00:29)
+[GCC 5.3.1 20160409] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt;
+</code></pre>
+
+<h3 id="input-and-output">Input and Output</h3>
+
+<p>Often times, when we learn code, we start off writing the canonical <strong>Hello World</strong> program.</p>
+
+<p>In this crash course, you can either
+1. use the Python IDLE on Linux
+2. Use a text editor or some sort of code editor (Nano, Vim, Atom), save a .py file, and run.
+3. Use Trinket.io</p>
+
+<p>The function for output is simple.</p>
+
+<pre><code>print "Hello world!"
+</code></pre>
+
+<p>No preprocessor directives, no int main() starting point, no semicolons. Plain and simple output.
+The function for input is:</p>
+
+<pre><code>x = input()
+</code></pre>
+
+<p>We declare a variable, called <strong>x</strong> and declare it to the function input, with parentheses. This will allow the user to store a value into x. No strings though, I’ll explain in just a sec. We can pass text in the parentheses as well, as demonstrated.</p>
+
+<pre><code>&gt;&gt;&gt; x = input("Give me a number! ")
+Give me a number! 12
+&gt;&gt;&gt; x
+12
+</code></pre>
+
+<p>Next, if we want it to input a string, we call the raw_input function.</p>
+
+<pre><code>&gt;&gt;&gt; x = raw_input("Pass me a string! ")
+Pass me a string! Hello
+&gt;&gt;&gt; x
+'Hello'
+</code></pre>
+
+<h3 id="comments">Comments</h3>
+<p>You make a comment using a #. Multiline comments are created and ended with three ‘.</p>
+
+<pre><code>#This is a comment.
+'''This is a multiline comment.
+   See? I can write a lot!'''
+</code></pre>
+
+<h3 id="variables-and-variable-declaration">Variables and Variable Declaration</h3>
+<p>Variables are generic in Python. This means that they do not need to be declared with types such as “int”, “double”, “char”. and etc, as in seen in languages
+such as C and C++. Variables can be assigned to strings.</p>
+
+<pre><code>x = 12
+y = 'Strings can be made with single quotes'
+z = " or double quotes"
+</code></pre>
+
+<h3 id="math">Math</h3>
+<p>Math is common sense in most programming languages.</p>
+
+<pre><code>1 + 2 = 3 # addition
+</code></pre>
 
 
                 <hr>

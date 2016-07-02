@@ -1,54 +1,16 @@
 ===================================================
- ___                 _            _ _           _ 
+ ___                 _            _ _           _
 |   \ ___ __ ___ _ _| |_ _ _ __ _| (_)______ __| |
 | |) / -_) _/ -_) ' \  _| '_/ _` | | |_ / -_) _` |
 |___/\___\__\___|_||_\__|_| \__,_|_|_/__\___\__,_|
-                                                   
+
 //A Hacker Story // Written By: ex0dus-0x // Part 2
 ===================================================
 
-Damn. Reading that made me sweat a little. This is the sort of mentality these admins had. They were top-notch hackers that made me look like a script kiddy. You hear about cops and feds trying to expose these guys. Instead these guys expose THEM. An FBI agent recently got arrested on several charges of child pornography. It was pretty obvious it got planted. The guy who did it was a hacker by the name of w1ll0w. He's currently in jail after this occured and was pretty much one of those hackers on d33pc3ntr4l that were this close to black-hat.
+Hacking is a delicate topic of discussion. It is a form of art, and it really  focuses deep on the art of human manipulation. Having an amazing social
+engineering ability is a HUGE plus.
 
-I probably shouldn't have used him as an example, since most of the admins and people on d33pc3nt4l were actually good hackers trying to revolt against the government.
-
-I got up from my seat to pour myself some tea. Coffee is too strong, and it really messes up your bladder, since you will want to pee more (see, AP bio). BZZZZZ. BZZZZ. BZZZZ. BZZZZ. BZZZZ. Jordan again. 
-
-"You got it, right?"
-
-"Yeah, holy shit."
-
-"I know, man. You in or out?"
-
-"I don't know man, too risky."
-
-"Don't be a bitch man, you in or out?"
-
-"Fine, I'm in. Only as long as you help me."
-
-"Fuck off!" he cried in an annoyed tone. "I'm already in deep shit."
-
-"What, so I'm a bitch?" I responded. "C'mon, don't you always wanted to play hero?"
-
-A pause ensued. "Wait", he replied. "My parents calling me. I'm going out for dinner. Call you back." BEEP. The line was dead.
-
-Sigh. I knew Jordan Santos for quite a long time. His mother was an undocumented alien from Mexico, who came with her parents when she was like a baby. Growing up, she studied hard, learned English, became an accountant, and got her green card. There, she met Jordan's dad, another Spanish alien with the same story. Both worked at a law firm. There they fell in love, married and had 3 children. Jordan was the middle child. We met in the 7th grade of middle school, when we both were greenhorns. I was in love with Python. He was in love with Ruby. We taught each other, and became brothers, especially since I was an only child and he had 2 sisters. 
-
-It was 10:02. My parents were knocked out, so I decided to go finish my Precalculus homework and go to sleep. 
-
-Shit. I couldn't focus on my work. My hands were trembling. I mean, it may appear as if it isn't a big deal. But it was. D33pc3ntr4l leaks are not just some d0x. It's an actual large collection of data that can literally destroy an entire company. Just 4 months ago, a large data leak on Apple was released (again, poor Apple) which showed that the newest iOS 10 update contained an undetectable program hidden within the "Message" app that siphons all of your personal information and stores it in Apple's secure servers. It was sold to the NSA, who gladly bought a large chunk of it for a whopping $3M. Hacktivists sprung up, and they developed a simple fix. Since Apple was pretty much open-sourced now because of hackers hacking away at the OS, they simply released a tweak on Cydia (for regular jailbroken iOS users who don't have any other "hacked" OS.) that got rid of the issue. 
-
-This kind of shit was what made d33pc3nt4l so popular. It became so popular only specific members can join, since so many people: script kiddies, journalists, undercover feds, random-ass people wanted to join and get in on the action. There was an interview process on old and new members. Jordan and I didn't even get it, since he was one of their best developers and I was well-known for WatchDog OS. 
-
-After I was finished, I put my stuff away and got into the bathroom. My weary eyes reflected back as I looked at myself in the mirror. 10 PM is the earliest I've slept so far. 
-
-After brushing my teeth, I climbed into bed. I took out my Droid, and started browsing facebook. "At least I have a life", I told myself.
-
-In the real world, hackers are often looked at as introverts. I mean, sometimes its pretty obvious. Some appear emo. Some lack a lot of social skill. Some look like Dracula and have a deficiency. It takes a close look to determine who in society today is a hacker or not. 
-
-I guess I was different. I dressed casually, jeans, wire rim glasses, neat brown hair, nice T-shirt. I go to school, have friends, and have pretty good grades. AP classes. Pretty nice SAT score. No one knows that I am a hacker. The facade I have constructed is pretty detailed, complex, and meticulous. No one would expect me to be a hacker. Except for Jordan of course, but he himself is also like that. Sociable, good with girls, intelligent, neat. Both of us were the polar OPPOSITE of hackers. 
-
-But at day, we attend school. Regular students. We attempt to get away from hacking as far as possible. Anything to do with computers, technology, we attempt to avoid. When our friends talk about the latest hack that occurs, we tend to not get deep into the conversation. When the teacher asks, "Who here is good with computers?" we don't respond. We have constructed a mentality such that if feds start looking for hackers among us, we were the first out of their potential list.
-
-I put my phone down. Just some regular stuff. People w/ their significant others, taking selfies with food, sharing videos of funny Vines. I had a lot of non-hacker friends, but my network of hacker friends was limited. Sigh. If only I had a...
-
-Good night.
+Having Dr. Daniel's d0x released was just a pass experience. The entire incident caused his forced retirement as a principal, especially when a boycott
+broke out, where all of the students cut school for a nearly a week. j4s0n hit the news for a day, but the police shook it off, after finding out that the
+leak of the d0x was on Ghostleak.com, an independent pastebin and text-based leak database and site. It really led to no leads as if to find me, and the
+police really didn't like the principal, since he was a suspected several times of money laundering and gambling addiction.
