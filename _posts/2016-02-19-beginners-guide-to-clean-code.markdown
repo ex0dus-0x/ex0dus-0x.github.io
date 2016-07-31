@@ -1,6 +1,6 @@
 ---
 layout:     post
-comments:	true
+comments:		true
 title:      "Beginner's Guide to Clean Code"
 subtitle:   "How to NOT Look Like a Beginner (Even though you are)"
 date:       2016-02-19 12:00:00

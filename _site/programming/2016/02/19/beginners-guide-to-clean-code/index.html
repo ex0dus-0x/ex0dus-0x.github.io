@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal site and blog for the teaching and spreading of hacktivism and programming and everything technical">
 
-    <title>The Story of Me and My Plight of Identity - ./codemuch?</title>
+    <title>Beginner's Guide to Clean Code - ./codemuch?</title>
 
-    <link rel="canonical" href="http://ex0dus-0x.github.io/2016/07/10/the-story-of-me-identity/">
+    <link rel="canonical" href="http://ex0dus-0x.github.io/programming/2016/02/19/beginners-guide-to-clean-code/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -110,16 +110,16 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('/img/')">
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>The Story of Me and My Plight of Identity</h1>
+                    <h1>Beginner's Guide to Clean Code</h1>
                     
-                    <h2 class="subheading">Time to diverge from technology</h2>
+                    <h2 class="subheading">How to NOT Look Like a Beginner (Even though you are)</h2>
                     
-                    <span class="meta">Posted by ex0dus on July 10, 2016</span>
+                    <span class="meta">Posted by ex0dus on February 19, 2016</span>
                 </div>
             </div>
         </div>
@@ -132,26 +132,109 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-				<blockquote>
-  <p>“The incomprehensible is just logical nuisance. We don’t come to understand it, but to yearn for its unpredictability and confusion”
-- ex0dus-0x</p>
-</blockquote>
+				<p>What is the difference between <strong>effective</strong> code and <strong>clean</strong> code?</p>
 
-<p>I never reveal much about me. Not because I’m scared of the police or some sort of big brother government eye, hovering over my life as if I was a lab rat. I don’t do anything illegal, nor give off the image that what I do is illegal.</p>
+<h2 id="lets-look-at-an-example">Let’s look at an example:</h2>
 
-<p>We as a society has conformed to such stereotypes. One example is #blacklivesmatter. Blacks and African-Americans, especially those living in low-income areas are often seen as <em>criminals** or *thugs</em>. But in opinion, #blacklivesmatter has nothing to do with blacks and racism towards them. It is aimed at the cruelty and brutality of police officers, which now we have stereotypical identify not as men and women sworn to protect civilians, but just anger racists who love beating up black people. Maybe Alton Sterling did have a gun and did wanted to shoot a homeless man. But the fact is, he wasn’t <strong>resisting</strong> to the police. And even if he was, there were other alternatives rather than beating him senseless and shooting him in the chest.</p>
+<p>For some really weird reason, you want to print out “Hello World” five times in C++. This is what you write:</p>
 
-<p>But I digress. The point is, society as a whole is like a function. It takes an input, processes it, and spits out an output. The input is some sort of information. “The Asians in my school are good at math”. Based on this kind of data, society processes this information and spits out the stereotype that “all Asians are good at math”. Now because everyone has such a fixed idea, if you see an Asian fail at math, he/she is often shamed. And trust me, this happens in my school quite a lot. And you can’t blame it on the people. Its often times media and the information reflected to us based on what is occurring in our world that allows these ideas to form fixed into peoples’ minds. Islam is a terrorist religion. Mexicans are rapists. etc.</p>
+<pre>int main(){
+	std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
+	std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
+	std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
+	std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
+	std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
+} </pre>
 
-<p>In the culture of hacktivism and technology, a clear hierarchy exists. We have script kiddies who “ping” IPs and fry routers. We have greenhorns who aspire to learn and has the potential to be great. We have intermediate hackers, who are getting there, and the best of the really best, who are those we don’t even know about. There are programmers and devs, electronic hobbyists, engineers, activists, etc who work together to form a community that collaborates and helps the world through their technological advances.</p>
+<p>Of course, you wouldn’t do that. You would instead use:</p>
 
-<p>Let’s jump outside this inner-circle. What do average people think about the hacker culture? Hackers deserve to be punished. All hackers are malicious. And there are those who endorse them. “Hack <em>x’s</em> Facebook please. Hack this please. etc.”</p>
+<pre>int main(){
+	for( i = 5; i &gt;= 0; i-- ){
+		std::cout &gt;&gt; "Hello World!" &gt;&gt; std::endl;
+	}
+} </pre>
 
-<p>I always make sure that my identity is protected. Although at times I would accidentally release my name, I still attempt to keep everything convoluted and at a minimal. Media, Hollywood, the news, and the exaggerations of society made the hacker culture appear as a malicious group of immature and antagonistic teenagers who cause harm and wreak havoc.</p>
+<p>This is <strong>effective</strong> code. Even though this is a really basic example, it still demonstrates how we can write code, but shorter, easier, and doesn’t require me to press <code>Ctrl+V</code> 5 times. But what is the idea of <strong>clean</strong> code? <strong>Clean</strong> code looks <em>professional.</em><strong>Clean</strong> code is <em>formal</em>. <strong>Clean</strong> code, when examined by other programmers, is <em>undestandable</em> and <em>replicable</em> and has a <em>steady flow</em> where the programmer is easily to able to read through it without scratching his or her head and saying, <em>“Huh?”</em>.</p>
 
-<p>So I talk about <em>“the plight of my identity”.</em> What does this mean? I am talking about the fight of my identity. How I combat and mask my true self with a facade I call “the norm”. What society dictates as “normal”. Friends, a social life, good grades, a healthy relationship with others. And trust me, I have all of that, and I love it. I have people to communicate with, and people who really have helped me progress through life. But my true self, my “hacker at night” side, I don’t reveal.</p>
+<h4 id="let-us-look-at-my-criteria-for-clean-code">Let us look at my criteria for clean code.</h4>
 
-<p>And what have I learned from this experience? You are unique. You are who you are. But society is cruel. Society is judgmental. Throughout a VERY long span of time society has existed, we see these clearly existent boundaries. Superiority is determined by color, your looks, your gender, etc. Although its difficult to overcome the plights and escape the society surrounded by barriers and stereotypes, always try. You are unique. I myself has never come to terms with myself and my identity, and I continue to struggle with it. Please, reader, be yourself. Don’t brag and show off, be modest, be a person of good faith, but please remember, your identity shouldn’t be something of a burden. Don’t ever alter it, unless you have cause harm to others. Learn to embrace and understand it, rather than diverge.</p>
+<h2 id="comment-everything">1. <em>//Comment</em> everything!</h2>
+
+<p>Code are like directions, that are pretty indecipherable, especially if you have written <em>alot</em> of it. Shouldn’t it be pretty logical to have comments, and give a human interpretation of what is happening? Not only should you write comments, but you should also make your comments, short, decipherable and does not overly explain what you are doing. Let’s look at S. Kiddy’s code:</p>
+
+<pre>#So here is my code. I am going to first declare the variable x, and then give it the value of 5\.
+#After that, I will add 7 to x, and then call x again, and I will get 12\.
+&gt;&gt;&gt; x = 5
+&gt;&gt;&gt; x + 7
+&gt;&gt;&gt; x
+&gt; 12
+</pre>
+
+<p>It’s good that at least he is commenting what he is doing, but it does not mean that it is <strong>clean</strong>. The comments are overly explaining what is happening. Let’s look at Masta Haxa’s code:</p>
+
+<pre>#Declare variable x with value of 5\. Add 7 to it, and call x to have value of 12.
+&gt;&gt;&gt; x = 5
+&gt;&gt;&gt; x + 7
+&gt;&gt;&gt; x
+&gt; 12
+</pre>
+
+<p>The program is the same, but the commenting is <strong>simple</strong> and still explains the concept of the code in a whole.</p>
+
+<h2 id="whitespace">2. Whitespace</h2>
+
+<p>The concept of <strong>whitespace</strong> is pretty big in programming, especially object-oriented. Although it is NOT a requirement, people tend to enjoy looking at code that is not tightly packed.</p>
+
+<pre>for( x = 3; x &lt; 4; x++){
+	cout &lt;&lt; "Wow! This is pretty spaced out" &lt;&lt; endl;
+}</pre>
+
+<p>Compared to something like:</p>
+
+<pre>for(x=3;x&lt;4;x++){
+	cout&lt;&lt;"helpmeimtrapped"&lt;&lt; endl;
+	}
+</pre>
+
+<h2 id="indentation">3.Indentation</h2>
+
+<p>Indentation, like whitespace is another form of organization. Also known as <strong>indent style</strong> it will easily help one recognize your code due to positioning, as well as for you, when you come back to edit your code. This is especially important for writing code in HTML. Let me demonstrate: <img src="/img/BeginnersGuideToCleanCode/indentation.png" alt="" /></p>
+
+<p><em>Updated because older picture was crap</em></p>
+
+<p>In this situation, my code is neatly indented. I am able to navigate, and I include (a bit) of comments.</p>
+
+<p>This is an example of code that has <strong>NO</strong> indentation <img src="/img/BeginnersGuideToCleanCode/notindentation.png" alt="" /></p>
+
+<p><em>Updated because older picture was crap</em></p>
+
+<h2 id="variable-name-declaration">4.Variable Name Declaration</h2>
+
+<p>When you have a variable, class, structure, or any of that sort, is it not logical to name it something relevant. Give your variables ,classes, objects, etc. concise names. This shows organization and unity in your code. If you are writing code in an object-oriented programming language, such as C++, this is very important especially working with inheritance and stuff like that.</p>
+
+<pre> //Good example
+struct PERSON{ //PERSON struct type
+	int age;
+	string name;
+	float weight
+}familymember; //Define object for PERSON type
+</pre>
+
+<p>and here’s a <strong>BAD</strong> example</p>
+
+<pre>//I will make a program where the user will input a number, and the computer returns that number + 2\.
+//Here are my variables:
+int noodles;
+cin &gt;&gt; noodles;
+noodles + 2;
+cout &lt;&lt; noodles &lt;&lt; endl;
+</pre>
+
+<p>Shouldn’t it be a little more logical to call the variable “input” instead?</p>
+
+<hr />
+
+<p>Thank you for reading my first article! I will be coming up with more in the future, but this one was definitely O.K. There are, of course <strong>ALOT</strong> of things you can do to improve your code and make it <strong>clean</strong> and <strong>effective</strong> . Code review, although I did not include it in here, is obviously a must, and an amateur programmer like you and me, <strong>WILL</strong> always have questions. One of the best places is StackExchange, a prominent Q&amp;A forum community. Visit at: http://stackexchange.com/</p>
 
 
                 <hr>
@@ -186,13 +269,9 @@
               
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2016/07/01/cs-in-education/" data-toggle="tooltip" data-placement="top" title="CS in Education">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2016/07/23/mr-robot/" data-toggle="tooltip" data-placement="top" title="Mr. Robot and the Impact on Society">Next Post &rarr;</a>
+                        <a href="/2016/02/20/how-to-be-the-worlds-best-hacktivist/" data-toggle="tooltip" data-placement="top" title="How to be the World's Best Hacktivist">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
