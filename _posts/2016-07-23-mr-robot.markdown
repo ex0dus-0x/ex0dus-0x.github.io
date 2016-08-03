@@ -1,8 +1,8 @@
 ---
 layout:     post
 comments:   true
-title:      "Mr. Robot and the Impact on Society"
-subtitle:   "Watch the show!"
+title:      "Mr. Robot: Impact and Influence"
+subtitle:   "How one show lead to large widespread influence"
 date:       2016-07-23 12:00:00
 author:     "ex0dus"
 header-img: "img/PostBG/post-bg-10.jpg"
@@ -18,7 +18,7 @@ The show has been widely advertised and received great reviews. As I walk throug
 
 The hacking in the show is nevertheless real. [Null-Byte](http://null-byte.wonderhowto.com/how-to/mr-robot-hacks/), a hacking and pentesting community on WonderHowTo, created an entire section dedicated to the meticulous dissection of the scenes of hacking within Mr. Robot.
 
-#Warning: SPOILERS!
+# Warning: SPOILERS!
 
 ### A little summary
 
@@ -70,6 +70,6 @@ Finally, we can see in the most recent episode Elliot getting back into the game
 
 Mr Robot is __NOT__ just a show. It is symbolism. Through the realism of the hacking, themes, and even display of actual real-life brands and products, we see the show delivering sublimal messages about the world. And unfortunately, they are quite true. The world isn't a wonderful place. We come to face problems every day and although it may be transparent to us, it is happening. War, oppression, and the opposition between man/woman and government are just a few daily problems.
 
-My advice? Don't watch Mr. Robot cause its a good TV show. Watch it for value. It is a show that provides a gateway to reality. We look at the introspection of Elliot and his plight of identity, as well as Angela, Elliot's childhood friend and her conflicts of interest with E-Corp, a corporation she hates for the cover-up of her mother's death, and Darlene, who is in constant emotional instability after the climatic hack on E-Corp, leading to fear for her life as well as her fellow fsociety members. We look at Evil Corp, and realize that it isn't just one corporation, but instead it acts as a representation of many we see in our world today.
+ Don't watch Mr. Robot cause its a good TV show. Watch it for value. It is a show that provides a gateway to reality. We look at the introspection of Elliot and his plight of identity, as well as Angela, Elliot's childhood friend and her conflicts of interest with E-Corp, a corporation she hates for the cover-up of her mother's death, and Darlene, who is in constant emotional instability after the climatic hack on E-Corp, leading to fear for her life as well as her fellow fsociety members. We look at Evil Corp, and realize that it isn't just one corporation, but instead it acts as a representation of many we see in our world today.
 
 I hope this article brought a little light to the problems concerning society and the reflections from Mr. Robot. I hope I will continue to write and actually take a stand for the problems we see in the world today.
