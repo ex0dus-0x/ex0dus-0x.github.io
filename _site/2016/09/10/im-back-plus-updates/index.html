@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal site and blog for the teaching and spreading of hacktivism and programming and everything technical">
 
-    <title>Mr. Robot: Impact and Influence - ./codemuch?</title>
+    <title>I'm back!  - ./codemuch?</title>
 
-    <link rel="canonical" href="http://ex0dus-0x.github.io/2016/07/23/mr-robot/">
+    <link rel="canonical" href="http://ex0dus-0x.github.io/2016/09/10/im-back-plus-updates/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -98,16 +98,16 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('/img/PostBG/post-bg-10.jpg')">
+<header class="intro-header" style="background-image: url('/img/PostBG/post-bg-11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Mr. Robot: Impact and Influence</h1>
+                    <h1>I'm back! </h1>
                     
-                    <h2 class="subheading">How one show lead to large widespread influence</h2>
+                    <h2 class="subheading">What has happened and what to do.</h2>
                     
-                    <span class="meta">Posted by ex0dus on July 23, 2016</span>
+                    <span class="meta">Posted by ex0dus on September 10, 2016</span>
                 </div>
             </div>
         </div>
@@ -120,71 +120,32 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-				<p>Mr. Robot is a show that started to air on the USA network last year. A few weeks ago, we saw that the premiere of its first episode of the second season.</p>
+				<p>It’s been a while! I’m back from a hiatus, and I will resume. However, it won’t be frequent. Despite this, I am still active on social media, such as <a href="https://instagram.com/ex0dus-0x">Instagram </a>.</p>
 
-<h3 id="the-impact">The Impact</h3>
+<p>I’ve written two new projects that I hope to introduce. One of them is <strong>pypayload</strong>, a Metasploit MSFvenom payload generator. It’s really not suppose to be a full-on program, but just a script that enables you to quickly make a payload without scratching your head as to what to do and what flags you will have to pass. Although the project is released, it is incomplete and I still hope to import functionality such as automatically starting a msfconsole session after creating a payload and support for platforms other than Windows. You can view this project in the <a href="/projects.html">Projects</a> section.</p>
 
-<p>Mr. Robot has received quite a lot of praise from critics <strong>AND</strong> hackers a like for its realism not only technological-wise, but also society-wise. Sam Esmail, the shows creator, has done a great job of research and making the show not only a breakthrough in entertainment, but a large breakthrough in the cyberpunk world. Its many themes within the show demonstrate the world we live in - is a huge facade.</p>
+<p>Finally, I’ve written a bruteforce module (OK, I’m lying, dictionary attack). Called <strong>brut3k1t</strong>, it supports bruteforce for a few different protocols and services. The overall code was not very difficult at all to write, since I’ve incorporated many modules that support the specific target service, such as <code>paramiko</code> for SSH, and <code>ftplib</code> for FTP. I’ve also supported cracking for XMPP, Instagram and Facebook.</p>
 
-<p>The show has been widely advertised and received great reviews. As I walk throughout the subways of New York City, advertisements pop up nearly every station, with the face of the protagonist, Elliot, or his deceased father, “Mr. Robot”, who appears as an illusion inside Elliot, controlling and manipulating his psyche.</p>
+<p>The theme of most of projects and code is write is <strong>automation</strong>. This notion was inspired by a book I’ve read while learning Python a long time back, <strong>Automate the Boring Stuff with Python</strong> by Al Sweigart. Computer users, especially those who have a field or passion with it, often find achieving certain tasks tedious and to an extent, boring. <strong>D0xk1t</strong> was a project that I’ve started that helped with the process of reconaissance, a very important aspect in penetration testing. And I have explained before with <strong>pypayload</strong>, its job is to automate the generation of payloads for Metasploit. <strong>brut3k1t</strong> was written in the aspect of <em>all-in-one</em>, where a pentester or hacker can just <code>git clone</code>, and immediately be exposed to a tool that not just targets one protocol, but several. A sample attack would be:</p>
 
-<p>The hacking in the show is nevertheless real. <a href="http://null-byte.wonderhowto.com/how-to/mr-robot-hacks/">Null-Byte</a>, a hacking and pentesting community on WonderHowTo, created an entire section dedicated to the meticulous dissection of the scenes of hacking within Mr. Robot.</p>
+<pre><code>python brut3k1t.py -s ssh -a 192.168.1.3 -u root -w wordlist.txt
+</code></pre>
 
-<h1 id="warning-spoilers">Warning: SPOILERS!</h1>
+<p>I’ve written the code so that it requires quite a few flags are to be set up before usage, but it is fairly understandable. Hopefully, I can eventually incorporate a <code>--proxy</code> flag.</p>
 
-<h3 id="a-little-summary">A little summary</h3>
+<h2 id="future-work">Future work</h2>
 
-<p>Elliot Anderson works as a computer programmer within Allsafe, a cybersecurity company in New York City. He suffers from depression and social anxiety. The series follows him as he meets Mr. Robot,a mysterious man who recruits him to work with a group of hackers known as “fsociety”, who will soon be notorious for unleashing the greatest hack against E-Corp, a global business conglomerate and the main antagonist, who stereotypes the sleazy, rich scumbag businessmen and women that run the world with their wealth and power.</p>
+<p>I’ve been doing quite some work with the Rust and Ruby programming languages. Although I have stopped with Rust, since the documentation is being completely rewritten, I’ve decided to play around with Ruby. Ruby is a <em>“pure”</em> object-oriented language, despite having a interpreter. It’s syntax and semantics has a very English language and pseudocode-style feel to it. Try to understand this:</p>
 
-<p><a href="https://en.wikipedia.org/wiki/Mr._Robot_%28TV_series%29">Read More Here</a></p>
+<pre><code>age = 12
+puts "Poop" unless if age &lt;= 12
+</code></pre>
 
-<h3 id="the-realism">The Realism</h3>
+<p>Not very difficult syntax and semantics correct?</p>
 
-<p>Let’s look at the new season. If you have not watched the new season or Mr. Robot at all, beware of spoilers.</p>
+<p>I’ve never been a huge fan of writing code in C-style languages. Although learning such languages have introduced my to a lot of programming paradigms, C/C++ and its relative languages always seemed strict, difficult and impractical to me. I’ve worked extensively with Python, which has provided many opportunities for me to tinker and experiment with code, enabling to write functional programs. Despite this, I don’t want to stay attached to just one language. Ruby is a great opportunity for me, especially since Metasploit is written in Ruby. Hmmmmmm…….</p>
 
-<p>I think that this new season will focus on <strong>2 main themes</strong>: Elliot and his struggle for control and fsociety fighting for control after their climatic hack.</p>
-
-<p>Hacking in the show has become more realistic as well. The utilization of real-life</p>
-
-<p>Let’s examine.</p>
-
-<p>When we first start off in the first episode of the second season, we can see a few “easter-eggs”. Right in the beginning of the episode, we see Elliot on a terminal.
-<img src="/img/MrRobot/three.png" alt="" /></p>
-
-<p>We can see Elliot establishing a SSH conection an <strong>E-Corp</strong> server, and the wonderful community of Reddit discovered that it is an actual URL to a site set up by the USA network. This comes back to the notion of the facade we see today in society.</p>
-
-<p><img src="/img/MrRobot/ecorp.png" alt="" />
-<img src="/img/MrRobot/evilcorp.png" alt="" /></p>
-
-<p>No words needed for that. Let’s continue on. We see Darlene, Elliot’s sister utilizing <strong>SEToolkit</strong>, a very popular social-engineering pentesting suite. She is seen creating a payload, which is some sort of Ransomware.</p>
-
-<p><img src="/img/MrRobot/two.png" alt="" /></p>
-
-<p>We continue and see that the Bank of E Corp experiencing technical difficulties. Patrons of the bank are unable to retrieve withdrawals. This is largely contributed to Darlene’s Ransomware, which we can see is in large effect.</p>
-
-<p><img src="/img/MrRobot/one.png" alt="" /></p>
-
-<p>Mobley, one of fsociety’s hackers, impersonates an IT technician and attempts to “fix” the current situation. However, if you look at the image a little closely, we are able to see a joker face. This is atually reference to <a href="https://en.wikipedia.org/wiki/The_Jester_%28hacktivist%29">th3j35t3r</a>, a grey-hat hacktivist that has caused devastating DoS attacks utilizing a tool that he has wrote himself, known as Xerxes.</p>
-
-<p><img src="/img/MrRobot/four.png" alt="" /></p>
-
-<p>In the next episode, we see Mobley making contact with Romero, a retired phreaker. This reference itself further proves the realism of the show, as phreaking is the art of hacking, but with implementation on telecommunication systems and is a predecessor to the modern-day computer hacking. Although Captain Crunch is known as a pioneer in phreaking, Romero still refers to himself as the one who actually started phreaking.</p>
-
-<p>Mobley visits Romero later, finding out that he was shot and killed. In this scene however, we can see another reference.</p>
-
-<p>If you look closely you are able to make out the popular penetration testing Linux distro, Kali Linux on Romero’s computer. Neat right?</p>
-
-<p>Finally, we can see in the most recent episode Elliot getting back into the game, after having an inner battle with Mr.Robot. He contacts Darlene, who is in danger from the FBI and a new surveillance program setup. They make contact through IRC, utilizing a very popular CLI-based IRC client, known as <a href="http://www.bitchx.com/">BitchX</a>.</p>
-
-<p><img src="/img/MrRobot/five.png" alt="" /></p>
-
-<h3 id="the-impact-1">The Impact</h3>
-
-<p>Mr Robot is <strong>NOT</strong> just a show. It is symbolism. Through the realism of the hacking, themes, and even display of actual real-life brands and products, we see the show delivering sublimal messages about the world. And unfortunately, they are quite true. The world isn’t a wonderful place. We come to face problems every day and although it may be transparent to us, it is happening. War, oppression, and the opposition between man/woman and government are just a few daily problems.</p>
-
-<p>Don’t watch Mr. Robot cause its a good TV show. Watch it for value. It is a show that provides a gateway to reality. We look at the introspection of Elliot and his plight of identity, as well as Angela, Elliot’s childhood friend and her conflicts of interest with E-Corp, a corporation she hates for the cover-up of her mother’s death, and Darlene, who is in constant emotional instability after the climatic hack on E-Corp, leading to fear for her life as well as her fellow fsociety members. We look at Evil Corp, and realize that it isn’t just one corporation, but instead it acts as a representation of many we see in our world today.</p>
-
-<p>I hope this article brought a little light to the problems concerning society and the reflections from Mr. Robot. I hope I will continue to write and actually take a stand for the problems we see in the world today.</p>
+<p>Nevertheless I’ll be a little busy if not involved in school. If you ever would like me to write a post about something, please don’t hesistate to contact me! As always, social media is the best and that’s where anyone can always reach me for that fastest response. I’m excited to work again, and I sincerely hope to produce some great stuff!</p>
 
 
                 <hr>
@@ -220,13 +181,9 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2016/07/10/the-story-of-me-identity/" data-toggle="tooltip" data-placement="top" title="The Story of Me and My Plight of Identity">&larr; Previous Post</a>
+                        <a href="/2016/07/23/mr-robot/" data-toggle="tooltip" data-placement="top" title="Mr. Robot: Impact and Influence">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2016/09/10/im-back-plus-updates/" data-toggle="tooltip" data-placement="top" title="I'm back! ">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
