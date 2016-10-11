@@ -3,7 +3,7 @@ layout:     post
 comments:   true
 title:      "Python for Hackers - the Cookbook"
 subtitle:   "My favorite recipes"
-date:       2016-09-11 12:00:00
+date:       2016-10-11 12:00:00
 author:     "ex0dus"
 header-img: "img/PostBG/post-bg-12.png"
 ---
