@@ -25,7 +25,7 @@ What about my network interfaces? `ifconfig`. CPU info? `lscpu`. Block device in
 # What Linux is and how it functions
 __MYTH #1:__ When people often refer to Linux, they may think of it as one standard operating system. Like you would need to download an ISO file called "Linux.iso", burn it onto a CD, and boot off it.
 
-Linux can't be defined as an operating system fully. It is the name of the __kernel__ that the operating system would use. Many people, whether independent or commerical, would create "flavors", or more commonly known, distributions based off the Linux kernel. That's why a more orthodox term would be "linux-based distro" rather than just Linux. Each distribution has its own perks, GTK, desktop, features, programs, as well as differing purposes. Kali is for pentesting, CentOS is commonly for servers, etc. The two most widely known Linux-based distros are __Ubuntu__ and __Debian__. If you observe other less-popular distros, you would find that many of them look and have near-exact features as those two. In fact, Kali is __based__ off of Debian. The graphical user interface, without any themes or change, looks exactly like Debian. Some other operating systems, such as __elementary OS__, which I've reviewed, also has resemblance with Ubuntu.
+Linux can't be defined as an operating system fully. It is the name of the __kernel__ that the operating system would use. Many people, whether independent or commerical, would create "flavors", or more commonly known, distributions based off the Linux kernel. That's why a more orthodox term would be "linux-based distro" rather than just Linux. Each distribution has its own perks, desktops, features, programs, as well as differing purposes. Kali is for pentesting, CentOS is commonly for servers, etc. The two most widely known Linux-based distros are __Ubuntu__ and __Debian__. If you observe other less-popular distros, you would find that many of them look and have near-exact features as those two. In fact, Kali is __based__ off of Debian. The graphical user interface, without any themes or change, looks exactly like Debian. Some other operating systems, such as __elementary OS__, which I've reviewed, also has resemblance with Ubuntu.
 
 __MYTH #2:__ "How much is Linux?"
 
@@ -72,4 +72,6 @@ But hey, here's an even longer list of virtues:
 * IoT and embedded devices w/ Linux (e.g Rasp Pi) = home automation, robots, media centers, retro gaming machines, etc!
 * Wanna make your own distro? Well the kernel's there, so... no stoppin you.
 * Firefox or Iceweasel as default browser > Internet Explorer :)
-* Hey, no PRISM, Fourteen Eyes, Big Brother here to government-D0x you
+* Hey, no PRISM, Fourteen Eyes, Big Brother here to government-D0x you.
+
+Thanks for reading! Hopefully, this provided some inspiration to learn or make the switch to a Linux-based distro, or even consider the hazards of utilizing Windows as an operating system. 
