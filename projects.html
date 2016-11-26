@@ -39,6 +39,49 @@ facebook
 
 <br>
 
+<h2 class="section-heading">dedsploit</h2>
+<h3> Won Privacy Hack at defhacks() 2016 </h3>
+<img src="/img/dedsec_screen.png">
+
+
+In collaboration with <a href="https://github.com/JonW27"><b>JonW27</b></a>, we built a framework that targets network protocols and services.
+It utilizes a Metasploit interpreter-like shell, and several modules that represent different network protocols. Looking at the tree
+view of all the modules and its attack vectors:
+
+<pre>
+  main
+|
++--SSH
+|    +--
+|       |- bruteforce - bruteforce vulnerable SSH server
+|
++--SMTP
+|     +--
+|        | - bruteforce - bruteforce SMTP address (aka email)
+|        |
+|        | - smsbomb - utilizes smtp-to-email gateway to spam SMS messages
+|
++--HTTP
+|      +--
+|         | - arpspoof - MITM where user fakes ARP messages on LAN, intercepting packets from host
+|         |
+|         | - slowloris - Layer-7 DoS attack using slow headers and malformed GET requests to a vulnerable web server
+|
++--Recon
+|       +--
+|          | - pscan - port scan with Nmap
+|          |
+|          | - hosts - scan for active hosts
+|
++------
+</pre>
+
+This project will be continously worked on, as many of the modules are incomplete, and there are always going to be minor syntatical errors.
+
+<a href="www.dedsploit.tech"><b>Official Site Here!</b></a>
+
+<br>
+
 <h2 class="section-heading">lazy</h2>
 Task management system for IT, lazy programmers, and average Linux users. Written with the Django Framework.
 <i> Coming soon! </i>
