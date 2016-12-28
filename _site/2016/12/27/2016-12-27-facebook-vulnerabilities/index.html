@@ -1,0 +1,60 @@
+<p>Happy Holidays!</p>
+
+<p>This year, I’ve written <strong>brut3k1t</strong>, which is a Python-based project that involves bruteforcing a multitude of protocols and services.
+These included: <code>ssh, ftp, smtp, xmpp, facebook, instagram, twitter</code>.</p>
+
+<p>Through the development of this project, I’ve come across many errors and problems, and I’ve learned a lot about my selfishness as a developer. In the end, <strong>brut3k1t</strong> has become quite prominent and I want to continue active development on it.</p>
+
+<p>So what do I mean “selfishness”? When I’m talking about this, I’m talking my close-mindness when writing code, and how I did not think objectively on how my code will execute on other people’s operating systems. Of course, I believed that I possessed the <em>perfect Linux build</em>, as everything was able to build, and that everything is optimal, and that once anybody <code>git clone</code>d the repository, it will run like it does on my OS. I was so selfish that I neglected to even include a <code>requirements.txt</code> file.  Turns out my neglience would lead to a lot of problems. And what is worse they aren’t even <strong>compile-time</strong> or <strong>build-time</strong> errors. What kind of errors, you may ask?</p>
+
+<pre><code>ImportError: No module named cryptography
+</code></pre>
+
+<p>“Now what even IS cryptography?” I would ask. Well, of course I didn’t know, since I barely kept in touch with my libraries and understood their usage extensively. So naturally, people would definitely get errors, even <strong>BEFORE</strong> running the code.</p>
+
+<p>One of the major problems that I ran into was bruteforcing Facebook. Initially, I utilized <code>fbchat</code>, which was a module that enabled Facebook integration with the Python IDE. However, in order to authenticate, the module required one’s Facebook ID, <strong>NOT</strong> their actual username. This was <strong>VERY</strong> inefficient. No way will anyone actually utilize this! However, the solution was right in front of my eyes. My Instagram bruteforce module was based off of <strong>Selenium</strong>, a web browser interaction library for both Python and Java. It involves methods that attempts to find certain elements in a specified website’s HTML and CSS source code.</p>
+
+<p>Let’s examine how Facebook’s bruteforce module works.</p>
+
+<p>When we look at Facebook’s main login page, we are presented with this:</p>
+
+<p><a href="/img/FacebookBrutekit/facebook1.png"></a></p>
+
+<p>Not a pretty site. Too many web elements. I mean, what if selenium utilizes the Email field for the Sign Up area rather than login? Another thing that Facebook does is redirection. Once you enter a username and password combination that is incorrect, Facebook redirects you to a seperate page.</p>
+
+<p><a href="/img/FacebookBrutekit/facebook2.png"></a></p>
+
+<p><strong>brut3k1t</strong> utilizes an <code>assert</code> method to see if there has been any changes to the webpage title</p>
+
+<pre><code>try:
+  # bruteforcing n stuff
+  assert (("Welcome to Facebook") in driver.title)
+except AssertionError:
+  print " If 'Welcome to Facebook' is not in the title anymore, that means the page has changed'"
+</code></pre>
+
+<p>This means that there has been success in bruteforcing Facebook, and it is continuing on to the Facebook page when the user is logged on. However, if we are using the Facebook Login page as presented in the first image, a false positive will return, due to the redirection.</p>
+
+<pre><code>[*] Username: test | [*] Password: test | Incorrect!
+[*] Username: TEST | [*] Password found: test
+</code></pre>
+
+<p>We therefore rely on Facebook’s mobile login page. This login page is self-explanatory: login to Facebook if the user doesn’t have the application installed on his/her mobile device. The site appears very primitive, and it as so:</p>
+
+<p><a href="/img/FacebookBrutekit/facebook3.png"></a></p>
+
+<p>But the good thing is, there is no redirection!</p>
+
+<p><a href="/img/FacebookBrutekit/facebook4.png"></a></p>
+
+<p>The <code>driver.title</code>, or webpage title, stays the same, and therefore the <code>assert</code> method will continue the <code>try</code> block until the password is found, or when the wordlist is out of words.</p>
+
+<p>What happens if you get blocked, or Facebook prevents you from doing any more logging in? One feature I wish to add is the ability for the code to detect this, and in return, open up a new <code>firefox</code> instance and continue. Furthermore, threading can be introduced, where multiple threads of bruteforcing can be implemented for efficiency (for e.g, multiple wordlists for multiple sessions)</p>
+
+<p>This exact same “vulnerability” was also utilized in both Twitter and Instagram bruteforcing. However, the Instagram bruteforce module was already written by Github user <strong>chinoogawa</strong>, called <a href="https://github.com/chinoogawa/instaBrute"><strong>instaBrute</strong></a>.</p>
+
+<p>Future improvements? Definitely. Proxy support is already coming, and even a GUI or web-based GUI sounds like a plan. So much active development has been going on with brut3k1t, and I would really love to thank all the users who tested the code out, and gave feedback.</p>
+
+<p>Check out the repository here and see for yourself: https://github.com/ex0dus-0x/brut3k1t</p>
+
+<p>Until next time!</p>

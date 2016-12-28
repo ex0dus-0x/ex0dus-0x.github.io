@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal site and blog for the teaching and spreading of hacktivism and programming and everything technical">
 
-    <title>./codemuch?</title>
+    <title>Overview of brut3k1t: Server-side bruteforcing - ./codemuch?</title>
 
-    <link rel="canonical" href="http://ex0dus-0x.github.io/page4/">
+    <link rel="canonical" href="http://ex0dus-0x.github.io/2016/11/03/facebook-vulnerabilities/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -97,72 +97,95 @@
 </nav>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('/img/PostBG/post-bg-13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>./codemuch?</h1>
-                    <hr class="small">
-                    <span class="subheading">|| Penetration Testing || Programming || Technology || </span>
+                <div class="post-heading">
+                    <h1>Overview of brut3k1t: Server-side bruteforcing</h1>
+                    
+                    <h2 class="subheading">How to 'Hack' Facebook</h2>
+                    
+                    <span class="meta">Posted by ex0dus on November 3, 2016</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			
-<div class="post-preview">
-    <a href="/2016/02/20/how-to-be-the-worlds-best-hacktivist/">
-        <h2 class="post-title">            How to be the World's Best Hacktivist
-        </h2>
+				<p>Happy Holidays!</p>
+
+<p>This year, I’ve written <strong>brut3k1t</strong>, which is a Python-based project that involves bruteforcing a multitude of protocols and services.
+These included: <code>ssh, ftp, smtp, xmpp, facebook, instagram, twitter</code>.</p>
+
+<p>Through the development of this project, I’ve come across many errors and problems, and I’ve learned a lot about my selfishness as a developer. In the end, <strong>brut3k1t</strong> has become quite prominent and I want to continue active development on it.</p>
+
+<p>So what do I mean “selfishness”? When I’m talking about this, I’m talking my close-mindness when writing code, and how I did not think objectively on how my code will execute on other people’s operating systems. Of course, I believed that I possessed the <em>perfect Linux build</em>, as everything was able to build, and that everything is optimal, and that once anybody <code>git clone</code>d the repository, it will run like it does on my OS. I was so selfish that I neglected to even include a <code>requirements.txt</code> file.  Turns out my neglience would lead to a lot of problems. And what is worse they aren’t even <strong>compile-time</strong> or <strong>build-time</strong> errors. What kind of errors, you may ask?</p>
+
+<pre><code>ImportError: No module named cryptography
+</code></pre>
+
+<p>“Now what even IS cryptography?” I would ask. Well, of course I didn’t know, since I barely kept in touch with my libraries and understood their usage extensively. So naturally, people would definitely get errors, even <strong>BEFORE</strong> running the code.</p>
+
+<p>One of the major problems that I ran into was bruteforcing Facebook. Initially, I utilized <code>fbchat</code>, which was a module that enabled Facebook integration with the Python IDE. However, in order to authenticate, the module required one’s Facebook ID, <strong>NOT</strong> their actual username. This was <strong>VERY</strong> inefficient. No way will anyone actually utilize this! However, the solution was right in front of my eyes. My Instagram bruteforce module was based off of <strong>Selenium</strong>, a web browser interaction library for both Python and Java. It involves methods that attempts to find certain elements in a specified website’s HTML and CSS source code.</p>
+
+<p>Let’s examine how Facebook’s bruteforce module works.</p>
+
+<p>When we look at Facebook’s main login page, we are presented with this:</p>
+
+<p><a href="/img/FacebookBrutekit/facebook1"></a></p>
+
+
+                <hr>
+
+                
+                    <div id="disqus_thread"></div>
+                    <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */              // var disqus_developer = 1; //when developing, uncomment.
+                    (function() {  // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
         
-        <h3 class="post-subtitle">
-            The No (maybe a little) Bullshit Guide
-        </h3>
+                        s.src = '//codemuch.disqus.com/embed.js';
         
-    </a>
-    <p class="post-meta">Posted by ex0dus on February 20, 2016</p>
-</div>
-<hr>
+                     s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
-<div class="post-preview">
-    <a href="/2016/02/19/beginners-guide-to-clean-code/">
-        <h2 class="post-title">            Beginner's Guide to Clean Code
-        </h2>
-        
-        <h3 class="post-subtitle">
-            How to NOT Look Like a Beginner (Even though you are)
-        </h3>
-        
-    </a>
-    <p class="post-meta">Posted by ex0dus on February 19, 2016</p>
-</div>
-<hr>
+                
 
 
+              
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/11/03/why-you-switch-to-linux/" data-toggle="tooltip" data-placement="top" title="Why You Should Switch to Linux">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
 
-<!-- Pager -->
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/page3">&larr; Newer Posts</a>
-    </li>
-    
-    
-</ul>
-
-
-		</div>
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
 
 <hr>
 
