@@ -73,13 +73,17 @@ Compared to something like:
 
 ## 3.Indentation
 
-Indentation, like whitespace is another form of organization. Also known as **indent style** it will easily help one recognize your code due to positioning, as well as for you, when you come back to edit your code. This is especially important for writing code in HTML. Let me demonstrate: ![](/img/BeginnersGuideToCleanCode/indentation.png)
+Indentation, like whitespace is another form of organization. Also known as **indent style** it will easily help one recognize your code due to positioning, as well as for you, when you come back to edit your code. This is especially important for writing code in HTML. Let me demonstrate:
+
+![](http://i.imgur.com/yKvNCNh.png)
 
 _Updated because older picture was crap_
 
 In this situation, my code is neatly indented. I am able to navigate, and I include (a bit) of comments.
 
-This is an example of code that has **NO** indentation ![](/img/BeginnersGuideToCleanCode/notindentation.png)
+This is an example of code that has **NO** indentation
+
+ ![](http://i.imgur.com/4m6C6Nh.png)
 
 _Updated because older picture was crap_
 

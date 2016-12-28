@@ -28,7 +28,7 @@ One thing people always asked me was where to start. I believe that it is up to 
 
 ## Next...
 
-**READ.**To learn, you have to learn to read. [Suggested Readings](texts.html) provide some of my favorite books, ones that you'll like as well. Some books on programming are there as well. There really isn't other ways to learn. If you are a visual learner, videos may work out for you, such as when I was learning code. I used both resources and it helped me effectively learn code.
+**READ.** To learn, you have to learn to read. [Suggested Readings](texts.html) provide some of my favorite books, ones that you'll like as well. Some books on programming are there as well. There really isn't other ways to learn. If you are a visual learner, videos may work out for you, such as when I was learning code. I used both resources and it helped me effectively learn code.
 C|EH, or Certified Ethical Hacker All-In-One, is a very good book for beginners that is also technical, and widely used as a textbook. It introduces you to everything basic in hacking, and with this fundamental knowledge, you can move on to more advanced things.
 
 ## After...
