@@ -3,7 +3,7 @@ layout:     post
 comments:		true
 title:      "Overview of brut3k1t: Server-side bruteforcing"
 subtitle:   "How to 'Hack' Facebook"
-date:       2016-12-27 12:00:00
+date:       2016-12-27 
 author:     "ex0dus"
 header-img: "img/brutekit.png"
 ---
