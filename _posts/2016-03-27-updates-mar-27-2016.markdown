@@ -1,10 +1,10 @@
 ---
-layout:     post
-comments:   true
-title:      "UPDATES: March 27th, 2016"
-date:       2016-03-27 12:00:00
-author:     "ex0dus"
-header-img: "img/light-gray.jpg"
+title: 'UPDATES: March 27th, 2016'
+date: 2016-03-27 12:00:00 Z
+layout: post
+comments: true
+author: ex0dus
+header-img: img/light-gray.jpg
 ---
 
 This site has been updated quite frequently, and I just want to give a little post as to what is up with my site, my projects, me, social media, and etc. I will do this everyone once in a while.

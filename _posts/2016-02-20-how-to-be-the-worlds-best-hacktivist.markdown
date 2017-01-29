@@ -1,12 +1,13 @@
 ---
-layout:     post
-comments:   true
-title:      "How to be the World's Best Hacktivist"
-subtitle:   "The No (maybe a little) Bullshit Guide"
-date:       2016-02-20 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-02.jpg"
+title: How to be the World's Best Hacktivist
+date: 2016-02-20 12:00:00 Z
+layout: post
+comments: true
+subtitle: The No (maybe a little) Bullshit Guide
+author: ex0dus
+header-img: img/PostBG/post-bg-02.jpg
 ---
+
 OK, first off, I'm not from Anonymous. Of course, I respect this group for their commitment and worldwide diffusion of their hacktivist ethos.
 
 After putting that aside, I would like to say that I am quite proud of my skill in penetration testing. I hope to have a successful career in penetration testing, computer security, and even a hacktivist at night! I also hope you the best, aspiring hacker-reader, in your journey in learning the art of hacking and intrusion. I wish to help you the best I can (Project idea: IRC?????) and spread my 4-years of learning hacking/penetration testing.

@@ -1,12 +1,13 @@
 ---
-layout:     post
-comments:		true
-title:      "Beginner's Guide to Clean Code"
-subtitle:   "How to NOT Look Like a Beginner (Even though you are)"
-date:       2016-02-19 12:00:00
-author:     "ex0dus"
-header-img: "img/home-bg.jpg"
+title: Beginner's Guide to Clean Code
+date: 2016-02-19 12:00:00 Z
+layout: post
+comments: true
+subtitle: How to NOT Look Like a Beginner (Even though you are)
+author: ex0dus
+header-img: img/home-bg.jpg
 ---
+
 What is the difference between **effective** code and **clean** code?
 
 ## Let's look at an example:

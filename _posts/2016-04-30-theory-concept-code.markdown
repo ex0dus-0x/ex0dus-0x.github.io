@@ -1,12 +1,13 @@
 ---
-layout:     post
-comments:   true
-title:      "Theory and Concept of Code"
-subtitle:   "Computer Theory 101"
-date:       2016-04-30 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-08.jpg"
+title: Theory and Concept of Code
+date: 2016-04-30 12:00:00 Z
+layout: post
+comments: true
+subtitle: Computer Theory 101
+author: ex0dus
+header-img: img/PostBG/post-bg-08.jpg
 ---
+
 Many beginning programmers often miss out the several key concepts and theory that involve programming. Many people have always asked me, "coding is difficult. I've tried reading. I've tried videos. I've tried this $2,000,000 course that says that it guarentees that I will master _x_ language in _y_ hours. What should I do? What needs to be done? Should I learn really advanced math?" In my experience, programming doesn't require such brevity and understanding in math. Obviously, as you dive into computer science more and more, you will learn it. All you need is an **ability** to understand mathematics. For example, there is a very simple method of converting a number from base 10 to base 2 (aka binary). The equation is: ![equation](http://www.sciweavers.org/tex2img.php?eq=V%28b%29%20%3D%20b_%7Bn-1%7D%20%2A%20%7B2%7D%5E%7Bn-1%7D%20%2B%20b_%7Bn-1%7D%20%2A%20%7B2%7D%5E%7Bn-2%7D%20%2B%20...%20b_%7B1%7D%2A2%5E%7B1%7D%2A%7Bb%7D_%7B0%7D%2B2%5E%7B0%7D%20%3D%20%0A%0A%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20x_%7Bi%7D%2A%7B2%7D%5E%7Bi%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0) e.g We have a binary number, 1101\. In order to convert it to base 10: ![equation](http://bit.ly/1pSStnd) If you were able to grasp that, then you are well on your way to becoming a proficient programmer.
 
 ## The language

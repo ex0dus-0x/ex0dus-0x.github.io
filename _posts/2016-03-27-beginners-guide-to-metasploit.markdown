@@ -1,12 +1,13 @@
 ---
-layout:     post
-comments:   true
-title:      "Beginner's Guide to Metasploit"
-subtitle:   "Linux, not Windows"
-date:       2016-03-27 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-06.png"
+title: Beginner's Guide to Metasploit
+date: 2016-03-27 12:00:00 Z
+layout: post
+comments: true
+subtitle: Linux, not Windows
+author: ex0dus
+header-img: img/PostBG/post-bg-06.png
 ---
+
 Due to popular request, I'm going to teach Metasploit.
 
 **Metasploit** is a pen testing framework suite written in the Ruby programming language. People use Metasploit to commonly gain access to a computer, through exploits, which find flaws, whether in the system or software the victim has and allows you to gain access.

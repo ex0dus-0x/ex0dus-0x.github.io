@@ -1,11 +1,11 @@
 ---
-layout:     post
-comments:		true
-title:      "Why You Should Switch to Linux"
-subtitle:   "Exposing Windows"
-date:       2016-11-03 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-13.jpg"
+title: Why You Should Switch to Linux
+date: 2016-11-03 12:00:00 Z
+layout: post
+comments: true
+subtitle: Exposing Windows
+author: ex0dus
+header-img: img/PostBG/post-bg-13.jpg
 ---
 
 Windows and Mac OS X are both the most utilized operating system today. We see that there are benefits and disadvantages in using both (especially Windows) and how Linux (or a Linux-based distribution) closes these gaps. I will also bust some myths and legends that surround this operating system and how it operates.

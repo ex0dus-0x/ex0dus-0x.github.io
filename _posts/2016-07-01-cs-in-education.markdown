@@ -1,11 +1,11 @@
 ---
-layout:     post
-comments:   true
-title:      "CS in Education"
-subtitle:   "Perspective and Ideas"
-date:       2016-07-1 12:00:00
-author:     "ex0dus"
-header-img: "img/cseducation-bg.jpg"
+title: CS in Education
+date: 2016-07-01 12:00:00 Z
+layout: post
+comments: true
+subtitle: Perspective and Ideas
+author: ex0dus
+header-img: img/cseducation-bg.jpg
 ---
 
 Hey guys, I'm back! I went through camp, finished school for the year, and now I will be back on a weekly schedule.

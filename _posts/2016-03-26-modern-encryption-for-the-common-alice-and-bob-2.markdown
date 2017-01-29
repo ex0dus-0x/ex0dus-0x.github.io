@@ -1,12 +1,13 @@
 ---
-layout:     post
-comments:   true
-title:      "Modern Encryption for the Common Alice and Bob "
-subtitle:   "Part 2: Diffie-Hellman and PGP"
-date:       2016-03-26 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-05.jpg"
+title: 'Modern Encryption for the Common Alice and Bob '
+date: 2016-03-26 12:00:00 Z
+layout: post
+comments: true
+subtitle: 'Part 2: Diffie-Hellman and PGP'
+author: ex0dus
+header-img: img/PostBG/post-bg-05.jpg
 ---
+
 In this part of the series, we will examine the past and the present. Today we will have a little talk about Diffie-Hellman and public key exchange. No it will not be boring. Maybe a little in the beginning, but I assure you, it is worth it. I will also be talking about PGP, which closely relates to the Diffie-Hellman key exchange, but in modern society. Don't worry, I won't confuse you. Please read on.
 
 ## First off...

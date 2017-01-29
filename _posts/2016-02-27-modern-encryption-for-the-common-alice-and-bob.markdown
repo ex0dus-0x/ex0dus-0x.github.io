@@ -1,12 +1,13 @@
 ---
-layout:     post
-comments:   true
-title:      "Modern Encryption for the Common Alice and Bob"
-subtitle:   "Part 1: Primer: The OS and the Browser"
-date:       2016-02-27 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-03.jpg"
+title: Modern Encryption for the Common Alice and Bob
+date: 2016-02-27 12:00:00 Z
+layout: post
+comments: true
+subtitle: 'Part 1: Primer: The OS and the Browser'
+author: ex0dus
+header-img: img/PostBG/post-bg-03.jpg
 ---
+
 Hello, everyone, I'm back!
 
 As you may have heard, the nasty government has been attempting to spy on us again. It has requested that Apple backdoor an iPhone belonging to the San Bernardino terrorists. You may say, "ex0dus, I, like ever dedicated citizen of the United States, watched the Republican Debate last night, and it was said that the government only want access to the terrorist's phone by disabling the locking mechanism after a certain number of tries. You're a retard". You may be right, fellow reader, but think about it. How demanding is our government today? This has already happened several time, especially with Steve Jobs running Apple, and Tim Cooks, being the goody-good boy he is, is protecting his company's image by refusing. I would, and you should to, not be surprised if this doesn't happen again in the future again, especially in a world filled with terrorism, hate and political oppression.

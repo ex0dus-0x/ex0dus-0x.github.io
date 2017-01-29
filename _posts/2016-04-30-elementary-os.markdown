@@ -1,12 +1,13 @@
 ---
-layout:     post
-comments:   true
-title:      "Elementary OS: Replacement for Windows and OS X"
-subtitle:   "...or nah????"
-date:       2016-04-30 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-09.jpg"
+title: 'Elementary OS: Replacement for Windows and OS X'
+date: 2016-04-30 12:00:00 Z
+layout: post
+comments: true
+subtitle: "...or nah????"
+author: ex0dus
+header-img: img/PostBG/post-bg-09.jpg
 ---
+
 I'm always interested in looking at creative and primitive Linux distros, such as the simplistic **Elementary OS**. Looking at the picture of the website: ![](https://i.imgur.com/QVFfn6K.png) it seems to show off a GNOME environment. That is where you are wrong. Instead of using **GNOME**, the new OS introduces the **Pantheon** desktop environment. The latest release is currently "Freya". A lot of mythical references. Let's take a look at this interested distro. Although quite primitive, it is starting to quite shape up, and is starting to become quite popular among Linux enthusiasts. It is being praised for its simplicity, and its user-friendliness. With Elementary OS comes the arrival of a built-in photo library application, and iTunes-like music player, video player, and **Midori**, which is the fast & lightweight web browser. <
 
 ## Let's get into action!

@@ -1,8 +1,9 @@
 ---
 title: The Future of Codemuch (and the world of Cybersecurity)
-date: '2017-01-29 15:11:52'
+date: 2017-01-29 15:11:52 Z
 layout: post
 ---
+
 The New Year has seen many changes. We have now seen the election of a new President, with the introduction of controversial political candidates, such as the new Director of the FCC. The clemency of Chelsea Manning, through former President Obama, has also been a controversial topic, which has now lead to us believing: "What will Edward Snowden do?" Will he come back to face justice, under a new presidency, or will he stay in Russia?  
 
 ## 2017

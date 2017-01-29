@@ -1,12 +1,13 @@
 ---
-layout:     post
-comments:   true
-title:      "Redox: a Linux-Like Operating System made with Rust"
-subtitle:   "How a programming language lived up to it's dreams"
-date:       2016-03-19 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-04.jpg"
+title: 'Redox: a Linux-Like Operating System made with Rust'
+date: 2016-03-19 12:00:00 Z
+layout: post
+comments: true
+subtitle: How a programming language lived up to it's dreams
+author: ex0dus
+header-img: img/PostBG/post-bg-04.jpg
 ---
+
 Recently, I was doing my routinely performing my daily rituals on Reddit when I came across this:
 
 ![](http://imgur.com/YRHqssf.png)

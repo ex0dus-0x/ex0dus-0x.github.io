@@ -1,11 +1,11 @@
 ---
-layout:     post
-comments:		true
-title:      "Overview of brut3k1t: Server-side bruteforcing"
-subtitle:   "How to 'Hack' Facebook"
-date:       2016-12-27
-author:     "ex0dus"
-header-img: "img/brutekit.png"
+title: 'Overview of brut3k1t: Server-side bruteforcing'
+date: 2016-12-27 00:00:00 Z
+layout: post
+comments: true
+subtitle: How to 'Hack' Facebook
+author: ex0dus
+header-img: img/brutekit.png
 ---
 
 Happy Holidays!

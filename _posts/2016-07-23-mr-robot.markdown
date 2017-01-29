@@ -1,11 +1,11 @@
 ---
-layout:     post
-comments:   true
-title:      "Mr. Robot: Impact and Influence"
-subtitle:   "How one show lead to large widespread influence"
-date:       2016-07-23 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-10.jpg"
+title: 'Mr. Robot: Impact and Influence'
+date: 2016-07-23 12:00:00 Z
+layout: post
+comments: true
+subtitle: How one show lead to large widespread influence
+author: ex0dus
+header-img: img/PostBG/post-bg-10.jpg
 ---
 
 Mr. Robot is a show that started to air on the USA network last year. A few weeks ago, we saw that the premiere of its first episode of the second season.

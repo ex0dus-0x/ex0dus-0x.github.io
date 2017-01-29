@@ -1,11 +1,11 @@
 ---
-layout:     post
-comments:   true
-title:      "What is an Arduino?"
-subtitle:   "a.ka. Beginner's Guide to Hardware Hacking"
-date:       2016-04-16 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-07.png"
+title: What is an Arduino?
+date: 2016-04-16 12:00:00 Z
+layout: post
+comments: true
+subtitle: a.ka. Beginner's Guide to Hardware Hacking
+author: ex0dus
+header-img: img/PostBG/post-bg-07.png
 ---
 
 ## What is it?

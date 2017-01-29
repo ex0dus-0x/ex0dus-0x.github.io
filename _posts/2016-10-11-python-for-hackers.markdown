@@ -1,11 +1,11 @@
 ---
-layout:     post
-comments:   true
-title:      "Python for Hackers - the Cookbook"
-subtitle:   "My favorite recipes"
-date:       2016-10-11 12:00:00
-author:     "ex0dus"
-header-img: "img/PostBG/post-bg-12.png"
+title: Python for Hackers - the Cookbook
+date: 2016-10-11 12:00:00 Z
+layout: post
+comments: true
+subtitle: My favorite recipes
+author: ex0dus
+header-img: img/PostBG/post-bg-12.png
 ---
 
 Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but its ___ease-of-use___ and ___quick deployment___.

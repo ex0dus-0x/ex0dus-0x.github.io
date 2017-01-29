@@ -1,10 +1,10 @@
 ---
-layout:     post
-comments:   true
-title:      "UPDATES: June 12th, 2016"
-date:       2016-06-12 12:00:00
-author:     "ex0dus"
-header-img: "img/light-gray.jpg"
+title: 'UPDATES: June 12th, 2016'
+date: 2016-06-12 12:00:00 Z
+layout: post
+comments: true
+author: ex0dus
+header-img: img/light-gray.jpg
 ---
 
 Hey guys, it has been a while since I have posted, and I would really like to apologize for that. School has been quite busy for the past
