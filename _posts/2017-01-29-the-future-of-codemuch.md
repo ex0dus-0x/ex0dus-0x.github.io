@@ -3,7 +3,7 @@ title: The Future of Codemuch
 date: 2017-01-29 15:11:52 Z
 layout: post
 comments: true
-subtitle: (and the world of Cybersecurity)
+subtitle: "(and the world of Cybersecurity)"
 author: ex0dus
 ---
 
