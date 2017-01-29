@@ -161,8 +161,6 @@
 
 <p>Well the Diffie-Hellman key exchange works very well in the past, but in today’s modern technology, encryption is a complex subject, especially passwords. The modern version of Diffie-Hellman exchange is known as <strong>PGP</strong>, or <em>Pretty Good Privacy</em>. It essentially is the same process as Diffie-Hellman, but the keys are very complex.</p>
 
-<p><img src="/img/pgp-key-example.png" alt="" /></p>
-
 <p>Let’s stop talking theory and now let’s talk application. I will now show you how to make your own PGP key in a Linux distribution. You will generate a public key for yourself, and a private key.</p>
 
 <h2 id="how-to-make-a-pgp-key">How to make a PGP Key</h2>
@@ -255,13 +253,15 @@ sub   4096R/41949535 2016-03-27
 
 <p>And this will show up:</p>
 
-<p><img src="/img/ModernEncryptionAliceBob2/gpa.png" alt="" /></p>
+<p><img src="http://imgur.com/bvnEmXr.png" alt="" /></p>
 
-<p>I have 3 keys. One for my personal email, one for my Sigaint mail and the test one I just made. Press the one you have made, click <strong>“Keys”</strong> and then <strong>“Export Keys”</strong> <img src="/img/ModernEncryptionAliceBob2/exportkeys.png" alt="" /></p>
+<p>I have 3 keys. One for my personal email, one for my Sigaint mail and the test one I just made. Press the one you have made, click <strong>“Keys”</strong> and then <strong>“Export Keys”</strong></p>
+
+<p><img src="http://imgur.com/wHrVeYT.png" alt="" /></p>
 
 <p>Choose a directory you want your keys to be exported to.</p>
 
-<p><img src="/img/ModernEncryptionAliceBob2/exported.png" alt="" /></p>
+<p><img src="http://imgur.com/dB1VUP6.png" alt="" /></p>
 
 <p>Done! Now navigate to that directory. Open the PUBLIC key, which you provided a name for, with a text editor like Gedit:</p>
 
@@ -321,13 +321,15 @@ wjVd78tcURXqB5fAZ/LsY26EZg==
 
 <p>Now let’s say we want to communicate with someone. First, agree on a shared key. It can be your public key, or THEIR public key. In this case let’s pretend it is THEIR public key. First, obtain their PUBLIC key, save it as a text file, and then press <strong>Keys</strong> and then <strong>Import Keys…</strong></p>
 
-<p><img src="/img/ModernEncryptionAliceBob2/importkeys.png" alt="" /></p>
+<p><img src="http://imgur.com/JtLJcSU.png" alt="" /></p>
 
 <p>Select <strong>“Windows”</strong> and then <strong>“Clipboard”</strong>. This window will show up:</p>
 
-<p><img src="/img/ModernEncryptionAliceBob2/clipboard.png" alt="" /></p>
+<p><img src="http://imgur.com/Ud3BBcV.png" alt="" /></p>
 
-<p>Write what you need to write. Preferably some illegal icky shit. Then press <strong>“Encrypt the buffer test”</strong>, which is the blue envelope. Encrypt it with their public key. Result: (message was: “hi”)</p>
+<p>Write what you need to write. Preferably some illegal icky shit. Then press <strong>“Encrypt the buffer test”</strong>, which is the blue envelope. Encrypt it with their public key.</p>
+
+<p>Result: (message was: “hi”)</p>
 
 <pre>-----BEGIN PGP MESSAGE-----
 Version: GnuPG v2.0.22 (GNU/Linux)
@@ -447,7 +449,7 @@ eCJvQqE5pm61hyAOW2p6
                     </li>
                     
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; CodeMuch 2016</p>
+                <p class="copyright text-muted">Copyright &copy; CodeMuch 2017</p>
             </div>
         </div>
     </div>

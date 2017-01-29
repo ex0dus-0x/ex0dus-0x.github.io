@@ -27,7 +27,7 @@ Well first of all, if you want to protect yourself, I would recommend switching 
 
 If you are complete privacy freak, you may have heard about the Tails OS. Tails stands for **T**he **A**mnesic **I**ncognito **L**ive **S**ystem. It is for the paranoid of the paranoid. Everything is routed through Tor, and every application is secure and encrypted. However, it does not mean it is 100% secure. Tails should obviously be run on a USB, CD or SD card, hence "Live System" and should not be installed. Tails does not guarentee malware protection, remember, "anonymity", not "antivirus". Obviously, if you have heard, Tor is broken, due to data being able to be sniffed out in the exit nodes, so that is a caution to be aware of. You can get Tails [**HERE**](https://tails.boum.org).
 
-![](/img/ModernEncryptionAliceBob1/tails.png)
+![](http://imgur.com/JKdYVix.png)
 
 ## Secure Browsing and Anonymity
 
@@ -59,6 +59,6 @@ On any OS, you would probably be acquainted to Chrome. It supports Javascript, y
     **Never remember history***   [**Tor Browser**](https://www.torproject.org/)
 
     _If you are reading this, you should obviously know what Tor is. If you don't search it up. Actually, I'll still tell you. Tor, also known as the The Onion Router, is software that ensures anonymity by encrypting your connection to the Internet by looping it through several nodes, like layers of an onion. After several layers of security, you will have a new IP address, and you are safe to browse safely. However, as I mentioned before, Tor has been broken by the NSA, but it does not mean it isn't practical and secure. Essentially, what you are using to surf the web is the Tor **BROWSER**. It is actually a version of Firefox (it includes Noscript as well, neat) that has been configured with Tor. Now a lot of people always thought Tor was the software you use to get into the Darknet and buy illegal drugs. Don't get me wrong, it is, but it does not mean that the creators are to be executed by guillotine. Tor was created to help **protect** a person, and it has obviously been misused by others to host websites that sell drugs, guns, weapons, hit services, illegal pornography, etc (using the .onion suffix). However, many journalists, activists, bloggers, etc still utilize the Tor Browser to communicate with dissidents of places such as Syria, Iraq, etc. and has helped tremendously in the hacktivism world._
-    ![](/img/ModernEncryptionAliceBob1/tor.png)
+    ![](http://imgur.com/Kln18uQ.png)
 
 ## OK, I have decided this to be a pretty long and continous series. I will be back with more on encryption. Next time ... **Diffie-Hellman key-exchange** and **PGP!**

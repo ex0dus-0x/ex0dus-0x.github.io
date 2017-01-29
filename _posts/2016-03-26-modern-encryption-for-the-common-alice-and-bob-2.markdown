@@ -46,8 +46,6 @@ To further elaborate, I also have a YouTube video that is **VERY** helpful. It i
 
 Well the Diffie-Hellman key exchange works very well in the past, but in today's modern technology, encryption is a complex subject, especially passwords. The modern version of Diffie-Hellman exchange is known as **PGP**, or _Pretty Good Privacy_. It essentially is the same process as Diffie-Hellman, but the keys are very complex.
 
-![](/img/pgp-key-example.png)
-
 Let's stop talking theory and now let's talk application. I will now show you how to make your own PGP key in a Linux distribution. You will generate a public key for yourself, and a private key.
 
 ## How to make a PGP Key
@@ -133,13 +131,15 @@ Now we need to obtain this key. That is where we need GPA:
 
 And this will show up:
 
-![](/img/ModernEncryptionAliceBob2/gpa.png)
+![](http://imgur.com/bvnEmXr.png)
 
-I have 3 keys. One for my personal email, one for my Sigaint mail and the test one I just made. Press the one you have made, click **"Keys"** and then **"Export Keys"** ![](/img/ModernEncryptionAliceBob2/exportkeys.png)
+I have 3 keys. One for my personal email, one for my Sigaint mail and the test one I just made. Press the one you have made, click **"Keys"** and then **"Export Keys"**
+
+![](http://imgur.com/wHrVeYT.png)
 
 Choose a directory you want your keys to be exported to.
 
-![](/img/ModernEncryptionAliceBob2/exported.png)
+![](http://imgur.com/dB1VUP6.png)
 
 Done! Now navigate to that directory. Open the PUBLIC key, which you provided a name for, with a text editor like Gedit:
 
@@ -199,13 +199,15 @@ wjVd78tcURXqB5fAZ/LsY26EZg==
 
 Now let's say we want to communicate with someone. First, agree on a shared key. It can be your public key, or THEIR public key. In this case let's pretend it is THEIR public key. First, obtain their PUBLIC key, save it as a text file, and then press **Keys** and then **Import Keys...**
 
-![](/img/ModernEncryptionAliceBob2/importkeys.png)
+![](http://imgur.com/JtLJcSU.png)
 
 Select **"Windows"** and then **"Clipboard"**. This window will show up:
 
-![](/img/ModernEncryptionAliceBob2/clipboard.png)
+![](http://imgur.com/Ud3BBcV.png)
 
-Write what you need to write. Preferably some illegal icky shit. Then press **"Encrypt the buffer test"**, which is the blue envelope. Encrypt it with their public key. Result: (message was: "hi")
+Write what you need to write. Preferably some illegal icky shit. Then press **"Encrypt the buffer test"**, which is the blue envelope. Encrypt it with their public key.
+
+Result: (message was: "hi")
 
 <pre>-----BEGIN PGP MESSAGE-----
 Version: GnuPG v2.0.22 (GNU/Linux)

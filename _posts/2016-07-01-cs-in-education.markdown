@@ -36,7 +36,7 @@ Therefore, educators try to make CS education simple. But has such education bec
 
 Still, despite this, we can observe Hour of Code. It has a game that incorporates the popular open-world game Minecraft.
 
-![](/img/CSEducation/hourofcode.png)
+![](https://i.imgur.com/iBI9bgt.png)
 
 I understand that educators are attempting to make CS education very children-friendly, and that someone of my age wouldn't really grasp such a concept. But
 when you teach programming, shouldn't a more straight-forward method be pursued? I get that educators are attempting to make programming seem interesting, but incorporating such an element of entertainment causes the digression of functionality. What I mean: when I teach kids how to code using blocks of code, how much use is it really?

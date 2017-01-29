@@ -47,7 +47,7 @@ Yes, it looks very intimidating. Partitioning, stupid UEFI, etc. With the abunda
 
 And jokes aside, installing or even just putting Linux on a USB or a virtualization application can attribute a lot to your knowledge in tech. I've learned quite a lot through research.
 
-![](/img/SwitchLinux/cautionary.png)
+![](http://imgur.com/hbmvZRb.png)
 
 # The Vices of Linux
 Well, it is important to look at some of Linux's bads. There are a few that I would like to highlight.

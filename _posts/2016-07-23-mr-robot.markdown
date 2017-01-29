@@ -37,24 +37,25 @@ Hacking in the show has become more realistic as well. The utilization of real-l
 Let's examine.
 
 When we first start off in the first episode of the second season, we can see a few "easter-eggs". Right in the beginning of the episode, we see Elliot on a terminal.
-![](/img/MrRobot/three.png)
+
+![](https://i.imgur.com/mSNhVV1.jpg)
 
 We can see Elliot establishing a SSH conection an __E-Corp__ server, and the wonderful community of Reddit discovered that it is an actual URL to a site set up by the USA network. This comes back to the notion of the facade we see today in society.
 
-![](/img/MrRobot/ecorp.png)
-![](/img/MrRobot/evilcorp.png)
+![](https://i.imgur.com/GYi5s1y.png)
+![](http://imgur.com/GOwj2ax.png)
 
 No words needed for that. Let's continue on. We see Darlene, Elliot's sister utilizing __SEToolkit__, a very popular social-engineering pentesting suite. She is seen creating a payload, which is some sort of Ransomware.
 
-![](/img/MrRobot/two.png)
+![](https://i.imgur.com/AkJGsQO.jpg)
 
 We continue and see that the Bank of E Corp experiencing technical difficulties. Patrons of the bank are unable to retrieve withdrawals. This is largely contributed to Darlene's Ransomware, which we can see is in large effect.
 
-![](/img/MrRobot/one.png)
+![](http://imgur.com/PYCjdOT.png)
 
 Mobley, one of fsociety's hackers, impersonates an IT technician and attempts to "fix" the current situation. However, if you look at the image a little closely, we are able to see a joker face. This is atually reference to [th3j35t3r](https://en.wikipedia.org/wiki/The_Jester_%28hacktivist%29), a grey-hat hacktivist that has caused devastating DoS attacks utilizing a tool that he has wrote himself, known as Xerxes.
 
-![](/img/MrRobot/four.png)
+![](http://imgur.com/uo8GuiL.png)
 
 In the next episode, we see Mobley making contact with Romero, a retired phreaker. This reference itself further proves the realism of the show, as phreaking is the art of hacking, but with implementation on telecommunication systems and is a predecessor to the modern-day computer hacking. Although Captain Crunch is known as a pioneer in phreaking, Romero still refers to himself as the one who actually started phreaking.
 
@@ -64,7 +65,7 @@ If you look closely you are able to make out the popular penetration testing Lin
 
 Finally, we can see in the most recent episode Elliot getting back into the game, after having an inner battle with Mr.Robot. He contacts Darlene, who is in danger from the FBI and a new surveillance program setup. They make contact through IRC, utilizing a very popular CLI-based IRC client, known as [BitchX](http://www.bitchx.com/).
 
-![](/img/MrRobot/five.png)
+![](http://imgur.com/sWwLnZW.png)
 
 ### The Impact
 

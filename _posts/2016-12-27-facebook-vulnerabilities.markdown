@@ -3,7 +3,7 @@ layout:     post
 comments:		true
 title:      "Overview of brut3k1t: Server-side bruteforcing"
 subtitle:   "How to 'Hack' Facebook"
-date:       2016-12-27 
+date:       2016-12-27
 author:     "ex0dus"
 header-img: "img/brutekit.png"
 ---
@@ -13,7 +13,7 @@ Happy Holidays!
 This year, I've written __brut3k1t__, which is a Python-based project that involves bruteforcing a multitude of protocols and services.
 These included: `ssh, ftp, smtp, xmpp, facebook, instagram, twitter`.
 
-![](/img/FacebookBrutekit/brutekit.png)
+![](https://i.imgur.com/csMfBLO.png)
 
 _brut3k1t's Facebook module_
 
@@ -42,11 +42,11 @@ Let's examine how Facebook's bruteforce module works.
 
 When we look at Facebook's main login page, we are presented with this:
 
-![](/img/FacebookBrutekit/facebook1.png )
+![](https://i.imgur.com/QM3Brre.png)
 
 Not a pretty site. Too many web elements. I mean, what if selenium utilizes the Email field for the Sign Up area rather than login? Another thing that Facebook does is redirection. Once you enter a username and password combination that is incorrect, Facebook redirects you to a seperate page.
 
-![](/img/FacebookBrutekit/facebook2.png)
+![](https://i.imgur.com/JVFIZOD.png)
 
 __brut3k1t__ utilizes an `assert` method to see if there has been any changes to the webpage title
 
@@ -63,11 +63,11 @@ This means that there has been success in bruteforcing Facebook, and it is conti
 
 We therefore rely on Facebook's mobile login page. This login page is self-explanatory: login to Facebook if the user doesn't have the application installed on his/her mobile device. The site appears very primitive, and it as so:
 
-![](/img/FacebookBrutekit/facebook3.png)
+![](http://imgur.com/b7HeGgA.png)
 
 But the good thing is, there is no redirection!
 
-![](/img/FacebookBrutekit/facebook4.png)
+![](http://imgur.com/HdULuf9.png)
 
 The `driver.title`, or webpage title, stays the same, and therefore the `assert` method will continue the `try` block until the password is found, or when the wordlist is out of words.
 
