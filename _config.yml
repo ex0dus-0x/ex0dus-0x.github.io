@@ -1,33 +1,28 @@
----
-title: "./codemuch?"
-timezone: UTC
-collections:
-  posts:
-    title: Posts
-    output: true
-  uploads:
-    title: Uploads
-    output: true
-header-img: img/home-bg.jpg
-email: stack.over.heap@gmail.com
-copyright_name: CodeMuch
-description: Personal site and blog for the teaching and spreading of hacktivism and
-  programming and everything technical
-baseurl: ''
-url: http://ex0dus-0x.github.io
-twitter_username: ex0dus_0x
-github_username: ex0dus-0x
-email_username: stack.over.heap@gmail.com
-markdown: kramdown
+### your site title here
+
+title: codemuch.tech
+baseurl: # name of the repository
+email: ex0dus@codemuch.tech
+
 highlighter: rouge
-permalink: pretty
-paginate: 5
-exclude:
-- less
-- node_modules
-- Gruntfile.js
-- package.json
-- README.md
-gems:
-- jekyll-paginate
-- jekyll-feed
+markdown: kramdown
+### exclude the instructions / write-up in the README.md
+
+#optimization
+#compress.html
+compress_html:
+  clippings: [html,div, p, ul, td, h1, h2, h3, h4,link, meta, footer, nav, img, header, hr, br, head, style, li, ul, ol, time, main, script, title]
+  comments: ["<!-- ", " -->"]
+  endings: [all]
+  ignore:
+    envs: [local]
+  blanklines: false
+  profile: false
+  startings: []
+  
+
+sass:
+ style: compressed
+
+
+gems: [jekyll-seo-tag, jekyll-paginate]

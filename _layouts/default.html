@@ -1,20 +1,21 @@
+---
+layout: compress
+---
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 {% include head.html %}
 
-<head>
-<link rel="alternate" type="application/rss+xml" title="My Site RSS" href="/feed.xml" />
-</head>
-
-<body>
-
-    {% include nav.html %}
+  <body style="background-color: #000; color: white;">
+    
+    {% if page.layout == "default" %}
+      {% include header.html %}
+    {% endif %}
 
     {{ content }}
-
+    
+    <hr class="dotted" />
     {% include footer.html %}
 
-</body>
-
+  </body>
 </html>
