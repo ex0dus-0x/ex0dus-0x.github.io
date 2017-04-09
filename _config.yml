@@ -1,28 +1,58 @@
-### your site title here
-
+---
 title: codemuch.tech
-baseurl: # name of the repository
+timezone: UTC
+collections:
+  posts:
+    title: Posts
+    output: true
+  uploads:
+    title: Uploads
+    output: true
+baseurl: 
 email: ex0dus@codemuch.tech
-
 highlighter: rouge
 markdown: kramdown
-### exclude the instructions / write-up in the README.md
-
-#optimization
-#compress.html
 compress_html:
-  clippings: [html,div, p, ul, td, h1, h2, h3, h4,link, meta, footer, nav, img, header, hr, br, head, style, li, ul, ol, time, main, script, title]
-  comments: ["<!-- ", " -->"]
-  endings: [all]
+  clippings:
+  - html
+  - div
+  - p
+  - ul
+  - td
+  - h1
+  - h2
+  - h3
+  - h4
+  - link
+  - meta
+  - footer
+  - nav
+  - img
+  - header
+  - hr
+  - br
+  - head
+  - style
+  - li
+  - ul
+  - ol
+  - time
+  - main
+  - script
+  - title
+  comments:
+  - "<!-- "
+  - " -->"
+  endings:
+  - all
   ignore:
-    envs: [local]
+    envs:
+    - local
   blanklines: false
   profile: false
   startings: []
-  
-
 sass:
- style: compressed
-
-
-gems: [jekyll-seo-tag, jekyll-paginate]
+  style: compressed
+gems:
+- jekyll-seo-tag
+- jekyll-paginate
