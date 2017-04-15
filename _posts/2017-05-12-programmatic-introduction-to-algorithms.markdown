@@ -1,6 +1,6 @@
 ---
 title: A Programmatic Introduction to Sorting Algorithms with Rust
-date: 2017-05-12
+date: 2017-05-12 00:00:00 Z
 layout: post
 author: ex0dus
 ---

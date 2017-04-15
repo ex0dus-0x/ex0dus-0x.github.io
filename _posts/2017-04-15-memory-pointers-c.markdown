@@ -1,6 +1,6 @@
 ---
 title: Dynamic Memory and Pointers in C
-date: 2017-04-15
+date: 2017-04-15 00:00:00 Z
 layout: post
 author: ex0dus
 ---
