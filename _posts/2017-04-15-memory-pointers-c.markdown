@@ -29,7 +29,7 @@ Here's a nice rundown of how a pointer works, on a "high" level:
     }
 
 
-and a representation of a lower level:
+and a representation of the code in a lower level:
 
     &a = 0x123              &ptr = 0x456    
     -----------             ---------------
@@ -38,11 +38,11 @@ and a representation of a lower level:
         a++     <----------     (*ptr)++
     
     
-Now that's nice and fun, but what is the purpose of utilizing pointers? C, unlike your Python and Javascript, utilizes pointers to modify data more efficiently especially since there is no built-in strings syntax. 
+Now that's nice and fun, but what is the purpose of utilizing pointers? C, unlike your modern Python and Javascript, utilizes pointers to modify data more efficiently. For example, C does not have a built-in string type, resulting in people utilizing arrays of characters, or as some people in cybersecurity call it, a _buffer_.
 
     char * name[100] = "Alan";
 
-Languages such as Python aren't __explicit__ as C, where it is not necessary to declare the type and/or cast of a variable. This makes the language much more tolerable for impatient people like me.
+Languages such as Python aren't as __explicit__ as C, where it is not necessary to declare the type and/or cast of a variable. This makes the language much more tolerable for impatient people like me.
 
     name = "Alan";
     name = 1; # of course, with mutability, I can change the type easily.
@@ -75,7 +75,7 @@ The program looks fine, but once compiled:
     Before swap: a = 1; b = 2
     After swap: a = 1; b = 2
 
-What happened? Because of the _stack_. When we are allocating memory on the _stack_, that memory is attached to a thread of execution, and once complete, all memory goes away. For a structure such as a function, that means that the data allocated within it's scope, will eventually by deallocated. That means once `swap()` finishes its thread of execution, the already swapped values passed by the parameters have been deallocated, and the next output will print the same as the first output.
+What happened? This is the work of the _stack_. When we are allocating memory on the _stack_, that memory is attached to a thread of execution. Once complete, all memory goes away. For a structure such as a function, that means that the data allocated within its scope will eventually be deallocated. That means once `swap()` finishes its thread of execution, the values (which will have been swapped) passed through parameters have fallen out of scope, and the next output will print the same as the first output, since it is in the scope of `main()`.
 
 Of course, let's reexamine this example with pointers. 
 
