@@ -1,8 +1,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript">
+    var host = "blog.codemuch.tech";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+    </script>
+
+  
   <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet"> 
   <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
-
+  <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
 </head>
