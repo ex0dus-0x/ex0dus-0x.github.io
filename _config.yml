@@ -9,9 +9,12 @@ collections:
     title: Uploads
     output: true
 baseurl: 
-
 url: https://blog.codemuch.tech
+<<<<<<< HEAD
   
+=======
+enforce_ssl: blog.codemuch.tech
+>>>>>>> 6164e6fc0123fdedea3235dbc0ff1533319cc161
 email: ex0dus@codemuch.tech
 highlighter: rouge
 markdown: kramdown
