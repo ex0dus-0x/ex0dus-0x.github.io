@@ -1,13 +1,19 @@
-title: ./codemuch
+---
+title: "./codemuch"
+timezone: UTC
+collections:
+  posts:
+    title: Posts
+    output: true
+  uploads:
+    title: Uploads
+    output: true
 email: ex0dus@codemuch.tech
 description: 
-baseurl: "" 
-
-
-# Build settings
+baseurl: ''
 markdown: kramdown
 gems:
-  - jekyll-feed
+- jekyll-feed
 exclude:
-  - Gemfile
-  - Gemfile.lock
+- Gemfile
+- Gemfile.lock
