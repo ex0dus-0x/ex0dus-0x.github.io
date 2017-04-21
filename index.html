@@ -2,8 +2,43 @@
 layout: default
 ---
 
-{% for post in site.posts %}
-<h3><a href="{{post.url | prepend: site.baseurl}}">{{post.title}}</a></h3>
-<h5><span>{{post.date | date: '%B %d, %Y'}}</span></h5>
-<br />
-{% endfor %}
+  
+  <section id="introduction">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <hr />
+            <h3 class="section-heading">welcome to ./codemuch! </h3>
+          <hr />
+        </div>
+        <div class="col-md-6">
+          <p>
+             this is my corner of the interwebs. if you are wondering "why the gif?", it 
+             really just represents my growing interest in data science and visualization. 
+             and plus, it contributes to the minimalist feel of the website.
+          </p>
+          <p>
+            writing code has become a very important part of my life. in the last year, 
+            i have particiated in my first series of hackathons. the exposure to the hacker
+            culture has brought me so many new perspectives about the world that has been 
+            transformed by the influx of such innovative ideas. exposing myself to world of organized development has been one of the greatest
+            experiences so far. with that, i think that we can build something revolutionary. 
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p>
+            anyhows, this site is to document all my adventures and excursions in the field of development/cybersecurity 
+            in the least egotistical way possible. you can learn more <a href="about"> about me </a> here. i actively develop several projects,
+            some deemed production quality, <a href="projects">here</a> and also on <a href="https://github.com/ex0dus-0x/"><i class="fa fa-github"></i></a>.
+          </p>
+          <p>
+            i also like to write through a <a href="https://blog.codemuch.tech">blog</a>, mainly on my expeditions into the standard libraries of 
+            programming languages, as well as cybersec, code snippets, and tutorials (metasploit, binary exploitation, etc).
+          </p>
+          <p>
+            if you are from school and want to siphon my fairly well-documented notes, <a href="notes">you are in luck</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>

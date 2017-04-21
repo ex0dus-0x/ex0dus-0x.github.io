@@ -1,0 +1,138 @@
+html {
+  margin: 5em;
+}
+
+@media (max-width: 767px) { 
+  html {
+    margin: 0;
+  }
+}
+
+p {
+  font-family: 'Rubik', sans-serif !important;
+  font-size: 16px;
+  text-align: justify;
+}
+
+a.redirect {
+  color: #333;
+  font-size: 20px;
+  margin: 0;
+}
+
+hr {
+  height: 1px !important;
+  background-color: #333 !important;
+
+}
+
+div > .section-heading {
+  font-family: 'Open Sans', sans-serif;
+}
+
+span.strike {
+  text-decoration: line-through;
+}
+
+/* Header section */
+
+section#header .img-responsive{
+  margin: 0 auto;
+}
+
+h1.header-heading {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 48px;
+}
+
+h3.header-subheading {
+  font-family: "Roboto Mono", monospace;
+}
+
+/* Nav section */
+
+section#nav {
+  margin-right: 3em;
+  padding-bottom: 5em;
+} 
+
+section#nav a  {
+  font-size: 20px;
+  color: #333;
+}
+
+
+section#nav ul li {
+  display: inline;
+  margin-left: 2em;
+}
+
+section#nav ul li:nth-child(1) {
+  display: inline;
+  margin-left: 0;
+
+}
+
+@media (max-width: 767px) { 
+  
+  section#nav ul li {
+    display: inline-block;
+    margin-left: 0.5em;
+  }
+  
+  section#nav ul li:nth-child(1) {
+    display: inline-block;
+    margin-left: 0.5em;
+
+  }
+}
+
+/* Introduction */
+
+section#introduction, footer {
+  margin: 0 10em 0 10em;
+}
+
+@media (max-width: 767px) { 
+  
+  section#introduction, footer {
+    margin: 0;
+  }
+
+
+}
+
+/* Projects */
+
+
+section#projects a {
+  color: #333;
+}
+
+section#projects br {
+  margin: 0.5em;
+}
+
+/* Footer */
+
+footer {
+  margin-top: 5em;
+}
+
+footer p.footernote {
+  font-size: 10px;
+  margin: 0;
+}
+
+footer a {
+  opacity: 0.5;
+  color: black;
+}
+
+footer p.footer-text {
+  margin-top: 3em;
+  font-size: 14px;
+  text-align: center;
+}
+
+
