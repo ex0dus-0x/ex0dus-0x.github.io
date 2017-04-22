@@ -2,7 +2,6 @@
 layout: blog
 ---
 
-
 {% for post in site.posts %}
 <h3><a href="{{post.url | prepend: site.baseurl}}">{{post.title}}</a></h3>
 <h5><span>{{post.date | date: '%B %d, %Y'}}</span></h5>
