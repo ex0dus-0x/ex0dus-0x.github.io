@@ -3,7 +3,6 @@ title: Python for Security
 date: 2017-04-08 00:00:00 Z
 layout: post
 comments: true
-subtitle: My favorite recipes
 author: ex0dus
 ---
 

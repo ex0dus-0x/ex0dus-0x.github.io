@@ -9,7 +9,6 @@ collections:
     title: Uploads
     output: true
 email: ex0dus@codemuch.tech
-description: 
 baseurl: ''
 markdown: kramdown
 gems:
