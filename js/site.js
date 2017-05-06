@@ -7,14 +7,16 @@ $( document ).ready(function() {
   });
   
   $("#quote").html(function() {
-    var quotes = [
-      {text: "/usr/bin"},
-      {text: "cd $GOPATH"},
-      {text: "~/"}
-    ];
-    var quote = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById("quote").innerHTML =
-      '<p class="banner-text text-center">' + quote.text + '</p>' 
+    var quotes = new XMLHttpRequest();
+    quotes.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("quote").innerHTML =
+        '<p class="banner-text text-center"> "' + quotes.responseText + '"</p>' 
+          }
+        };
+    quotes.open('GET', 'https://api.github.com/zen', true)
+    quotes.send()
+    
   });
   
 });
