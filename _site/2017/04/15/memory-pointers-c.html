@@ -1,33 +1,95 @@
 <!DOCTYPE html>
+<html class="blog" lang = "en" >
 
-<!-- This entire page is built differently from my other standard pages. This is because
-I wanted to built a much more unique blog, rather than stick with the same uniform layout. -->
-
-<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal site">
+    <meta name="author" content="Alan">
   
-  <title>Dynamic Memory and Pointers in C - ./codemuch</title>
-  
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet"> 
-  <link rel="stylesheet" href="/css/blog.css">
-  <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
 
+
+    <title>Dynamic Memory and Pointers in C - ./codemuch</title>
+
+    <!-- Custom stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- Bootstrap.css-->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Hover.css-->
+    <link href="/css/hover.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <!-- Simpletextrotator.css-->
+    <link href="/css/simpletextrotator.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet"> 
+     
+    <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
 </head>
 
-  <body>
+<body id="blog">
+    
+  <section id="nav">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <ul>
+          <li>
+            <a class="hvr-pop" href="/">home </a>
+          </li>
+          <li>
+            <a class="hvr-pop" href="/about">whoami </a>    
+          </li>
+          <li>
+            <a class="hvr-pop" href="/projects">projects </a>    
+          </li>
+          <li>
+            <a class="hvr-pop" href="/work">work </a>    
+          </li>
+          <li>  
+            <a class="hvr-pop" href="/blog">blog </a>    
+          </li>
+          <li>
+            <a class="hvr-pop" href="/notes">notes </a>    
+          </li>
+          <li>
+            <a class="hvr-pop" data-scroll href="#footer">contact </a>    
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
     
+  <section id="blog-content">
+    
+    
+    <div id="#top" class="post-heading">
+  <h5><a href="/blog">back</a></h5>
+  <h1 class="post-headline">Dynamic Memory and Pointers in C</h1>
+  <h3><span>April 15, 2017 </span> </h3>
+  <h4><b> Written By: </b>ex0dus</h4>
+  <br />
+  <div class="share-icons">
+    <a href="#"><i class="fa fa-facebook"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-reddit"></i></a>
+    <a href="#"><i class="fa fa-google-plus"></i></a>
+
+  </div>
+</div>
 
 
-      <a href="/blog">back</a>
-<h1 class="post-headline">Dynamic Memory and Pointers in C</h1>
-<div class="meta"><span>April 15, 2017</span></div>
-
-
-<p>If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don’t really <em>understand</em> them.</p>
+<div class="post-content">
+  <p>If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don’t really <em>understand</em> them.</p>
 
 <p>Here’s a nice rundown of how a pointer works, on a “high” level:</p>
 
@@ -184,30 +246,20 @@ if (array == NULL) {
 
 <p>Thanks for reading!</p>
 
+  <hr />
+  <p style="opacity: 0.3;">
+    <a href="/about ">about the author</a> | 
+    <a data-scroll href="#top">back to top</a>
+  </p>
+</div>
 
 
 
-    <hr class="dotted" />
 
-    <footer id="footer">
-      <script src="/js/theme.min.js"></script>
-      <script src="https://use.fontawesome.com/8192e56a39.js"></script>
-      
-      <a href="https://github.com/ex0dus-0x">
-          <i class="hvr-grow fa fa-github fa-inverse fa-2x"></i>
-      </a>
 
-      <a href="mailto:ex0dus@codemuch.tech">
-          <i class="hvr-grow fa fa-envelope fa-inverse fa-2x"></i>
-      </a>
-      <a href="https://keybase.io/ex0dus/key.asc">
-          <i class="hvr-grow fa fa-key fa-inverse fa-2x"></i>
-      </a>
-      <a href="http://pastebin.com/raw/wGNAsjw0">
-          <i class="hvr-grow fa fa-comment fa-inverse fa-2x"></i>
-      </a>
-      <p> Made with ♥. Copyright 2017</p>
+  </section>
+    
+  
+</body>
 
-    </footer>
-  </body>
 </html>

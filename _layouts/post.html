@@ -1,11 +1,31 @@
 ---
 layout: blog
 ---
+<div id="#top" class="post-heading">
+  <h5><a href="{{site.baseurl}}/blog">back</a></h5>
+  <h1 class="post-headline">{{page.title}}</h1>
+  <h3><span>{{page.date | date: '%B %d, %Y'}} </span> </h3>
+  <h4><b> Written By: </b>{{ page.author }}</h4>
+  <br />
+  <div class="share-icons">
+    <a href="#"><i class="fa fa-facebook"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-reddit"></i></a>
+    <a href="#"><i class="fa fa-google-plus"></i></a>
 
-<a href="{{site.baseurl}}/blog">back</a>
-<h1 class="post-headline">{{page.title}}</h1>
-<div class="meta"><span>{{page.date | date: '%B %d, %Y'}}</span></div>
+  </div>
+</div>
 
 
-{{content}}
+<div class="post-content">
+  {{ content }}
+  <hr />
+  <p style="opacity: 0.3;">
+    <a href="{{ site.baseurl }}/about ">about the author</a> | 
+    <a data-scroll href="#top">back to top</a>
+  </p>
+</div>
+
+
+
 
