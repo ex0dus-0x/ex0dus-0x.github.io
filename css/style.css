@@ -158,6 +158,12 @@ section#blog-content {
   padding-bottom: 2em;
 }
 
+@media (max-width: 767px) { 
+  section#blog-content  {
+    margin: 0.4em;
+  }
+}
+
 div.post-heading {
   border: 1px solid white;
   padding: 0.5em;
