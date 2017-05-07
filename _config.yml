@@ -10,6 +10,7 @@ collections:
     output: true
 email: ex0dus@codemuch.tech
 baseurl: ''
+url: http://codemuch.tech
 markdown: kramdown
 gems:
 - jekyll-feed
