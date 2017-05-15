@@ -3,7 +3,7 @@ title: Python for Security
 date: 2017-04-08 00:00:00 Z
 layout: post
 comments: true
-author: ex0dus
+author: Alan
 ---
 
 Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but it is __beginner-friendly__ and __fast to deploy__. One of the best thing about the language is the resemblance to that of a natural language, sharing syntactical and semantical rules that very much look like English.

