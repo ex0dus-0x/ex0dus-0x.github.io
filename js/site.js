@@ -14,11 +14,13 @@ $( document ).ready(function() {
   $("#quote").html(function() {
     var quotes = new XMLHttpRequest();
     quotes.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("quote").innerHTML =
-        '<p class="banner-text text-center"> "' + quotes.responseText + '"</p>' 
-          }
-        };
+       if (this.readyState == 4 && this.status == 200) {
+           let banner_text = document.createElement("p");
+           banner_text.classList.add("banner-text", "text-center");
+           banner_text.textContent = quotes.responseText;
+           document.querySelector("#quote").appendChild(banner_text);
+       }
+      };
     quotes.open('GET', 'https://api.github.com/zen', true)
     quotes.send()
     
