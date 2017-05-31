@@ -77,7 +77,7 @@ $( document ).ready(function() {
               //$("#repos").append("<p style='font-size: 10px'> (this repo is a fork) </p>");
               let fork_repo = document.createElement("p");
               fork_repo.style.fontSize = "10px";
-              fork_repo.textContent = "(this repo is a fork";
+              fork_repo.textContent = "(this repo is a fork)";
               repos.appendChild(fork_repo);
             }
            //$("#repos").append("<p>" + obj.description + "</p>");
