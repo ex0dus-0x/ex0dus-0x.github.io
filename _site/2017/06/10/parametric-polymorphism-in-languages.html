@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="blog" lang = "en" >
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal site">
+    <meta name="author" content="Alan">
+  
+
+
+    <title>Parametric Polymorphism -  A Comparison Across Rust, C++, and Swift - ./codemuch</title>
+
+    <!-- Custom stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- Bootstrap.css-->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Hover.css-->
+    <link href="/css/hover.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <!-- Simpletextrotator.css-->
+    <link href="/css/simpletextrotator.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet"> 
+     
+</head>
+
+<body id="blog">
+    
+  <section id="nav">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <ul>
+          <li>
+            <a class="hvr-pop" href="/">home </a>
+          </li>
+          <li>
+            <a class="hvr-pop" href="/about">whoami </a>    
+          </li>
+          <li>
+            <a class="hvr-pop" href="/projects">projects </a>    
+          </li>
+          <li>  
+            <a class="hvr-pop" href="/blog">blog </a>    
+          </li>
+          <li>
+            <a class="hvr-pop" data-scroll href="#footer">contact </a>    
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+    
+  <section id="blog-content">
+    
+    
+    <div id="#top" class="post-heading">
+  <h5><a href="/blog">back</a></h5>
+  <h1 class="post-headline">Parametric Polymorphism -  A Comparison Across Rust, C++, and Swift</h1>
+  <h3><span>June 10, 2017 </span> </h3>
+  <h4><b> Written By: </b><a href="/about">Alan</a></h4>
+  <br />
+  <div class="share-icons">
+    <a href="#"><i class="fa fa-facebook"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-reddit"></i></a>
+    <a href="#"><i class="fa fa-google-plus"></i></a>
+
+  </div>
+</div>
+
+
+<div class="post-content">
+  <p><strong>Parametric polymorphism</strong> is one of the key programming paradigms that I’ve realized is
+in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.</p>
+
+<p>As a beginner to type systems and generic programming, I’ve come to realize the importance of polymorphism, especially in object-oriented programming. Not only do they enable you to write flexible code and save time doing so, but also be able to compile and debug more efficiently as well.</p>
+
+<p>Parametric polymorphism are often expressed through <strong>generics</strong> and <strong>templates</strong>. Keep in mind that we are referring to <strong>parametric</strong> polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented language.</p>
+
+<p>We will be examining such features discussed within three languages: Rust, C++, and Swift.</p>
+
+<hr />
+
+<h2 id="swift">Swift</h2>
+
+<p>Swift is a high-level language, and therefore programming paradigms such as generics are often tossed under the table due to the high level of abstraction. In Swift, generics are already implemented under a wide variety of data structures, such as dictionaries. Swift’s type inference ensures that no explicit declarations are needed.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>let letters = ["A": "Apple", "B:", "Banana", "C:", "Car"]
+</code></pre>
+</div>
+
+<p>However, that doesn’t really satisfy us. We want to see this action as a powerful feature, not just a commodity within the standard library. Explicit generic declarations are made through the ‘&lt;’ and <code class="highlighter-rouge">&gt;</code> syntax, and can be declared over a wide variety of structures. Sounds familiar, Rust programmers? I will look at that later.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// Parametric Polymorphism in functions
+func output&lt;MyType&gt;(a: MyType){
+  print(output)
+}
+output(1) // using a numerical Int
+output("dis a string") // using a String
+
+// Parametric Polymorphism within Classes
+class ShoppingList&lt;ShoppingType&gt; {
+  var list = [ShoppingType]()
+  
+  mutating func add(item: ShoppingType) {
+    list.append(item)
+  }
+}
+
+var Keyfood = ShoppingList&lt;String&gt;()
+Keyfood.add("A new item")
+var FoodUniverse = ShoppingList&lt;Int&gt;()
+FoodUniverse.add(12)
+</code></pre>
+</div>
+
+<p>One great feature that can be observed within Swift is the idea of being able to overload generics, or in my words, creating <em>smart</em> generics.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>func doThis(t: Int) -&gt; Int {
+  print("t with a regular ol' method")
+  return t;
+}
+
+func doThisBetter&lt;T&gt;(t: T) -&gt; T {
+  print("t but with generic T?")
+  return t;
+}
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="c">C++</h2>
+
+<p>In C++, <strong>templates</strong> are considered the foundation of generic programming. Templates are extensible to functions and classes.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> template&lt;typename T&gt;
+ void genericity(const T&amp; x) {
+   switch (typeof(T)) {  // Conceptual only; not C++
+      case int:
+        break;
+      case std::string:
+        break;
+      default:
+        break;
+    }
+ }
+</code></pre>
+</div>
+
+  <hr />
+  <p style="opacity: 0.3;">
+    <a href="/about ">about the author</a> | 
+    <a data-scroll href="#top">back to top</a>
+  </p>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+
+
+var disqus_config = function () {
+this.page.url = http://codemuch.tech//2017/06/10/parametric-polymorphism-in-languages.html;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = /2017/06/10/parametric-polymorphism-in-languages; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://codemuch-tech.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                
+
+
+
+
+
+  </section>
+    
+  
+</body>
+
+</html>

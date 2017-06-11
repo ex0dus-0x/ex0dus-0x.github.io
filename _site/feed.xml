@@ -1,4 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-30T01:18:56+00:00</updated><id>http://localhost:4000/</id><title type="html">./codemuch</title><entry><title type="html">Privilege Escalation in Windows</title><link href="http://localhost:4000/2017/05/14/priv-esc-win.html" rel="alternate" type="text/html" title="Privilege Escalation in Windows" /><published>2017-05-14T00:00:00+00:00</published><updated>2017-05-14T00:00:00+00:00</updated><id>http://localhost:4000/2017/05/14/priv-esc-win</id><content type="html" xml:base="http://localhost:4000/2017/05/14/priv-esc-win.html">&lt;p&gt;Dusting off &lt;code class=&quot;highlighter-rouge&quot;&gt;msfconsole&lt;/code&gt; and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-06-10T01:49:18+00:00</updated><id>http://localhost:4000/</id><title type="html">./codemuch</title><entry><title type="html">Parametric Polymorphism - A Comparison Across Rust, C++, and Swift</title><link href="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html" rel="alternate" type="text/html" title="Parametric Polymorphism -  A Comparison Across Rust, C++, and Swift" /><published>2017-06-10T00:00:00+00:00</published><updated>2017-06-10T00:00:00+00:00</updated><id>http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages</id><content type="html" xml:base="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html">&lt;p&gt;&lt;strong&gt;Parametric polymorphism&lt;/strong&gt; is one of the key programming paradigms that I’ve realized is
+in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.&lt;/p&gt;
+
+&lt;p&gt;As a beginner to type systems and generic programming, I’ve come to realize the importance of polymorphism, especially in object-oriented programming. Not only do they enable you to write flexible code and save time doing so, but also be able to compile and debug more efficiently as well.&lt;/p&gt;
+
+&lt;p&gt;Parametric polymorphism are often expressed through &lt;strong&gt;generics&lt;/strong&gt; and &lt;strong&gt;templates&lt;/strong&gt;. Keep in mind that we are referring to &lt;strong&gt;parametric&lt;/strong&gt; polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented language.&lt;/p&gt;
+
+&lt;p&gt;We will be examining such features discussed within three languages: Rust, C++, and Swift.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;swift&quot;&gt;Swift&lt;/h2&gt;
+
+&lt;p&gt;Swift is a high-level language, and therefore programming paradigms such as generics are often tossed under the table due to the high level of abstraction. In Swift, generics are already implemented under a wide variety of data structures, such as dictionaries. Swift’s type inference ensures that no explicit declarations are needed.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let letters = [&quot;A&quot;: &quot;Apple&quot;, &quot;B:&quot;, &quot;Banana&quot;, &quot;C:&quot;, &quot;Car&quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;However, that doesn’t really satisfy us. We want to see this action as a powerful feature, not just a commodity within the standard library. Explicit generic declarations are made through the ‘&amp;lt;’ and &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt; syntax, and can be declared over a wide variety of structures. Sounds familiar, Rust programmers? I will look at that later.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Parametric Polymorphism in functions
+func output&amp;lt;MyType&amp;gt;(a: MyType){
+  print(output)
+}
+output(1) // using a numerical Int
+output(&quot;dis a string&quot;) // using a String
+
+// Parametric Polymorphism within Classes
+class ShoppingList&amp;lt;ShoppingType&amp;gt; {
+  var list = [ShoppingType]()
+  
+  mutating func add(item: ShoppingType) {
+    list.append(item)
+  }
+}
+
+var Keyfood = ShoppingList&amp;lt;String&amp;gt;()
+Keyfood.add(&quot;A new item&quot;)
+var FoodUniverse = ShoppingList&amp;lt;Int&amp;gt;()
+FoodUniverse.add(12)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;One great feature that can be observed within Swift is the idea of being able to overload generics, or in my words, creating &lt;em&gt;smart&lt;/em&gt; generics.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;func doThis(t: Int) -&amp;gt; Int {
+  print(&quot;t with a regular ol' method&quot;)
+  return t;
+}
+
+func doThisBetter&amp;lt;T&amp;gt;(t: T) -&amp;gt; T {
+  print(&quot;t but with generic T?&quot;)
+  return t;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;c&quot;&gt;C++&lt;/h2&gt;
+
+&lt;p&gt;In C++, &lt;strong&gt;templates&lt;/strong&gt; are considered the foundation of generic programming. Templates are extensible to functions and classes.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; template&amp;lt;typename T&amp;gt;
+ void genericity(const T&amp;amp; x) {
+   switch (typeof(T)) {  // Conceptual only; not C++
+      case int:
+        break;
+      case std::string:
+        break;
+      default:
+        break;
+    }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>Alan</name></author><summary type="html">Parametric polymorphism is one of the key programming paradigms that I’ve realized is in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.</summary></entry><entry><title type="html">Privilege Escalation in Windows</title><link href="http://localhost:4000/2017/05/14/priv-esc-win.html" rel="alternate" type="text/html" title="Privilege Escalation in Windows" /><published>2017-05-14T00:00:00+00:00</published><updated>2017-05-14T00:00:00+00:00</updated><id>http://localhost:4000/2017/05/14/priv-esc-win</id><content type="html" xml:base="http://localhost:4000/2017/05/14/priv-esc-win.html">&lt;p&gt;Dusting off &lt;code class=&quot;highlighter-rouge&quot;&gt;msfconsole&lt;/code&gt; and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.&lt;/p&gt;
 
 &lt;p&gt;With the recent ransomware &lt;a href=&quot;http://www.cnn.com/2017/05/14/opinions/wannacrypt-attack-should-make-us-wanna-cry-about-vulnerability-urbelis/&quot;&gt;WannaCry&lt;/a&gt; spreading throughout the globe, I pondered upon the question on how malware is able to attain system-level privileges on a Windows machine, locking it down, and making it near-impossible to circumvent.&lt;/p&gt;
 
