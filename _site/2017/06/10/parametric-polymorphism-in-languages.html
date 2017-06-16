@@ -85,9 +85,9 @@
   <p><strong>Parametric polymorphism</strong> is one of the key programming paradigms that I’ve realized is
 in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.</p>
 
-<p>As a beginner to type systems and generic programming, I’ve come to realize the importance of polymorphism, especially in object-oriented programming. Not only do they enable you to write flexible code and save time doing so, but also be able to compile and debug more efficiently as well.</p>
+<p>As a beginner to type systems and generic programming, I’ve come to realize the importance of polymorphism, especially in object-oriented programming. Not only do they enable you to write flexible code and save time doing so, but also be able to compile and debug more efficiently as well. What is also great about parametric polymorphism is the ability to reproduce type-safe code, while also maintaining portability and not having to duplicate code.</p>
 
-<p>Parametric polymorphism are often expressed through <strong>generics</strong> and <strong>templates</strong>. Keep in mind that we are referring to <strong>parametric</strong> polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented language.</p>
+<p>Parametric polymorphism are often expressed through <strong>generics</strong> and <strong>templates</strong>. Keep in mind that we are referring to <strong>parametric</strong> polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented languages.</p>
 
 <p>We will be examining such features discussed within three languages: Rust, C++, and Swift.</p>
 
@@ -130,13 +130,16 @@ FoodUniverse.add(12)
 
 <div class="highlighter-rouge"><pre class="highlight"><code>func doThis(t: Int) -&gt; Int {
   print("t with a regular ol' method")
-  return t;
+  return t
 }
 
-func doThisBetter&lt;T&gt;(t: T) -&gt; T {
-  print("t but with generic T?")
-  return t;
+func doThis&lt;T&gt;(t: T) -&gt; T {
+  print("t that is SMARTTTTT")
+  return t
 }
+
+print(doThis(3)) // "t with a regular ol' method", =&gt; 3
+print(doThis(3.0)) // "t that is SMARTTTTT", =&gt; 3.0
 </code></pre>
 </div>
 
@@ -144,21 +147,129 @@ func doThisBetter&lt;T&gt;(t: T) -&gt; T {
 
 <h2 id="c">C++</h2>
 
-<p>In C++, <strong>templates</strong> are considered the foundation of generic programming. Templates are extensible to functions and classes.</p>
+<p>In C++, <strong>templates</strong> are considered the foundation for generic programming. Templates are extensible to functions and classes.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> template&lt;typename T&gt;
- void genericity(const T&amp; x) {
-   switch (typeof(T)) {  // Conceptual only; not C++
-      case int:
-        break;
-      case std::string:
-        break;
-      default:
-        break;
-    }
+<div class="highlighter-rouge"><pre class="highlight"><code>// Simple function template
+ template&lt;typename T&gt;
+ T multiply(T a, T b) {
+   return a * b;
  }
 </code></pre>
 </div>
+
+<p>One of the only problems that concern C++ is the fact that type inference is not implemented. Therefore, utilizing the above template wouldn’t deem functional if do not explicitly provide a cast when passing arguments of different types. Do be warned that types are checked at compile-time, and that the process of operating and type-checking can be incredibly excruciating. Therefore, implementing C++ templates require a level of delicacy and understanding.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+...
+int main(){
+  std::cout &lt;&lt; multiply(4, 5) &lt;&lt; std::endl; // implicit cast to int, returns 20
+  std::cout &lt;&lt; multiple&lt;double&gt;(3.0, 4.0) &lt;&lt; std::endl; // explicit cast to double, returns 12.0
+  std::cout &lt;&lt; multiple(2.0, 1) &lt;&lt; std::endl; // no explicit cast, different types implemented 
+}
+</code></pre>
+</div>
+
+<p>However, C++ still implements templates powerfully within both the Standard Template Library and the Boost Libraries. One great example is utilizing <code class="highlighter-rouge">std::vector</code> over a standard array.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#include &lt;vector&gt;
+
+...
+size_t size = 10;
+std::vector&lt;int&gt; array(size);
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="rust">Rust</h2>
+
+<p>Like Swift, Rust utilizes <code class="highlighter-rouge">&lt;</code> and <code class="highlighter-rouge">&gt;</code> for generic syntax. Through Rust’s type-safety system, type specification is immediately checked, when called, unlike C++, which does it at compile-time.</p>
+
+<p>Generics can be implemented for functions, structs, enums and <code class="highlighter-rouge">impl</code> blocks that are associated to its struct or enum. Here is an example of how generics can be implemented.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>struct Player&lt;T&gt; {
+  health: T,
+  coins: T,
+  stamina: T,
+}
+
+impl&lt;T&gt; Player&lt;T&gt; {
+  fn output(&amp;mut self) {
+      println!("Stats: \n Health: {:?}, Coins: {:?}, Stamina: {:?}", health, coins, stamina);
+  }
+} 
+
+
+fn main(){
+  let Player1 = Point { health: 32, coins: 10, stamina: 5};
+}
+</code></pre>
+</div>
+
+<p>One great Gist that I found explained this concept quite well with simple to understand code.
+<a href="https://gist.github.com/brendanzab/9220415">Here is the link</a>. I will be using the code from the Gist and annotating it.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>template &lt;typename T&gt;
+T fact(T n) {
+  return n == T(0) ? T(1) : fact(n - T(1)) * n;
+}
+
+int main() {
+  auto x = fact("hi");
+}
+</code></pre>
+</div>
+
+<p>This will obviously return an error. Working with calculations on a <code class="highlighter-rouge">string</code> type is a no-no.
+What is intriguing is the stack trace that is returned:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Untitled 3.cpp:3:46: error: invalid operands to binary expression ('long' and 'const char *')
+return n == T(0) ? T(1) : fact(n - T(1)) * n;
+                          ~~~~~~~~~~~~~~ ^ ~
+Untitled 3.cpp:7:14: note: in instantiation of function template specialization 'fact&lt;const char *&gt;' requested here
+auto x = fact("hi");
+         ^
+1 error generated.
+</code></pre>
+</div>
+
+<p>Looking at the output, it seems that the error is taking place within the <code class="highlighter-rouge">fact()</code> template function. This goes back to my previous convictions surrounding parametric polymorphism in C++: <strong>type-safety and implementation is checked during compile-time</strong>.</p>
+
+<p>This of course is also erroneous on Rust.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>use std::num::{One, one, Zero, zero};
+
+fn fact&lt;T: Eq + Zero + One + Mul&lt;T, T&gt; + Sub&lt;T, T&gt;&gt;(n: T) -&gt; T {
+  if n == zero() { one() } else { fact(n - one()) * n }
+}
+
+fn main() {
+  println!("{}", fact("hi"));
+}
+</code></pre>
+</div>
+
+<p>However, where does the error occur?</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Untitled 6.rs:8:20: 8:24 error: failed to find an implementation of trait std::num::Zero for &amp;'static str
+Untitled 6.rs:8     println!("{}", fact("hi"));
+                                   ^~~~
+note: in expansion of format_args!
+&lt;std macros&gt;:2:23: 2:77 note: expansion site
+&lt;std macros&gt;:1:1: 1:1 note: in expansion of println!
+Untitled 6.rs:8:5: 8:32 note: expansion site
+</code></pre>
+</div>
+
+<p>Once again, we see the strictness of Rust’s type system. On call, once we attempt to pass a type that cannot implement the required interface, then we simply cannot work with the associated function.</p>
+
+<hr />
+
+<p>I guess that is it for this post. I’ve been working quite a bit with type theory for a while now, as I am pretty interested in learning more about languages. I tend to blog about subject matters I’m not really familiar with, as it motivates me to pursue more research, compile more code, and really get to understand software.</p>
+
+<p>Any suggestions? Email me at ex0dus@codemuch.tech.</p>
 
   <hr />
   <p style="opacity: 0.3;">

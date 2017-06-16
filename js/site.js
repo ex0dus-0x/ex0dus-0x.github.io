@@ -28,7 +28,6 @@ $( document ).ready(function() {
     $.get(api, function (data) {
         $.each(data, function (idx, obj) {
           
-          // REWRITE!!!! STOP USING APPENDDDD!!!!!!!!
             if(obj.language == null){
               obj.language = "None";
             }

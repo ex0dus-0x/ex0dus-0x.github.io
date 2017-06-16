@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-06-10T01:49:18+00:00</updated><id>http://localhost:4000/</id><title type="html">./codemuch</title><entry><title type="html">Parametric Polymorphism - A Comparison Across Rust, C++, and Swift</title><link href="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html" rel="alternate" type="text/html" title="Parametric Polymorphism -  A Comparison Across Rust, C++, and Swift" /><published>2017-06-10T00:00:00+00:00</published><updated>2017-06-10T00:00:00+00:00</updated><id>http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages</id><content type="html" xml:base="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html">&lt;p&gt;&lt;strong&gt;Parametric polymorphism&lt;/strong&gt; is one of the key programming paradigms that I’ve realized is
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-06-16T21:07:25+00:00</updated><id>http://localhost:4000/</id><title type="html">./codemuch</title><entry><title type="html">Parametric Polymorphism - A Comparison Across Rust, C++, and Swift</title><link href="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html" rel="alternate" type="text/html" title="Parametric Polymorphism -  A Comparison Across Rust, C++, and Swift" /><published>2017-06-10T00:00:00+00:00</published><updated>2017-06-10T00:00:00+00:00</updated><id>http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages</id><content type="html" xml:base="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html">&lt;p&gt;&lt;strong&gt;Parametric polymorphism&lt;/strong&gt; is one of the key programming paradigms that I’ve realized is
 in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.&lt;/p&gt;
 
-&lt;p&gt;As a beginner to type systems and generic programming, I’ve come to realize the importance of polymorphism, especially in object-oriented programming. Not only do they enable you to write flexible code and save time doing so, but also be able to compile and debug more efficiently as well.&lt;/p&gt;
+&lt;p&gt;As a beginner to type systems and generic programming, I’ve come to realize the importance of polymorphism, especially in object-oriented programming. Not only do they enable you to write flexible code and save time doing so, but also be able to compile and debug more efficiently as well. What is also great about parametric polymorphism is the ability to reproduce type-safe code, while also maintaining portability and not having to duplicate code.&lt;/p&gt;
 
-&lt;p&gt;Parametric polymorphism are often expressed through &lt;strong&gt;generics&lt;/strong&gt; and &lt;strong&gt;templates&lt;/strong&gt;. Keep in mind that we are referring to &lt;strong&gt;parametric&lt;/strong&gt; polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented language.&lt;/p&gt;
+&lt;p&gt;Parametric polymorphism are often expressed through &lt;strong&gt;generics&lt;/strong&gt; and &lt;strong&gt;templates&lt;/strong&gt;. Keep in mind that we are referring to &lt;strong&gt;parametric&lt;/strong&gt; polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented languages.&lt;/p&gt;
 
 &lt;p&gt;We will be examining such features discussed within three languages: Rust, C++, and Swift.&lt;/p&gt;
 
@@ -46,13 +46,16 @@ FoodUniverse.add(12)
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;func doThis(t: Int) -&amp;gt; Int {
   print(&quot;t with a regular ol' method&quot;)
-  return t;
+  return t
 }
 
-func doThisBetter&amp;lt;T&amp;gt;(t: T) -&amp;gt; T {
-  print(&quot;t but with generic T?&quot;)
-  return t;
+func doThis&amp;lt;T&amp;gt;(t: T) -&amp;gt; T {
+  print(&quot;t that is SMARTTTTT&quot;)
+  return t
 }
+
+print(doThis(3)) // &quot;t with a regular ol' method&quot;, =&amp;gt; 3
+print(doThis(3.0)) // &quot;t that is SMARTTTTT&quot;, =&amp;gt; 3.0
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -60,21 +63,129 @@ func doThisBetter&amp;lt;T&amp;gt;(t: T) -&amp;gt; T {
 
 &lt;h2 id=&quot;c&quot;&gt;C++&lt;/h2&gt;
 
-&lt;p&gt;In C++, &lt;strong&gt;templates&lt;/strong&gt; are considered the foundation of generic programming. Templates are extensible to functions and classes.&lt;/p&gt;
+&lt;p&gt;In C++, &lt;strong&gt;templates&lt;/strong&gt; are considered the foundation for generic programming. Templates are extensible to functions and classes.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; template&amp;lt;typename T&amp;gt;
- void genericity(const T&amp;amp; x) {
-   switch (typeof(T)) {  // Conceptual only; not C++
-      case int:
-        break;
-      case std::string:
-        break;
-      default:
-        break;
-    }
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Simple function template
+ template&amp;lt;typename T&amp;gt;
+ T multiply(T a, T b) {
+   return a * b;
  }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>Alan</name></author><summary type="html">Parametric polymorphism is one of the key programming paradigms that I’ve realized is in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.</summary></entry><entry><title type="html">Privilege Escalation in Windows</title><link href="http://localhost:4000/2017/05/14/priv-esc-win.html" rel="alternate" type="text/html" title="Privilege Escalation in Windows" /><published>2017-05-14T00:00:00+00:00</published><updated>2017-05-14T00:00:00+00:00</updated><id>http://localhost:4000/2017/05/14/priv-esc-win</id><content type="html" xml:base="http://localhost:4000/2017/05/14/priv-esc-win.html">&lt;p&gt;Dusting off &lt;code class=&quot;highlighter-rouge&quot;&gt;msfconsole&lt;/code&gt; and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;One of the only problems that concern C++ is the fact that type inference is not implemented. Therefore, utilizing the above template wouldn’t deem functional if do not explicitly provide a cast when passing arguments of different types. Do be warned that types are checked at compile-time, and that the process of operating and type-checking can be incredibly excruciating. Therefore, implementing C++ templates require a level of delicacy and understanding.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt;
+
+...
+int main(){
+  std::cout &amp;lt;&amp;lt; multiply(4, 5) &amp;lt;&amp;lt; std::endl; // implicit cast to int, returns 20
+  std::cout &amp;lt;&amp;lt; multiple&amp;lt;double&amp;gt;(3.0, 4.0) &amp;lt;&amp;lt; std::endl; // explicit cast to double, returns 12.0
+  std::cout &amp;lt;&amp;lt; multiple(2.0, 1) &amp;lt;&amp;lt; std::endl; // no explicit cast, different types implemented 
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;However, C++ still implements templates powerfully within both the Standard Template Library and the Boost Libraries. One great example is utilizing &lt;code class=&quot;highlighter-rouge&quot;&gt;std::vector&lt;/code&gt; over a standard array.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;vector&amp;gt;
+
+...
+size_t size = 10;
+std::vector&amp;lt;int&amp;gt; array(size);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;rust&quot;&gt;Rust&lt;/h2&gt;
+
+&lt;p&gt;Like Swift, Rust utilizes &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt; for generic syntax. Through Rust’s type-safety system, type specification is immediately checked, when called, unlike C++, which does it at compile-time.&lt;/p&gt;
+
+&lt;p&gt;Generics can be implemented for functions, structs, enums and &lt;code class=&quot;highlighter-rouge&quot;&gt;impl&lt;/code&gt; blocks that are associated to its struct or enum. Here is an example of how generics can be implemented.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct Player&amp;lt;T&amp;gt; {
+  health: T,
+  coins: T,
+  stamina: T,
+}
+
+impl&amp;lt;T&amp;gt; Player&amp;lt;T&amp;gt; {
+  fn output(&amp;amp;mut self) {
+      println!(&quot;Stats: \n Health: {:?}, Coins: {:?}, Stamina: {:?}&quot;, health, coins, stamina);
+  }
+} 
+
+
+fn main(){
+  let Player1 = Point { health: 32, coins: 10, stamina: 5};
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;One great Gist that I found explained this concept quite well with simple to understand code.
+&lt;a href=&quot;https://gist.github.com/brendanzab/9220415&quot;&gt;Here is the link&lt;/a&gt;. I will be using the code from the Gist and annotating it.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template &amp;lt;typename T&amp;gt;
+T fact(T n) {
+  return n == T(0) ? T(1) : fact(n - T(1)) * n;
+}
+
+int main() {
+  auto x = fact(&quot;hi&quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This will obviously return an error. Working with calculations on a &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt; type is a no-no.
+What is intriguing is the stack trace that is returned:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Untitled 3.cpp:3:46: error: invalid operands to binary expression ('long' and 'const char *')
+return n == T(0) ? T(1) : fact(n - T(1)) * n;
+                          ~~~~~~~~~~~~~~ ^ ~
+Untitled 3.cpp:7:14: note: in instantiation of function template specialization 'fact&amp;lt;const char *&amp;gt;' requested here
+auto x = fact(&quot;hi&quot;);
+         ^
+1 error generated.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Looking at the output, it seems that the error is taking place within the &lt;code class=&quot;highlighter-rouge&quot;&gt;fact()&lt;/code&gt; template function. This goes back to my previous convictions surrounding parametric polymorphism in C++: &lt;strong&gt;type-safety and implementation is checked during compile-time&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;This of course is also erroneous on Rust.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;use std::num::{One, one, Zero, zero};
+
+fn fact&amp;lt;T: Eq + Zero + One + Mul&amp;lt;T, T&amp;gt; + Sub&amp;lt;T, T&amp;gt;&amp;gt;(n: T) -&amp;gt; T {
+  if n == zero() { one() } else { fact(n - one()) * n }
+}
+
+fn main() {
+  println!(&quot;{}&quot;, fact(&quot;hi&quot;));
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;However, where does the error occur?&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Untitled 6.rs:8:20: 8:24 error: failed to find an implementation of trait std::num::Zero for &amp;amp;'static str
+Untitled 6.rs:8     println!(&quot;{}&quot;, fact(&quot;hi&quot;));
+                                   ^~~~
+note: in expansion of format_args!
+&amp;lt;std macros&amp;gt;:2:23: 2:77 note: expansion site
+&amp;lt;std macros&amp;gt;:1:1: 1:1 note: in expansion of println!
+Untitled 6.rs:8:5: 8:32 note: expansion site
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Once again, we see the strictness of Rust’s type system. On call, once we attempt to pass a type that cannot implement the required interface, then we simply cannot work with the associated function.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I guess that is it for this post. I’ve been working quite a bit with type theory for a while now, as I am pretty interested in learning more about languages. I tend to blog about subject matters I’m not really familiar with, as it motivates me to pursue more research, compile more code, and really get to understand software.&lt;/p&gt;
+
+&lt;p&gt;Any suggestions? Email me at ex0dus@codemuch.tech.&lt;/p&gt;</content><author><name>Alan</name></author><summary type="html">Parametric polymorphism is one of the key programming paradigms that I’ve realized is in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.</summary></entry><entry><title type="html">Privilege Escalation in Windows</title><link href="http://localhost:4000/2017/05/14/priv-esc-win.html" rel="alternate" type="text/html" title="Privilege Escalation in Windows" /><published>2017-05-14T00:00:00+00:00</published><updated>2017-05-14T00:00:00+00:00</updated><id>http://localhost:4000/2017/05/14/priv-esc-win</id><content type="html" xml:base="http://localhost:4000/2017/05/14/priv-esc-win.html">&lt;p&gt;Dusting off &lt;code class=&quot;highlighter-rouge&quot;&gt;msfconsole&lt;/code&gt; and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.&lt;/p&gt;
 
 &lt;p&gt;With the recent ransomware &lt;a href=&quot;http://www.cnn.com/2017/05/14/opinions/wannacrypt-attack-should-make-us-wanna-cry-about-vulnerability-urbelis/&quot;&gt;WannaCry&lt;/a&gt; spreading throughout the globe, I pondered upon the question on how malware is able to attain system-level privileges on a Windows machine, locking it down, and making it near-impossible to circumvent.&lt;/p&gt;
 

@@ -11,7 +11,7 @@ in every expressive, yet powerful programming languages. It is the ability for a
 
 As a beginner to type systems and generic programming, I've come to realize the importance of polymorphism, especially in object-oriented programming. Not only do they enable you to write flexible code and save time doing so, but also be able to compile and debug more efficiently as well. What is also great about parametric polymorphism is the ability to reproduce type-safe code, while also maintaining portability and not having to duplicate code.
 
-Parametric polymorphism are often expressed through __generics__ and __templates__. Keep in mind that we are referring to __parametric__ polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented language.
+Parametric polymorphism are often expressed through __generics__ and __templates__. Keep in mind that we are referring to __parametric__ polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented languages.
 
 We will be examining such features discussed within three languages: Rust, C++, and Swift.
 
