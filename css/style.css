@@ -51,6 +51,19 @@ span.strike {
   text-decoration: line-through;
 }
 
+h1.code-head {
+  font-size: 35px;
+  font-family: "Roboto Mono", monospace;
+}
+
+@media (max-width: 767px) {
+  h1.code-head {
+    font-size: 35px;
+    font-family: "Roboto Mono", monospace;
+    margin-left: 1em;
+  }
+}
+
 /* Header section */
 
 .img-responsive{
@@ -80,12 +93,6 @@ h3.header-subheading {
 
 /* Nav section */
 
-section#nav {
-  margin-right: 3em;
-  padding-bottom: 5em;
-  padding-top: 1em;
-} 
-
 section#nav a  {
   font-size: 20px;
   color: #333;
@@ -98,7 +105,6 @@ section#nav ul li {
 }
 
 section#nav ul li:nth-child(1) {
-  display: inline;
   margin-left: 0;
 
 }
@@ -130,6 +136,12 @@ section#introduction, footer {
   }
 
 
+}
+
+/* About Me */
+
+section#aboutme p {
+  font-family: 'Ubuntu Mono', monospace !important;
 }
 
 /* Projects */

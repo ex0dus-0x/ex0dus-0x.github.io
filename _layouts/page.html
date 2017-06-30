@@ -8,9 +8,13 @@
 {% include head.html %}
 
 <body>
-    
-  {% include nav.html %}
   
+  <h1 class="code-head">{{ page.heading }}</h1>
+  
+  <hr />
+  {% include nav.html %}
+  <hr />
+
   {{ content }}
   
   {% include footer.html%}
