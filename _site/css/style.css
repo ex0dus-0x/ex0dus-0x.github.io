@@ -1,14 +1,22 @@
+/* MUST HAVE! */
 html {
   background-color: #fff;
   margin: 5em;
 }
+
+/*===============================================*/
+/* Blog Styles */
+/*===============================================*/
 
 html.blog h3, span {
   font-family: 'Titillium Web', sans-serif;
 }
 
 html.blog a {
-  color: #000;
+  font-size: inherit;
+  font-weight: bold;
+  font-family: inherit;
+  color: #333;
 }
 
 
@@ -17,15 +25,28 @@ html.blog ul > li {
   font-size: 16px;
 }
 
+span.divider > hr {
+  display: none;
+}
 
-@media (max-width: 767px) { 
+@media (max-width: 768px) {
+  span.divider > hr {
+    display: block;
+  }
+
+}
+
+
+/*===============================================*/
+/* Global styles */
+/*===============================================*/
+
+@media (max-width: 768px) { 
   html {
     background-color: #fff;
     margin: 0;
   }
 }
-
-/* Global styles */
 
 p {
   font-family: 'Rubik', sans-serif !important;
@@ -56,7 +77,7 @@ h1.code-head {
   font-family: "Roboto Mono", monospace;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   h1.code-head {
     font-size: 35px;
     font-family: "Roboto Mono", monospace;
@@ -109,7 +130,7 @@ section#nav ul li:nth-child(1) {
 
 }
 
-@media (max-width: 767px) { 
+@media (max-width: 768px) { 
   
   section#nav ul li {
     display: inline-block;
@@ -129,7 +150,7 @@ section#introduction, footer {
   margin: 0 10em 0 10em;
 }
 
-@media (max-width: 767px) { 
+@media (max-width: 768px) { 
   
   section#introduction, footer {
     margin: 0;
@@ -162,7 +183,7 @@ section#blog-content {
   padding-bottom: 2em;
 }
 
-@media (max-width: 767px) { 
+@media (max-width: 768px) { 
   section#blog-content  {
     margin: 0.4em;
   }

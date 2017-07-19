@@ -1,0 +1,42 @@
+---
+title: Updates
+date: 2017-07-18 00:00:00 Z
+layout: post
+comments: true
+author: Alan
+---
+
+Hello everyone! This is just a more personal post rather than something full-on
+technical. It's just to give a quick run-down on what is going on during my summer
+break, and what is going to be happening when I go back to school for my junior year.
+
+This summer, I have been spending time at Cooper Union, one of the best engineering
+colleges in the nation, taking and studying electrical engineering as well as digital
+and computational logic. It has been a really great experience, and I hope to take some
+of the knowledge I've made to future low-level programming posts I make! Other than that, I have also been running a cybersecurity nonprofit organization, [Intrusive](https://intrusive.tech). It's great for high-school and college students to meetup and discuss cybersecurity, as well as gain opportunities to hear professional advice from industry leaders! More information coming soon.
+
+Each year ever since my inception into the programming world (it's been a whopping 6 years!), I gain more and more knowledge. I have seen the same progression in friends, family, and total strangers that I meet through meetups and hackathons. I am fortunate to live in an area where this can occur, and I have also decided to build a fun community for high school devs and hackers called __turingmachines__ (teaser for future posts!). While the site is still under active development, we hope to have a forum, a git server, and many other features to engage the community of student programmers and hackers!
+
+Well, while these are some of my major endeavors, I have been doing a lot of open-sourced projects as well (1-day 1+ commit streaks!). These are always on the [hub](https://github.com/ex0dus-0x) and I encourage you to look at them and provide feedback, or make pull-requests / issues! These are great ways for me to learn out of frustrations in erroneous code, dependency clashes, and bad documentation! Here are a few cool ones that I have done.
+
+* __byebye__ - deauthenticate users off of your local area network (Ruby)
+* __fortissimOS__ - Rust and Assembly toy operating system
+* __meseeks__ - Inspired by the @mee6 bot, a Rust Discord bot with fun features.
+* Revamp of __pwnduino__
+
+Projects I hope to do:
+
+* Emulator/compiler the CHIP8 programming language
+* Forensics framework for penetration testers
+* ALU for 8-bit computer
+* New CSS framework
+
+Future Posts!
+
+* Reconaissance and Threat-modeling in Penetration Testing
+* More Metasploit
+* EE stuff?
+* Rust, Boost C++, Embedded Lua fun, etc.
+* Low-level C, ASM and binary exploitation !!
+
+Recommendations are always welcomed!

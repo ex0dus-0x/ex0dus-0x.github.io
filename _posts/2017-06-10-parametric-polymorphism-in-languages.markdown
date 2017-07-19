@@ -15,6 +15,10 @@ Parametric polymorphism are often expressed through __generics__ and __templates
 
 We will be examining such features discussed within three languages: Rust, C++, and Swift.
 
+But why?
+
+* Understand how programming language design operates and understand their style and the purposes behind such design, and how it implements in large-scale services, especially web and application design.
+
 ---
 
 ## Swift
@@ -167,6 +171,45 @@ However, where does the error occur?
     Untitled 6.rs:8:5: 8:32 note: expansion site
 
 Once again, we see the strictness of Rust's type system. On call, once we attempt to pass a type that cannot implement the required interface, then we simply cannot work with the associated function.
+
+Of course, if you have been using Rust for a while, it's always essential to look at __traits__. __Traits__ are features in Rust's that enable the programmer to specify the how types should work and how they should be implemented with code. Looking back 
+at our earlier code, we have seen how useful `impl` blocks have been for extending structures such as `structs`. In fact, you have already seen trait bounds be implemented on such structures, in the form the syntax `<T>`. But let's explicitly look at `trait` type declarations.
+
+    trait Mathematical {
+      fn multiply(&self) -> f64;
+    }
+    
+    struct Expression {
+      a: f64,
+      b: f64,
+    }
+    
+    impl Mathematical for Expression {
+      fn multiply(&self) -> f64 {
+        self.a * self.b
+      }
+      
+    }
+    
+    fn check_my_math<T: Mathematical>(expression: T) {
+        println!("This expression has a product of {}", expression.multiply());
+    }  
+    
+    fn main() {
+      let a = Expression {
+          a: 1f64,
+          b: 2f64,
+      };
+      
+      check_my_math(a);
+
+    }
+
+Hmmm... Interesting, correct? Definitely not something you see in C/C++. Actually you do. In this example, we see this syntax `impl Mathematical for Expression`. We are 
+actually extending the usage of the trait through inheritance. Of course, the rest of
+the code seems familiar, if not guessable. Notice the function with generic bounds passed: `check_my_math<T: Mathematical>(expression: T)`.
+
+__UPDATE:__ Over time, I have gotten very familiar with the Rust programming environment and ecosystem, and I plan to dedicate a post just to look at the inventive ways that we can utilize the standard library to make crafty code. Stay tuned for that!
 
 ---
 

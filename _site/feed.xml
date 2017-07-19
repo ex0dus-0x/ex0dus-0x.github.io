@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-06-30T18:04:38+00:00</updated><id>http://localhost:4000/</id><title type="html">./codemuch</title><entry><title type="html">Parametric Polymorphism - A Comparison Across Rust, C++, and Swift</title><link href="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html" rel="alternate" type="text/html" title="Parametric Polymorphism -  A Comparison Across Rust, C++, and Swift" /><published>2017-06-10T00:00:00+00:00</published><updated>2017-06-10T00:00:00+00:00</updated><id>http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages</id><content type="html" xml:base="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html">&lt;p&gt;&lt;strong&gt;Parametric polymorphism&lt;/strong&gt; is one of the key programming paradigms that I’ve realized is
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-07-19T02:57:52+00:00</updated><id>http://localhost:4000/</id><title type="html">./codemuch</title><entry><title type="html">Updates</title><link href="http://localhost:4000/2017/07/18/updates.html" rel="alternate" type="text/html" title="Updates" /><published>2017-07-18T00:00:00+00:00</published><updated>2017-07-18T00:00:00+00:00</updated><id>http://localhost:4000/2017/07/18/updates</id><content type="html" xml:base="http://localhost:4000/2017/07/18/updates.html">&lt;p&gt;Hello everyone! This is just a more personal post rather than something full-on
+technical. It’s just to give a quick run-down on what is going on during my summer
+break, and what is going to be happening when I go back to school for my junior year.&lt;/p&gt;
+
+&lt;p&gt;This summer, I have been spending time at Cooper Union, one of the best engineering
+colleges in the nation, taking and studying electrical engineering as well as digital
+and computational logic. It has been a really great experience, and I hope to take some
+of the knowledge I’ve made to future low-level programming posts I make! Other than that, I have also been running a cybersecurity nonprofit organization, &lt;a href=&quot;https://intrusive.tech&quot;&gt;Intrusive&lt;/a&gt;&lt;/p&gt;</content><author><name>Alan</name></author><summary type="html">Hello everyone! This is just a more personal post rather than something full-on technical. It’s just to give a quick run-down on what is going on during my summer break, and what is going to be happening when I go back to school for my junior year.</summary></entry><entry><title type="html">Parametric Polymorphism - A Comparison Across Rust, C++, and Swift</title><link href="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html" rel="alternate" type="text/html" title="Parametric Polymorphism -  A Comparison Across Rust, C++, and Swift" /><published>2017-06-10T00:00:00+00:00</published><updated>2017-06-10T00:00:00+00:00</updated><id>http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages</id><content type="html" xml:base="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html">&lt;p&gt;&lt;strong&gt;Parametric polymorphism&lt;/strong&gt; is one of the key programming paradigms that I’ve realized is
 in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.&lt;/p&gt;
 
 &lt;p&gt;As a beginner to type systems and generic programming, I’ve come to realize the importance of polymorphism, especially in object-oriented programming. Not only do they enable you to write flexible code and save time doing so, but also be able to compile and debug more efficiently as well. What is also great about parametric polymorphism is the ability to reproduce type-safe code, while also maintaining portability and not having to duplicate code.&lt;/p&gt;
@@ -6,6 +13,12 @@ in every expressive, yet powerful programming languages. It is the ability for a
 &lt;p&gt;Parametric polymorphism are often expressed through &lt;strong&gt;generics&lt;/strong&gt; and &lt;strong&gt;templates&lt;/strong&gt;. Keep in mind that we are referring to &lt;strong&gt;parametric&lt;/strong&gt; polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented languages.&lt;/p&gt;
 
 &lt;p&gt;We will be examining such features discussed within three languages: Rust, C++, and Swift.&lt;/p&gt;
+
+&lt;p&gt;But why?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Understand how programming language design operates and understand their style and the purposes behind such design, and how it implements in large-scale services, especially web and application design.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;hr /&gt;
 
@@ -180,6 +193,47 @@ Untitled 6.rs:8:5: 8:32 note: expansion site
 &lt;/div&gt;
 
 &lt;p&gt;Once again, we see the strictness of Rust’s type system. On call, once we attempt to pass a type that cannot implement the required interface, then we simply cannot work with the associated function.&lt;/p&gt;
+
+&lt;p&gt;Of course, if you have been using Rust for a while, it’s always essential to look at &lt;strong&gt;traits&lt;/strong&gt;. &lt;strong&gt;Traits&lt;/strong&gt; are features in Rust’s that enable the programmer to specify the how types should work and how they should be implemented with code. Looking back 
+at our earlier code, we have seen how useful &lt;code class=&quot;highlighter-rouge&quot;&gt;impl&lt;/code&gt; blocks have been for extending structures such as &lt;code class=&quot;highlighter-rouge&quot;&gt;structs&lt;/code&gt;. In fact, you have already seen trait bounds be implemented on such structures, in the form the syntax &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;T&amp;gt;&lt;/code&gt;. But let’s explicitly look at &lt;code class=&quot;highlighter-rouge&quot;&gt;trait&lt;/code&gt; type declarations.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;trait Mathematical {
+  fn sqrt(&amp;amp;self) -&amp;gt; f64,
+  fn is_valid(&amp;amp;self) -&amp;gt; Result&amp;lt;(), String&amp;gt;,
+}
+
+struct Expression {
+  a: f64,
+  b: f64,
+}
+
+impl Mathematical for Expression1 {
+  fn sqrt(&amp;amp;self) -&amp;gt; f64 {
+    a * b
+  }
+  
+  fn is_valid(&amp;amp;self) -&amp;gt; Result&amp;lt;(), &amp;amp;'static str&amp;gt; {
+    assert_eq!(f64, a * b)
+  }
+}
+
+fn check_my_math&amp;lt;T: Mathematical&amp;gt;(expression: T) {
+  if let () == expression.is_valid(){
+    println!(&quot;This shape has an area of {}&quot;, expression.area());
+  }
+}  
+
+fn main() {
+  let a = Expression {
+      a: 1f64,
+      b: 2f64,
+  };
+  
+  check_my_math(a);
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;hr /&gt;
 

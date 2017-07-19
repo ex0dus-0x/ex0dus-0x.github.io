@@ -24,7 +24,6 @@
     <link href="/css/simpletextrotator.css" rel="stylesheet">
 
     <!-- Fonts -->
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet"> 
@@ -65,8 +64,9 @@
               <a href="/blog">blog </a>    
             </li>
           </ul>
+          <span class="divider"><hr /></span>
         </div>
-        
+                
         <div class="col-md-8">
           <div id="#top" class="post-heading">
   <h5><a href="/blog">back</a></h5>
@@ -93,6 +93,12 @@ in every expressive, yet powerful programming languages. It is the ability for a
 <p>Parametric polymorphism are often expressed through <strong>generics</strong> and <strong>templates</strong>. Keep in mind that we are referring to <strong>parametric</strong> polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented languages.</p>
 
 <p>We will be examining such features discussed within three languages: Rust, C++, and Swift.</p>
+
+<p>But why?</p>
+
+<ul>
+  <li>Understand how programming language design operates and understand their style and the purposes behind such design, and how it implements in large-scale services, especially web and application design.</li>
+</ul>
 
 <hr />
 
@@ -268,13 +274,53 @@ Untitled 6.rs:8:5: 8:32 note: expansion site
 
 <p>Once again, we see the strictness of Rust’s type system. On call, once we attempt to pass a type that cannot implement the required interface, then we simply cannot work with the associated function.</p>
 
+<p>Of course, if you have been using Rust for a while, it’s always essential to look at <strong>traits</strong>. <strong>Traits</strong> are features in Rust’s that enable the programmer to specify the how types should work and how they should be implemented with code. Looking back 
+at our earlier code, we have seen how useful <code class="highlighter-rouge">impl</code> blocks have been for extending structures such as <code class="highlighter-rouge">structs</code>. In fact, you have already seen trait bounds be implemented on such structures, in the form the syntax <code class="highlighter-rouge">&lt;T&gt;</code>. But let’s explicitly look at <code class="highlighter-rouge">trait</code> type declarations.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>trait Mathematical {
+  fn sqrt(&amp;self) -&gt; f64,
+  fn is_valid(&amp;self) -&gt; Result&lt;(), String&gt;,
+}
+
+struct Expression {
+  a: f64,
+  b: f64,
+}
+
+impl Mathematical for Expression1 {
+  fn sqrt(&amp;self) -&gt; f64 {
+    a * b
+  }
+  
+  fn is_valid(&amp;self) -&gt; Result&lt;(), &amp;'static str&gt; {
+    assert_eq!(f64, a * b)
+  }
+}
+
+fn check_my_math&lt;T: Mathematical&gt;(expression: T) {
+  if let () == expression.is_valid(){
+    println!("This shape has an area of {}", expression.area());
+  }
+}  
+
+fn main() {
+  let a = Expression {
+      a: 1f64,
+      b: 2f64,
+  };
+  
+  check_my_math(a);
+
+}
+</code></pre>
+</div>
+
 <hr />
 
 <p>I guess that is it for this post. I’ve been working quite a bit with type theory for a while now, as I am pretty interested in learning more about languages. I tend to blog about subject matters I’m not really familiar with, as it motivates me to pursue more research, compile more code, and really get to understand software.</p>
 
 <p>Any suggestions? Email me at ex0dus@codemuch.tech.</p>
 
-  <hr />
   <p style="opacity: 0.3;">
     <a href="/about ">about the author</a> | 
     <a data-scroll href="#top">back to top</a>
@@ -309,9 +355,60 @@ s.setAttribute('data-timestamp', +new Date());
         </div>    
       </div>
     </div>
-  </section>
-    
+  </section>  
   
 </body>
+
+<footer id="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <hr />
+          <h3 class="section-heading">wanna <i>n*</i> with me ?</h3>
+        <hr />
+        <p class="footernote">* where n = talk, hangout, and other verbs denoting contact</p>
+      </div>
+    </div>
+      <div class="col-lg-12 text-center">
+          <a href="https://github.com/ex0dus-0x">
+              <i class="hvr-grow fa fa-github fa-4x"></i>
+          </a>
+          <a href="mailto:ex0dus@codemuch.tech">
+              <i class="hvr-grow fa fa-paper-plane-o fa-4x"></i>
+          </a>
+          <a href="https://keybase.io/ex0dus/key.asc">
+            <i class="hvr-grow fa fa-key fa-4x"></i>
+          </a>
+          <a href="#">
+            <i class="hvr-grow fa fa-file-text-o fa-4x"></i>
+          </a>
+          
+        <p class="footer-text"> Made with ♥. </p>
+
+      </div>
+  </div>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  
+  <!-- Font Awesome -->
+  <script src="https://use.fontawesome.com/8192e56a39.js"></script>
+  
+  <!-- Smooth Scrolling JS -->
+  <script src="/js/smooth-scroll.min.js"></script>
+
+  <!-- Bootstrap JavaScript -->
+  <script src="/js/bootstrap.min.js"></script>
+
+  <!-- Simple Text Rotator JavaScript -->
+  <script src="/js/jquery.simple-text-rotator.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="/js/site.js"></script>
+  
+  
+</footer>
+
+
 
 </html>
