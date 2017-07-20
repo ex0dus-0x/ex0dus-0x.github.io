@@ -1,5 +1,7 @@
 $( document ).ready(function() {
   
+  $("#preloader").remove();
+  
   // Initialize smoothScroll functionality
   smoothScroll.init();
   
