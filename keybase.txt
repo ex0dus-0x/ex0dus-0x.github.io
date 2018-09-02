@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/ex0dus
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://codemuch.tech
+  * I am ex0dus (https://keybase.io/ex0dus) on keybase.
+  * I have a public key with fingerprint 25EE FBE7 36D2 222A 91D1  4890 F2BE DA6E FF12 254A
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01016d5f47576fde5e02e6c4b3ab1cc33cf09cae616f30e9aa918d544bae69b079620a",
+      "fingerprint": "25eefbe736d2222a91d14890f2beda6eff12254a",
+      "host": "keybase.io",
+      "key_id": "f2beda6eff12254a",
+      "kid": "01016d5f47576fde5e02e6c4b3ab1cc33cf09cae616f30e9aa918d544bae69b079620a",
+      "uid": "f2b9f846ceb915efeed140f0d5ea1919",
+      "username": "ex0dus"
+    },
+    "service": {
+      "hostname": "codemuch.tech",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1504662338,
+  "expire_in": 157680000,
+  "prev": "f2082863fa4f8496407dd0a71a5bd2d728e2e150d1fa9e6b279e0af2a957d3b5",
+  "seqno": 18,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.73
+Comment: https://keybase.io/crypto
+
+yMIiAnicrVJdSBRRFN6tbMtYjB42gigcKsms7vzPGASJUEIvIoWasN6Ze2Z30N3Z
+dma3dJPYh+iPqIwQzCIiEg2yH9iQouyPJEvqIcqoKGOF7YdCsBKh7Y7oW4+dl8s9
+5/u+851z70P/XE+h9/G53pf+idZ13qF7HQlPXV9NRYrRLNLClKeYJpg+oJmA7QSb
+TMKUM4hFrEREQ5BFWTIIiIA4kHRB47HG6jrP6wZSdQwSKxk8AhVjlVWIKAgazaka
+klWJQ5gpYwwzGoJ4LG5GHSrLiQCGBjIvEY4GJRFWUFRkcBoQLIFhsBwnCi4xbNku
+g5rTsA0bTIvm6CU4be8f+P/sOzHbRzUUQdJBU1kRDADqFxmIiIBZlVVdoA3xKI4A
+RcNeRBI201bG0FzS1MFdqzvHTF23CEQSeniDA3qYUmNxy7F0q5mWwo4Ts8tdqtMS
+c7F7QAvOqAQ1M0roGikjCXHbtKJMOUuRumO6sqyIBEnieF4pow5iZhyCpougC1AQ
+DbcPJKeHQQqnSLyBBTqTKglIJgRhmcWiRjgicwpwQNUIa2AVJI2TVUDYoK8kyoTX
+RMada3fUotq0lYNDVNM2Q1HsJOLAtN0faJjn8RZ65hfMcf+Xp3Dh4tlfV1vky+9b
+OyCsTI33BIT808aP54deF3GHC1/0l2aM372+QHrZwJfk4kVK6mnfqmC8eziUOTLW
+9quyPfOou6C2IztS/a5z9Y1jLTe9UuL64y093nB7Fzve8GDz54rx3xfO7ri9IrCt
+M73Vh97X7Xxz+UDiaHdtTS5dFBp+e+3b4I/QZOel0K1dz2Nybkn6Qp59UpMLT3VW
+Xsw8+7S/9dWJZ2ty9SNV/NqvB5sKqg9/Z6rSV3dGfsLJimz+Q4ldVHqmZMH5g5XB
+4kzwZ8/plK9jamOzfznvjPb/WRobbDz+0Jzswtk5N0vvRO4WH722q6+/fv32Uf9Y
+4NCVrsZTm3pWLJl/YyJr/QWTN0kA
+=qcbi
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ex0dus
+
+==================================================================

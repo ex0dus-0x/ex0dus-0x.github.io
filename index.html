@@ -1,31 +1,51 @@
 ---
 layout: default
+title: Hey! I'm Alan.
 ---
 
+<center>
+  <section class="nav">
+    <ul class="navbar">
+      <li><a href="{{ site.baseurl }}/blog">Blog</a></li>
+      <li><a href="{{ site.baseurl }}/contact">Contact</a></li>
+      <li><a href="{{ site.baseurl }}/AlanCaoResume.pdf">Resume</a></li>
+      <li><a href="{{ site.baseurl }}/AlanCaoCV.pdf">CV</a></li>
+    </ul>
+
+  </section>
+</center>
+
 <section>
+  <p>I'm a NYC-based high school student and systems engineer.
+  I am incredibly passionate about low-level secure and distributed systems,
+  cryptography and programming languages.</p>
+  <p>I'm open to <a href="{{ site.baseurl}}/contact">talk</a>! Ping me if you are interested in
+  stuff like Linux application sandboxing, OCaml abstract data types, or anything else!</p>
+</section>
 
-	{% for post in site.posts %}
-		{% unless post.next %}
-			<h3 class="code">{{ post.date | date: '%Y' }}</h3>
-		{% else %}
-			{% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-			{% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
-			{% if year != nyear %}
-				<h3 class="code">{{ post.date | date: '%Y' }}</h3>
-			{% endif %}
-		{% endunless %}
 
-		<ul>
-			<li>
-				<div class="post-date code">
-					<span>{{ post.date | date: "%b %d" }}</span>
-				</div>
-				<div class="title">
-					<a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">{{ post.title }}</a>
-				</div>
-			</li>
-		</ul>
+<section class="home">
+  <h4>Stuff I'm Working On</h4>
+  <hr>
+  <ul>
+    <li><u><b>CrashSimulator</b></u> (<a href="https://ssl.engineering.nyu.edu/">with the NYU Secure Systems Lab</a>):
+    a crash-replay system that enables debugging through anomaly injection.</li>
+    <li><u><b>Ghostpass</b></u> (<a href="https://github.com/ex0dus-0x/ghstpass">independent</a>):
+    a two-round encryption protocol for password managers that incorporaes
+    key-derivation and textual steganography.</li>
+    <li><u><b>coremachines</b></u> (independent): a software suite of userspace Linux low-level utilities, including
+    applications, daemons and API/ABI libraries for systems administration and security.</li>
+    <p><i>...a nice list of other personal projects are available on
+    <a href="https://github.com/ex0dus-0x">Github</a></i></p>
+  </ul>
 
-	{% endfor %}
+  <br>
+  <h4>Publications</h4>
+  <hr>
+  <ul>
+    <li><i>A. Cao.</i> Ghostpass Technical Report. 2019 <small><i>(coming soon)</i></small></li>
+    <li><i>A. Cao.</i> Lagrange: design of a low-level mathematical library for polynomial interpolation over Galois finite fields. May 2018.
+    <small>(<a href="https://www.academia.edu/36564354/Lagrange_design_of_a_low-level_mathematical_library_for_polynomial_interpolation_over_Galois_finite_fields">link</a>)</small></li>
+  </ul>
 
 </section>

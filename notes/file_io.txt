@@ -1,0 +1,98 @@
+=========================
+C File I/O Reference
+=========================
+
+Table of Contents
+ - open()
+ - open() with permission variation
+ - creat()
+ 
+TODO: read() and write()
+TODO: Async vs Sync I/O
+
+
+System Call: open()
+
+    #include <sys/types.h>
+    #include <sys/stat.h>
+    #include <fcntl.h>
+    
+    ...
+    int fd = open("this_file.txt", O_RDONLY);
+    if ( fd < 0 ) // error
+
+## Flags for opening files
+
+Here are the available flags that can be bitwise-ORed
+with your standard flags (O_RDONLY, O_WRONLY, O_RDWR):
+
+* O_APPEND - file position points at end of file 
+* O_ASYNC - signal is generated when file is opened
+* O_CREAT - if file is not real, create it
+* O_DIRECT - file is open for direct I/O
+* O_DIRECTORY - file must be a directory
+* O_EXCL - fail if file is already created
+* O_LARGEFILE - used with x84_64, opens 2GiB files
+* O_NOFOLLOW - if file is symlink, call will fail
+* O_NONBLOCK - open with non-blocking I/O
+* O_SYNC - file will be open for synchronous I/O
+* O_TRUNC - if file exists, is regular, and can be written
+to, will be truncated at zero length
+
+---
+
+open() - variation with `mode_t mode` overload
+
+    #include <sys/types.h>
+    #include <sys/stat.h>
+    #include <fcntl.h>
+
+    ...
+    // NOTE: mode is required with O_CREAT, else optional
+    int fd = open("this_file.txt", O_RDWR,
+                  S_IRUSR | S_IWUSR);
+    if ( fd < 0 ) // error
+
+## Flags for User Permissions
+
+* S_IRWXU
+Owner has read, write, and execute permission.
+* S_IRUSR
+Owner has read permission.
+* S_IWUSR
+Owner has write permission.
+* S_IXUSR
+Owner has execute permission.
+* S_IRWXG
+Group has read, write, and execute permission.
+* S_IRGRP
+Group has read permission.
+* S_IWGRP
+Group has write permission.
+* S_IXGRP
+Group has execute permission.
+* S_IRWXO
+Everyone else has read, write, and execute permission.
+* S_IROTH
+Everyone else has read permission.
+* S_IWOTH
+Everyone else has write permission.
+* S_IXOTH
+Everyone else has execute permission.
+
+---
+
+creat()
+
+This is basically `open()` with (O_WRONLY | O_CREAT | O_TRUNC).
+
+    #include <sys/types.h>
+    #include <sys/stat.h>
+    #include <fcntl.h>
+    ...
+    // NOTE: You can use bitmask rather than OR-ed typedefs
+    int fd = creat("this_file.txt", 0664)
+    
+---
+
+

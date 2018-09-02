@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 html {
+  background-color: #0a0b0c;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -13,8 +14,8 @@ body {
   line-height: 20px;
   font-weight: normal;
   font-style: normal;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  color: #333333;
+  font-family: 'Roboto Mono', monospace;
+  color: #757575;
   padding: 20px;
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -31,7 +32,7 @@ h5,
 h6 {
     margin-bottom: 1rem;
     line-height: 1.25;
-    color: #313131;
+    color: #e1e2e4;
 }
 h1 {
   font-size: 2rem;
@@ -57,9 +58,8 @@ img {
   max-width: 100%;
 }
 a {
-  color: inherit;
+  color: #eaeef3;
   text-decoration: none;
-  border-bottom: 1px solid #555;
   &.image {
     display: block;
     text-align: center;
@@ -68,15 +68,18 @@ a {
     margin: 30px 0;
   }
 }
+a:hover {
+    color: #292c31;
+}
 mark {
   background: #fffc76;
   padding: 0 5px;
 }
 blockquote {
-  border-left: 5px solid #ccc;
+  border-left: 5px solid #2c2e31;
   margin: 40px 0;
   padding: 5px 30px;
-  background: #eee;
+  background: #1c1d1f;
 }
 .logo {
   position: relative;
@@ -89,8 +92,8 @@ blockquote {
   -webkit-animation-fill-mode: both;
   -webkit-animation-name: bounce;
   a {
-    background: #ddd url("logo_wrapper.png");
-    color: #000;
+    background: #858890 url("logo_wrapper.png");
+    color: #858890;
     text-decoration: none;
     font-weight: 700;
     height: 100px;
@@ -181,8 +184,8 @@ pre,
   font-family: Consolas, monaco, monospace;
 }
 code {
-  color: #f14e32;
-  background: #eee;
+  color: #5eccc9;
+  background: #000;
   padding: 2px 6px;
   font-size: 13px;
 }
@@ -194,8 +197,7 @@ pre {
   line-height: 1.4;
   white-space: pre;
   overflow-x: auto;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: #1c1d1f;
   padding: 1rem;
   code {
     font-size: 100%;
@@ -209,12 +211,12 @@ table {
   table-layout: fixed;
   margin: 45px 0;
   thead {
-    background: #f2f2f2;
+    background: #1c1d1f;
   }
   th {
     text-align: left;
     padding: 8px 10px;
-    border-bottom: 15px solid #fff;
+    border-bottom: 1px solid #000;
   }
   td {
     padding: 4px 0;
@@ -224,7 +226,7 @@ iframe {
   width: 100%;
 }
 article {
-  max-width: 500px;
+  max-width: 700px;
   margin: 0 auto;
   h1.title {
     line-height: 1.4em;
@@ -249,6 +251,7 @@ article {
     margin: 30px 0;
   }
   p {
+    color: #858890;
     font-size: 15px;
     line-height: 1.9em;
     word-wrap: break-word;
@@ -264,7 +267,7 @@ article {
     margin: 50px auto;
     display: block;
     font-size: 0.8em;
-    color: #666;
+    color: inherit;
     p {
       line-height: 1rem;
       font-weight: normal;
@@ -282,8 +285,7 @@ article {
     }
   }
   a:hover {
-    color: #369;
-    border-color: #369;
+    color: #292c31;
   }
 }
 .back {
@@ -297,7 +299,7 @@ article {
     &:before {
       content: "<<";
       margin-right: 5px;
-      color: #000;
+      color: #fff;
     }
   }
 }
@@ -349,8 +351,11 @@ section {
       a {
         text-decoration: none;
         border: 0;
-        color: #000;
+        color: #eaeef3;
         box-sizing: border-box;
+      }
+      a:hover {
+        color: #292c31;
       }
       .post-date {
         float: right;
@@ -362,16 +367,31 @@ section {
         letter-spacing: 1px;
         text-transform: uppercase;
       }
-      @media (min-width: 992px) {a {
-          border-bottom: 2px solid transparent;
-          &:hover {
-            border-color: #000;
-          }
-        }
-      }
     }
   }
 }
+section.home {
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+  ul {
+    list-style-type: circle;
+    margin: 0;
+    padding: 0;
+  }
+}
+section.nav {
+  max-width: 500px;
+  margin: 0 auto 50px auto;
+  ul.navbar li {
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
+  }
+  li a {
+    color: #878b8b;
+  }
+}
+
 @keyframes bounce {0% {
     transform: translate3d( 0, -1000px, 0 );
   }
