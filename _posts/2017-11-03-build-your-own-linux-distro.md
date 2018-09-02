@@ -4,17 +4,16 @@ date: 2017-11-03 00:00:00 Z
 layout: post
 ---
 
-I'll be talking about my experience in building my own Linux-based distribution, imperium. __imperium__ is based on the 64-bit Debian 9.x (stretch) distribution, as it still relies on its repositories for package management.
-
+I'll be talking about my experience in building my own Linux-based distribution, [imperium](http://imperium.surge.sh). __imperium__ is based on the 64-bit Debian 9.x (stretch) distribution, as it still relies on its repositories for package management. Keep in mind that this is not me building an operating system from scratch (although I will be tackling that), but instead building a distribution on top of a pre-existing kernel.
 <!--more-->
 
 ## Why another one?
 
-Some wonder, "Why build ANOTHER Linux distro? Don't we already have enough?" The question really should be, "what can we LEARN about Linux by BUILDING a Linux?" I pursued the imperium project not just to provide my interested friends and I a more personalized distro with some alternative open-sourced software, but it also gave me an opportunity to look at Linux internally through its config.
+Some wonder, "Why build ANOTHER Linux distro? Don't we already have enough?" The question really should be, "what can we LEARN about Linux by BUILDING a Linux?" I pursued the imperium project not just to provide my interested friends and I a more personalized distro with some alternative open-sourced software, but it also gave me an opportunity to look at Linux internally through configuration files.
 
 ## Let's get started.
 
-As for distribution, I relied on a [fork](https://github.com/chamuco/respin) of Linux Respin, which is a revamped version of the remastersys tool. Respin is incredibly reliable, as it enables a user to spend time on actual distro configuration then redistribution.
+As for distribution, I relied on a [fork](https://github.com/chamuco/respin) of Linux Respin, which is a revamped version of the remastersys tool. Respin is incredibly reliable, as it enables a user to spend time on actual distro configuration.
 
 For the actual configuration process, I will be listing the steps that I took to create the image that I currently have released to the public. Keep in mind that I have placed __imperium__ at an alpha build, so there are some issues that I am currently dealing with.
 
@@ -23,7 +22,7 @@ I start off with a regular `debian-9.2.1-amd64-netinst.iso` image, available [he
 Make sure to create a nonroot user. Once you are actually finished with installation, add that user to your `/etc/sudoers` config.
 
     # User privilege specification
-    user  ALL=(ALL:ALL) ALL
+    myuser  ALL=(ALL:ALL) ALL
 
 I first start by reinstalling the desktop environment to [Budgie](https://budgie-desktop.org/home/), because I didn't like the default GNOME look. I followed instructions from [this guide](https://mike632t.wordpress.com/2016/11/29/installing-budgie-desktop-on-debian-9-x-stretch/).
 
@@ -95,7 +94,7 @@ This will put up an `ncurses`-style menu that enables you to actually install th
 
 That was a pretty big task! Redistributing Linux is not that difficult of a process, but can be incredibly bothersome and annoying. Respin, although it doesn't require building LFS or doing any manual hard labor, is the best way if you want to focus on the quality of your OS. Here are definitely some tips to note when creating and distributing a distro:
 
-* Try not to install from source. Users should be able to get the latest updates to their packages, so install from the Debian repo (or it's own).
+* Try not to install from source. Users should be able to get the latest updates to their packages, so install from the Debian repo (or your own).
 * Try not to install too much. People prefer lightweight distros compare to heavy ones with too much software they might uninstall anyway
 * Be creative and unique! Try to fulfill some sort of need in the community that users may have.
 * Keep track of your versioning. Most popular distros have funky names like Ubuntu's current __Artful Aardvark__ release.

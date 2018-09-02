@@ -4,69 +4,17 @@ date: 2017-06-10 00:00:00 Z
 layout: post
 ---
 
-__Parametric polymorphism__ is one of the key programming paradigms that I've realized is in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. <!--more-->This enables type safety, as well as programmers not needing to worry about type coercion.
+__Parametric polymorphism__ is one of the key programming paradigms that I've realized is in every expressive and powerful programming language. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. <!--more-->This enables type safety, as well as programmers not needing to worry about type coercion.
 
-As a beginner to type systems and generic programming, I've come to realize the importance of polymorphism, especially in object-oriented programming. Not only do they enable you to write flexible code and save time doing so, but also be able to compile and debug more efficiently as well. What is also great about parametric polymorphism is the ability to reproduce type-safe code, while also maintaining portability and not having to duplicate code.
+As a beginner to type systems and generic programming, I've come to realize the importance of polymorphism, especially in object-oriented programming. Not only does it enable you to write flexible code and save time doing so, but also to compile and debug more efficiently as well. What is also great about parametric polymorphism is the ability to reproduce type-safe code, while also maintaining portability and not having to duplicate code.
 
 Parametric polymorphism are often expressed through __generics__ and __templates__. Keep in mind that we are referring to __parametric__ polymorphism, whereas polymorphism alone deals with the property of classes in object-oriented languages.
 
-We will be examining such features discussed within three languages: Rust, C++, and Swift.
+We will be examining such features discussed within two languages: Rust and C++.
 
 But why?
 
 * Understand how programming language design operates and understand their style and the purposes behind such design, and how it implements in large-scale services, especially web and application design.
-
----
-
-## Swift
-
-Swift is a high-level language, and therefore programming paradigms such as generics are often tossed under the table due to the high level of abstraction. In Swift, generics are already implemented under a wide variety of data structures, such as dictionaries. Swift's type inference ensures that no explicit declarations are needed.
-
-```
-let letters = ["A": "Apple", "B:", "Banana", "C:", "Car"]
-```
-
-However, that doesn't really satisfy us. We want to see this action as a powerful feature, not just a commodity within the standard library. Explicit generic declarations are made through the '<' and `>` syntax, and can be declared over a wide variety of structures. Sounds familiar, Rust programmers? I will look at that later.
-
-```swift
-// Parametric Polymorphism in functions
-func output<MyType>(a: MyType){
-  print(output)
-}
-output(1) // using a numerical Int
-output("dis a string") // using a String
-
-// Parametric Polymorphism within Classes
-class ShoppingList<ShoppingType> {
-  var list = [ShoppingType]()
-
-  mutating func add(item: ShoppingType) {
-    list.append(item)
-  }
-}
-
-var Keyfood = ShoppingList<String>()
-Keyfood.add("A new item")
-var FoodUniverse = ShoppingList<Int>()
-FoodUniverse.add(12)
-```
-
-One great feature that can be observed within Swift is the idea of being able to overload generics, or in my words, creating _smart_ generics.
-
-```swift
-func doThis(t: Int) -> Int {
-  print("t with a regular ol' method")
-  return t
-}
-
-func doThis<T>(t: T) -> T {
-  print("t that is SMARTTTTT")
-  return t
-}
-
-print(doThis(3)) // "t with a regular ol' method", => 3
-print(doThis(3.0)) // "t that is SMARTTTTT", => 3.0
-```
 
 ---
 
@@ -88,8 +36,8 @@ One of the only problems that concern C++ is the fact that type inference is not
 #include <iostream>
 #include <string>
 
-...
-int main(){
+int main()
+{
   std::cout << multiply(4, 5) << std::endl; // implicit cast to int, returns 20
   std::cout << multiple<double>(3.0, 4.0) << std::endl; // explicit cast to double, returns 12.0
   std::cout << multiple(2.0, 1) << std::endl; // no explicit cast, different types implemented
@@ -101,16 +49,13 @@ However, C++ still implements templates powerfully within both the Standard Temp
 ```c++
 #include <vector>
 
-...
 size_t size = 10;
 std::vector<int> array(size);
 ```
 
----
-
 ## Rust
 
-Like Swift, Rust utilizes `<` and `>` for generic syntax. Through Rust's type-safety system, type specification is immediately checked, when called, unlike C++, which does it at compile-time.
+Rust utilizes `<` and `>` for generic syntax. Through Rust's type-safety system, type specification is immediately checked, when called, unlike C++, which does it at compile-time.
 
 Generics can be implemented for functions, structs, enums and `impl` blocks that are associated to its struct or enum. Here is an example of how generics can be implemented.
 
@@ -128,10 +73,17 @@ impl<T> Player<T> {
 }
 
 
-fn main(){
+fn main() {
   let Player1 = Point { health: 32, coins: 10, stamina: 5};
 }
 ```
+
+---
+
+## Rust versus C++ and in Discussion of Traits
+
+Let's compare Rust and C++ in terms of their implementation of parameteric polymorphism, and understand how why a language
+like Rust can be much more powerful.
 
 One great Gist that I found explained this concept quite well with simple to understand code.
 [Here is the link](https://gist.github.com/brendanzab/9220415). I will be using the code from the Gist and annotating it.
@@ -142,7 +94,8 @@ T fact(T n) {
   return n == T(0) ? T(1) : fact(n - T(1)) * n;
 }
 
-int main() {
+int main()
+{
   auto x = fact("hi");
 }
 ```
@@ -190,8 +143,7 @@ Untitled 6.rs:8:5: 8:32 note: expansion site
 
 Once again, we see the strictness of Rust's type system. On call, once we attempt to pass a type that cannot implement the required interface, then we simply cannot work with the associated function.
 
-Of course, if you have been using Rust for a while, it's always essential to look at __traits__. __Traits__ are features in Rust's that enable the programmer to specify the how types should work and how they should be implemented with code. Looking back
-at our earlier code, we have seen how useful `impl` blocks have been for extending structures such as `structs`. In fact, you have already seen trait bounds be implemented on such structures, in the form the syntax `<T>`. But let's explicitly look at `trait` type declarations.
+Of course, if you have been using Rust for a while, it's always essential to look at __traits__. __Traits__ are features in Rust's that enable the programmer to specify the how types should work and how they should be implemented with code. Looking back at our earlier code, we have seen how useful `impl` blocks have been for extending structures such as `structs`. In fact, you have already seen trait bounds be implemented on such structures, in the form the syntax `<T>`. But let's explicitly look at `trait` type declarations.
 
 ```rust
 trait Mathematical {
@@ -229,7 +181,6 @@ Hmmm... Interesting, correct? Definitely not something you see in C/C++. Actuall
 actually extending the usage of the trait through inheritance. Of course, the rest of
 the code seems familiar, if not guessable. Notice the function with generic bounds passed: `check_my_math<T: Mathematical>(expression: T)`.
 
-__UPDATE:__ Over time, I have gotten very familiar with the Rust programming environment and ecosystem, and I plan to dedicate a post just to look at the inventive ways that we can utilize the standard library to make crafty code. Stay tuned for that!
 
 ---
 

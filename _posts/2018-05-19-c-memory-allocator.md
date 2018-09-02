@@ -4,20 +4,19 @@ date: 2018-05-19 00:00:00 Z
 layout: post
 ---
 
-A __memory allocator__ is implemented by a program language at a systems-level in order to track the allocation of blocks of data, whether or not they are available for use and should / should not be destroyed. In C, this is the through the functionality of `malloc` and `free`.
+A __memory allocator__ is implemented by a programming language at a system-level in order to track the allocation of blocks of data, and to see whether or not they are available for use and should / should not be destroyed. In C, this is the through the functionality of `malloc` and `free`.
 
 Let's actually implement a memory allocator for C based on the popular first-fit linked-list-based model.
 <!--more-->
 ## Prerequisites
 
-I assume you understand how memory allocation at the level of the stack. Therefore, let's look at how it occurs on the __heap__. The heap is a continous space of memory, and is much for restricted for the user to interact with, as many of the operations done are strictly CPU-bound. With that said, this provides the flexibility of incorporating varying-sized allocations when calling `malloc`, which remain global throughout the run-time of the program in context. Of course, memory deallocation must occur, as no garbage collector is there to perform a mark-sweep deallocation.
+I assume you understand how memory allocation works at the level of the stack. Therefore, let's look at how it instead occurs on the __heap__. The heap is a contiguous space of memory, and not very accessible for the user to interact with, as many of the operations done are strictly CPU-bound. With that said, this provides the flexibility of providing varying-sized allocations when calling `malloc`, which remains global throughout the run-time of the program in context. Of course, with our example in C, manual memory deallocation must occur, as no garbage collector is there to perform a mark-sweep deallocation.
 
 `malloc` and `free` can be defined by these function prototypes:
 
 ```c
 void * malloc(size_t size); // where we would implement sizeof() to determine size of allocation
 void free(void *ptr);
-
 ```
 
 The implementation of `malloc` relies on two system calls: `brk` and `sbrk`. Let's look at the manpages for these two functions:
@@ -34,7 +33,7 @@ brk()  and sbrk() change the location of the program break, which defines the en
        the effect of allocating memory to the process; decreasing the break deallocates memory.
 ```
 
-As we can observe, this gives us a bit of a clue on how our heap is actually organized. The program break is the area that _bounds_ the heap until set by `malloc` or any other memory allocating function. This is also introduces us to heap having _initialized_ and _unintialized_ regions, where the _initialized_ space is occupied by virtual memory that has been mapped to real memory. When memory wants to be allocated, `sbrk`, which moves the break according to the given increment in bytes (whereas `brk` moves the break to a specified address). Once successful, `sbrk` will return a pointer to us with the address of the break point.
+As we can observe, this gives us a bit of a clue on how our heap is actually organized. The program break is the area that _bounds_ the heap until set by `malloc` or any other memory allocating function. This is also introduces us to THE heap having _initialized_ and _unintialized_ regions, where the _initialized_ space is occupied by virtual memory that has been mapped to real memory. When memory wants to be allocated, `sbrk` is called, which moves the break according to the given increment in bytes (whereas `brk` moves the break to a specified address). Once successful, `sbrk` will return a pointer to us with the address of the break point.
 
 Keep in mind that for some experienced C/C++ developers, `mmap` and `munmap` are also feasible options for memory allocation. However, in alignment with many already existing examples, `sbrk` is good for learning.
 
@@ -286,8 +285,8 @@ jrealloc(void *block, size_t size)
 
 ## Conclusions
 
-Our memory allocation implementations simply provide a level of abstraction with a singly linked-list. However, surprisngly, the __glibc__ `malloc` implementation isn't actually far off.
+Our memory allocation implementations simply provide a level of abstraction with a singly linked-list. Surprisngly, the __glibc__ `malloc` implementation isn't actually far off.
 
-Understanding heap allocations and how a language like C implements it is quite invaluable when doing binary exploitation, kernel hacking and all types of fun low-level stuff. The source code for janitor is once again available on [Github](https://github.com/ex0dus-0x/janitor).
+Understanding heap allocations and how a language like C implements it is quite valuable when doing binary exploitation, kernel hacking and all types of fun low-level stuff. The source code for janitor is once again available on [Github](https://github.com/ex0dus-0x/janitor).
 
 Cheers!

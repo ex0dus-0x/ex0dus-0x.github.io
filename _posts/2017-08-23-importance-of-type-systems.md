@@ -6,14 +6,16 @@ layout: post
 
 Recently, I saw [this Computerphile video](https://www.youtube.com/watch?v=-csXdj4WVwA) about the comparison between HTML and C. Professor Brailsford, the speaker mentions that HTML is more _tolerant_ than C,<!--more-->where mistakes and poor coding styles are still accepted by the web browser. No explicit exceptions, no warning messages, - and better yet - no segfaults or buffer overruns.
 
-This video got me thinking, "this comparison is unfair. HTML is only a _markup_ language, __NOT__ an actual Turing-complete programming language". But still, it inspired me to get back into something that I really liked in programming language design - type systems. __Type systems__ are rules that programming language developers implement that define the behavior and ways types work, and what structures and components formalize the creation of such types. Computer programmers often classify a programming language's type system as _strong_ or _weak_. If you have been programming for a while, this may be self-explanatory. Ruby is _weakly-typed_. C++ is _strongly-typed_. Some programming languages have the option of being both, such as Go.
+The video got me thinking, and it inspired me to get back into something that I really liked in programming language design - type systems. __Type systems__ are rules that programming language developers implement that define the behavior and ways types work, and what structures and components formalize the creation of such types. Computer programmers often classify a programming language's type system as _strong_ or _weak_. If you have been programming for a while, this may be self-explanatory. Ruby is _weakly-typed_. C++ is _strongly-typed_. Some programming languages have the option of being both, such as Go.
 
-    var_one := 4 // this will work
-    var_two uint32 := 5 // this will also work
+```go
+var_two uint32 := 5   // this will work
+var_one := 5          // this will also work, as the type is inferenced.
+```
 
 As you can tell, weakly-typed programming languages are often classified through the absence of explicit types and properties of type coercion, often relying on _implicit type conversion_. This is great for high-level programming languages. On the other hand, strongly-typed programming languages utilize explicit types. Great for systems-level design, where you only need 8 bits of unsigned data stored for a program counter or register (hence, the `uint8` type).
 
-While the presence of an explicit or implicit type is not enough to truly define a strong or weak type system, we can also classify them through their implementation of function parameters, error-checking systems and type definition methods. Let's take a look at the two famous ends of the type system spectrum: C and Python.
+While the presence of an explicit or implicit type is not enough to truly define a strong or weak type system, we can also classify them through their implementation of function parameters, error-checking systems and type definition methods. Let's take a look at the two ends of the type system spectrum: C and Python.
 
 ## C
 
@@ -25,11 +27,13 @@ C, of course, is __explicitly typed__. This of course, also means that C is stat
 
 typedef i32 uint32;
 
-i32 test_func( i32 one, i32 two ){
+i32 test_func(i32 one, i32 two)
+{
   return one * two;
 }
 
-int main(void){
+int main(void)
+{
   i32 one = 4;
   i32 two = "five"; // => error!
 
@@ -57,9 +61,11 @@ def main():
 
 Surprisingly, this will compile. And even better, Python won't throw __any__ exceptions, __EVEN__ during runtime, when an interpreted language like Python can still catch errors! And running python with `-i` and `-d` yields no hidden tracebacks. No output is being printed to `stdout` or `stderr`, and you really don't know if your program ran successfully, or crashed into the pits of programmer hell.
 
-Python, unsurprisingly, has a weak type system. No rules are implemented that check the validity of types during compile-time -  and in this case - even runtime, and frankly, there really are no explicit types.
+Python, unsurprisingly, has a weak type system. No rules are implemented that check the validity of types during compile-time -  and in this case - even runtime, and frankly, there really are no explicit types. We can even go further and talk about how Python employs __duck-typing__ - but that's another post for another time.
 
-## So what should I do?
+---
+
+## Why is this so important?
 
 Matthias Endler recently wrote a great [article](http://matthias-endler.de/2017/why-type-systems-matter/) on type systems, which I picked up when browsing [lobste.rs](https://lobste.rs). However, I wanted to talk a little about my philosophy on learning programming language's that enforce a strict and strong type system.
 
@@ -93,4 +99,4 @@ Overall, this provides a great way to carefully manage memory, enforcing quality
 
 ---
 
-While I have provided several examples of why strong type systems are to be preferred, it really is up to the programmer and his/her task to figure out what language to use. Weakly-typed programming languages, often presented in the form of higher-level languages, often hide away the complexity and implications of types through levels of abstractions, providing the programmer the ability to write code for websites, apps, and other projects that turn the focus away from safety to user experience and feature-environments. While dynamic type checking and implicit type conversion allow this to occur, I suggest programmers to really take time to write some code in stronger-typed languages, or at least learn more about it. Types provide ways to idiomatically express your code, manage your resources and memory more efficient, create your own guarentees, and create your own types to represent what you want in your code and how you want it.
+While I have provided several examples of why strong type systems are to be preferred, it really is up to the programmer and his/her task to figure out what language to use. Weakly-typed programming languages, often presented in the form of higher-level languages, hide away the complexity and implications of types through levels of abstractions, providing the programmer the ability to write code for websites, apps, and other projects that turn the focus away from safety to user experience and feature-rich environments. While dynamic type checking and implicit type conversion allow this to occur, I suggest programmers to really take time to write some code in stronger-typed languages, or at least learn more about it. Types provide ways to idiomatically express your code, manage your resources and memory more efficient, create your own guarentees, and create your own types to represent what you want in your code and how you want it.
