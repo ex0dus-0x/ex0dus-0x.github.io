@@ -1,0 +1,11 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "name": "codemuch.tech as a PWA",
+  "short_name": "codemuch.tech",
+  "theme_color": "#0a0b0c",
+  "background_color": "#0a0b0c",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "natural"
+}
