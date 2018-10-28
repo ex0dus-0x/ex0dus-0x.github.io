@@ -6,18 +6,18 @@ I hereby claim:
 
   * I am an admin of https://codemuch.tech
   * I am ex0dus (https://keybase.io/ex0dus) on keybase.
-  * I have a public key with fingerprint 25EE FBE7 36D2 222A 91D1  4890 F2BE DA6E FF12 254A
+  * I have a public key with fingerprint A1A2 2606 A6E8 E752 44E0  BFED 3F94 A800 5760 EA23
 
 To do so, I am signing this object:
 
 {
   "body": {
     "key": {
-      "eldest_kid": "01016d5f47576fde5e02e6c4b3ab1cc33cf09cae616f30e9aa918d544bae69b079620a",
-      "fingerprint": "25eefbe736d2222a91d14890f2beda6eff12254a",
+      "eldest_kid": "0120921df5b78d902f7b7e0adfd307a114a3e57d1c020a3ba934b5035820b697e72a0a",
+      "fingerprint": "a1a22606a6e8e75244e0bfed3f94a8005760ea23",
       "host": "keybase.io",
-      "key_id": "f2beda6eff12254a",
-      "kid": "01016d5f47576fde5e02e6c4b3ab1cc33cf09cae616f30e9aa918d544bae69b079620a",
+      "key_id": "3f94a8005760ea23",
+      "kid": "010192eae624975ad491fa56d53ece8a86d19032725155e7354066c53cb31d99e2580a",
       "uid": "f2b9f846ceb915efeed140f0d5ea1919",
       "username": "ex0dus"
     },
@@ -28,36 +28,43 @@ To do so, I am signing this object:
     "type": "web_service_binding",
     "version": 1
   },
-  "ctime": 1504662338,
+  "ctime": 1540688658,
   "expire_in": 157680000,
-  "prev": "f2082863fa4f8496407dd0a71a5bd2d728e2e150d1fa9e6b279e0af2a957d3b5",
-  "seqno": 18,
+  "prev": "7f1398e714e38d66b7fde20c020d04a7a7283ebd37301b2a31e732d8f05621f0",
+  "seqno": 48,
   "tag": "signature"
 }
 
 which yields the signature:
 
 -----BEGIN PGP MESSAGE-----
-Version: Keybase OpenPGP v2.0.73
+Version: Keybase OpenPGP v2.0.80
 Comment: https://keybase.io/crypto
 
-yMIiAnicrVJdSBRRFN6tbMtYjB42gigcKsms7vzPGASJUEIvIoWasN6Ze2Z30N3Z
-dma3dJPYh+iPqIwQzCIiEg2yH9iQouyPJEvqIcqoKGOF7YdCsBKh7Y7oW4+dl8s9
-5/u+851z70P/XE+h9/G53pf+idZ13qF7HQlPXV9NRYrRLNLClKeYJpg+oJmA7QSb
-TMKUM4hFrEREQ5BFWTIIiIA4kHRB47HG6jrP6wZSdQwSKxk8AhVjlVWIKAgazaka
-klWJQ5gpYwwzGoJ4LG5GHSrLiQCGBjIvEY4GJRFWUFRkcBoQLIFhsBwnCi4xbNku
-g5rTsA0bTIvm6CU4be8f+P/sOzHbRzUUQdJBU1kRDADqFxmIiIBZlVVdoA3xKI4A
-RcNeRBI201bG0FzS1MFdqzvHTF23CEQSeniDA3qYUmNxy7F0q5mWwo4Ts8tdqtMS
-c7F7QAvOqAQ1M0roGikjCXHbtKJMOUuRumO6sqyIBEnieF4pow5iZhyCpougC1AQ
-DbcPJKeHQQqnSLyBBTqTKglIJgRhmcWiRjgicwpwQNUIa2AVJI2TVUDYoK8kyoTX
-RMada3fUotq0lYNDVNM2Q1HsJOLAtN0faJjn8RZ65hfMcf+Xp3Dh4tlfV1vky+9b
-OyCsTI33BIT808aP54deF3GHC1/0l2aM372+QHrZwJfk4kVK6mnfqmC8eziUOTLW
-9quyPfOou6C2IztS/a5z9Y1jLTe9UuL64y093nB7Fzve8GDz54rx3xfO7ri9IrCt
-M73Vh97X7Xxz+UDiaHdtTS5dFBp+e+3b4I/QZOel0K1dz2Nybkn6Qp59UpMLT3VW
-Xsw8+7S/9dWJZ2ty9SNV/NqvB5sKqg9/Z6rSV3dGfsLJimz+Q4ldVHqmZMH5g5XB
-4kzwZ8/plK9jamOzfznvjPb/WRobbDz+0Jzswtk5N0vvRO4WH722q6+/fv32Uf9Y
-4NCVrsZTm3pWLJl/YyJr/QWTN0kA
-=qcbi
+yMNxAnicbVJrUFVVGL0EIiAwd27qj8SkQ+gwwXWf9zkgMhU2aoRhIAxEl33O2Yd7
+Brzneh+8CZ2a6THgYyIQSyfAkjc03oEZhxohkZKMBMEGwRcPg8IaC3AssXMY/dev
+PXt/a61vfevbF4K8DQFecZUNhtSsuTCvgZ5qtyFjZI2pGBNUqRCLLsZy0MqBciXk
+dFlyFAmLxgBOAJ7AJZkWWE7iASGzAosAlGSJBCzEcQqSiGYlXAQEgKQAeZISaEDS
+HAEEhmcRS0AAsUhMVmzZyGF3KDaXJgtxSBAMYCCDOMTSBEUhIMhIImWeghwANMsA
+BAlSI1pVp87QzAnQicyKqr1pF8uKvf/BP/UNcJ5AEDEExbM0lCgelyHNSDSJRMRB
+jpFwHpAES9A4TSOWpCnAMCJNigKJSzyPCJpb8e1ekZMJgZc5ihGRwOM0khGScArI
+QKIRxHmc14FO5LDB/UhDowIguZ1YaSSmveUpItJj1ed4UhdVCe13i1azC4lWjWp3
+qC5VVHO1ktXlsjujdaqr0K5j85FgeaJiERSbpMWoMfKQw6moNiwa15CiS9FlcX0E
+jmNoLlJzYFccyKLoCC0bLSEA9D4oT5NkZZzktdhxCpGcxDACK0uIAPoGJUBBFrIE
+RyJBIlkS4AIBSVzLh5A4GdAMgcsA0+c6YFOxaEpr5YLZmqZTybZBl9uBsNLenrd9
+DF4BBt9Vz+j/yxDgb3z660r2Gg3lXQ9KGn9w/vT4esSRIeeCp/b0eWtL1zVjhf05
+P+V36y6/WFOaaXz5j7tWfuBgc25MaWtAxoWNH30KMwv8O98p2mLaVpXcUxe0s/dE
+iN8t4svNv3z8UpH/KXNKxam2ifTkpVWJn5mPhfP3uuMiB6/M+6YY59ZxKfR0fL06
+6blReKTjA/OHgzO/3h9P6K7c6iiY6Dy0u5kwxWc1Js6c79vQ57m+dGKo47Gpbv26
+3OnfHpKF5sWG2XerfZoMX8XVNVEx+bFcmv3Zy88/nBqbMN9vHV8zfPb23aqQSu/B
+T9iAyOPjQfFN15rzym+/edB7b+p7ETuGNjSOV4RZl5OMo5nWM5dCG1av7eg6udT/
+aPWg9fvNi/1/L/9zx90+HNEWWhl07OtXbwbXf1uV+Ne5zKP51W9sfz/3c23/+9ip
+l4+KqKH/cOMwGjKgHK9J1p0DJruiyIhbB7Zu2lI5WTxQO3N2T/vcxUOZDxY2pqWq
+o2t9ihdK5gK7y/a9+N1C1o5dMVdOK31h2+jWrP7wMM9sQfBr04115T4nz2zypWBg
+d3bLWMvVcMvxq73rJ14PdC3+WPOveSgwvMjABkclofmLN/vYeH5PQlnk9MgrU6NJ
+u41lDT/fmK2znWvveat25E/1Uo1Q7VU/HZWR4D02n+5pTg5Jbqspo0PvbV+YPFzb
+mX7n8heeF9yPvnkY6wn8Dw81wok=
+=lYfi
 -----END PGP MESSAGE-----
 
 And finally, I am proving ownership of this host by posting or
@@ -66,3 +73,4 @@ appending to this document.
 View my publicly-auditable identity here: https://keybase.io/ex0dus
 
 ==================================================================
+
