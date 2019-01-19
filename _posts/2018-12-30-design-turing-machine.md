@@ -1,5 +1,5 @@
 ---
-title: Design and Implementation of a Universal Turing Machine
+title: Design and Implementation of a Turing Machine
 date: 2018-12-30
 layout: post
 ---
@@ -236,6 +236,3 @@ mod tests {
     }
 }
 ```
-
-__TODO__: explain UTM emulation
-
