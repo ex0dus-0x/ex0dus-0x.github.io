@@ -1,5 +1,5 @@
 # Site Info
-title:              "Alan Cao | Passionate Systems Engineer and Researcher"
+title:              "Alan Cao | Security Engineer and Researcher"
 description:        "Personal Portfolio and Blog"
 author_name:        "Alan Cao"
 logo_url:           https://avatars2.githubusercontent.com/u/17283637?v=4
@@ -7,10 +7,10 @@ logo_url:           https://avatars2.githubusercontent.com/u/17283637?v=4
 # Site Settings
 url:                https://codemuch.tech
 theme:              'the-plain'
+remote_theme:       heiswayi/the-plain
 baseurl:
 permalink:          /:title # Post permalink
 timezone:           America/New_York
-mathjax:            true
 
 # Site Build
 highlighter:        rouge
@@ -23,12 +23,12 @@ sass:
     style:          :compressed
 
 # Other Params
-include:            [ "robots.txt" ]
 exclude:            [ "LICENSE", "README.md", "CNAME", "vendor", "Gemfile", "script" ]
 plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-remote-theme
 
 defaults:
   -
