@@ -1,5 +1,5 @@
 ---
-title: System Call Representation for Intrusion Detection Systems
+title: System Call Sequencing for Intrusion Detection Systems
 date: 2018-09-26
 layout: post
 ---
@@ -66,7 +66,7 @@ rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
 
 Every security researcher / pentester is familiar with `strace`. It creates a tracer and tracee process, and utilizes `ptrace` in order to halt the tracee process in kernelspace when entering/exiting a system call, enabling the tracer to examine the contents of the syscall. This is a beautiful tool for IDSes, because we are able to actually grab a sequence of system calls of a process in order to determine if anomalous behavior is present.
 
-But now, this is where we come across a problem. `strace` output is just a bunch of random jargon! In fact, a great deal of the actual `strace` source code is just logic on how to print system call information to `stderr` (IDK why it's not `stdout`). This now presents a problem with sequencing. How can we create reliable representations of `strace` that can be plugged into an intrusion detection system to create reliable anomaly models?
+But now, this is where we come across a problem. `strace` output is raw and disorganized! In fact, a great deal of the actual `strace` source code is just logic on how to print system call information to `stderr` (IDK why it's not `stdout`). This now presents a problem with sequencing. How can we create reliable representations of `strace` that can be plugged into an intrusion detection system to create reliable anomaly models?
 
 ## The Approach
 
@@ -76,7 +76,7 @@ Introducing [`posix-omni-parser`](https://github.com/ssavvides/posix-omni-parser
 
 Let's extend this library for printing out our `strace` as JSON.
 
-We will be modifying the `Trace` object in the library. This class provides the main interface for capturing and extracting information from a trace file, and should be the main interface that developers use when generating system call representation. Our ideal script would appear as so:
+We will be modifying the `Trace` object in the library. This object provides the main interface for capturing and extracting information from a trace file, and should be the main interface that developers use when generating system call representation. Our ideal script would appear as so:
 
 ```python
 from posix_omni_parser import Trace
