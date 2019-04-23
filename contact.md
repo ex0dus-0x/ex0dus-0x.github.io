@@ -3,8 +3,6 @@ layout: page
 title: Contact
 ---
 
-<section>
-
 Reaching out to me is simple. Here are many links to the many different
 sites that I am associated with:
 
@@ -21,5 +19,3 @@ sites that I am associated with:
     }
 }
 ```
-
-</section>
