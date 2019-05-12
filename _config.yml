@@ -1,6 +1,6 @@
 # Site Info
-title:              "Alan Cao | "
-description:        "Personal Portfolio and Blog"
+title:              "codemuch.tech | "
+description:        "personal site"
 author_name:        "Alan Cao"
 logo_url:           https://avatars2.githubusercontent.com/u/17283637?v=4
 
@@ -9,10 +9,12 @@ url:                https://codemuch.tech
 theme:              'the-plain'
 remote_theme:       heiswayi/the-plain
 baseurl:
-permalink:          /:title # Post permalink
+permalink:          /:title
 timezone:           America/New_York
 
 # Site Build
+host:               0.0.0.0
+port:               4040
 highlighter:        rouge
 markdown:           kramdown
 kramdown:

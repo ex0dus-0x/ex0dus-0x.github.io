@@ -181,8 +181,6 @@ ELF binaries that need to dynamically resolve functions from shared libraries ut
 
 RELRO, or RELocation Read-Only, ensures that during compilation, the linker should resolve dynamically linked functions during the beginning of execution, and that the GOT should be made read-only. We can check for this through the `PT_GNU_RELRO` program header, checking to see if it was made to be read-only.
 
-TODO: full/partial RELRO
-
 ```rust
     let relro_header: Option<ProgramHeader> = elf.program_headers
         .iter()
@@ -219,7 +217,7 @@ TODO: full/partial RELRO
 
 A stack canary is another type of stack smashing prevention mechanism by appending an extra bit to a function return address. This way, if an attacker attempts to perform an attack like ret2lib that overwrites the function return address, the stack canary bit is also overwritten. Checks are performed to see if this bit has been altered, and if so, the program abruptly segfaults/crashes rather than continue with execution.
 
-![binninja](/img/sec-1.png)
+![binninja](/assets/sec-1.png)
 
 This program was compiled with `-fstack-protector-all`. Notice the existence of the `__stack_chk_fail` routine and the check performed at the end of the function with the `je` instruction.
 
