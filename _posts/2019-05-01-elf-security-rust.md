@@ -179,7 +179,12 @@ Notice in this case how we utilize Rust's ability to create _iterators_, utilizi
 
 ELF binaries that need to dynamically resolve functions from shared libraries utilize the GOT (Global Offset Table) and PLT (Program Linkage Table) to perform relocations. However, these relocations are not performed until runttime due to "lazy binding". Therefore, if an attacker knows the memory offsets of the GOT/PLT, they can essentially perform an overwrite to change control flow to a malicious routine.
 
-RELRO, or RELocation Read-Only, ensures that during compilation, the linker should resolve dynamically linked functions during the beginning of execution, and that the GOT should be made read-only. We can check for this through the `PT_GNU_RELRO` program header, checking to see if it was made to be read-only.
+RELRO, or RELocation Read-Only, ensures that during compilation, the linker should resolve dynamically linked functions during the beginning of execution, (also known as __lazy binding__) and that the GOT should be made read-only after. This is supported by default with most compilers/linkers, and is also known as _partial RELRO_.
+
+We can check for this through the `PT_GNU_RELRO` program header, checking to see if it was made to be read-only.
+
+We can also check to the see if the ELF binary supports _full_ RELRO. With _full_ RELRO, lazy binding is now thrown out of the window, as we make the entirety of the GOT read-only, and that all symbols and addresses are resolved _before_ execution. We can check for this using the `DT_BIND_NOW` dynamic linker symbol, which tells our linker to ensure we have _full RELRO_ and that we should resolve our symbols before actual execution.
+
 
 ```rust
     let relro_header: Option<ProgramHeader> = elf.program_headers
