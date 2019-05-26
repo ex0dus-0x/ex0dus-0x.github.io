@@ -71,7 +71,7 @@ typedef struct {
 
 When parsed and outputted in `Debug` format, the executable header can be seen as so:
 
-```json
+```
 Elf {
     header: Header {
         e_ident: [127, 69, 76, 70, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -95,7 +95,6 @@ Elf {
 While each `struct` field represents a numerical data type, libgoblin provides a set of helpers that ensures that we can properly convert constant values into string representations. So let's put that to work as we actually parse out some basic binary information:
 
 ```rust
-
 // binary name
 println!("Binary name: {}", binary);
 
@@ -136,7 +135,6 @@ pub fn et_to_str(et: u16) -> &'static str {
 Thus, we can use this in order to provide some information back to the user:
 
 ```rust
-
 // binary type
 println!("Binary type: {}", &header::et_to_str(elf.header.e_type));
 ```
@@ -156,19 +154,19 @@ One of the simplest security features we can check first is for an __executable 
 To check for this, we can refer to the `PT_GNU_STACK` program header and ensure that the flag set for that segment is read-write only.
 
 ```rust
-    // NX bit is set when GNU_STACK is read/write only (RW)
-    let stack_header: Option<ProgramHeader> = elf.program_headers
-        .iter()
-        .find(|ph| program_header::pt_to_str(ph.p_type) == "PT_GNU_STACK")
-        .cloned();
+// NX bit is set when GNU_STACK is read/write only (RW)
+let stack_header: Option<ProgramHeader> = elf.program_headers
+    .iter()
+    .find(|ph| program_header::pt_to_str(ph.p_type) == "PT_GNU_STACK")
+    .cloned();
 
-    if let Some(sh) = stack_header {
-        if sh.p_flags == 6 {
-        	println!("Enabled");
-		}
-    } else {
-    	println!("Disabled");
+if let Some(sh) = stack_header {
+    if sh.p_flags == 6 {
+        println!("Enabled");
 	}
+} else {
+    println!("Disabled");
+}
 ```
 
 Notice in this case how we utilize Rust's ability to create _iterators_, utilizing `std::iter::Iterator::find`, which takes a closure that tests a predicate. The ability to parse
@@ -187,33 +185,33 @@ We can also check to the see if the ELF binary supports _full_ RELRO. With _full
 
 
 ```rust
-    let relro_header: Option<ProgramHeader> = elf.program_headers
-        .iter()
-        .find(|ph| program_header::pt_to_str(ph.p_type) == "PT_GNU_RELRO")
-        .cloned();
+let relro_header: Option<ProgramHeader> = elf.program_headers
+    .iter()
+    .find(|ph| program_header::pt_to_str(ph.p_type) == "PT_GNU_RELRO")
+    .cloned();
 
-    if let Some(rh) = relro_header {
+if let Some(rh) = relro_header {
 
-		// 4 => read-only
-        if rh.p_flags == 4 {
+	// 4 => read-only
+    if rh.p_flags == 4 {
 
-            // check for full/partial RELRO support
-            if let Some(segs) = elf.dynamic {
-                let dyn_seg: Option<Dyn> = segs.dyns
-                    .iter()
-                    .find(|tag| tag_to_str(tag.d_tag) == "DT_BIND_NOW")
-                    .cloned();
+        // check for full/partial RELRO support
+        if let Some(segs) = elf.dynamic {
+            let dyn_seg: Option<Dyn> = segs.dyns
+                .iter()
+                .find(|tag| tag_to_str(tag.d_tag) == "DT_BIND_NOW")
+                .cloned();
 
-                if let None = dyn_seg {
-                	println!("Partial RELRO enabled");
-				} else {
-                	println!("Full RELRO enabled");
-				}
-            }
+            if let None = dyn_seg {
+                println!("Partial RELRO enabled");
+			} else {
+                println!("Full RELRO enabled");
+			}
         }
-    } else {
-    	println!("No RELRO enabled");
-	}
+    }
+} else {
+    println!("No RELRO enabled");
+}
 ```
 
 > Read more: https://blog.osiris.cyber.nyu.edu/exploitation%20mitigation%20techniques/exploitation%20techniques/2011/06/02/relro-relocation-read-only/
@@ -229,17 +227,17 @@ This program was compiled with `-fstack-protector-all`. Notice the existence of 
 Instead of parsing segments to determine if this check is performed, we can instead parse a section, specifically `.strtab` for the `__stack_chk_fail` symbol. `.strtab` is the string table section, which stores null-terminated strings referenced to by the `.symtab` (symbol table) section. These symbols can be resolved statically, rather than relying on lazy binding with dynamic loading.
 
 ```rust
-    let strtab = elf.strtab.to_vec().unwrap();
-    let str_sym: Option<_> = strtab
-        .iter()
-        .find(|sym| sym.contains("__stack_chk_fail"))
-        .cloned();
+let strtab = elf.strtab.to_vec().unwrap();
+let str_sym: Option<_> = strtab
+    .iter()
+    .find(|sym| sym.contains("__stack_chk_fail"))
+    .cloned();
 
-    if let None = str_sym {
-        println!("Stack canary not enabled");
-    } else {
-    	println!("Stack canary enabled");
-	}
+if let None = str_sym {
+    println!("Stack canary not enabled");
+} else {
+    println!("Stack canary enabled");
+}
 ```
 
 > Read more: https://savita92.wordpress.com/2012/11/03/stack-canary/
