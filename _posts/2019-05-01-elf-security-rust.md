@@ -8,7 +8,7 @@ I released [binsec](https://github.com/ex0dus-0x/binsec), a simple utility that 
 
 ## Quick Primer into ELF
 
-> NOTE: I won't be providing a detailed look into the nature of ELF and its role in compilation and execution, but rather a larger abstract idea that it fulfills. To read more about ELF: https://linux-audit.com/elf-binaries-on-linux-understanding-and-analysis/
+> NOTE: I won't be providing a detailed look into the nature of ELF and its role in during compilation and program execution (ie with dynamic linking), but rather a larger abstract idea that it fulfills.
 
 At the end of the day, binaries are just files written in a special format. This format, ELF, is interpreted by the kernel, which employs a set of handlers that determines what to do. The ELF format includes various information about where the stack resides, memory mappings, relocations to symbols in dynamically loaded libraries, etc.
 
@@ -54,6 +54,8 @@ fn main() {
     println!("{:#?}", elf);
 }
 ```
+
+> To read more about ELF: https://linux-audit.com/elf-binaries-on-linux-understanding-and-analysis/
 
 Before we dive right into detecting for security features, we can get our feet wet first with the ELF _executable header_, which provides basic information about about the binary filetype, architecture, etc. The (shortened) type definition as a C `struct` for `Elf64_Ehdr` appears as so:
 
@@ -162,14 +164,14 @@ let stack_header: Option<ProgramHeader> = elf.program_headers
 
 if let Some(sh) = stack_header {
     if sh.p_flags == 6 {
-        println!("Enabled");
+        println!("NX bit Enabled");
+	} else {
+		println!("NX bit Disabled");
 	}
-} else {
-    println!("Disabled");
 }
 ```
 
-Notice in this case how we utilize Rust's ability to create _iterators_, utilizing `std::iter::Iterator::find`, which takes a closure that tests a predicate. The ability to parse
+Notice in this case how we utilize Rust's _iterators_, utilizing `std::iter::Iterator::find` to initialize closure that tests a predicate. Iterators are incredibly advantageous for processing items, especially those that are structured, like program headers in ELF binaries!
 
 > Read more: https://www.usenix.org/legacy/publications/library/proceedings/sec98/full_papers/cowan/cowan_html/node21.html
 
@@ -195,20 +197,20 @@ if let Some(rh) = relro_header {
 	// 4 => read-only
     if rh.p_flags == 4 {
 
-        // check for full/partial RELRO support
-        if let Some(segs) = elf.dynamic {
-            let dyn_seg: Option<Dyn> = segs.dyns
-                .iter()
-                .find(|tag| tag_to_str(tag.d_tag) == "DT_BIND_NOW")
-                .cloned();
+		// check for full/partial RELRO support
+		if let Some(segs) = elf.dynamic {
+			let dyn_seg: Option<Dyn> = segs.dyns
+				.iter()
+				.find(|tag| tag_to_str(tag.d_tag) == "DT_BIND_NOW")
+				.cloned();
 
-            if let None = dyn_seg {
-                println!("Partial RELRO enabled");
+			if let None = dyn_seg {
+				println!("Partial RELRO enabled");
 			} else {
-                println!("Full RELRO enabled");
+				println!("Full RELRO enabled");
 			}
-        }
-    }
+		}
+	}
 } else {
     println!("No RELRO enabled");
 }
