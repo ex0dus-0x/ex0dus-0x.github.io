@@ -9,7 +9,7 @@ sites that I am associated with:
 ```
 "contact": {
     "site": "https://codemuch.tech",
-    "email": "ex0dus at domain",
+    "email": "firstname.lastname at nyu.edu",
     "github": "ex0dus-0x",
     "linkedin": "alan-cao-7b9bb6bb",
     "twitter": "@AlanCao5",
