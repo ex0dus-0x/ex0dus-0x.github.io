@@ -7,6 +7,7 @@ group :jekyll_plugins do
     gem 'jekyll-remote-theme'
 end
 
+gem 'bundler'
 gem 'html-proofer'
 gem 'tzinfo'
 gem 'tzinfo-data'
