@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+    Forty by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+  -->
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <!-- Main -->
+    <div id="main" class="alt">
+
+      <!-- One -->
+      <section id="one">
+	<div class="inner">
+          {% for post in site.posts %}
+        {% unless post.next %}
+            <h3> {{ post.date | date: '%Y' }}</h3>
+        {% else %}
+            {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+            {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+            {% if year != nyear %}
+                <h3 class="code">{{ post.date | date: '%Y' }}</h3>
+            {% endif %}
+        {% endunless %}
+	  {% if post.title != 404 %}
+	  <header class="major">
+	    {% if post.date %}<p style="opacity: 0.5;">{{ post.date | date: "%b %d" }}</p>{% endif %}
+	    <h4 style="opacity: 0.7;"><a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">{{ post.title }}</a></h4>
+	  </header>
+	  {% endif %}
+          {% endfor %}
+	</div>
+      </section>
+
+    </div>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>

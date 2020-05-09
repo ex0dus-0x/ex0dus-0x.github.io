@@ -1,5 +1,5 @@
 ---
-title: Build Your Own Linux Distro
+title: Build Your Own Linux Distribution
 date: 2017-11-03 00:00:00 Z
 layout: post
 ---

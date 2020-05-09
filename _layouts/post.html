@@ -1,27 +1,38 @@
----
-layout: default
----
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
 
-<article>
-	<div class="center">
-		<time class="code">{{ page.date | date: '%B %-d, %Y' }}</time>
+{% include head.html %}
+
+<body>
+
+    {% include header.html %}
+
+
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+            <p style="opacity: 0.5;">{{ page.date | date: "%b %d, 20%y" }}</p>
+			<h1>{{ page.title }}</h1>
+            <p style="opacity: 0.5;"><b>Written By: </b>Alan</p>
+            <hr>
+		</header>
+		{{ content }}
 	</div>
-	<div class="divider"></div>
+</section>
 
-	{{ content }}
-
-</article>
-
-<div class="page-navigation code">
-	{% if page.next.url %}
-    <a class="next" href="{{ page.next.url | prepend: site.baseurl | prepend: site.url }}" title="NEXT: {{page.next.title}}">&lt;&lt;</a>
-	<span> &middot; </span>
-  	{% endif %}
-
-	<a class="home" href="{{ "/blog" | prepend: site.baseurl | prepend: site.url }}" title="Back to Index">Index</a>
-
-	{% if page.previous.url %}
-	<span> &middot; </span>
-    <a class="prev" href="{{ page.previous.url | prepend: site.baseurl | prepend: site.url }}" title="PREV: {{page.previous.title}}">&gt;&gt;</a>
-  	{% endif %}
 </div>
+
+    {% include footer.html %}
+
+</body>
+
+</html>

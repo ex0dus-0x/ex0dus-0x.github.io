@@ -1,50 +1,20 @@
-# Site Info
-title:              "my humble abode"
-description:        "personal site"
-author_name:        "Alan Cao"
-logo_url:           https://avatars2.githubusercontent.com/u/17283637?v=4
+# site settings
+title: codemuch
+email: ex0dus@codemuch.tech
+description: personal site
+baseurl: ""
+url: https://codemuch.tech
+author: alan
 
-# Site Settings
-url:                https://codemuch.tech
-theme:              'the-plain'
-remote_theme:       heiswayi/the-plain
-baseurl:
-permalink:          /:title
-timezone:           America/New_York
+tiles-source: pages
+tiles-count: 6
 
-# Site Build
-host:               0.0.0.0
-port:               4040
-highlighter:        rouge
-markdown:           kramdown
-kramdown:
-    input:            GFM
-    parse_block_html: true
+github_url: ex0dus-0x
+linkedin_url: https://www.linkedin.com/in/alan-cao-7b9bb6bb
+twitter_url: https://twitter.com/AlanCao5
+
+# build settings
+markdown: kramdown
 
 sass:
-    style:          :compressed
-
-# Other Params
-exclude:            [ "LICENSE", "README.md", "CNAME", "vendor", "Gemfile", "script" ]
-plugins:
-  - jekyll-sitemap
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-remote-theme
-
-defaults:
-  -
-    scope:
-      path:         ""
-    values:
-      layout:       "null"
-  -
-    scope:
-      type:         "pages"
-    values:
-      layout:       "page"
-  -
-    scope:
-      type:         "posts"
-    values:
-      layout:       "post"
+  style: compressed
