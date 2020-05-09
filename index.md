@@ -9,6 +9,8 @@ I'm a first-year student @ NYU and a security engineer. I've previously worked a
 
 I'm passionate about building secure and efficient systems that bridge together with research innovations. Previous professional and personal work I've done included endeavors in scalable [intrusion](https://ssl.engineering.nyu.edu/projects#crashsimulator) [detection](https://github.com/confine), [dynamic analysis automation](https://blog.trailofbits.com/2019/09/03/deepstate-now-supports-ensemble-fuzzing/), [cryptographic assurance](https://blog.trailofbits.com/2019/04/01/performing-concolic-execution-on-cryptographic-primitives/), and secure distributed systems. I'm looking forward to working more with artifical intelligence, privacy research, and minimalistic design.
 
+Feel free to [reach out](#contact) if have any specific inquiries! You can also find a copy of my resume [here](https://ex0dus.keybase.pub/AlanCaoResume.pdf).
+
 <br>
 <header class="major">
 	<h2>Notable Work</h2>
@@ -50,13 +52,13 @@ I'm passionate about building secure and efficient systems that bridge together 
 			<li><b><a href="https://github.com/ex0dus-0x/brute">brute</a></b> ~ bruteforce and credential stuffing framework</li>
 			<li><b><a href="https://github.com/ex0dus-0x/dedsploit">dedsploit</a></b> ~ network protocol auditing framework</li>
 			<li><b><a href="https://getnewton.surge.sh">newton.css</a></b> ~ experimental CSS typography framework for minimal design.</li>
-            <li><b><a href="https://imperium.surge.sh">imperium</a></b> ~ a customized Debian-based Linux distribution.</li>
+            <li><b><a href="https://imperium.surge.sh">imperium</a></b> ~ a personal customized Debian-based Linux distribution.</li>
 		</ul>
 	</div>
 </div>
 
 <br>
-<header class="major">
+<header class="major" id="contact">
 	<h2>Contact Me</h2>
 </header>
 
