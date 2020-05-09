@@ -15,9 +15,15 @@ twitter_url: https://twitter.com/AlanCao5
 
 # build settings
 markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
 
 sass:
   style: compressed
+
 
 # Other Params
 exclude:            [ "LICENSE", "README.md", "CNAME", "vendor", "Gemfile", "script" ]
