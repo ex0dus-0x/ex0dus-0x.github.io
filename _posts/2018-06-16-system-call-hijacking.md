@@ -1,5 +1,5 @@
 ---
-title: System Call Hijacking Using LKMs
+title: System Call Hijacking Using Linux Kernel Modules
 date: 2018-06-16 00:00:00 Z
 layout: post
 ---

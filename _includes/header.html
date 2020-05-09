@@ -1,16 +1,25 @@
-<aside class="logo">
+<!-- Wrapper -->
+<div id="wrapper">
 
-	{% assign link = '/' %}
-	{% assign prompt = 'Back to Index' %}
+<!-- Header -->
+<header id="header"{% if page.layout == "landing" %} class="alt style2"{% endif %}{% if page.layout == "home" %} class="alt"{% endif %}>
+	<nav>
+		<a href="#menu"></a>
+	</nav>
+</header>
 
-	<a href="{{ link | prepend: site.baseurl | prepend: site.url }}">
-		<img src="{{ site.logo_url }}" class="logo-avatar">
-	</a>
-	<span class="logo-prompt code">{{ prompt }}</span>
-
-</aside>
-
-<center>
-	<h2>{{ page.title }}</h2>
-	<br>
-</center>
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        {% for page in site.pages %}
+		    {% if page.layout == "home" %}
+		        <li><a href="{{ "" | absolute_url }}/">{{ page.title }}</a></li>
+	    	{% endif %}
+		{% endfor %}
+		{% for page in site.html_pages %}
+		    {% if page.layout != "home" and page.nav-menu == true %}
+		        <li><a href="{{ page.url | absolute_url }}">{{ page.title }}</a></li>
+		    {% endif %}
+		{% endfor %}
+	</ul>
+</nav>
