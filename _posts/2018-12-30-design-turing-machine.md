@@ -2,6 +2,8 @@
 title: Design and Implementation of a Turing Machine
 date: 2018-12-30
 layout: post
+image: https://pbs.twimg.com/media/DjBH2txXgAALVs3.jpg
+tags: [technical, rust, theory]
 ---
 
 ## Theory
@@ -23,7 +25,7 @@ Instructions fed as input to the machine are parsed and executed accordingly, an
 3. Conditionals - _i.e branching, if/else_
 4. Replicable - _i.e emulation, compiler bootstrapping_
 
-The fourth property is what leads to the idea of the _universal Turing machine_, where a Turing machine can replicate capabilities of another Turing machine. Of course, in modern times, this is apparent in our technology: hypervisor emulating other ISAs, virtual machines that emulate bytecode (i.e JVM with Java). 
+The fourth property is what leads to the idea of the _universal Turing machine_, where a Turing machine can replicate capabilities of another Turing machine. Of course, in modern times, this is apparent in our technology: hypervisor emulating other ISAs, virtual machines that emulate bytecode (i.e JVM with Java).
 
 As trivial as it already sounds, it becomes much weirder realizing that these machines are able to run any program imagined. On practical example is the esoteric yet Turing-complete language [Brainfuck](https://esolangs.org/wiki/brainfuck), which utilizes a tape and instruction set very similar to a Turing machine, and it has been able to do complex stuff like  [generate Mandelbrot images](https://www.youtube.com/watch?v=ABnBd0VZmPI). Furthermore, Brainfuck can also represent a _universal Turing machine_, as it demonstrates the ability to [self-compile](https://github.com/matslina/awib).
 
@@ -39,7 +41,7 @@ Our universal machine, `xb` can be represent by two cells, which can represent o
 
 whose initial contents are `B`.
 
-In actuality, we are more going to represent the design of `xb` as a finite state machine, where we have two states that can transition to one another based on instructions. 
+In actuality, we are more going to represent the design of `xb` as a finite state machine, where we have two states that can transition to one another based on instructions.
 
 ```
 +---+ ------> +---+
@@ -127,7 +129,7 @@ impl<'a> XbExt for XbMachine<'a> {
             let state = State {
                 current_char: vec_state[i].0,
                 current_state: vec_state[i].1
-            };  
+            };
 
             // Create the new Instruction from the second tuple provided
             let instruction = Instruction {
@@ -153,7 +155,7 @@ we can see how the execution loop plays out, pattern matching the instructions a
     pub fn xb_simulate(&mut self){
         // First, let's declare our tape as a vector
         let mut tape: Vec<char> = vec!['B', 'B'];
-        
+
         // Let's also declare an index, or head, for our tape.
         let mut head: isize = 0;
 
@@ -165,13 +167,13 @@ we can see how the execution loop plays out, pattern matching the instructions a
 
             // Iterate over the HashMap by unpacking the key (State) and value (Instruction)
             for (state, instruction) in self.iter() {
-                
+
                 // Set the default state as the initial symbol and the state
                 let index_key = (tape[head as usize], index_state);
 
                 // Check if a tuple comprising of the elements of a key is equal to index_key.
                 if (state.current_char, state.current_state) == index_key {
-                    
+
                     // Print the current state of the tape.
                     println!("{:?}", tape);
 
@@ -179,7 +181,7 @@ we can see how the execution loop plays out, pattern matching the instructions a
                     println!("{:?}, {:?} -> {:?}, {:?}, {:?}", state.current_char,
                         state.current_state, instruction.symbol, instruction.direction,
                         instruction.next_state);
-                    
+
                     // Now, set the cell in the tape to the specified symbol
                     tape[head as usize] = instruction.symbol;
 
@@ -213,7 +215,7 @@ Nice! Since I wrote this as a library crate, I decided to test this by writing a
 mod tests {
     #[test]
     fn it_works(){
-        
+
         // initialize our states
         let xb_states = vec![
             ('B', "s1"),

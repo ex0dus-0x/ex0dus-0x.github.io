@@ -7,7 +7,9 @@ description: student&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;security&nbsp;&nbsp;&nb
 
 I'm a first-year student @ NYU and a security engineer. I've previously worked at [Trail of Bits](https://www.trailofbits.com/) and [SSL](https://ssl.engineering.nyu.edu/). I specialize in program analysis and reverse engineering, cryptography, compilers, and security automation.
 
-I'm passionate about building secure and efficient systems that bridge together with research innovations. Previous professional and personal work I've done included endeavors in scalable [intrusion](https://ssl.engineering.nyu.edu/projects#crashsimulator) [detection](https://github.com/confine), [dynamic analysis automation](https://blog.trailofbits.com/2019/09/03/deepstate-now-supports-ensemble-fuzzing/), [cryptographic assurance](https://blog.trailofbits.com/2019/04/01/performing-concolic-execution-on-cryptographic-primitives/), and secure distributed systems. I'm looking forward to working more with artifical intelligence, privacy research, and minimalistic design.
+I'm passionate about building secure and efficient systems that bridge together with research innovations. Previous professional and personal work I've done included endeavors in scalable intrusion detection, fuzzing automation, and cryptographic assurance. I'm looking forward to working more with distributed systems, privacy research, and technical governance and policy.
+
+I also write [here](/blog)! Besides the usual security/software development articles,  I also (want to) publish about the intersectionaliy between security and culture, and technical governance.
 
 Feel free to [reach out](#contact) if have any specific inquiries! You can also find a copy of my resume [here](https://ex0dus.keybase.pub/AlanCaoResume.pdf).
 
@@ -28,7 +30,8 @@ Feel free to [reach out](#contact) if have any specific inquiries! You can also 
 	<div class="6u 12u$(small)">
 		<h4>Personal</h4>
 		<ul>
-			<li><b><a href="https://github.com/ex0dus-0x/doxbox">doxbox</a></b> ~ web-based OSINT and reconaissance toolkit.</li>
+			<li><b><a href="https://github.com/ex0dus-0x/brute">brute</a></b> ~ crowd-soruced credential stuffing engine for security professionals.</li>
+            <li><b><a href="https://github.com/ex0dus-0x/binsec">binsec</a></b> ~ Swiss Army Tool for Binary (In)security</li>
 			<li><b><a href="https://github.com/ex0dus-0x/microkv">microkv</a></b> ~ minimal persistent key-value store built for security.</li>
 			<li><b><a href="https://github.com/ex0dus-0x/confine">confine</a></b> ~ binary application firewall written in Rust.</li>
 			<li><i>... and more on <a href="https://github.com/ex0dus-0x/">Github</a>!</i></li>
@@ -40,19 +43,17 @@ Feel free to [reach out](#contact) if have any specific inquiries! You can also 
 	<div class="6u 12u$(small)">
 		<h4>Research</h4>
 		<ul>
-			<li><b>ffuzz</b> ~ grammar fuzzing infrastructure (stealth mode)</li>
+			<li><b>ffuzz</b> ~ grammar fuzzing architecture (stealth mode)</li>
 			<li><b>CrashSimulator</b> ~ crash-replay system that performs mutation analysis through anomaly injection.</li>
-			<li><b><a href="https://github.com/ex0dus-0x/PolyPasswordHasher-Rust">PolyPasswordHasher.rs</a></b> ~ Rust implementation for a secret sharing-based password database.</li>
-			<li><b><a href="https://github.com/ex0dus-0x/ghostpass">Ghostpass</a></b> ~ distributed password management protocol based on textual steganography.</li>
+			<li><b><a href="https://github.com/ex0dus-0x/PolyPasswordHasher-Rust">PolyPasswordHasher.rs</a></b> ~ Rust implementation for the PolyPasswordHasher secret sharing-based password database.</li>
+			<li><b><a href="https://github.com/ex0dus-0x/ghostpass">Ghostpass</a></b> ~ novel(ty) cryptosystem based on textual steganography and plausible deniability.</li>
 		</ul>
 	</div>
 	<div class="6u 12u$(small)">
 		<h4>Misc. & Archived</h4>
 		<ul>
-			<li><b><a href="https://github.com/ex0dus-0x/brute">brute</a></b> ~ bruteforce and credential stuffing framework</li>
-			<li><b><a href="https://github.com/ex0dus-0x/dedsploit">dedsploit</a></b> ~ network protocol auditing framework</li>
+			<li><b><a href="https://github.com/ex0dus-0x/doxbox">doxbox</a></b> ~ web-based OSINT and reconaissance toolkit.</li>
 			<li><b><a href="https://getnewton.surge.sh">newton.css</a></b> ~ experimental CSS typography framework for minimal design.</li>
-            <li><b><a href="https://imperium.surge.sh">imperium</a></b> ~ a personal customized Debian-based Linux distribution.</li>
 		</ul>
 	</div>
 </div>

@@ -2,6 +2,8 @@
 title: Using the Python C API to Interface CPUID Interactions
 date: 2018-07-20 00:00:00 Z
 layout: post
+image: https://66.media.tumblr.com/567a3ff811ee6f17d04179e0d1dd4795/tumblr_mvib1cT6dB1qize4uo1_500.gif
+tags: [technical, python, c, asm, systems]
 ---
 
 I recently had to implement an application that completes preemptive low-level system checks, such as ensuring that the CPU microarchitecture is correct before execution. This is done through the CPUID opcode instruction (not the software for benchmarking, but does some similar aspects), which provides processor details and features. However, the application was written in Python, and when I talk about _low-level_ stuff, its obviously going to be with C and Assembly. So today, let's take a look at how we can interface `CPUID` through C inline assembly, such that we are able to information back to our high-level Python application.

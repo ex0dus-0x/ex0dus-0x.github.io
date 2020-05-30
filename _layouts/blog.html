@@ -15,9 +15,13 @@
     <!-- Main -->
     <div id="main" class="alt">
 
-      <!-- One -->
-      <section id="one">
-	<div class="inner">
+        <!-- One -->
+        <section id="one">
+	        <div class="inner">
+
+            <h1> Thoughts </h1>
+            <hr>
+
           {% for post in site.posts %}
         {% unless post.next %}
             <h3> {{ post.date | date: '%Y' }}</h3>

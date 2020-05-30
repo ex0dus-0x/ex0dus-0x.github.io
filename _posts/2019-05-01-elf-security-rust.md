@@ -2,6 +2,8 @@
 title: Binary Security Detection with Rust
 date: 2019-05-01
 layout: post
+image: https://pbs.twimg.com/media/EP8M6ZaXsAENypy.jpg
+tags: [technical, rust, security, systems]
 ---
 
 I released [binsec](https://github.com/ex0dus-0x/binsec), a simple utility that checks for security features in Linux ELF binaries. It works similarly to `checksec.sh`, but is instead built in Rust and with the [libgoblin](https://github.com/m4b/goblin) library. By utilizing a systems language and a lower-level binary parser, we can learn quite a bit about the intricacies of ELF binaries and how they work, and construct static analysis tools to better test for security.
