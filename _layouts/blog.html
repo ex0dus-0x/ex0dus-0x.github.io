@@ -32,12 +32,15 @@
                 <h3 class="code">{{ post.date | date: '%Y' }}</h3>
             {% endif %}
         {% endunless %}
-	  {% if post.title != 404 %}
+
 	  <header class="major">
 	    {% if post.date %}<p style="opacity: 0.5;">{{ post.date | date: "%b %d" }}</p>{% endif %}
+        {% if post.xpost %}
+	    <h4 style="opacity: 0.7;"><a href="{{ post.xpost }}">[x-post] {{ post.title }}</a></h4>
+        {% elsif post.title != 404 %}
 	    <h4 style="opacity: 0.7;"><a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">{{ post.title }}</a></h4>
+        {% endif %}
 	  </header>
-	  {% endif %}
           {% endfor %}
 	</div>
       </section>
