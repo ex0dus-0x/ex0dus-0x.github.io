@@ -6,12 +6,14 @@ image: https://images.com
 tags: [technical, go, cryptography, privacy]
 ---
 
-When encumbering ourselves with the intrinisics of various cryptographic schemes and their threat models, we often construct scenarios in attempts to demonstrate various properties, dubbing characters like Alice and Bob, two people who want to securely and privately communicate. We also segregate malicious actors, such as Eve, who eavesdrops on the communication between the two parties, and Mallory, a much more malicious threat that actively tries to hinder the communication in some way.
+I've decided to built a proof-of-concept implementation of a cryptographic scheme that try to implement some of these interesting novelties, and see how cryptography can be pragmatically used to form our efforts in building safer and privacy-preserving technologies.
 
-However, what we've never seemed to anticipate for is the real world, where a character like Mallory isn't just your friendly neigboorhood black-hat hacker, but a threat actor as part of an authoritative and political institution that have capabilities to coerce its people. If perfect secrecy is preserved _as long as_ Alice and Bob don't reveal anything about their secret keys, then what wouldn't incentivize Dystopian Government X to physically force it out of them?
-
-In the light of all this, I've decided to build up a proof-of-concept implementation of
+__Ghostpass__ is a secret management scheme that helps cryptographically secure information, whether they are authentication credentials and secrets in the form of _fields_, or genericized data in the form of _notes_. These
 
 ## Textual Steganography
 
 ## Plausible Deniability
+
+While we can threat model malicious actors passively to be, we still haven't accounted for Mallory, a dedicated and sophisticated state actor that has knowledge of the underlying steganographic scheme. So let's say that Mallory has built a file scanner, which he can use locally and
+
+This is where _plausible deniability_ comes into play in order to help mitigate that.
