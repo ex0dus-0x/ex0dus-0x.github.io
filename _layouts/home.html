@@ -18,7 +18,11 @@ home: true
 <article class="post-item">
   <span class="post-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
   <h4 class="post-item-title">
+    {% if post.xpost %}
+    <a href="{{ post.xpost }}">{{ post.title | escape }}</a>
+    {% elsif post.title != 404 %}
     <a href="{{ post.url }}">{{ post.title | escape }}</a>
+    {% endif %}
   </h4>
 </article>
 {%- endfor -%}
