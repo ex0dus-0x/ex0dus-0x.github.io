@@ -9,19 +9,21 @@ tags:
 - python
 
 ---
-During the quarantine, I became pretty interested in how we can automate reverse engineering on applications and malware, and decided to commit some time to implement a web-based platform that helps automatically reverse and assess Python-based executables, called [boa](http://boa.codemuch.tech).  **boa** helps security researchers extrapolate original and readable Python source from compiled and packed executables, and runs automated security checks to detect for low-hanging bugs, leaked secrets, etc.
+During the quarantine, I became pretty interested in how we can automate reverse engineering, and decided to commit some time to implement a platform that can help automatically reverse and assess Python-compile executables, called [boa](http://boa.codemuch.tech).  **boa** helps security researchers extrapolate original and readable Python source from compiled and packed executables, and runs automated security checks to detect for low-hanging bugs, leaked secrets, etc.
 
-While there is quite a number of things that I have backlogged in regards to its development, I'm really happy to see the progress made on it so far, and the functionality that has been implemented in the 2+ weeks I spent implementing its first revision!
+While there is quite a number of things that I have backlogged in regards to its development, I'm really happy to see the progress made on it so far in the initial revision, and would love to talk about how it would be used!
 
-For hackers and reverse engineers, the routinization of processes and workflows that is often undertaken when manually disassembling applications may be streneous, and given our experience and ability to persist, our results may not often be _precise_. This, as a result, often encumbers the work done needed to gain visibility into a program or process, needing more time to inquire and quantify about the target.
+For hackers and reverse engineers, the routinization of processes and workflows that is often undertaken when manually disassembling applications may be strenuous, and given our experience and ability to persist, our results may not often be _precise_. This, as a result, often encumbers the work done needed to gain visibility into a program or process, needing more time to inquire and quantify about the target.
 
 Tooling like FireEye's [FLARE](https://github.com/FireEye/FLARE) VM for Windows-based reversing and security research, and the well-known [pwntools](https://github.com/Gallopsled/pwntools) framework  was a big inspiration for **boa**'s design, as they enabled hackers to reverse and find bugs quickly, not spend time excavating the Internet for tooling. So as a result, I decided to build **boa** to strip away the levels of abstractions that often encapsulate the functionality of programs we want to analyze.
 
-## Python Reversing
+## Python Intrinsics
 
-When starting out with my initial implementation, I wanted to scope down and start small with **boa**, and since I dedicated some time to reverse Python-based executables, this was the perfect ecosytem for me to target with my platform, as it is much more simpler and concise to analyze.
+Python is a language that we all know and love, with one big reason being it's ability to be executed generally agnostically, as long as an interpreter exists on the host platform. Therefore, applications and even malwares (check out \[SeaDuke\]([https://unit42.paloaltonetworks.com/unit-42-technical-analysis-seaduke/](https://unit42.paloaltonetworks.com/unit-42-technical-analysis-seaduke/ "https://unit42.paloaltonetworks.com/unit-42-technical-analysis-seaduke/")), a sample found in the DNC hack) have been adopting capabilities to pack their code and resources with an interpreter into a final executable for a given platform.
 
-The CPython runtime interprets original source code, but rather than spitting out optimized native machine code, it generates its own intermediate bytecode format, which is easier to concisely recover a source code. Notice the disassmbled bytecode of a lambda function in the following snippet, and its stack-based and reduced instruction set:
+### Compiling Python
+
+The CPython runtime interprets original source code, but rather than spitting out optimized native machine code, it generates its own intermediate bytecode format, which is easier to concisely recover a source code. Notice the disassembled bytecode of a lambda function in the following snippet, and its stack-based and reduced instruction set:
 
 ```python
 >>> import dis
@@ -53,7 +55,7 @@ Disassembly of <code object <listcomp> at 0x7f8dd50857c0, file "<stdin>", line 1
         >>   24 RETURN_VALUE
 ```
 
-Given such a simple instruction set and a constrained runtime, it is no surprise that the tooling for decompiling bytecode files is very precise. The most commonly used decompiler for bytecode today is `uncompyle6`, which has been well-maintained for most Python versions. Here it is in action decompiling the compiled bytecode for **boa**'s `SASTEngine` implementation:
+Given such a simple instruction set and a constrained runtime, it is no surprise that the tooling for decompiling bytecode files is very precise. The most commonly used decompiler for bytecode today is `uncompyle6`, which has been well-maintained for most Python versions. Here it is in action decompiling sample source code. Notice that unlike most of the decompilers we work with that only approximate behavior, `uncomplye6` is able to fully recover all syntax, even the comment annotations themselves:
 
 ```python
 $ pip install uncomyple6
@@ -87,13 +89,15 @@ class SASTEngine(object):
 ...
 ```
 
-Bytecode files (which end in `.pyc`) are often the by-products you see and `.gitignore` in Python projects with custom modules, but when compiling into a packaged executable, they are crucially important. Python supports packaging executables using several variants of "packers", which help turn a project into an executable that can be run on a target operating system. **boa** provides unpacking support to multiple packers, with the most effort dedicated to **PyInstaller**, probably the most commonly used packer for cross-platform applications, which we'll take a look at. Other support has been added slowly for other packers such as **py2exe**, and **cx_Freeze**.
+### Executable Packing
+
+Bytecode files (which end in `.pyc`) are often the by-products you see and `.gitignore` in Python projects with custom modules, but when compiling into a packaged executable, they are crucially important. As mentioned, the Python ecosystem supports packaging executables using several variants of "packers", which help turn a project into an executable that can be run on a target operating system. **boa** provides unpacking support to multiple packers, with the most effort dedicated to **PyInstaller**, probably the most commonly used packer for cross-platform applications, which we'll take a look at. Other support has been added slowly for other packers such as **py2exe**, and **cx_Freeze**.
 
 Like many other known packers, PyInstaller "freezes" the compiled bytecode files (or bundled `.egg`s)  generated from source, including both external and standard library dependencies, converting them into Python archives (`.pyz` files) and injects them together into a final executable, with `TOC` (table of contents) objects acting as a headers to those locations. Once the executable is run, the environment is setup such that the external dependencies are recovered and loaded into `sys.path` using import hooks, and the functionality implemented at the entry point is run.
 
 To support unpacking for PyInstaller-based executables, **boa** interfaces and re-implements the functionality from the well-known [**pyinstxtractor**](https://github.com/extremecoders-re/pyinstxtractor) by the popular @extremecoders-re, which implements the unpacking process of Python archives, and recovering any bytecode paths and other important resources.
 
-> Read more about PyInstaller internals here: https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html
+> Read more about PyInstaller internals here: \[https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html\]([https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html](https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html) "https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html"))
 
 ## Boa Intrinisics
 
@@ -170,7 +174,7 @@ Then, if it is detected that the target is both Python-compiled and a valid exec
 
 Once we filter out relevant source files by checking against a dataset of known Python dependencies, a `BoaDecompiler`, which is simply an abstraction over the `uncompyle6` tool's API, helps recover the source code, stores them on disk serverside, and uses the [Bandit](https://bandit.readthedocs.io/en/latest/) static analysis engine to find security issues. by leveraging Bandit, we can automatically discover any pressing security issues early on, which may provide primitives for further exploitation.
 
-At this stage, the analysis is complete, and we want to store the information recovered from this process. **boa** zips the workspace directory that it has been working with serverside, and uploads it to an AWS S3 bucket. The URL to the object, and any global metadata (ie updated total number of sources files recovered, issues found, etc.) will be updated to a SQLite database, which is used to retrieve the entry per analysis result in order to generate a report for the user when requested.
+At this stage, the analysis is complete, and we want to store the information recovered from this process. **boa** zips the workspace directory that it has been working with serverside, and uploads it to an AWS S3 bucket. The URL to the object, and any global metadata (i.e updated total number of sources files recovered, issues found, etc.) will be updated to a SQLite database, which is used to retrieve the entry per analysis result in order to generate a report for the user when requested.
 
 ### Demo
 
