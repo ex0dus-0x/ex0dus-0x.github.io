@@ -2,7 +2,7 @@
 title: Exploring a New Detection Evasion Technique on Linux
 date: 2021-02-25
 layout: post
-image: https://pbs.twimg.com/media/EP8M6ZaXsAENypy.jpg
+image: https://images.unsplash.com/photo-1610337673044-720471f83677?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80
 tags:
 - re
 - malware
@@ -190,9 +190,11 @@ TRACEPOINT_PROBE(raw_syscalls, sys_enter)
 }
 ```
 
-Time for our telemetry agent! We'll need to use the `python-bcc` package for this.
+Time for our telemetry agent! We'll need to use the `python-bcc` package for this. Our goal is to spawn a new child process that represents our target
+sample, but rather than using `ptrace` to attach and debug, we'll instead load our BPF program, continue the child, and poll for events, which will be
+handled by our callback!
 
-Follow along the comments!
+Follow along in the comments!
 
 ```python
 #!/usr/bin/env python3
@@ -208,6 +210,9 @@ import bcc
 # stores the eBPF C program we'll be running in the kernel
 EBPF_PROG = "bpf.c"
 
+
+# We need to first re-implement the event struct that was instantiated in the BPF program.
+# As noted previously, the `type_t` enum ends up being an `int` in our loader.
 class Event(ctypes.Structure):
     _fields_ = [ 
         ("pid", ctypes.c_int),
@@ -300,7 +305,7 @@ if __name__ == "__main__":
 Once both programs are done and in the same working directory, we can now launch it as follows:
 
 ```
-$ sudo python telemtry.py trace ./malware
+$ sudo python telemtry.py ./malware
 PID=4633  EVENT=execve  DATA=b'./a.out'
 We're fine!
 PID=4633  EVENT=ptrace
