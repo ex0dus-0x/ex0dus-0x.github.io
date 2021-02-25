@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="#fff" />
   <meta name="apple-mobile-web-app-title" content="{{ site.title }}" />
   <title>
-      Blog | {{ page.title | escape }}
+      {% if page.title %} {{ page.title | escape }} {% else %} Welcome! {% endif %}
   </title>
   <link
     rel="alternate"

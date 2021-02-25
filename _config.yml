@@ -20,7 +20,7 @@ author:
 # URL settings
 url: "https://codemuch.tech"
 baseurl:
-permalink: /:title/
+permalink: /:year/:month/:day/:title/
 
 # Collection setting
 collections:
