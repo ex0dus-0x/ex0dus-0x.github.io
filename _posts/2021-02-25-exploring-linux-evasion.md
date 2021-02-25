@@ -435,7 +435,7 @@ Awesome! Let's compile this and see this in action:
 
 As you can see, our sample has successfully been able to evade the eBPF monitor!
 
-That's all cool for our simple monitor, but what about tools being used in production in actual environments? Here's the anti-detection in action against `bpftrace`:
+That's all cool for our simple monitor, but what about tools being used in production in actual environments? Here's the anti-detection in action against the `bpftrace` tool (full screen the cast for both panes):
 
 <script id="asciicast-3rQbeHBoG7pExyMkt0tg0y21F" src="https://asciinema.org/a/3rQbeHBoG7pExyMkt0tg0y21F.js" async></script>
 
