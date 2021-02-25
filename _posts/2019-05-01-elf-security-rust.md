@@ -1,5 +1,5 @@
 ---
-title: Building a Binary Security Detector with Rust
+title: Basic Guide to Linux Exploit Mitigations and Building a Security Detector with Rust
 date: 2019-05-01
 layout: post
 image: https://pbs.twimg.com/media/EP8M6ZaXsAENypy.jpg
@@ -8,13 +8,13 @@ tags:
 - rust
 - security
 - systems
-
 ---
+
+> __UPDATE:__ binsec has evolved greatly since this post, working towards the goal of being a fully MITRE ATT&CK-compliant detections tool for any type of binary executable!
+
 I released [binsec](https://github.com/ex0dus-0x/binsec), a simple utility that checks for security features in Linux ELF binaries. It works similarly to `checksec.sh`, but is instead built in Rust and with the [libgoblin](https://github.com/m4b/goblin) library. By utilizing a systems language and a lower-level binary parser, we can learn quite a bit about the intricacies of ELF binaries and how they work, and construct static analysis tools to better test for security.
 
 ## Quick Primer into ELF
-
-> NOTE: I won't be providing a detailed look into the nature of ELF and its role in during compilation and program execution (ie with dynamic linking), but rather a larger abstract idea that it fulfills.
 
 At the end of the day, binaries are just files written in a special format. This format, ELF, is interpreted by the kernel, which employs a set of handlers that determines what to do. The ELF format includes various information about where the stack resides, memory mappings, relocations to symbols in dynamically loaded libraries, etc.
 
@@ -179,7 +179,7 @@ if let Some(sh) = stack_header {
 
 Notice in this case how we utilize Rust's _iterators_, utilizing `std::iter::Iterator::find` to initialize closure that tests a predicate. Iterators are incredibly advantageous for processing items, especially those that are structured, like program headers in ELF binaries!
 
-> Read more: https://www.usenix.org/legacy/publications/library/proceedings/sec98/full_papers/cowan/cowan_html/node21.html
+> Read more: [https://www.usenix.org/legacy/publications/library/proceedings/sec98/full_papers/cowan/cowan_html/node21.html](https://www.usenix.org/legacy/publications/library/proceedings/sec98/full_papers/cowan/cowan_html/node21.html)
 
 ### RELRO - RELocation Read-Only
 
@@ -222,13 +222,14 @@ if let Some(rh) = relro_header {
 }
 ```
 
-> Read more: https://blog.osiris.cyber.nyu.edu/exploitation%20mitigation%20techniques/exploitation%20techniques/2011/06/02/relro-relocation-read-only/
+> Read more: [https://blog.osiris.cyber.nyu.edu/exploitation%20mitigation%20techniques/exploitation%20techniques/2011/06/02/relro-relocation-read-only/](https://blog.osiris.cyber.nyu.edu/exploitation%20mitigation%20techniques/exploitation%20techniques/2011/06/02/relro-relocation-read-only/
+)
 
 ### Stack Canary
 
 A stack canary is another type of stack smashing prevention mechanism by appending an extra bit to a function return address. This way, if an attacker attempts to perform an attack like ret2lib that overwrites the function return address, the stack canary bit is also overwritten. Checks are performed to see if this bit has been altered, and if so, the program abruptly segfaults/crashes rather than continue with execution.
 
-![binninja](/assets/sec-1.png)
+![binninja](/assets/img/posts/stack-canary.png)
 
 This program was compiled with `-fstack-protector-all`. Notice the existence of the `__stack_chk_fail` routine and the check performed at the end of the function with the `je` instruction.
 
@@ -248,8 +249,8 @@ if let None = str_sym {
 }
 ```
 
-> Read more: https://savita92.wordpress.com/2012/11/03/stack-canary/
+> Read more: [https://savita92.wordpress.com/2012/11/03/stack-canary/](https://savita92.wordpress.com/2012/11/03/stack-canary/)
 
 ## Conclusion
 
-Rust is a language that supports programming under a functional paradigm while still being able to interact with low-level abstractions like binary files. This makes it an especially powerful and performant language, and I am excited to do more with it in regards to security and infrastructure.
+Rust is a language that supports powerful paradigms not present in C, while still being able to interact with low-level abstractions like binary files. This makes it an especially powerful and performant language, and I am excited to do more with it in regards to security and infrastructure.
