@@ -10,7 +10,7 @@ tags:
 - linux
 ---
 
-Here's a new approach I've been trying out for evading advanced detection capabilities on Linux environments (and vulnerable containers)!
+Here's a new approach I've been trying out for evading advanced detection capabilities on Linux environments!
 
 ---
 
@@ -100,13 +100,13 @@ But, rather than playing the cat-and-mouse game and employing these manual mitig
 
 For detection engineers, this makes it easy to automatically bypass classical anti-analysis techniques that all assume some type of parent debugger spawning and latching onto the malicious sample. Rather than spending time manually reverse-engineering, it's now possible to spawn threats and continue examining their capabilities without manual analyst intervention. So for security telemetry, rather than answering the question "how do I beat *x* anti-analysis technique", eBPF instead answers "how can I beat *all* the techniques automatically?".
 
-However, as cool and revolutionary this technology is, I want to present a new anti-analysis technique where a malware sample propagated in any Linux environment, host or container, can detect an active eBPF security monitor. But before we do that, let's dive a bit into writing eBPF programs, and build our own telemetry agent first!
+However, as cool and revolutionary this technology is, I want to present a new anti-analysis technique where a malware sample propagated in any Linux environment can detect an active eBPF security monitor. But before we do that, let's dive a bit into writing eBPF programs, and build our own telemetry agent first!
 
 ## I Spy Malicious Behavior
 
 As mentioned previously, eBPF programs are require a C program to be loaded and compiled to run in kernelspace. IOVisor's [bcc](https://github.com/iovisor/bcc) project helps provide a nice level of abstraction to do this, so we'll use their bindings to Python to implement our "loader".
 
-eBPF allows a developer to instrument program functionality through several tracing interfaces. These come in many forms, such uprobes (userspace function hooking), kprobes/kretprobes (kernel function hooking), and tracepoints. We'll be using *tracepoints* because they are much more versatile, and have been well-documented and seen strong support.
+eBPF allows a developer to instrument program functionality through several tracing interfaces. These come in many forms, such as uprobes (userspace function hooking), kprobes/kretprobes (kernel function hooking), and tracepoints. We'll be using *tracepoints* because they are much more versatile, and have been well-documented and seen strong support.
 
 **Tracepoints** are nice as they allow us to instrument and attach callbacks on a diverse set of system events, not just kernel and userspace functions. In fact, for our case, we'll attach to the `raw_syscall:sys_enter` tracepoint to handle every system call executed for a specific target (this is also neat way to implement a `strace` clone).
 
