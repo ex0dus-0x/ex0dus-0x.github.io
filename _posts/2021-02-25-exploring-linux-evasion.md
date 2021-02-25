@@ -455,9 +455,13 @@ Some monitoring tools (ie AquaSecurity's [tracee](https://github.com/aquasecurit
 
 `libsystemd` does NOT support static linking, as mentioned [here](https://lists.freedesktop.org/archives/systemd-devel/2014-March/017493.html), which may not be ideal for portable samples that want to propagate in minified environments. However, most of our operations involve just parsing the journal log, so implementing our own library and statically linking that should be trivial.
 
-**3. Mitigation**
+## Mitigations
 
-A smart sysadmin can fully mitigate if they explicitly configure `auditd` to *not* ingest and output BPF program events in their environments that they've deployed a monitoring solution for.
+All evasion / anti-debugging techniques have mitigations, and this one is no different. If you are a sysadmin
+deploying hosts or containers with the potential for getting attacked, and want to deploy monitoring capabilities onto them, here are suggestions:
+
+* For hosts: explicitly configure `auditd` to not ingest and output BPF program events that a malicious sample can snoop on.
+* For containers: containers are definitely safer against this type of attack, but be sure to consider _not_ setting up systemd / journal directly onto the container such that event logs are generated.
 
 ## Conclusions
 
