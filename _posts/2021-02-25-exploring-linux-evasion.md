@@ -98,7 +98,7 @@ But, rather than playing the cat-and-mouse game and employing these manual mitig
 
 For detection engineers, this makes it easy to automatically bypass classical anti-analysis techniques that all assume some type of parent debugger spawning and latching onto the malicious sample. Rather than spending time manually reverse-engineering, it's now possible to spawn threats and continue examining their capabilities without manual analyst intervention. So for security telemetry, rather than answering the question "how do I beat _x_ anti-analysis technique", eBPF instead answers "how can I beat _all_ the techniques automatically?".
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Sysmon for Linux based on eBPF is in the works.</p>&mdash; Mark Russinovich (@markrussinovich) <a href="[https://twitter.com/markrussinovich/status/1283039153920368651?ref_src=twsrc%5Etfw](https://twitter.com/markrussinovich/status/1283039153920368651?ref_src=twsrc%5Etfw "https://twitter.com/markrussinovich/status/1283039153920368651?ref_src=twsrc%5Etfw")">July 14, 2020</a></blockquote> <script async src="[https://platform.twitter.com/widgets.js](https://platform.twitter.com/widgets.js "https://platform.twitter.com/widgets.js")" charset="utf-8"></script>
+{% twitter https://twitter.com/markrussinovich/status/1283039153920368651 %}
 
 However, as cool and revolutionary this technology is, I want to present a new anti-analysis technique where a malware sample propagated in any Linux environment can detect an active eBPF security monitor. But before we do that, let's dive a bit into writing eBPF programs, and build our own telemetry agent first!
 
