@@ -4,10 +4,9 @@ date: 2019-05-01
 layout: post
 image: https://pbs.twimg.com/media/EP8M6ZaXsAENypy.jpg
 tags:
-- technical
 - rust
 - security
-- systems
+- binary analysis
 ---
 
 > __UPDATE:__ binsec has evolved greatly since this post, working towards the goal of being a fully MITRE ATT&CK-compliant detections tool for any type of binary executable!

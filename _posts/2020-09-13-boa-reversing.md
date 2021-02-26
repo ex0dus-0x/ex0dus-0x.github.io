@@ -3,11 +3,10 @@ title: Automated Python Black-Box Reverse Engineering with Boa
 date: 2020-09-13
 layout: post
 tags:
-- technical
+- malware
 - security
 - reversing
 - python
-
 ---
 During the quarantine, I became pretty interested in how we can automate reverse engineering, and decided to commit some time to implement a platform that can help automatically reverse and assess Python-compile executables, called [boa](http://boa.codemuch.tech).  **boa** helps security researchers extrapolate original and readable Python source from compiled and packed executables, and runs automated security checks to detect for low-hanging bugs, leaked secrets, etc.
 

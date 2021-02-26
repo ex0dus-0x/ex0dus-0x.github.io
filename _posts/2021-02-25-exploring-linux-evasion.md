@@ -4,7 +4,7 @@ date: 2021-02-25
 layout: post
 image: https://images.unsplash.com/photo-1610337673044-720471f83677?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80
 tags:
-- re
+- reversing
 - malware
 - security
 - linux
