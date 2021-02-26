@@ -98,13 +98,13 @@ But, rather than playing the cat-and-mouse game and employing these manual mitig
 
 For detection engineers, this makes it easy to automatically bypass classical anti-analysis techniques that all assume some type of parent debugger spawning and latching onto the malicious sample. Rather than spending time manually reverse-engineering, it's now possible to spawn threats and continue examining their capabilities without manual analyst intervention. So for security telemetry, rather than answering the question "how do I beat _x_ anti-analysis technique", eBPF instead answers "how can I beat _all_ the techniques automatically?".
 
-{% twitter https://twitter.com/markrussinovich/status/1283039153920368651 %}
+![tweet](/assets/img/posts/tweet.png)
 
 However, as cool and revolutionary this technology is, I want to present a new anti-analysis technique where a malware sample propagated in any Linux environment can detect an active eBPF security monitor. But before we do that, let's dive a bit into writing eBPF programs, and build our own telemetry agent first!
 
 ## I Spy Malicious Behavior
 
-As mentioned previously, eBPF programs are require a C program to be loaded and compiled to run in kernelspace. IOVisor's [bcc](https://github.com/iovisor/bcc) project helps provide a nice level of abstraction to do this, so we'll use their bindings to Python to implement our "loader".
+As mentioned previously, eBPF programs all require a C program to be loaded and compiled to run in kernelspace. IOVisor's [bcc](https://github.com/iovisor/bcc) project helps provide a nice level of abstraction to do this, so we'll use their bindings to Python to implement our "loader".
 
 eBPF allows a developer to instrument program functionality through several tracing interfaces. These come in many forms, such as uprobes (userspace function hooking), kprobes/kretprobes (kernel function hooking), and tracepoints. We'll be using _tracepoints_ because they are much more versatile, and have been well-documented and seen strong support.
 
@@ -362,7 +362,7 @@ int ebpf_evasion(void)
         return -1;
 ```
 
-Once we get the file descriptor to where we can read from the system journal, we'll start readng frm the tail, and applying filters to match ONLY on `MESSAGE` events originating from the `auditd` subsystem, as that's what is outputting the BPF load events:
+Once we get the file descriptor to where we can read from the system journal, we'll start readng from the tail, and applying filters to match ONLY on `MESSAGE` events originating from the `auditd` subsystem, as that's what is outputting the BPF load events:
 
 ```c
     /* seek to tail of event logs */
