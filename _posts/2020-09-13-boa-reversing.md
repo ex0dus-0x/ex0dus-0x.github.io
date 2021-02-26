@@ -97,7 +97,7 @@ Like many other known packers, PyInstaller "freezes" the compiled bytecode files
 
 To support unpacking for PyInstaller-based executables, **boa** interfaces and re-implements the functionality from the well-known [**pyinstxtractor**](https://github.com/extremecoders-re/pyinstxtractor) by the popular @extremecoders-re, which implements the unpacking process of Python archives, and recovering any bytecode paths and other important resources.
 
-> Read more about PyInstaller internals here: \[https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html\]([https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html](https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html) "https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html"))
+> Read more about PyInstaller internals here: [https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html](https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html).
 
 ## Boa Intrinisics
 
