@@ -8,11 +8,11 @@ tags:
 - malware
 - security
 - linux
----
 
+---
 Here's a new approach I've been trying out for evading advanced detection capabilities on Linux environments!
 
----
+***
 
 It's now common knowledge that many Linux-based malware implants employ techniques to detect debuggers tracing their execution, from the classical `PTRACE_TRACEME` technique to trying to catch a `SIGTRAP` before the debugger does:
 
@@ -43,62 +43,62 @@ DoMaliciousStuff();
 
 It's not news that these techniques can all be beaten manually by an analyst in a number of ways. For instance, the simple `ptrace` antidebug can be broken by setting a breakpoint at the `test rax, rax`  instruction after the `ptrace` syscall is made, and modifying the return value to continue without going to the branch where we're caught:
 
-```
-gef➤  r
-Starting program: /home/alan/Code/ebpf_evasion/a.out 
-Is that a debugger I see??
-[Inferior 1 (process 3068) exited with code 0377]
-gef➤  disass main
-Dump of assembler code for function main:
-   0x00000000004017f5 <+0>:	push   rbp
-   0x00000000004017f6 <+1>:	mov    rbp,rsp
-   0x00000000004017f9 <+4>:	sub    rsp,0x10
-   0x00000000004017fd <+8>:	mov    DWORD PTR [rbp-0x4],edi
-   0x0000000000401800 <+11>:	mov    QWORD PTR [rbp-0x10],rsi
-   0x0000000000401804 <+15>:	mov    ecx,0x0
-   0x0000000000401809 <+20>:	mov    edx,0x1
-   0x000000000040180e <+25>:	mov    esi,0x0
-   0x0000000000401813 <+30>:	mov    edi,0x0
-   0x0000000000401818 <+35>:	mov    eax,0x0
-   0x000000000040181d <+40>:	call   0x43fd60 <ptrace>
-   0x0000000000401822 <+45>:	test   rax,rax
-   0x0000000000401825 <+48>:	je     0x40183a <main+69>
-   0x0000000000401827 <+50>:	lea    rdi,[rip+0x817d6]        # 0x483004
-   0x000000000040182e <+57>:	call   0x40a8d0 <puts>
-   0x0000000000401833 <+62>:	mov    eax,0xffffffff
-   0x0000000000401838 <+67>:	jmp    0x40184b <main+86>
-   0x000000000040183a <+69>:	lea    rdi,[rip+0x817de]        # 0x48301f
-   0x0000000000401841 <+76>:	call   0x40a8d0 <puts>
-   0x0000000000401846 <+81>:	mov    eax,0x0
-   0x000000000040184b <+86>:	leave  
-   0x000000000040184c <+87>:	ret    
-End of assembler dump.
-gef➤  b *0x0000000000401822
-Breakpoint 1 at 0x401822
-gef➤  r
-Starting program: /home/alan/Code/ebpf_evasion/a.out 
+    gef➤  r
+    Starting program: /home/alan/Code/ebpf_evasion/a.out 
+    Is that a debugger I see??
+    [Inferior 1 (process 3068) exited with code 0377]
+    gef➤  disass main
+    Dump of assembler code for function main:
+       0x00000000004017f5 <+0>:	push   rbp
+       0x00000000004017f6 <+1>:	mov    rbp,rsp
+       0x00000000004017f9 <+4>:	sub    rsp,0x10
+       0x00000000004017fd <+8>:	mov    DWORD PTR [rbp-0x4],edi
+       0x0000000000401800 <+11>:	mov    QWORD PTR [rbp-0x10],rsi
+       0x0000000000401804 <+15>:	mov    ecx,0x0
+       0x0000000000401809 <+20>:	mov    edx,0x1
+       0x000000000040180e <+25>:	mov    esi,0x0
+       0x0000000000401813 <+30>:	mov    edi,0x0
+       0x0000000000401818 <+35>:	mov    eax,0x0
+       0x000000000040181d <+40>:	call   0x43fd60 <ptrace>
+       0x0000000000401822 <+45>:	test   rax,rax
+       0x0000000000401825 <+48>:	je     0x40183a <main+69>
+       0x0000000000401827 <+50>:	lea    rdi,[rip+0x817d6]        # 0x483004
+       0x000000000040182e <+57>:	call   0x40a8d0 <puts>
+       0x0000000000401833 <+62>:	mov    eax,0xffffffff
+       0x0000000000401838 <+67>:	jmp    0x40184b <main+86>
+       0x000000000040183a <+69>:	lea    rdi,[rip+0x817de]        # 0x48301f
+       0x0000000000401841 <+76>:	call   0x40a8d0 <puts>
+       0x0000000000401846 <+81>:	mov    eax,0x0
+       0x000000000040184b <+86>:	leave  
+       0x000000000040184c <+87>:	ret    
+    End of assembler dump.
+    gef➤  b *0x0000000000401822
+    Breakpoint 1 at 0x401822
+    gef➤  r
+    Starting program: /home/alan/Code/ebpf_evasion/a.out 
+    
+    Breakpoint 1, 0x0000000000401822 in main ()
+    
+    [ Legend: Modified register | Code | Heap | Stack | String ]
+    ───────────────────────────────────────────────────────────────────────────────────────── registers ────
+    $rax   : 0xffffffffffffffff
+    ...
+    ────────────────────────────────────────────────────────────────────────────────────────────────────────
+    gef➤  set $rax = 0
+    gef➤  c
+    Continuing.
+    We're fine!
+    [Inferior 1 (process 3072) exited normally]
 
-Breakpoint 1, 0x0000000000401822 in main ()
-
-[ Legend: Modified register | Code | Heap | Stack | String ]
-───────────────────────────────────────────────────────────────────────────────────────── registers ────
-$rax   : 0xffffffffffffffff
-...
-────────────────────────────────────────────────────────────────────────────────────────────────────────
-gef➤  set $rax = 0
-gef➤  c
-Continuing.
-We're fine!
-[Inferior 1 (process 3072) exited normally]
-```
-
-But, rather than playing the cat-and-mouse game and employing these manual mitigations against such techniques, many security engineers are now building up completely new detection tools, specifically in the container security realm, involving the *eBPF subsystem* to dynamically trace threats rather than use traditional debugging facilities. Let's explore this a bit more in detail and build up something of our own!
+But, rather than playing the cat-and-mouse game and employing these manual mitigations against such techniques, many security engineers are now building up completely new detection tools, specifically in the container security realm, involving the _eBPF subsystem_ to dynamically trace threats rather than use traditional debugging facilities. Let's explore this a bit more in detail and build up something of our own!
 
 ## eBPF and Threat Detection
 
-**eBPF**, or the Extended Berkeley Packet Filter, is a really cool mechanism introduced in the Linux kernel since 3.15 for both security and systems profiling. I won't go into in-depth details on its use, (check out awesome work [here](https://blog.aquasec.com/intro-ebpf-tracing-containers) and [here](https://jvns.ca/blog/2017/06/28/notes-on-bpf---ebpf/)), but it essentially exposes a new compilation target where C code written for it is converted to a specific bytecode format, and fed to the kernel subsystem to enforce some type of monitoring functionality across the entire OS, whether it's for tracing, networking filter, etc.
+**eBPF**, or the Extended Berkeley Packet Filter, is a really cool mechanism introduced in the Linux kernel since 3.15 for both security and systems profiling. I won't go into in-depth details on its use, (check out awesome work [here](https://blog.aquasec.com/intro-ebpf-tracing-containers) and [here](https://jvns.ca/blog/2017/06/28/notes-on-bpf---ebpf/)), but it essentially exposes a new compilation target where C code written for it is converted to a specific bytecode format, and fed to the kernel subsystem to enforce some type of monitoring functionality across the entire OS, whether it's for tracing, network filtering, etc.
 
-For detection engineers, this makes it easy to automatically bypass classical anti-analysis techniques that all assume some type of parent debugger spawning and latching onto the malicious sample. Rather than spending time manually reverse-engineering, it's now possible to spawn threats and continue examining their capabilities without manual analyst intervention. So for security telemetry, rather than answering the question "how do I beat *x* anti-analysis technique", eBPF instead answers "how can I beat *all* the techniques automatically?".
+For detection engineers, this makes it easy to automatically bypass classical anti-analysis techniques that all assume some type of parent debugger spawning and latching onto the malicious sample. Rather than spending time manually reverse-engineering, it's now possible to spawn threats and continue examining their capabilities without manual analyst intervention. So for security telemetry, rather than answering the question "how do I beat _x_ anti-analysis technique", eBPF instead answers "how can I beat _all_ the techniques automatically?".
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Sysmon for Linux based on eBPF is in the works.</p>&mdash; Mark Russinovich (@markrussinovich) <a href="[https://twitter.com/markrussinovich/status/1283039153920368651?ref_src=twsrc%5Etfw](https://twitter.com/markrussinovich/status/1283039153920368651?ref_src=twsrc%5Etfw "https://twitter.com/markrussinovich/status/1283039153920368651?ref_src=twsrc%5Etfw")">July 14, 2020</a></blockquote> <script async src="[https://platform.twitter.com/widgets.js](https://platform.twitter.com/widgets.js "https://platform.twitter.com/widgets.js")" charset="utf-8"></script>
 
 However, as cool and revolutionary this technology is, I want to present a new anti-analysis technique where a malware sample propagated in any Linux environment can detect an active eBPF security monitor. But before we do that, let's dive a bit into writing eBPF programs, and build our own telemetry agent first!
 
@@ -106,7 +106,7 @@ However, as cool and revolutionary this technology is, I want to present a new a
 
 As mentioned previously, eBPF programs are require a C program to be loaded and compiled to run in kernelspace. IOVisor's [bcc](https://github.com/iovisor/bcc) project helps provide a nice level of abstraction to do this, so we'll use their bindings to Python to implement our "loader".
 
-eBPF allows a developer to instrument program functionality through several tracing interfaces. These come in many forms, such as uprobes (userspace function hooking), kprobes/kretprobes (kernel function hooking), and tracepoints. We'll be using *tracepoints* because they are much more versatile, and have been well-documented and seen strong support.
+eBPF allows a developer to instrument program functionality through several tracing interfaces. These come in many forms, such as uprobes (userspace function hooking), kprobes/kretprobes (kernel function hooking), and tracepoints. We'll be using _tracepoints_ because they are much more versatile, and have been well-documented and seen strong support.
 
 **Tracepoints** are nice as they allow us to instrument and attach callbacks on a diverse set of system events, not just kernel and userspace functions. In fact, for our case, we'll attach to the `raw_syscall:sys_enter` tracepoint to handle every system call executed for a specific target (this is also neat way to implement a `strace` clone).
 
@@ -304,24 +304,22 @@ if __name__ == "__main__":
 
 Once both programs are done and in the same working directory, we can now launch it as follows:
 
-```
-$ sudo python telemtry.py ./malware
-PID=4633  EVENT=execve  DATA=b'./a.out'
-We're fine!
-PID=4633  EVENT=ptrace
-PID=4633  EVENT=write  DATA=b"We're fine!\n"
-```
+    $ sudo python telemtry.py ./malware
+    PID=4633  EVENT=execve  DATA=b'./a.out'
+    We're fine!
+    PID=4633  EVENT=ptrace
+    PID=4633  EVENT=write  DATA=b"We're fine!\n"
 
 Nice! The previous sample that we've created executed the `PTRACE_TRACEME` technique, but our telemetry agent was NOT caught!
 
 ## Defeating the Undefeatable
 
-With eBPF, anti-analysis certainly becomes a much harder endeavor, since programs are all loaded in privileged processes and tracing through the kernel, rather than attaching to specific processes. This means that an attacker cannot simply profile the monitor's memory mappings for allocated perf buffers in `procfs`, or fingerprint changes in `sysfs` pertaining to the BPF subsystem. 
+With eBPF, anti-analysis certainly becomes a much harder endeavor, since programs are all loaded in privileged processes and tracing through the kernel, rather than attaching to specific processes. This means that an attacker cannot simply profile the monitor's memory mappings for allocated perf buffers in `procfs`, or fingerprint changes in `sysfs` pertaining to the BPF subsystem.
 
 However, as I was doing research on this, one thing that intrigued me was [this thread](https://lore.kernel.org/bpf/20191120213011.GA6829@krava/T/) in the Linux kernel mailing list for BPF, which was a patch for logging BPF events to `systemd`! The author writes:
 
-- Allow for audit messages to be emitted upon BPF program load and unload for having a timeline of events. The load itself is in syscall context, so additional info about the process initiating
-the BPF prog creation can be logged and later directly correlated to the unload event.
+* Allow for audit messages to be emitted upon BPF program load and unload for having a timeline of events. The load itself is in syscall context, so additional info about the process initiating
+  the BPF prog creation can be logged and later directly correlated to the unload event.
 
 Hmmm, that's interesting! This means if we take a look at `journalctl`, say with the following command after we boot:
 
@@ -445,11 +443,11 @@ There a few limitations to this technique that I haven't fully addressed, but wi
 
 1. **Detecting Continuous Monitors**
 
-Some monitoring tools (ie AquaSecurity's [tracee](https://github.com/aquasecurity/tracee))  won't operate ideally like we would like it to, as their eBPF detection programs are instantiated immediately as a system/container boots, pushing the BPF load cycle far above the event trail. We'll delineate this behavior as *continuous monitoring,* and we'll keep writing anti-detection code for it out of scope for this blog post, as it does get more complicated, and is definitely something I would like to do in pure Golang instead of C/C++. However the technique would be built off of our previous code, and would go as follows:
+Some monitoring tools (ie AquaSecurity's [tracee](https://github.com/aquasecurity/tracee))  won't operate ideally like we would like it to, as their eBPF detection programs are instantiated immediately as a system/container boots, pushing the BPF load cycle far above the event trail. We'll delineate this behavior as _continuous monitoring,_ and we'll keep writing anti-detection code for it out of scope for this blog post, as it does get more complicated, and is definitely something I would like to do in pure Golang instead of C/C++. However the technique would be built off of our previous code, and would go as follows:
 
-- Rather than track a few events, look at all events for the current boot. This would involve adding another filter `_BOOT_ID=<BOOT_ID_STRING>` to parse out events *only* for the current boot session.
-- Create an associative array that stores entries for each unique eBPF program ID as a key, and a boolean representing a full load cycle (load AND unload).
-- At the end of parsing journal logs, check the associative arrays for any programs that have not completed a full load cycle, and are still undergoing execution.
+* Rather than track a few events, look at all events for the current boot. This would involve adding another filter `_BOOT_ID=<BOOT_ID_STRING>` to parse out events _only_ for the current boot session.
+* Create an associative array that stores entries for each unique eBPF program ID as a key, and a boolean representing a full load cycle (load AND unload).
+* At the end of parsing journal logs, check the associative arrays for any programs that have not completed a full load cycle, and are still undergoing execution.
 
 **2. Static Linking**
 
