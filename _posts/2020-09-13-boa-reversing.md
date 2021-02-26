@@ -18,7 +18,7 @@ Tooling like FireEye's [FLARE](https://github.com/FireEye/FLARE) VM for Windows-
 
 ## Python Intrinsics
 
-Python is a language that we all know and love, with one big reason being it's ability to be executed generally agnostically, as long as an interpreter exists on the host platform. Therefore, applications and even malwares (check out \[SeaDuke\]([https://unit42.paloaltonetworks.com/unit-42-technical-analysis-seaduke/](https://unit42.paloaltonetworks.com/unit-42-technical-analysis-seaduke/ "https://unit42.paloaltonetworks.com/unit-42-technical-analysis-seaduke/")), a sample found in the DNC hack) have been adopting capabilities to pack their code and resources with an interpreter into a final executable for a given platform.
+Python is a language that we all know and love, with one big reason being it's ability to be executed generally agnostically, as long as an interpreter exists on the host platform. Therefore, applications and even malwares (check out [SeaDuke](https://unit42.paloaltonetworks.com/unit-42-technical-analysis-seaduke/"), a sample found in the DNC hack) have been adopting capabilities to pack their code and resources with an interpreter into a final executable for a given platform.
 
 ### Compiling Python
 

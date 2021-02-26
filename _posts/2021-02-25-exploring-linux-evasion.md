@@ -409,6 +409,9 @@ At this point, we can start traversing and checking the recent entries! We'll us
         count--;
     }
 
+    /* cleanup */
+    sd_journal_close(j);
+
     /* if the previous entries contained a full load cycle, we can assume that the program was
      * detached and not monitoring us. However, if there is a load and no unload, we can assume it's
      * still watching us.
@@ -418,8 +421,6 @@ At this point, we can start traversing and checking the recent entries! We'll us
         return -1;
     }
 
-    /* cleanup */
-    sd_journal_close(j);
     printf("Whew! No one's looking! Let's do malicious stuff!\n");
     return 0;
 }
@@ -439,9 +440,14 @@ That's all cool for our simple monitor, but what about tools being used in produ
 
 ## Limitations
 
-There a few limitations to this technique that I haven't fully addressed, but will leave here to note for future red teamers and malware developers who want to implement and scale up this technique on their own:
+There a few limitations to this technique that I haven't fully addressed, but will leave here to note for red teamers and malware developers who want to implement and scale up this technique on their own:
 
-1. **Detecting Continuous Monitors**
+**1. Reliability**
+
+Given the limited visbility into daemons and processes launching eBPF programs, not all will specifically be doing host-based threat detection and process monitoring! An attacker should always properly construct a 
+threat model for the attack surfaces they are targeting, and appropriately fine-tune this method to minimize evading when it may clearly be a false positive!
+
+**2. Detecting Continuous Monitors**
 
 Some monitoring tools (ie AquaSecurity's [tracee](https://github.com/aquasecurity/tracee))  won't operate ideally like we would like it to, as their eBPF detection programs are instantiated immediately as a system/container boots, pushing the BPF load cycle far above the event trail. We'll delineate this behavior as _continuous monitoring,_ and we'll keep writing anti-detection code for it out of scope for this blog post, as it does get more complicated, and is definitely something I would like to do in pure Golang instead of C/C++. However the technique would be built off of our previous code, and would go as follows:
 
@@ -449,7 +455,7 @@ Some monitoring tools (ie AquaSecurity's [tracee](https://github.com/aquasecurit
 * Create an associative array that stores entries for each unique eBPF program ID as a key, and a boolean representing a full load cycle (load AND unload).
 * At the end of parsing journal logs, check the associative arrays for any programs that have not completed a full load cycle, and are still undergoing execution.
 
-**2. Static Linking**
+**3. Static Linking**
 
 `libsystemd` does NOT support static linking, as mentioned [here](https://lists.freedesktop.org/archives/systemd-devel/2014-March/017493.html), which may not be ideal for portable samples that want to propagate in minified environments. However, most of our operations involve just parsing the journal log, so implementing our own library and statically linking that should be trivial.
 
@@ -459,7 +465,9 @@ All evasion / anti-debugging techniques have mitigations, and this one is no dif
 deploying hosts or containers with the potential for getting attacked, and want to deploy monitoring capabilities onto them, here are suggestions:
 
 * For hosts: explicitly configure `auditd` to not ingest and output BPF program events that a malicious sample can snoop on.
-* For containers: containers are definitely safer against this type of attack, but be sure to consider _not_ setting up systemd / journal directly onto the container such that event logs are generated.
+* For containers: definitely safer against this type of attack, but be sure to consider _not_ setting up systemd / journal directly onto the container such that event logs are generated.
+
+Detection engineers and analysts operating honeypots should also keep closer watch on file I/O events pertaining to `/var/log/journal/*` if implants do choose to start adopting such techniques.
 
 ## Conclusions
 
