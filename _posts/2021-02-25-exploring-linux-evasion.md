@@ -430,13 +430,13 @@ Following along the code, we use the provided `SD_JOURNAL_FOREACH_BACKWARDS` to 
 
 Awesome! Let's compile this and see this in action:
 
-<script id="asciicast-SKa0gQESBvyQshdq6BH87Vu6f" src="[https://asciinema.org/a/SKa0gQESBvyQshdq6BH87Vu6f.js](https://asciinema.org/a/SKa0gQESBvyQshdq6BH87Vu6f.js "https://asciinema.org/a/SKa0gQESBvyQshdq6BH87Vu6f.js")" async></script>
+<a href="[https://asciinema.org/a/398155](https://asciinema.org/a/398155 "https://asciinema.org/a/398155")" target="_blank"><img src="[https://asciinema.org/a/398155.svg](https://asciinema.org/a/398155.svg "https://asciinema.org/a/398155.svg")" /></a>
 
 As you can see, our sample has successfully been able to evade the eBPF monitor!
 
 That's all cool for our simple monitor, but what about tools being used in production in actual environments? Here's the anti-detection in action against the `bpftrace` tool (full screen the cast for both panes):
 
-<script id="asciicast-tqaAjaiNK6aJ4jXdxbh8Yhytl" src="[https://asciinema.org/a/tqaAjaiNK6aJ4jXdxbh8Yhytl.js](https://asciinema.org/a/tqaAjaiNK6aJ4jXdxbh8Yhytl.js "https://asciinema.org/a/tqaAjaiNK6aJ4jXdxbh8Yhytl.js")" async></script>
+<a href="[https://asciinema.org/a/398157](https://asciinema.org/a/398157 "https://asciinema.org/a/398157")" target="_blank"><img src="[https://asciinema.org/a/398157.svg](https://asciinema.org/a/398157.svg "https://asciinema.org/a/398157.svg")" /></a>
 
 ## Limitations
 
