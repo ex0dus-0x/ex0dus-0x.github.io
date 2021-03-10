@@ -430,13 +430,13 @@ Following along the code, we use the provided `SD_JOURNAL_FOREACH_BACKWARDS` to 
 
 Awesome! Let's compile this and see this in action:
 
-<script id="asciicast-kHXINDYpMINuNcqww1TY4NkJH" src="https://asciinema.org/a/kHXINDYpMINuNcqww1TY4NkJH.js" async></script>
+<script id="asciicast-SKa0gQESBvyQshdq6BH87Vu6f" src="[https://asciinema.org/a/SKa0gQESBvyQshdq6BH87Vu6f.js](https://asciinema.org/a/SKa0gQESBvyQshdq6BH87Vu6f.js "https://asciinema.org/a/SKa0gQESBvyQshdq6BH87Vu6f.js")" async></script>
 
 As you can see, our sample has successfully been able to evade the eBPF monitor!
 
 That's all cool for our simple monitor, but what about tools being used in production in actual environments? Here's the anti-detection in action against the `bpftrace` tool (full screen the cast for both panes):
 
-<script id="asciicast-3rQbeHBoG7pExyMkt0tg0y21F" src="https://asciinema.org/a/3rQbeHBoG7pExyMkt0tg0y21F.js" async></script>
+<script id="asciicast-tqaAjaiNK6aJ4jXdxbh8Yhytl" src="[https://asciinema.org/a/tqaAjaiNK6aJ4jXdxbh8Yhytl.js](https://asciinema.org/a/tqaAjaiNK6aJ4jXdxbh8Yhytl.js "https://asciinema.org/a/tqaAjaiNK6aJ4jXdxbh8Yhytl.js")" async></script>
 
 ## Limitations
 
@@ -444,7 +444,7 @@ There a few limitations to this technique that I haven't fully addressed, but wi
 
 **1. Reliability**
 
-Given the limited visbility into daemons and processes launching eBPF programs, not all will specifically be doing host-based threat detection and process monitoring! An attacker should always properly construct a 
+Given the limited visbility into daemons and processes launching eBPF programs, not all will specifically be doing host-based threat detection and process monitoring! An attacker should always properly construct a
 threat model for the attack surfaces they are targeting, and appropriately fine-tune this method to minimize evading when it may clearly be a false positive!
 
 **2. Detecting Continuous Monitors**
