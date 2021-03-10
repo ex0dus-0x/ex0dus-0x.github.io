@@ -430,13 +430,13 @@ Following along the code, we use the provided `SD_JOURNAL_FOREACH_BACKWARDS` to 
 
 Awesome! Let's compile this and see this in action:
 
-<a href="[https://asciinema.org/a/398155](https://asciinema.org/a/398155 "https://asciinema.org/a/398155")" target="_blank"><img src="[https://asciinema.org/a/398155.svg](https://asciinema.org/a/398155.svg "https://asciinema.org/a/398155.svg")" /></a>
+\[!\[asciicast\]([https://asciinema.org/a/398155.svg](https://asciinema.org/a/398155.svg "https://asciinema.org/a/398155.svg"))\]([https://asciinema.org/a/398155](https://asciinema.org/a/398155 "https://asciinema.org/a/398155"))
 
 As you can see, our sample has successfully been able to evade the eBPF monitor!
 
 That's all cool for our simple monitor, but what about tools being used in production in actual environments? Here's the anti-detection in action against the `bpftrace` tool (full screen the cast for both panes):
 
-<a href="[https://asciinema.org/a/398157](https://asciinema.org/a/398157 "https://asciinema.org/a/398157")" target="_blank"><img src="[https://asciinema.org/a/398157.svg](https://asciinema.org/a/398157.svg "https://asciinema.org/a/398157.svg")" /></a>
+\[!\[asciicast\]([https://asciinema.org/a/398157.svg](https://asciinema.org/a/398157.svg "https://asciinema.org/a/398157.svg"))\]([https://asciinema.org/a/398157](https://asciinema.org/a/398157 "https://asciinema.org/a/398157"))
 
 ## Limitations
 
