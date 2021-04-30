@@ -7,22 +7,35 @@ tags:
 - security
 - reversing
 - python
+
 ---
 During the quarantine, I became pretty interested in how we can automate reverse engineering, and decided to commit some time to implement a platform that can help automatically reverse and assess Python-compile executables, called [boa](http://boa.codemuch.tech).  **boa** helps security researchers extrapolate original and readable Python source from compiled and packed executables, and runs automated security checks to detect for low-hanging bugs, leaked secrets, etc.
 
-While there is quite a number of things that I have backlogged in regards to its development, I'm really happy to see the progress made on it so far in the initial revision, and would love to talk about how it would be used!
+This tool is still being developed, and I hope to write a lot more about the different refactors that is to be introduced over time, including techniques in how we approach opcode de-obfuscation, bytecode dumping, etc. Consider this a first in a series of posts about Python reversing!
 
 For hackers and reverse engineers, the routinization of processes and workflows that is often undertaken when manually disassembling applications may be strenuous, and given our experience and ability to persist, our results may not often be _precise_. This, as a result, often encumbers the work done needed to gain visibility into a program or process, needing more time to inquire and quantify about the target.
 
 Tooling like FireEye's [FLARE](https://github.com/FireEye/FLARE) VM for Windows-based reversing and security research, and the well-known [pwntools](https://github.com/Gallopsled/pwntools) framework  was a big inspiration for **boa**'s design, as they enabled hackers to reverse and find bugs quickly, not spend time excavating the Internet for tooling. So as a result, I decided to build **boa** to strip away the levels of abstractions that often encapsulate the functionality of programs we want to analyze.
 
-## Python Intrinsics
+## Quick Look into Compiling Python
 
-Python is a language that we all know and love, with one big reason being it's ability to be executed generally agnostically, as long as an interpreter exists on the host platform. Therefore, applications and even malwares (check out [SeaDuke](https://unit42.paloaltonetworks.com/unit-42-technical-analysis-seaduke/"), a sample found in the DNC hack) have been adopting capabilities to pack their code and resources with an interpreter into a final executable for a given platform.
+Python is a language that we all know and love, with one big reason being it's ability to be executed generally agnostically, as long as an interpreter exists on the host platform. Therefore, applications and even malwares (check out [SeaDuke](https://unit42.paloaltonetworks.com/unit-42-technical-analysis-seaduke/%22), a sample found in the DNC hack) have been adopting capabilities to pack their code and resources with an interpreter into a final executable for a given platform.
+
+### Executable Packing
+
+When a developer wants to take an application that they've written into an executable format and distribute it, Python supports a unique bootstrapping process, where a setup script takes the lead, and provisions a compressed file with a portable Python interpreter, bytecode, and any other resources. The "freezing" algorithm that enforces this depends on the packer/installer being used, and there do exist several out there today.
+
+**boa** provides unpacking support to multiple packers, and we'll take a quick peek at **PyInstaller**, probably the most commonly used packer for cross-platform applications. Others exists like **Py2exe** (which is, simply put, a zip file), and **cxfreeze** and **bbfreeze**.
+
+PyInstaller freezes the compiled bytecode files (or bundled `.egg`s)  generated from source, including both external and standard library dependencies, converting them into Python archives (`.pyz` files) and injects them together into a final executable, with `TOC` (table of contents) objects acting as a headers to those locations. Once the executable is run, the environment is setup such that the external dependencies are recovered and loaded into `sys.path` using import hooks, and the functionality implemented at the entry point is run.
+
+To support unpacking for PyInstaller-based executables, **boa** interfaces and re-implements the functionality from the well-known [**pyinstxtractor**](https://github.com/extremecoders-re/pyinstxtractor) by the popular @extremecoders-re, which implements the unpacking process of Python archives, and recovering any bytecode paths and other important resources.
+
+> Read more about PyInstaller internals here: [https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html](https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html "https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html").
 
 ### Compiling Python
 
-The CPython runtime interprets original source code, but rather than spitting out optimized native machine code, it generates its own intermediate bytecode format, which is easier to concisely recover a source code. Notice the disassembled bytecode of a lambda function in the following snippet, and its stack-based and reduced instruction set:
+The CPython runtime interprets original source code, but rather than spitting out optimized native machine code, it generates its own intermediate bytecode format, which is easier to concisely recover a source code. Notice the disassembled bytecode in he following snippet, and its stack-based and reduced instruction set:
 
 ```python
 >>> import dis
@@ -87,16 +100,6 @@ class SASTEngine(object):
 
 ...
 ```
-
-### Executable Packing
-
-Bytecode files (which end in `.pyc`) are often the by-products you see and `.gitignore` in Python projects with custom modules, but when compiling into a packaged executable, they are crucially important. As mentioned, the Python ecosystem supports packaging executables using several variants of "packers", which help turn a project into an executable that can be run on a target operating system. **boa** provides unpacking support to multiple packers, with the most effort dedicated to **PyInstaller**, probably the most commonly used packer for cross-platform applications, which we'll take a look at. Other support has been added slowly for other packers such as **py2exe**, and **cx_Freeze**.
-
-Like many other known packers, PyInstaller "freezes" the compiled bytecode files (or bundled `.egg`s)  generated from source, including both external and standard library dependencies, converting them into Python archives (`.pyz` files) and injects them together into a final executable, with `TOC` (table of contents) objects acting as a headers to those locations. Once the executable is run, the environment is setup such that the external dependencies are recovered and loaded into `sys.path` using import hooks, and the functionality implemented at the entry point is run.
-
-To support unpacking for PyInstaller-based executables, **boa** interfaces and re-implements the functionality from the well-known [**pyinstxtractor**](https://github.com/extremecoders-re/pyinstxtractor) by the popular @extremecoders-re, which implements the unpacking process of Python archives, and recovering any bytecode paths and other important resources.
-
-> Read more about PyInstaller internals here: [https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html](https://pyinstaller.readthedocs.io/en/stable/advanced-topics.html).
 
 ## Boa Intrinisics
 
