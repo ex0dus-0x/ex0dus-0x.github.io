@@ -18,7 +18,7 @@ This is a simple and often low-severity attack, falling within the broader subca
 
 If you're familiar with subdomain takeovers, the premise is simple: a vendor leaves dangling CNAME records for one of their subdomain to a S3 bucket, which has since been taken down. As a result, when visiting the actual subdomain, we see the following XML response:
 
-![/assets/img/Untitled.png](/assets/img/Untitled.png)
+![/assets/img/posts/AWSNoSuchBucket.png](/assets/img/posts/AWSNoSuchBucket.png)
 
 The XML response luckily gives us the bucket name, and we need to check the CNAME record itself to see the specific region, as that's an important part of the final S3 URL as well. Many vendors will use a CDN / reverse proxy like AWS Cloudfront to serve content, which will also conveniently hide the original S3 URL:
 
@@ -29,7 +29,7 @@ $ dig +nocmd <SUB>.<VENDOR>.com cname +noall +answer
 
 so you may have do a little educated guessing to figure it out. Many bucket instances I've seen is typically in the `us-east-*` and `us-west-*` regions. Once you've figured out the name and region and have successfully squatted the bucket, revisiting the subdomain will change to a `AccessDenied` error in the XML response:
 
-![/assets/img/Untitled%201.png](/assets/img/Untitled%201.png)
+![/assets/img/posts/AWSDenied.png](/assets/img/posts/AWSDenied.png)
 
 If you were operating under an offensive/red-team context, the impact of impersonating the subdomain as something else can be somewhat severe:
 
@@ -38,7 +38,7 @@ If you were operating under an offensive/red-team context, the impact of imperso
 
 Given an aggregated list of subdomains from a host, we can throw them against slamdunk's resolver component, which will first fingerprint it to be a known cloud bucket, and then test for the presence of the `NoSuchBucket` identifier to validate that its indeed vulnerable to this takeover variant. For convenience, you can run slamdunk either against a single or couple URLs with `--url`, and/or a whole file of URLs with `--file`, as I've done against the vendor here:
 
-![/assets/img/Untitled%202.png](/assets/img/Untitled%202.png)
+![/assets/img/posts/resolver.png](/assets/img/posts/resolver.png)
 
 Since the particular vendor I was testing was slowly migrating away from S3, I was able to see several instances of subdomains left behind, and instantly squatted the bucket names. slamdunk is also very useful for identifying bucket names from the given URLs, which can then be used to test for further vulnerabilities.
 
@@ -91,7 +91,7 @@ Unfortunately this disclosure was labeled as informational, since the profile pi
 
 With all that said, slamdunk helps test for these misconfigured permissions, alongside a bunch of other permissions that may allow you to recon and enumerate further components of the bucket that the owner may not intend to. Simply provide a bucket name or multiple names, and/or a file with names, and slamdunk will by default test for read-based permissions, with additional options to provide if you wish to test for write-based permissions. Note that testing for write-based permissions may potentially modify the contents and behavior of the buckets, and should be done with discretion and after validating what read-based permissions are available. For example, using `[flaws.cloud](http://flaws.cloud)` as a smoke test reveals only one read-based permission, which is `ListObjects`:
 
-![/assets/img/2021-05-16-173935_596x141_scrot.png](/assets/img/2021-05-16-173935_596x141_scrot.png)
+![/assets/img/posts/auditor.png](/assets/img/posts/auditor.png)
 
 ### #3. IAM Privilege Escalation
 
@@ -99,7 +99,7 @@ I've mentioned that storage solutions and other cloud resources are managed thro
 
 A really nice diagram that showcases how IAM principals and resources all interact can be seen from AWS here:
 
-![/assets/img/Untitled%203.png](/assets/img/Untitled%203.png)
+![/assets/img/posts/AWS_IAM.png](/assets/img/posts/AWS_IAM.png)
 
 All principals require AWS IAM credentials to be generated for them, which can then be hosted somewhere to provide interaction access with the cloud assets when needed. When configuring your AWS CLI, you would first had to retrieve access keys for your root account, and then add them to your config, often `~/.aws/credentials`.
 
@@ -116,7 +116,7 @@ It was noted that the particular vendor was serving React on the client-side, bu
 
 Through Burp Suite, I was able to observe that they were making a call using these credentials to the Amazon Security Token Service, specifically invoking `AssumeRole`:
 
-![/assets/img/Untitled%204.png](/assets/img/Untitled%204.png)
+![/assets/img/posts/burp.png](/assets/img/posts/burp.png)
 
 This is basically equivalent to the following CLI call:
 
@@ -130,15 +130,21 @@ As mentioned, roles are like temporary identities a user can take upon for a set
 
 With this new role and its new credentials also added to `~/.aws/credentials`, we can enumerate its read/write permissions with slamdunk using its auditor component, but this time with `--list`, which we can now use to see exactly what bucket resources we have access to with our new profile:
 
-![/assets/img/Group_1.png](/assets/img/Group_1.png)
+![/assets/img/posts/creds.png](/assets/img/posts/creds.png)
 
 Woah. Not only do we have open read and write access to the same bucket that was hosting the internal service, but a bunch of other ones that were storing sensitive logs, and *other* internal services! We can confirm with AWS CLI:
 
-![/assets/img/Untitled%205.png](/assets/img/Untitled%205.png)
+![/assets/img/posts/AWS_ls.png](/assets/img/posts/AWS_ls.png)
 
 As a proof-of-concept, I uploaded a test file to staging bucket of the service to demonstrate impact.
 
 Getting access to the buckets and being able to completely modify their contents is huge, but also further triaging for other IAM permissions for lateral movement across resources and privilege escalation is a huge plus. The `[enumerate-iam.py](http://enumerate-iam.py)` script is really nifty in helping this for initial triaging, but for more comprehensive exploitation, the [pacu](https://github.com/RhinoSecurityLabs/pacu) tool is especially useful given its nice selection of modules that can be tested against multiple cloud resources.
+
+## Conclusion
+
+Bucket storage solutions are nice targets for web/cloud pentesting and offensive security. Not only do insecured buckets lead to unintended information disclosure, but also create opportunities for takeovers by
+adversaries in scaled campaigns against the host organization. Finding these vulnerabilities and escalating them are definitely not novel, but it's always fun to find them across large organizations and do fun
+writeups like this.
 
 ### Timeline
 
