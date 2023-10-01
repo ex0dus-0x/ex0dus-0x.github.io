@@ -1,0 +1,50 @@
+---
+layout: default
+---
+
+<div class="row g-5 mb-5">
+  <div class="col-md-12">
+    {{ content }}
+  </div>
+  <!--
+  <div class="col-md-4">
+    <img src="{{ site.github.url }}/assets/img/home.jpg" alt="Home" width="100%">
+  </div>
+  -->
+</div>
+
+<!-- Projects -->
+<div class="row row-cols-1 row-cols-md-3 g-2 mb-5">
+  <div class="col-md-12">
+    <h4 class="fw-bold border-bottom pb-3 mb-3">Notable Projects</h4>
+    <p>
+      Software projects I'm excited about and actively working on to share with the security community. Check out
+      my <a href="{{ site.github.url }}">GitHub</a> to see all past work.
+    </p>
+  </div>
+
+  {% for item in site.data.projects.items %}
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title"><a href="{{ item.url }}">{{ item.name }}</a></h5>
+        <p class="card-text">{{ item.description }} </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="row g-5 mb-5">
+
+  <!-- Publications -->
+  <div class="col-md-12">
+    <h4 class="fw-bold border-bottom pb-3 mb-3">Publications</h4>
+    {% for item in site.data.publications.items %}
+      <li>
+        {{ item.author }} - <a href="{{ item.url }}"><b>{{ item.name }}</b></a> <i>{{ item.conference }}</i>
+      </li>
+    {% endfor %}
+  </div>
+
+</div>

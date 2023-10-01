@@ -1,0 +1,16 @@
+items:
+  - name: Fuzzable
+    url: https://github.com/ex0dus-0x/fuzzable
+    description: Framework for Automating Fuzzable Target Discovery with Static Analysis. Featured in Blackhat Arsenal USA 2022.
+
+  - name: Dependency Guardian
+    url: https://github.com/apps/dependency-guardian
+    description: GitHub bot for finding malicious backdoors in software dependencies.
+
+#  - name: Baffle
+#    url: https://github.com/ex0dus-0x/baffle
+#    description: Software obfuscation/anti-cheat framework powered by LLVM
+
+  - name: microkv
+    url: https://github.com/ex0dus-0x/microkv
+    description: Security-enhanced minimal key-value store.

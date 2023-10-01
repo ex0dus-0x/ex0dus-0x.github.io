@@ -1,0 +1,10 @@
+items:
+  - name: 'What the Fork? Finding and Analyzing Malware in GitHub Forks.'
+    author: 'A. Cao, B. Dolan-Gavitt'
+    conference: NDSS Symposium, Workshop on measurements, attacks, and defenses for the web.
+    url: 'https://www.ndss-symposium.org/wp-content/uploads/madweb2022_23001_paper.pdf'
+
+  - name: 'Divergent Representations: When Compiler Optimizations Enable Exploitation.'
+    author: 'A. Kellas, A. Cao, P. Goodman, J. Yang'
+    conference: IEEE S&P Workshop on Offensive Technologies
+    url: 'https://wootconference.org/papers/woot23-paper6.pdf'

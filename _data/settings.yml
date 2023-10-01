@@ -1,0 +1,7 @@
+menu:
+- {name: 'blog', url: '/blog'}
+
+social:
+- {icon: 'github', category: "fab", link: 'https://github.com/ex0dus-0x'}
+- {icon: 'twitter', category: "fab", link: 'https://twitter.com/ex0dus_0x'}
+- {icon: 'rss', category: "fas", link: '/feed.xml'}

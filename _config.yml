@@ -1,0 +1,37 @@
+title: codemuch.tech
+header: "hi, i'm alan."
+description: "security researcher"
+
+url: "https://codemuch.tech"
+baseurl: ""
+repo: ex0dus-0x/ex0dus-0x.github.io
+permalink: /:year/:month/:day/:title/
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
+  input: GFM
+
+collections:
+  tags:
+    output: true
+    permalink: tags/:path/
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+exclude:
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - node_modules
+  - academic-*.gem
+  - academic.gemspec
+
+###############
+# PLUGINS
+###############
