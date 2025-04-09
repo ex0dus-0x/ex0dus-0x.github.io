@@ -1,0 +1,25 @@
+{% extends "page.html" %}
+
+{% block title %}{{ config.title }} | {{ section.title }}{% endblock title %}
+
+{% block content %}
+<main>
+    <h1>{{ section.title }}</h1>
+    {% if section.pages %}
+    {% for year, posts in section.pages | group_by(attribute="year") %}
+    <h2>{{ year }}</h2>
+    <ul>
+        {% for post in posts %}
+        {% if post.taxonomies.xpost %}
+        <li><a href="{{ post.taxonomies.xpost[0] }}"><i>(xpost)</i> {{ post.title }}</a></li>
+        {% else %}
+        <li><a href="{{ post.permalink }}">{{ post.title }}</a></li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% endfor %}
+    {% else %}
+    <p>No posts yet.</p>
+    {% endif %}
+</main>
+{% endblock content %}

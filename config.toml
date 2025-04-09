@@ -1,0 +1,44 @@
+# The URL the site will be built for
+base_url = "https://codemuch.tech"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+title = "codemuch.tech"
+taxonomies = [
+    { name = "categories" },
+    { name = "tags" },
+    { name = "xpost" },
+]
+
+slugify.taxonomies = "on"
+
+[markdown]
+
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "agola-dark"
+
+bottom_footnotes = true
+
+[extra]
+
+links = [
+    { title = "Mail", href = "mailto:alan@codemuch.tech" },
+    { title = "GitHub", href = "https://github.com/ex0dus-0x" },
+    { title = "Twitter", href = "https://twitter.com/ex0dus-0x" }
+]
+
+publications = [
+    { name = "What the Fork? Finding and Analyzing Malware in GitHub Forks.", author = "A. Cao, B. Dolan-Gavitt", conference = "NDSS Symposium, Workshop on measurements, attacks, and defenses for the web.", href = "https://www.ndss-symposium.org/wp-content/uploads/madweb2022_23001_paper.pdf" },
+    { name = "Divergent Representations: When Compiler Optimizations Enable Exploitation.", author = "A. Kellas, A. Cao, P. Goodman, J. Yang", conference = "IEEE S&P Workshop on Offensive Technologies", href = "https://wootconference.org/papers/woot23-paper6.pdf" }
+]
+
+projects = [
+    { name = "fuzzable", description = "Framework for Automating Fuzzable Target Discovery with Static Analysis. Featured in Blackhat Arsenal USA 2022.", href = "https://github.com/ex0dus-0x/fuzzable" },
+    { name = "microkv", description = "Security-enhanced minimal key-value store.", href = "https://github.com/ex0dus-0x/microkv" },
+]
