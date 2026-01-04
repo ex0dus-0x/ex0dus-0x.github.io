@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>codemuch.tech | Finding Fuzzable targets with static analysis and Binary Ninja</title>
+    
+    <link rel="stylesheet" href="https://codemuch.tech/style.css?h=c3083d9ba76bdaea32df">
+    
+    
+        
+    
+</head>
+<body>
+    
+<header class="space">
+    <a href="https:&#x2F;&#x2F;codemuch.tech">&LeftArrow; Home</a>
+</header>
+
+    
+<main>
+    <h1>Finding Fuzzable targets with static analysis and Binary Ninja</h1>
+    
+    <p class="secondary small">
+        7 June, 2021
+
+        
+        
+        
+        
+        
+
+        
+        
+        - Categories:
+        
+        
+        <a href="https:&#x2F;&#x2F;codemuch.tech&#x2F;categories&#x2F;vuln-research&#x2F;">vuln research</a>,
+        
+        
+        <a href="https:&#x2F;&#x2F;codemuch.tech&#x2F;categories&#x2F;fuzzing&#x2F;">fuzzing</a>,
+        
+        
+        <a href="https:&#x2F;&#x2F;codemuch.tech&#x2F;categories&#x2F;binary-ninja&#x2F;">binary ninja</a>
+        
+        
+    </p>
+    
+    <div class="space"></div>
+    <p>I enjoy following the cool advancements the security research community makes in fuzzing and dynamic analysis. This includes topics like <a href="https://blog.trailofbits.com/2021/03/19/un-bee-lievable-performance-fast-coverage-guided-fuzzing-with-honeybee-and-intel-processor-trace/">faster dynamic instrumentation</a> for closed-source binaries, and improving test case generation for structure-aware/grammar fuzzing against parsers and compilers.</p>
+<p>However, while we have significantly improved the science of fuzzing, we should also look into other areas part of the fuzzing workflow that aren't about fuzzer implementation and heuristics, but rather how to assist them before and after dynamic analysis.</p>
+<p>This blog post examines how we can improve and routinize the process of <em>fuzzing target discovery</em>, by building a solution, where, given an executable or library, will produce a ranked list of function symbols appealing for fuzzing. I'll be building this as a plugin for <a href="https://binary.ninja">Binary Ninja</a>, which provides a rich API for binary analysis and a well-rounded binary format loader.</p>
+<h2 id="starting-the-excavation">Starting the Excavation</h2>
+<p>Let's discuss several metrics used to compute a <em>fuzzability</em> score for each function in a given binary view. In the end, scores will be ranked highest-first, and the final results for all is then delivered tabulated back to the user for further analysis. Our fuzzability calculation is going to be very simple: if a metric is detected within the specific function, we'll +1.</p>
+<h3 id="metric-1-function-identification">Metric #1: Function Identification</h3>
+<p>Metric #1 is simple: look at the function call itself and its parameters. A good target could be conveniently named to suggest that it takes raw input, with a buffer or filename input, and is the entry point for potentially vulnerable processing code.</p>
+<p>For a function that does some type of parsing, this may involve incrementally scanning and error-checking a raw input, and then finalizing by generating some sort of structure with attributes to represent the parsed unit of code. For example:</p>
+<pre data-lang="cpp" style="background-color:#31333d;color:#ffffffc4;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span>xml_t</span><span style="color:#db7c6d;">* **</span><span>parse</span><span style="color:#db7c6d;">**</span><span style="color:#a2ba43;">_xml_buffer</span><span>(</span><span style="color:#db7c6d;">**</span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">*</span><span>buf</span><span style="color:#db7c6d;">**</span><span>, </span><span style="color:#e7e7e7;">size_t </span><span style="color:#ffffff;">size</span><span>)
+</span></code></pre>
+<p>So we'll start by implementing our plugin callback <code>run_fuzzable</code>, which iterates over all function symbols in the <code>BinaryView</code>, filter out relevant ones, and match on them further with patterns.</p>
+<pre data-lang="python" style="background-color:#31333d;color:#ffffffc4;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#707180;">#!/usr/bin/env python
+</span><span style="color:#db7c6d;">from </span><span>binaryninja.enums </span><span style="color:#db7c6d;">import </span><span>SymbolType
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">INTERESTING_PATTERNS </span><span style="color:#db7c6d;">= </span><span>[</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Parse</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Read</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Buf</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>File</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Input</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>String</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>]
+</span><span>
+</span><span style="color:#db7c6d;">def </span><span style="color:#a2ba43;">run_fuzzable</span><span>(</span><span style="color:#ffffff;">view</span><span>):
+</span><span>    </span><span style="color:#707180;"># parse out all functions
+</span><span>    funcs </span><span style="color:#db7c6d;">= </span><span>view.functions
+</span><span>
+</span><span>    </span><span style="color:#707180;"># iterate over each function 
+</span><span>    </span><span style="color:#db7c6d;">for </span><span>func </span><span style="color:#db7c6d;">in </span><span>funcs:
+</span><span>
+</span><span>        </span><span style="color:#707180;"># attributes we care about
+</span><span>        name </span><span style="color:#db7c6d;">= </span><span>func.name
+</span><span>        symbol </span><span style="color:#db7c6d;">= </span><span>func.symbol.type
+</span><span>        args </span><span style="color:#db7c6d;">= </span><span>func.parameter_vars
+</span><span>
+</span><span>        </span><span style="color:#707180;"># we don&#39;t care about imports like glibc/Win32
+</span><span>        </span><span style="color:#db7c6d;">if </span><span>(symbol </span><span style="color:#db7c6d;">is </span><span>SymbolType.ImportedFunctionSymbol) </span><span style="color:#db7c6d;">or </span><span>(
+</span><span>            symbol </span><span style="color:#db7c6d;">is </span><span>SymbolType.LibraryFunctionSymbol
+</span><span>        ):
+</span><span>            </span><span style="color:#db7c6d;">continue
+</span><span>
+</span><span>        </span><span style="color:#707180;"># we also don&#39;t care about calls that start with `_`
+</span><span>        </span><span style="color:#db7c6d;">if </span><span>name.</span><span style="font-weight:bold;color:#a3cbe3;">startswith</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>_</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>):
+</span><span>            </span><span style="color:#db7c6d;">continue
+</span><span>
+</span><span>        </span><span style="color:#707180;"># check for interesting name and args if not stripped
+</span><span>        is_stripped </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>sub_</span><span style="font-weight:bold;color:#dbbb3d;">&quot; </span><span style="color:#db7c6d;">in </span><span>name
+</span><span>        interesting_name </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">False
+</span><span>        </span><span style="color:#db7c6d;">if not </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.stripped:
+</span><span>            interesting_name </span><span style="color:#db7c6d;">= any</span><span>(
+</span><span>                [
+</span><span>                    pattern </span><span style="color:#db7c6d;">in </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.name </span><span style="color:#db7c6d;">or </span><span>pattern.</span><span style="font-weight:bold;color:#a3cbe3;">lower</span><span>() </span><span style="color:#db7c6d;">in </span><span>name
+</span><span>                    </span><span style="color:#db7c6d;">for </span><span>pattern </span><span style="color:#db7c6d;">in </span><span style="font-weight:bold;color:#a3cbe3;">INTERESTING_PATTERNS
+</span><span>                ]
+</span><span>            )
+</span><span>
+</span><span>        </span><span style="color:#707180;"># analyze function arguments for fuzzable patterns
+</span><span>        interesting_args </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">False
+</span><span>        </span><span style="color:#db7c6d;">for </span><span>arg </span><span style="color:#db7c6d;">in </span><span>args:
+</span><span>            </span><span style="color:#db7c6d;">if </span><span>arg.type </span><span style="color:#db7c6d;">== </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>char*</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>:
+</span><span>                interesting_args </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">True
+</span><span>                </span><span style="color:#db7c6d;">break
+</span><span>            
+</span><span>        </span><span style="color:#707180;"># ...
+</span></code></pre>
+<p>This is the criteria we'll use to identify interesting functions for fuzzing in our initial implementation:</p>
+<ul>
+<li>Should not be a imported function call referenced in the IAT or GOT that needs to be resolved dynamically.</li>
+<li>Should not start with <code>_</code>, which is often used by dynamic instrumentation, profiling and unit-testing callbacks.</li>
+<li>Preferably shouldn't be stripped.</li>
+<li>If not stripped, should contain an interesting pattern within its symbol name that signal some type of raw input consumption behavior (ie. <code>Parse</code>, <code>Read</code>, <code>Buf</code>).</li>
+<li>Within the function, some type of <code>char*</code> should be pushed onto the stack, either representing a pointer to an input buffer to read out of, or a filename to open and read out of.</li>
+</ul>
+<h3 id="metric-2-coverage-depth-with-call-graphs">Metric #2: Coverage Depth with Call Graphs</h3>
+<p>The next metric is <em>coverage depth,</em> which we'll measure by how many functions are called from a target. An important strategy a vulnerability researcher employs if fuzzing is to try maximizing coverage reached, as that would mean hitting high amounts of control-flow edges, since the probability of crashes to occur is linearly dependent on the implementation complexity. As such, one should try to find top-level API routines to fuzz that would invoke a lot of function callees, rather than individually testing lower-level subroutines.</p>
+<p>Our technique for measuring coverage depth is going to be simply generating a <em>call graph</em> with the target function as the root. This type of graphical representation is different from a control-flow graph, which represents a disassembly of a program with a basic-block granularity, whereas a call graph only does so at a function routines. As you may know, a control-flow graph comprised of basic-blocks is much more concise for visualizing control-flow edges, as branches occur at instructions that denote conditional jumps (ie <code>jmp</code>, <code>jne</code>, <code>je</code>). A high-level call graph is sufficient for our case, as we only care about how many levels of function calls and therefore instructions we're going through for our coverage metric. Here's a side by side visualization of a control-flow graph vs callgraph for two different routines within the YARA core library:</p>
+<p><img src="/blog/fuzzable/cfg.png" alt="cfg" /></p>
+<p><img src="/blog/fuzzable/callgraph.png" alt="callgraph" /></p>
+<p><em>Plugin responsible for callgraph visualization is <a href="https://github.com/borzacchiello/bncallgraph">bncallgraph</a> by @borzacchiello.</em></p>
+<p>We'll do a depth-first search through the whole graph, incrementing a depth counter until we reach the <em>leaves</em>, which are is either a call with no callees, or an import. We make sure to cache the nodes already encountered, to ensure we're not re-visiting any if back edges were present. Since this is a depth-first search, a call stack is also used, which the current function callee is pushed and popped when visited. With this, we can also determine if the current symbol is recursive, if one of the callgraph nodes we reach has a back edge to the original root node.</p>
+<pre data-lang="python" style="background-color:#31333d;color:#ffffffc4;" class="language-python "><code class="language-python" data-lang="python"><span>@</span><span style="color:#db7c6d;">staticmethod
+</span><span style="color:#db7c6d;">def </span><span style="color:#a2ba43;">get_callgraph_complexity</span><span>(</span><span style="color:#ffffff;">target</span><span>) -&gt; (</span><span style="color:#e7e7e7;">int</span><span>, </span><span style="color:#e7e7e7;">bool</span><span>, t.List[</span><span style="color:#e7e7e7;">str</span><span>]):
+</span><span>    </span><span style="color:#707180;">&quot;&quot;&quot;
+</span><span style="color:#707180;">    Calculates coverage depth by doing a depth first search on function call graph,
+</span><span style="color:#707180;">    return a final depth and flag denoting recursive implementation
+</span><span style="color:#707180;">    &quot;&quot;&quot;
+</span><span>
+</span><span>    depth </span><span style="color:#db7c6d;">= 0
+</span><span>    recursive </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">False
+</span><span>
+</span><span>    </span><span style="color:#707180;"># stores only the name of the symbol we&#39;ve already visited
+</span><span>    visited </span><span style="color:#db7c6d;">= </span><span>[]
+</span><span>
+</span><span>    </span><span style="color:#707180;"># as we iterate over callees, add to a callstack and iterate over callees
+</span><span>    </span><span style="color:#707180;"># for those as well, adding to the callgraph until we&#39;re done with all
+</span><span>    callstack </span><span style="color:#db7c6d;">= </span><span>[target]
+</span><span>    </span><span style="color:#db7c6d;">while </span><span>callstack:
+</span><span>
+</span><span>        </span><span style="color:#707180;"># increase depth as we finish iterating over callees for another func
+</span><span>        func </span><span style="color:#db7c6d;">= </span><span>callstack.</span><span style="font-weight:bold;color:#a3cbe3;">pop</span><span>()
+</span><span>        depth </span><span style="color:#db7c6d;">+= 1
+</span><span>
+</span><span>        </span><span style="color:#707180;"># add all childs to callgraph, and add those we haven&#39;t recursed into callstack
+</span><span>        </span><span style="color:#db7c6d;">for </span><span>child </span><span style="color:#db7c6d;">in </span><span>func.callees:
+</span><span>            </span><span style="color:#db7c6d;">if </span><span>child.name </span><span style="color:#db7c6d;">not in </span><span>visited:
+</span><span>                callstack </span><span style="color:#db7c6d;">+= </span><span>[child]
+</span><span>
+</span><span>            </span><span style="color:#707180;"># set flag if function makes call at some point back to current target,
+</span><span>            </span><span style="color:#707180;"># increment cycle if recursive child is primary target itself,
+</span><span>            </span><span style="color:#707180;"># meaning, there is recursion involved.
+</span><span>            </span><span style="color:#db7c6d;">elif </span><span>child.name </span><span style="color:#db7c6d;">== </span><span>target.name:
+</span><span>                recursive </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">True
+</span><span>
+</span><span>        visited </span><span style="color:#db7c6d;">+= </span><span>[func.name]
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">return </span><span>(depth, recursive, visited)
+</span></code></pre>
+<p>We now have something that can give us some useful insight about how much coverage we would be able to reach for each specific routine in an executable. To determine whether or not our fuzzability score should be incremented, we'll enforce a coverage depth threshold (I set a minimum of 100), where a depth higher will result in the score being incremented.</p>
+<h3 id="metric-3-natural-loops">Metric #3: Natural Loops</h3>
+<p>Our final metric would concern the presence of loops within a specific routine. This might also be an important metric for a vulnerability researcher, as the use of loops can often correlate to behavior like input parsing, where raw bytes are iteratively scanned to be instantiated as a well-formed structure. These may be good places to look for conditions that can lead to infinite loops/memory exhaustion, off-by-one bugs, or out-of-bounds reads/writes.</p>
+<p>We now need to approach each target function at a basic-block granularity, and will rely on the power of dominator trees in order to understand a general algorithm for detecting loops. Dominator trees are used in graph theory to visualize what basic block nodes must absolutely be visited in every path possible before settling on a specific target. I'll take an example from the book where I've learned this from, <em>Practical Binary Analysis</em> (awesome read, buy it <a href="https://nostarch.com/binaryanalysis">here</a>):</p>
+<p><img src="/blog/fuzzable/dominator.png" alt="dominator" /></p>
+<p>Node BB1 <em>dominates</em> all nodes because it will always be visited before settling on any of the other nodes. Similarly, BB3 also dominates BB5, since it will always be visited before reaching BB5. If we look at BB6 as a target, BB3 and BB4 are <em>not</em> its dominators because they represent splits in control flow: one or the other node can be visited before reaching BB6. BB6 is also <em>not</em> a dominator for BB7, since we don't necessary need to visit BB6 before reaching BB7 (ie BB1 → BB3 → BB5 → BB7).</p>
+<p>This is important because dominance trees are really useful for loop detection, and we can efficiently detect them using an attribute called the <em>dominance frontier.</em> A node Y is considered part of the dominance frontier set of a node X if X dominates the predecessor of Y, but does not strictly dominate Y. In this case, the word "<em>strictly"</em> is important: by definition, every node dominates itself, but when defining strict dominance, it excludes itself in that set. So looking back at our example from the book, the dominance frontier of BB3 is BB7, since BB3 dominates BB5, and BB7 is a successor of BB5 in the CFG. Furthermore, BB3 itself is also part of the dominance frontier set, since it does not <em>strictly</em> dominate itself.</p>
+<p>As you can see from the example, loop detection occurs when a basic block is in its own dominance frontier, meaning that at some point in program execution, it must reach itself again, restarting the state again.</p>
+<p>Luckily, Binary Ninja's plugin API is super convenient, and exposes these attributes for each <code>BasicBlock</code>. So based on what we've discussed, we'll simply iterate over each basic block in a target function, and check if the basic block itself is part of the dominance frontier set:</p>
+<pre data-lang="python" style="background-color:#31333d;color:#ffffffc4;" class="language-python "><code class="language-python" data-lang="python"><span>@</span><span style="color:#db7c6d;">staticmethod
+</span><span style="color:#db7c6d;">def </span><span style="color:#a2ba43;">contains_loop</span><span>(</span><span style="color:#ffffff;">target</span><span>) -&gt; </span><span style="color:#e7e7e7;">bool</span><span>:
+</span><span>    </span><span style="color:#707180;">&quot;&quot;&quot; Yes, it&#39;s that simple :) &quot;&quot;&quot;
+</span><span>    </span><span style="color:#db7c6d;">for </span><span>bb </span><span style="color:#db7c6d;">in </span><span>target.basic_blocks:
+</span><span>        </span><span style="color:#db7c6d;">if </span><span>bb </span><span style="color:#db7c6d;">in </span><span>bb.dominance_frontier:
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#ffffff;">True
+</span><span>    </span><span style="color:#db7c6d;">return </span><span style="color:#ffffff;">False
+</span></code></pre>
+<p>Since the given target may be a child as part of a larger callgraph, I also made sure that if the child has a natural loop, than the parent is set to have one as well.</p>
+<hr />
+<p>We now have everything we need to calculate a fuzzability score!</p>
+<pre data-lang="python" style="background-color:#31333d;color:#ffffffc4;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#db7c6d;">from </span><span>binaryninja.settings </span><span style="color:#db7c6d;">import </span><span>Settings
+</span><span>
+</span><span>@</span><span style="color:#db7c6d;">property
+</span><span style="color:#db7c6d;">def </span><span style="color:#a2ba43;">fuzzability</span><span>(</span><span style="color:#ffffff;">self</span><span>) -&gt; </span><span style="color:#e7e7e7;">float</span><span>:
+</span><span>    </span><span style="color:#707180;">&quot;&quot;&quot; 
+</span><span style="color:#707180;">    Calculate a final fuzzability score once analysis is completed.
+</span><span style="color:#707180;">    &quot;&quot;&quot;
+</span><span>
+</span><span>    score </span><span style="color:#db7c6d;">= 0.0
+</span><span>
+</span><span>    </span><span style="color:#707180;"># function is publicly exposed
+</span><span>    </span><span style="color:#db7c6d;">if not </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.stripped:
+</span><span>        score </span><span style="color:#db7c6d;">+= 1
+</span><span>
+</span><span>        </span><span style="color:#707180;"># name contains interesting patterns often useful for fuzz harnesses
+</span><span>        </span><span style="color:#db7c6d;">if </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.interesting_name:
+</span><span>            score </span><span style="color:#db7c6d;">+= 1
+</span><span>
+</span><span>    </span><span style="color:#707180;"># function signature can directly consume fuzzer input
+</span><span>    </span><span style="color:#db7c6d;">if </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.interesting_args:
+</span><span>        score </span><span style="color:#db7c6d;">+= 1
+</span><span>
+</span><span>    </span><span style="color:#707180;"># function achieved an optimal threshold of coverage to be fuzzed
+</span><span>    depth_threshold </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">int</span><span>(</span><span style="font-weight:bold;color:#a3cbe3;">Settings</span><span>().</span><span style="font-weight:bold;color:#a3cbe3;">get_string</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>fuzzable.depth_threshold</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>))
+</span><span>    </span><span style="color:#db7c6d;">if </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.depth </span><span style="color:#db7c6d;">&gt;= </span><span>depth_threshold:
+</span><span>        score </span><span style="color:#db7c6d;">+= 1
+</span><span>
+</span><span>    </span><span style="color:#707180;"># natural loop is present. Keep in mind this will also increase
+</span><span>    </span><span style="color:#707180;"># the score of any parent calls this target is a part of.
+</span><span>    </span><span style="color:#db7c6d;">if </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.has_loop:
+</span><span>        score </span><span style="color:#db7c6d;">+= 1
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">return </span><span>score
+</span></code></pre>
+<h2 id="target-practice">Target Practice</h2>
+<p>I added some more components to the plugin that helped rendered out results as a seperate Markdown table, and also sorted our results parsed for each function by fuzzability to finalize how we deliver results efficiently back to the user.</p>
+<p>Make sure that the root of the project is in the Binary Ninja plugin directory for your respective operating system (you can use a symlink if developing on the plugin somewhere else further). Once a binary view is opened, click on <code>Tools &gt; Plugins &gt; Fuzzable &gt; Analyze Fuzzable Targets</code> to run the static analysis. A seperate tab will pop with your results!</p>
+<p>Let's throw some executables and libraries against the plugin and see how well it works! The first target I looked at is MJS, which is a JS interpreter that I found an off-by-one heap overflow (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=2021-31875">CVE-2021-31875</a>) in:</p>
+<p><img src="/blog/fuzzable/example1.png" alt="example" /></p>
+<p>Looks good! If I was doing vulnerability assessment on a black-box version of the executable, <code>mjs_exec_file</code> would absolutely by the optimal routine to pick out to generate a harness for.</p>
+<p>Let's also throw YARA's shared object library, <code>libyara.so</code>, against the plugin:</p>
+<p><img src="/blog/fuzzable/example2.png" alt="example" /></p>
+<p>Neat! We get some good potential targets we can select as well.</p>
+<h2 id="bonus-automated-harness-generation">Bonus: Automated Harness Generation</h2>
+<p>I wanted to also touch base on how fuzzable can be powered even further to not just find optimal targets to fuzz, but also automatically generate the harnesses for us themselves.</p>
+<p>The fuzzable plugin has an experimental feature called <code>Generate Fuzzing Harness</code>, which will extrapolate the features from a given function, and create a simple libFuzzer/AFL harness from a template. I'm going to add support for Window harnesses as I dive more into Windows exploitation.</p>
+<p>Note that this is still an academic research endeavor, as it sits well within the realm of program synthesis. For fun research pieces, check out the work done by Georgia Tech's SSLab with <a href="https://taesoo.kim/pubs/2021/jung:winnie.pdf">Winnie</a>, and Google/EPFL's work with <a href="https://www.usenix.org/system/files/sec20fall_ispoglou_prepub.pdf">FuzzGen</a>.</p>
+<h2 id="future-endeavors">Future Endeavors</h2>
+<p>This seems like a really good first step, but I haven't had the opportunity to throw our plugin against a large dataset of diverse targets to really stress test how it's able to accurately identify good fuzzing targets. Therefore, this plugin certaintly won't be perfect in-the-wild, due to the wild diversity of how software is implemented.</p>
+<p>One feature that I hope to incorporate in the future (maybe with your help!) is machine-learned ranking (aka Learning to Rank), where we construct ML-based learning models to help us accurately rank such targets given features (hence why fuzzable has a CSV export feature). This is something that's had commercial success in security detection, specifically with FireEye's <a href="https://github.com/fireeye/stringsifter">stringsifter</a>, which implements this to help malware reverse engineers rank and identify interesting strings from a sample quicker, such as URL endpoints, BTC addresses, etc.</p>
+<p>I'm interested to see more work similar to this in the future, as it seems surprisingly underdeveloped, and can be extremely useful in the vulnerability discovery process. Feel free to check out the repository for fuzzable <a href="https://github.com/ex0dus-0x/fuzzable">here</a>, suggest features you want to see, or improve upon it!</p>
+
+</main>
+
+    <div class="dark-mode-buttons">
+        <button class="dark-mode-button" id="dark-mode-on"><img src="https://codemuch.tech/dark_mode.svg" width="24" height="24" alt="Dark mode" aria-label="dark mode toggle" title="Dark mode"></button>
+        <button class="dark-mode-button" id="dark-mode-off"><img src="https://codemuch.tech/light_mode.svg" width="24" height="24" alt="Light mode" aria-label="light mode toggle" title="Light mode"></button>
+    </div>
+    <script>
+        const cls = document.querySelector("html").classList;
+        const sessionTheme = sessionStorage.getItem("theme");
+
+        function setDark() {
+            cls.add("dark-mode");
+            cls.remove("light-mode");
+            sessionStorage.setItem("theme", "dark");
+        }
+        function setLight() {
+            cls.add("light-mode");
+            cls.remove("dark-mode");
+            sessionStorage.setItem("theme", "light");
+        }
+
+        if (sessionTheme === "dark") {
+            setDark();
+        } else if (sessionTheme === "light") {
+            setLight();
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            setDark();
+        }
+
+        document.getElementById("dark-mode-on").addEventListener("click", function(e) {
+            setDark();
+        });
+        document.getElementById("dark-mode-off").addEventListener("click", function(e) {
+            setLight();
+        });
+    </script>
+    <noscript>
+        <style>
+            .dark-mode-buttons {
+                display: none;
+            }
+        </style>
+    </noscript>
+</body>
+</html>
