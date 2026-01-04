@@ -16,7 +16,7 @@ Let's discuss several metrics used to compute a *fuzzability* score for each fun
 
 ### Metric #1: Function Identification
 
-Metric #1 is simple: look at the function call itself and its parameters. A good target could be conveniently named to suggest that it takes raw input, with arguments that consume a raw buffer or a filename, and is the entry point for potentially vulnerable processing code.
+Metric #1 is simple: look at the function call itself and its parameters. A good target could be conveniently named to suggest that it takes raw input, with a buffer or filename input, and is the entry point for potentially vulnerable processing code.
 
 For a function that does some type of parsing, this may involve incrementally scanning and error-checking a raw input, and then finalizing by generating some sort of structure with attributes to represent the parsed unit of code. For example:
 
@@ -75,7 +75,7 @@ def run_fuzzable(view):
         # ...
 ```
 
-Based on our initial implementation, when doing interesting function identification, here are all the criteria one should preferably meet to be a viable candidate for fuzzing:
+This is the criteria we'll use to identify interesting functions for fuzzing in our initial implementation:
 
 - Should not be a imported function call referenced in the IAT or GOT that needs to be resolved dynamically.
 - Should not start with `_`, which is often used by dynamic instrumentation, profiling and unit-testing callbacks.
